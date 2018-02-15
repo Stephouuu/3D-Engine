@@ -3,6 +3,7 @@
 
 AMesh::AMesh(void)
 {
+	// vbo => vertex buffer object
 	vbo_.addVertex(ofPoint(0, 0, 0));
 	vbo_.addVertex(ofPoint(1, 0, 0));
 	vbo_.addVertex(ofPoint(0, 1, 0));

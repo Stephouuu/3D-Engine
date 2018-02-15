@@ -25,7 +25,7 @@ void WindowRenderer::setFramerate(int fps)
 	ofSetFrameRate(60);
 }
 
-void WindowRenderer::draw(ofVboMesh & vbo)
+void WindowRenderer::draw(const ofVboMesh & vbo)
 {
 	vbo.draw();
 }

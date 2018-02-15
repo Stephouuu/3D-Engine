@@ -178,9 +178,10 @@
     <ClCompile Include="ATransformable.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
     <ClCompile Include="CubeMesh.cpp" />
-    <ClCompile Include="EditProperties.cpp" />
+    <ClCompile Include="PropertiesEditor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model3D.cpp" />
+    <ClCompile Include="PlaneMesh.cpp" />
     <ClCompile Include="PlanGenerator.cpp" />
     <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
@@ -221,6 +222,7 @@
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureRender.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WindowRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -230,12 +232,13 @@
     <ClInclude Include="ATransformable.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
     <ClInclude Include="CubeMesh.hpp" />
-    <ClInclude Include="EditProperties.hpp" />
+    <ClInclude Include="PropertiesEditor.hpp" />
     <ClInclude Include="Identifiable.hpp" />
-    <ClInclude Include="IMeshGenerator.hpp" />
+    <ClInclude Include="IBasicMeshGenerator.hpp" />
     <ClInclude Include="IMeshReadOnly.hpp" />
     <ClInclude Include="Model3D.hpp" />
     <ClInclude Include="NonCopyable.hpp" />
+    <ClInclude Include="PlaneMesh.hpp" />
     <ClInclude Include="PlanGenerator.hpp" />
     <ClInclude Include="SceneController.hpp" />
     <ClInclude Include="SceneGraph.hpp" />
@@ -473,6 +476,7 @@
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxml.h" />
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="TextureRenderer.hpp" />
+    <ClInclude Include="Timer.hpp" />
     <ClInclude Include="WindowRenderer.hpp" />
   </ItemGroup>
   <ItemGroup>

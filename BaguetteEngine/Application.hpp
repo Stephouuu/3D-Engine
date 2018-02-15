@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 
+#include "Timer.hpp"
 #include "WindowRenderer.hpp"
 #include "SceneController.hpp"
 
@@ -28,6 +29,7 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
+	Timer timer_;
 	WindowRenderer window_;
 	SceneController scene_;
 };

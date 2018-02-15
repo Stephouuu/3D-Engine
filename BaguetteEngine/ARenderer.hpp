@@ -10,6 +10,6 @@ public:
 	ARenderer(void);
 	virtual ~ARenderer(void);
 
-	virtual void draw(ofVboMesh & vbo) = 0;
+	virtual void draw(const ofVboMesh & vbo) = 0;
 };
 

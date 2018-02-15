@@ -124,9 +124,6 @@
     <ClCompile Include="SceneViewer.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
-    <ClCompile Include="EditProperties.cpp">
-      <Filter>src\UI</Filter>
-    </ClCompile>
     <ClCompile Include="AMesh.cpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
@@ -153,6 +150,15 @@
     </ClCompile>
     <ClCompile Include="WindowRenderer.cpp">
       <Filter>src\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaneMesh.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertiesEditor.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>src\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1049,9 +1055,6 @@
     <ClInclude Include="SceneViewer.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
-    <ClInclude Include="EditProperties.hpp">
-      <Filter>src\UI</Filter>
-    </ClInclude>
     <ClInclude Include="NonCopyable.hpp">
       <Filter>src\Utils</Filter>
     </ClInclude>
@@ -1065,9 +1068,6 @@
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="CubeGenerator.hpp">
-      <Filter>src\Graphics\Mesh\Generator</Filter>
-    </ClInclude>
-    <ClInclude Include="IMeshGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
     <ClInclude Include="IMeshReadOnly.hpp">
@@ -1084,6 +1084,18 @@
     </ClInclude>
     <ClInclude Include="Application.hpp">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="IBasicMeshGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneMesh.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertiesEditor.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.hpp">
+      <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,11 @@ SceneController::~SceneController(void)
 
 }
 
+void SceneController::update(float dt)
+{
+	// ...
+}
+
 void SceneController::render(ARenderer & renderer)
 {
 	cam_.begin();

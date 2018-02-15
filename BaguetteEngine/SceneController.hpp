@@ -11,6 +11,7 @@ public:
 	SceneController(void);
 	~SceneController(void);
 
+	void update(float dt);
 	void render(ARenderer & renderer);
 
 private:

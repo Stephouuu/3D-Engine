@@ -11,7 +11,7 @@ public:
 	void create(void);
 	void setFramerate(int fps);
 
-	virtual void draw(ofVboMesh & vbo);
+	virtual void draw(const ofVboMesh & vbo);
 
 private:
 
