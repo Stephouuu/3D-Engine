@@ -4,12 +4,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ofApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp">
       <Filter>addons\ofxAssimpModelLoader\src</Filter>
     </ClCompile>
@@ -103,9 +97,6 @@
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="src\Application.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="SceneController.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
@@ -115,50 +106,53 @@
     <ClCompile Include="SceneNode.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="NonCopyable.cpp">
-      <Filter>src\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="ARenderer.cpp">
-      <Filter>src\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowRenderercpp.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="TextureRender.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="ATransformable.cpp">
-      <Filter>src\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="AMesh.cpp">
-      <Filter>src\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Model3D.cpp">
-      <Filter>src\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeMesh.cpp">
-      <Filter>src\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="PlanGenerator.cpp">
-      <Filter>src\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="SphereGenerator.cpp">
-      <Filter>src\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeGenerator.cpp">
-      <Filter>src\3D</Filter>
+      <Filter>src\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>src\3D</Filter>
+      <Filter>src\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>src\3D</Filter>
+      <Filter>src\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="SceneViewer.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
     <ClCompile Include="EditProperties.cpp">
       <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="AMesh.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeMesh.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Model3D.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowRenderer.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -324,17 +318,23 @@
     <Filter Include="src\Renderer">
       <UniqueIdentifier>{4477bc9b-66da-4372-8fdd-8b1a68f717cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\3D">
-      <UniqueIdentifier>{7df818aa-6a45-4e06-b73d-83dbde500e55}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\UI">
       <UniqueIdentifier>{3a238160-59ad-42c6-b90f-c9685d04ae9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{bde57e39-88fe-45b7-a80d-bf5a4e8ac942}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics">
+      <UniqueIdentifier>{7df818aa-6a45-4e06-b73d-83dbde500e55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics\Mesh">
+      <UniqueIdentifier>{29bb19d8-0d41-4458-a6a9-1acc06b12dcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics\Mesh\Generator">
+      <UniqueIdentifier>{0a87b584-fd8c-4ab1-b557-bb54d2cc8286}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h">
       <Filter>addons\ofxAssimpModelLoader\src</Filter>
     </ClInclude>
@@ -1019,9 +1019,6 @@
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxml.h">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClInclude>
-    <ClInclude Include="src\Application.hpp">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="SceneController.hpp">
       <Filter>src\Scene</Filter>
     </ClInclude>
@@ -1030,9 +1027,6 @@
     </ClInclude>
     <ClInclude Include="SceneNode.hpp">
       <Filter>src\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="NonCopyable.hpp">
-      <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ARenderer.hpp">
       <Filter>src\Renderer</Filter>
@@ -1044,46 +1038,52 @@
       <Filter>src\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ATransformable.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Identifiable.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="IMeshReadOnly.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="AMesh.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Model3D.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeMesh.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="IMeshGenerator.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="PlanGenerator.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="SphereGenerator.hpp">
-      <Filter>src\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeGenerator.hpp">
-      <Filter>src\3D</Filter>
+      <Filter>src\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Texture.hpp">
-      <Filter>src\3D</Filter>
+      <Filter>src\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Shader.hpp">
-      <Filter>src\3D</Filter>
+      <Filter>src\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="SceneViewer.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="EditProperties.hpp">
       <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="NonCopyable.hpp">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AMesh.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeMesh.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Model3D.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="IMeshGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="IMeshReadOnly.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="Identifiable.hpp">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.hpp">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
