@@ -2,12 +2,18 @@
 
 #include "ofMain.h"
 
+#include "WindowRenderer.hpp"
+#include "SceneController.hpp"
+
 class Application : public ofBaseApp
 {
 public:
-	void setup();
-	void update();
-	void draw();
+	Application(void);
+	~Application(void);
+
+	void setup(void);
+	void update(void);
+	void draw(void);
 
 	void keyPressed(int key);
 	void keyReleased(int key);
@@ -19,5 +25,9 @@ public:
 	void mouseExited(int x, int y);
 	void windowResized(int w, int h);
 	void dragEvent(ofDragInfo dragInfo);
-	void gotMessage(ofMessage msg);		
+	void gotMessage(ofMessage msg);
+
+private:
+	WindowRenderer window_;
+	SceneController scene_;
 };

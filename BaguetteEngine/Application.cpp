@@ -1,71 +1,81 @@
 #include "Application.hpp"
 
-//--------------------------------------------------------------
-void Application::setup(){
+Application::Application(void)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::update(){
+Application::~Application(void)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::draw(){
+void Application::setup(void)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::keyPressed(int key){
+void Application::update(void)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::keyReleased(int key){
+void Application::draw(void)
+{
+	scene_.render(window_);
+}
+
+void Application::keyPressed(int key)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::mouseMoved(int x, int y ){
+void Application::keyReleased(int key)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::mouseDragged(int x, int y, int button){
+void Application::mouseMoved(int x, int y )
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::mousePressed(int x, int y, int button){
+void Application::mouseDragged(int x, int y, int button)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::mouseReleased(int x, int y, int button){
+void Application::mousePressed(int x, int y, int button)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::mouseEntered(int x, int y){
+void Application::mouseReleased(int x, int y, int button)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::mouseExited(int x, int y){
+void Application::mouseEntered(int x, int y)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::windowResized(int w, int h){
+void Application::mouseExited(int x, int y)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::gotMessage(ofMessage msg){
+void Application::windowResized(int w, int h)
+{
 
 }
 
-//--------------------------------------------------------------
-void Application::dragEvent(ofDragInfo dragInfo){ 
+void Application::gotMessage(ofMessage msg)
+{
+
+}
+
+void Application::dragEvent(ofDragInfo dragInfo)
+{ 
 
 }
