@@ -172,8 +172,23 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AMesh.cpp" />
+    <ClCompile Include="ARenderer.cpp" />
+    <ClCompile Include="ATransformable.cpp" />
+    <ClCompile Include="CubeGenerator.cpp" />
+    <ClCompile Include="CubeMesh.cpp" />
+    <ClCompile Include="EditProperties.cpp" />
+    <ClCompile Include="Model3D.cpp" />
+    <ClCompile Include="NonCopyable.cpp" />
+    <ClCompile Include="PlanGenerator.cpp" />
+    <ClCompile Include="SceneController.cpp" />
+    <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="SceneNode.cpp" />
+    <ClCompile Include="SceneViewer.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SphereGenerator.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp" />
@@ -205,9 +220,30 @@
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxml.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureRender.cpp" />
+    <ClCompile Include="WindowRenderercpp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="AMesh.hpp" />
+    <ClInclude Include="ARenderer.hpp" />
+    <ClInclude Include="ATransformable.hpp" />
+    <ClInclude Include="CubeGenerator.hpp" />
+    <ClInclude Include="CubeMesh.hpp" />
+    <ClInclude Include="EditProperties.hpp" />
+    <ClInclude Include="Identifiable.hpp" />
+    <ClInclude Include="IMeshGenerator.hpp" />
+    <ClInclude Include="IMeshReadOnly.hpp" />
+    <ClInclude Include="Model3D.hpp" />
+    <ClInclude Include="NonCopyable.hpp" />
+    <ClInclude Include="PlanGenerator.hpp" />
+    <ClInclude Include="SceneController.hpp" />
+    <ClInclude Include="SceneGraph.hpp" />
+    <ClInclude Include="SceneNode.hpp" />
+    <ClInclude Include="SceneViewer.hpp" />
+    <ClInclude Include="Shader.hpp" />
+    <ClInclude Include="SphereGenerator.hpp" />
+    <ClInclude Include="src\Application.hpp" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.h" />
@@ -436,6 +472,9 @@
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxVectorGraphics\libs\CreEPS_Types.hpp" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxml.h" />
+    <ClInclude Include="Texture.hpp" />
+    <ClInclude Include="TextureRenderer.hpp" />
+    <ClInclude Include="WindowRenderer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
