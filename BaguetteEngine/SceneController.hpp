@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ofxAssimpModelLoader.h"
 #include "AMesh.hpp"
 
 class ARenderer;

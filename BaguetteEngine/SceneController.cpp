@@ -23,6 +23,6 @@ void SceneController::render(ARenderer & renderer)
 	cam_.begin();
 
 	mesh_.draw(renderer);
-	
+
 	cam_.end();
 }

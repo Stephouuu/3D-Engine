@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 
 #include "Timer.hpp"
 #include "WindowRenderer.hpp"
@@ -32,4 +33,7 @@ private:
 	Timer timer_;
 	WindowRenderer window_;
 	SceneController scene_;
+
+	ofxPanel gui_;
+	ofxLabel label_;
 };

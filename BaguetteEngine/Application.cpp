@@ -2,6 +2,10 @@
 
 Application::Application(void)
 {
+	ofSetVerticalSync(true);
+
+	gui_.setup("test");
+	gui_.add(label_.setup("s ", "a"));
 }
 
 Application::~Application(void)
@@ -22,6 +26,8 @@ void Application::update(void)
 void Application::draw(void)
 {
 	scene_.render(window_);
+
+	gui_.draw();
 }
 
 void Application::keyPressed(int key)
