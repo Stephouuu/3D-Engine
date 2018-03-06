@@ -1,4 +1,3 @@
-#include "ofMain.h"
 #include "Application.hpp"
 
 int main(void)
