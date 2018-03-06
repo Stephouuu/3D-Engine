@@ -157,6 +157,9 @@
     <ClCompile Include="Transformable.cpp">
       <Filter>src\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1092,6 +1095,9 @@
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Transformable.hpp">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
       <Filter>src\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="CacheManager.hpp">

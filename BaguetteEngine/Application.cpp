@@ -1,4 +1,5 @@
 #include "Application.hpp"
+#include "Image.h"
 
 Application::Application(void)
 {
@@ -27,7 +28,12 @@ void Application::draw(void)
 {
 	scene_.render(window_);
 
+	Image img("loutre.jpg");
+	img.Draw(0, 0, 300, 300);
+	img.DrawPartOfImage(400, 400, 200, 200, 0, 0);
+
 	gui_.draw();
+	img.Export("screenshot.jpg");
 }
 
 void Application::keyPressed(int key)
