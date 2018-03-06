@@ -1,10 +1,11 @@
 #pragma once
 
-class AMesh;
+class ofMesh;
 
 // Maybe useless
 struct IBasicMeshGenerator
 {
 	virtual ~IBasicMeshGenerator(void) {}
-	virtual AMesh *operator()(void) const = 0;
+	virtual ofMesh operator()(void) const = 0;
+	virtual ofMesh generate() const = 0;
 };

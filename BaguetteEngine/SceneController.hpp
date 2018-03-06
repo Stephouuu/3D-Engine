@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AMesh.hpp"
+#include "SphereGenerator.hpp"
 
 class ARenderer;
 
