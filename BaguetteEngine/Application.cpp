@@ -5,7 +5,7 @@ Application::Application(void)
 	ofSetVerticalSync(true);
 
 	gui_.setup("test");
-	gui_.add(label_.setup("s ", "a"));
+	gui_.add(label_.setup("sdddddddddddddddddddd ", "adddddddddddddddddddddddd"));
 }
 
 Application::~Application(void)
