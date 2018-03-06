@@ -1,13 +1,13 @@
 #include "SphereGenerator.hpp"
 
-ofMesh SphereGenerator::operator()(void) const
+AMesh SphereGenerator::operator()(void) const
 {
 	return generate();
 }
 
-ofMesh SphereGenerator::generate() const
+AMesh SphereGenerator::generate() const
 {
-	return sphere_.getMesh();
+	return AMesh(sphere_.getMesh());
 }
 
 void SphereGenerator::setRadius(const float radius)

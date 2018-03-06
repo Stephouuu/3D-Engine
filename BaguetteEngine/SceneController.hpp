@@ -3,6 +3,7 @@
 #include "ofxAssimpModelLoader.h"
 #include "AMesh.hpp"
 #include "SphereGenerator.hpp"
+#include "PlanGenerator.hpp"
 
 class ARenderer;
 

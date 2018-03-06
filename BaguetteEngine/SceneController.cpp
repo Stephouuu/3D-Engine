@@ -24,11 +24,17 @@ void SceneController::render(ARenderer & renderer)
 
 	//This is just for Anthony test
 	SphereGenerator sphere;
-	sphere.setPosition(ofVec3f(0, 0, 0));
+	sphere.setPosition(ofVec3f(100, 0, 0));
 	sphere.setRadius(0.1);
 
-	ofMesh mesh = sphere.generate();
-	mesh.draw();
+	AMesh mesh = sphere.generate();
+	mesh.draw(renderer);
+
+	PlanGenerator	plan;
+	plan.setPosition(ofVec3f(0, 0, 0));
+	plan.setSize(0.5, 0.5);
+
+	plan.generate().draw(renderer);
 	//END Anthony test
 
 	mesh_.draw(renderer);
