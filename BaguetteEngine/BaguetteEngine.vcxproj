@@ -175,7 +175,7 @@
     <ClCompile Include="AMesh.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ARenderer.cpp" />
-    <ClCompile Include="ATransformable.cpp" />
+    <ClCompile Include="Transformable.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
     <ClCompile Include="CubeMesh.cpp" />
     <ClCompile Include="PropertiesEditor.cpp" />
@@ -229,7 +229,7 @@
     <ClInclude Include="AMesh.hpp" />
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ARenderer.hpp" />
-    <ClInclude Include="ATransformable.hpp" />
+    <ClInclude Include="Transformable.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
     <ClInclude Include="CubeMesh.hpp" />
     <ClInclude Include="PropertiesEditor.hpp" />

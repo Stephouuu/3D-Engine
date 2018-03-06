@@ -112,9 +112,6 @@
     <ClCompile Include="TextureRender.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="ATransformable.cpp">
-      <Filter>src\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>src\Graphics</Filter>
     </ClCompile>
@@ -159,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Transformable.cpp">
+      <Filter>src\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1043,9 +1043,6 @@
     <ClInclude Include="TextureRenderer.hpp">
       <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="ATransformable.hpp">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.hpp">
       <Filter>src\Graphics</Filter>
     </ClInclude>
@@ -1096,6 +1093,9 @@
     </ClInclude>
     <ClInclude Include="Timer.hpp">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformable.hpp">
+      <Filter>src\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

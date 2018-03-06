@@ -32,6 +32,6 @@ void SceneController::render(ARenderer & renderer)
 	//END Anthony test
 
 	mesh_.draw(renderer);
-	
+
 	cam_.end();
 }
