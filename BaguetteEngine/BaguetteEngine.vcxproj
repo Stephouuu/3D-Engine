@@ -229,6 +229,7 @@
     <ClInclude Include="AMesh.hpp" />
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ARenderer.hpp" />
+    <ClInclude Include="CacheManager.hpp" />
     <ClInclude Include="Transformable.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
     <ClInclude Include="CubeMesh.hpp" />
