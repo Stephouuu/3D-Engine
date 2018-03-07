@@ -161,7 +161,9 @@
       <Filter>src\UI</Filter>
     </ClCompile>
     <ClCompile Include="EditMenu.cpp" />
-    <ClCompile Include="Identifiable.cpp" />
+    <ClCompile Include="Identifiable.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">

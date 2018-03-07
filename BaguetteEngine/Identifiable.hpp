@@ -1,19 +1,28 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 
 struct Identifiable
 {
 public:
-	Identifiable(void) : id_(0) {}
-	Identifiable(int id) : id_(id) {}
-	virtual ~Identifiable(void) {}
+	Identifiable(void);
+	Identifiable(int id);
+	virtual ~Identifiable(void);
 
-	virtual int getID(void) const;
-	virtual void setID(const int id);
+	void setID(const int id);
+	void setName(const std::string & name);
+
+	int getID(void) const;
+	const std::string & getName(void) const;
+
+
+	bool operator==(const Identifiable & other);
+	bool operator!=(const Identifiable & other);
 
 private:
 	int id_;
+	std::string name_;
 };
 
 inline std::ostream & operator<<(std::ostream & os, const Identifiable & identifiable)

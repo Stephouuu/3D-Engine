@@ -22,6 +22,10 @@ void SceneGraph::render(ARenderer & renderer)
 
 const Identifiable & SceneGraph::attachTo(SceneNode::Ptr child, const Identifiable & parent)
 {
+	if (child->getID() == 0) {
+		throw std::runtime_error("ID 0 is reserved to the root object");
+	}
+
 	try {
 		return root_->attachTo(std::move(child), parent);
 	}
@@ -41,7 +45,7 @@ SceneNode * SceneGraph::findNode(const Identifiable & id)
 	return root_->findNode(id);
 }
 
-void SceneGraph::dump(void)
+void SceneGraph::dump(SceneNode::TreeData & graph)
 {
-	root_->dump();
+	root_->dump(graph);
 }

@@ -31,19 +31,16 @@ public:
 
 	int selected(int x, int y);
 
-	/**
-	** \Brief: Add a mesh in the graph scene.
-	** \param meshType: The type of the mesh to be created.
-	** \param parent: The ID of the parent ; 0 (root) by default.
-	** \Return success: The ID of the new mesh added.
-	** \Return failure: Runtime exception.
-	**/
 	const Identifiable & instanciateMesh(InstantiableMesh meshType, const Identifiable & parent = Identifiable());
 	void removeMesh(const Identifiable & meshId);
 
 	void setMeshPosition(const Identifiable & meshId, const ofVec3f & pos);
+	void setMeshRotation(const Identifiable & meshId, float degrees, const ofVec3f & axis);
 	void setMeshScale(const Identifiable & meshId, const ofVec3f & scale);
 	void setMeshColor(const Identifiable & meshId, const ofFloatColor & color);
+
+private:
+	SceneNode * ensureMeshExistance(const Identifiable & id);
 
 private:
 	ofEasyCam cam_;

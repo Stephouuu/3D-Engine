@@ -103,15 +103,11 @@ SceneNode * SceneNode::findNode(const Identifiable & node)
 	return nullptr;
 }
 
-void SceneNode::dump(int depth)
+void SceneNode::dump(TreeData & graph, int depth)
 {
-	for (int i = 0; i < depth; i++) {
-		std::clog << "-";
-	}
-	std::clog << " " << getID() << std::endl;
-
+	graph.emplace_back(depth, *static_cast<Identifiable *>(this));
 	for (auto & it : childs_) {
-		it->dump(depth + 1);
+		it->dump(graph, depth + 1);
 	}
 }
 

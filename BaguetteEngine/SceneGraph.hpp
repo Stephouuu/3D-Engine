@@ -31,7 +31,7 @@ public:
 	SceneNode::Ptr detach(const Identifiable & node);
 
 	SceneNode * findNode(const Identifiable & id);
-	void dump(void);
+	void dump(SceneNode::TreeData & graph);
 
 private:
 	SceneNode::Ptr root_;
