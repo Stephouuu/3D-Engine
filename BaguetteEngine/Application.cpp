@@ -26,8 +26,6 @@ void Application::update(void)
 void Application::draw(void)
 {
 	scene_.render(window_);
-
-	gui_.draw();
 }
 
 void Application::keyPressed(int key)
