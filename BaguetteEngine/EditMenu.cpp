@@ -2,7 +2,7 @@
 
 
 
-EditMenu::EditMenu()
+EditMenu::EditMenu(SceneController & scene) : scene_(scene)
 {
 }
 
@@ -23,8 +23,10 @@ void EditMenu::setup()
 
 	position_.setName("Positions");
 	colorFill_.setName("Couleur");
-	radius_.setName("Rayon");
 	size_.setName("Taille");
+
+	//position_.addListener(this, &EditMenu::vecSliderChange);
+	//radius_.setName("Rayon"); Pas pour tous
 
 	gui_.setup();
 	gui_.setName("Menu d'édition");
@@ -33,10 +35,23 @@ void EditMenu::setup()
 	gui_.add(position_);
 	gui_.add(colorFill_);
 	gui_.add(size_);
-	gui_.add(radius_);
+	//gui_.add(radius_);
 }
 
 void EditMenu::setFocus(Identifiable & obj)
 {
-	std::cout << "SetFocus" << std::endl;
+	currentObj_ = scene_.ensureMeshExistance(obj);
+
+	std::cout << obj << std::endl;
+
+	if (currentObj_->getMesh()->getType() == AMesh::InstantiableMesh::SPHERE)
+	{
+
+	}
+}
+
+void EditMenu::vecSliderChange(const void * sender)
+{
+//	ofxVecSlider * vec = (ofxVecSlider*)sender;
+
 }

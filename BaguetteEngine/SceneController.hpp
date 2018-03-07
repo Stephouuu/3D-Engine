@@ -6,7 +6,7 @@
 #include "ofxAssimpModelLoader.h"
 #include "AMesh.hpp"
 #include "SphereGenerator.hpp"
-#include "PlanGenerator.hpp"
+#include "PlaneGenerator.hpp"
 #include "CubeGenerator.hpp"
 #include "ConeGenerator.hpp"
 
@@ -35,8 +35,6 @@ public:
 	void setMeshColor(const Identifiable & meshId, const ofFloatColor & color);
 
 	void graphContent(SceneNode::TreeData & data) const;
-
-private:
 	SceneNode * ensureMeshExistance(const Identifiable & id);
 
 private:
