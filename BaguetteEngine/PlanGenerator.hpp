@@ -7,10 +7,10 @@ class PlanGenerator : IBasicMeshGenerator
 public:
 	PlanGenerator();
 	PlanGenerator(const ofVec2f pos, const float width, const float height);
-	ofMesh operator()(void) const;
-	ofMesh generate() const;
+	AMesh operator()(void) const;
+	AMesh generate() const;
 	void setSize(const float width, const float height);
-	void setPosition(const ofVec2f pos);
+	void setPosition(const ofVec3f pos);
 
 private:
 	ofPlanePrimitive plan_;

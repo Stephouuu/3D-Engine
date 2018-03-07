@@ -7,6 +7,8 @@
 #include "AMesh.hpp"
 #include "SphereGenerator.hpp"
 #include "PlanGenerator.hpp"
+#include "CubeGenerator.hpp"
+#include "ConeGenerator.hpp"
 
 #include "SceneGraph.hpp"
 
@@ -19,7 +21,9 @@ public:
 	enum InstantiableMesh
 	{
 		SPHERE,
-		PLAN
+		PLAN,
+		BOX,
+		CONE
 	};
 
 public:

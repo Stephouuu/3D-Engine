@@ -68,6 +68,10 @@ const Identifiable & SceneController::instanciateMesh(InstantiableMesh meshType,
 		node = SceneGraph::CreateSceneNode<SphereGenerator>();
 	else if (meshType == InstantiableMesh::PLAN)
 		node = SceneGraph::CreateSceneNode<PlanGenerator>();
+	else if (meshType == InstantiableMesh::BOX)
+		node = SceneGraph::CreateSceneNode<CubeGenerator>();
+	else if (meshType == InstantiableMesh::CONE)
+		node = SceneGraph::CreateSceneNode<ConeGenerator>();
 	try {
 		return graph_.attachTo(std::move(node), parent);
 	}

@@ -12,14 +12,14 @@ SphereGenerator::SphereGenerator()
 	sphere_.setRadius(1.0f);
 }
 
-ofMesh SphereGenerator::operator()(void) const
+AMesh SphereGenerator::operator()(void) const
 {
 	return generate();
 }
 
-ofMesh SphereGenerator::generate() const
+AMesh SphereGenerator::generate() const
 {
-	return sphere_.getMesh();
+	return AMesh(sphere_.getMesh());
 }
 
 void SphereGenerator::setRadius(const float radius)
@@ -27,7 +27,7 @@ void SphereGenerator::setRadius(const float radius)
 	sphere_.setRadius(radius);
 }
 
-void SphereGenerator::setPosition(const ofVec2f pos)
+void SphereGenerator::setPosition(const ofVec3f pos)
 {
 	sphere_.setPosition(pos);
 }

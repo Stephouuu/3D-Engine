@@ -160,9 +160,14 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
-    <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="Identifiable.cpp">
       <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="EditMenu.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ConeGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1113,7 +1118,12 @@
     <ClInclude Include="IGuiView.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
-    <ClInclude Include="EditMenu.hpp" />
+    <ClInclude Include="EditMenu.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ConeGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

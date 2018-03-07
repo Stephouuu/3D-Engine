@@ -23,9 +23,10 @@ private:
 
 	ofxButton			insertSphere_;
 	ofxButton			insertPlan_;
+	ofxButton			insertBox_;
+	ofxButton			insertCone_;
 	ofxButton			exportScene_;
 	ofMouseEventArgs	mouseEvents_;
 
 	SceneController		&scene_;
 };
-
