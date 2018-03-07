@@ -184,11 +184,11 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
+    <ClCompile Include="PlaneGenerator.cpp" />
     <ClCompile Include="PlanePrimitive.cpp" />
     <ClCompile Include="PropertiesEditor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model3D.cpp" />
-    <ClCompile Include="PlaneGenerator.cpp" />
     <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SceneNode.cpp" />
@@ -246,6 +246,7 @@
     <ClInclude Include="CacheManager.hpp" />
     <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
+    <ClInclude Include="PlaneGenerator.hpp" />
     <ClInclude Include="PlanePrimitive.hpp" />
     <ClInclude Include="PropertiesEditor.hpp" />
     <ClInclude Include="Identifiable.hpp" />
@@ -253,7 +254,6 @@
     <ClInclude Include="IMeshReadOnly.hpp" />
     <ClInclude Include="Model3D.hpp" />
     <ClInclude Include="NonCopyable.hpp" />
-    <ClInclude Include="PlaneGenerator.hpp" />
     <ClInclude Include="SceneController.hpp" />
     <ClInclude Include="SceneGraph.hpp" />
     <ClInclude Include="SceneNode.hpp" />
