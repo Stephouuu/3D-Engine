@@ -32,8 +32,9 @@ public:
 
 	AMesh *getMesh(void);
 
-private:
-	SceneNode *findNode(const Identifiable & node);
+// private:
+	SceneNode * findNode(const Identifiable & node);
+	// SceneNode *findNode(const Identifiable & node);
 
 private:
 	std::vector<Ptr> childs_;

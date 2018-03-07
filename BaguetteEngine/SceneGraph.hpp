@@ -7,16 +7,17 @@
 
 class ARenderer;
 
+static int cpt = 0;
+
 class SceneGraph
 {
 public:
 	template <typename T>
 	static SceneNode::Ptr CreateSceneNode(void)
 	{
-		static int cpt = 1;
-		SceneNode::Ptr node(new SceneNode(cpt));
+		cpt++;
+		SceneNode::Ptr node(new SceneNode(++cpt));
 		node->setMesh(new AMesh(T()()));
-		++cpt;
 		return std::move(node);
 	}
 
@@ -29,6 +30,8 @@ public:
 
 	const Identifiable & attachTo(SceneNode::Ptr child, const Identifiable & parent);
 	SceneNode::Ptr detach(const Identifiable & node);
+
+	SceneNode * findNode(const Identifiable & id);
 
 private:
 	SceneNode::Ptr root_;

@@ -10,6 +10,11 @@ SceneController::SceneController(void)
 	cam_.setPosition(ofVec3f(0, 10, 5));
 	cam_.rotate(0, 0, 0, 0);
 	cam_.lookAt(ofVec3f(0, 0, 0));
+
+	const Identifiable & sphereId = instanciateMesh(InstantiableMesh::SPHERE);
+	setMeshPosition(sphereId, ofVec3f(5, 0, 2));
+	const Identifiable & planId = instanciateMesh(InstantiableMesh::PLAN, sphereId);
+	setMeshPosition(planId, ofVec3f(0, 2, 0));
 }
 
 SceneController::~SceneController(void)
@@ -18,17 +23,16 @@ SceneController::~SceneController(void)
 
 void SceneController::update(float dt)
 {
-	// ...
 	graph_.update(dt);
 }
 
 void SceneController::render(ARenderer & renderer)
 {
 	cam_.begin();
-	graph_.render(renderer);
 	ofDrawGrid(1.25f, 8U, false, false, true, false);
-	// x = red ; y = green ; z = blue.
-	// ofDrawAxis(2);
+
+	graph_.render(renderer);
+	// ofDrawAxis(2); // x = red ; y = green ; z = blue.
 	cam_.end();
 }
 
@@ -38,13 +42,13 @@ int SceneController::selected(int x, int y)
 	return -1;
 }
 
-const Identifiable & SceneController::instanciateMesh(InstatiableMesh meshType, const Identifiable & parent)
+const Identifiable & SceneController::instanciateMesh(InstantiableMesh meshType, const Identifiable & parent)
 {
 	SceneNode::Ptr node = nullptr;
 
-	if (meshType == InstatiableMesh::SPHERE)
+	if (meshType == InstantiableMesh::SPHERE)
 		node = SceneGraph::CreateSceneNode<SphereGenerator>();
-	else if (meshType == InstatiableMesh::PLAN)
+	else if (meshType == InstantiableMesh::PLAN)
 		node = SceneGraph::CreateSceneNode<PlanGenerator>();
 
 	try {
@@ -52,5 +56,33 @@ const Identifiable & SceneController::instanciateMesh(InstatiableMesh meshType, 
 	}
 	catch (const std::runtime_error & e) {
 		throw (e);
+	}
+}
+
+void SceneController::setMeshPosition(const Identifiable & meshId, const ofVec3f & pos)
+{
+	SceneNode *node = graph_.findNode(meshId);
+
+	if (node) {
+		node->getMesh()->setPosition(pos);
+	}
+	else {
+		std::ostringstream oss;
+		oss << "Mesh #" << meshId << " not found" << std::endl;
+		throw std::runtime_error(oss.str());
+	}
+}
+
+void SceneController::setMeshScale(const Identifiable & meshId, const ofVec3f & scale)
+{
+	SceneNode *node = graph_.findNode(meshId);
+
+	if (node) {
+		node->getMesh()->setScale(scale);
+	}
+	else {
+		std::ostringstream oss;
+		oss << "Mesh #" << meshId << " not found" << std::endl;
+		throw std::runtime_error(oss.str());
 	}
 }

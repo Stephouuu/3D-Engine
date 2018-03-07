@@ -37,3 +37,8 @@ SceneNode::Ptr SceneGraph::detach(const Identifiable & parent)
 {
 	return root_->detach(parent);
 }
+
+SceneNode * SceneGraph::findNode(const Identifiable & id)
+{
+	return root_->findNode(id);
+}

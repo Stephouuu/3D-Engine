@@ -52,7 +52,7 @@ void MainMenu::buttonPressed(const void * sender)
 	ofxButton * button = (ofxButton*)sender;
 
 	if (button->getName() == "Ajouter une sphere")
-		scene_.instanciateMesh(SceneController::InstatiableMesh::SPHERE);
+		scene_.instanciateMesh(SceneController::InstantiableMesh::SPHERE);
 	else if (button->getName() == "Ajouter un plan")
-		scene_.instanciateMesh(SceneController::InstatiableMesh::PLAN);
+		scene_.instanciateMesh(SceneController::InstantiableMesh::PLAN);
 }

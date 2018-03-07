@@ -77,7 +77,7 @@ AMesh *SceneNode::getMesh(void)
 	return (mesh_);
 }
 
-SceneNode *SceneNode::findNode(const Identifiable & node)
+SceneNode * SceneNode::findNode(const Identifiable & node)
 {
 	if (getID() == node.getID()) {
 		return this;
