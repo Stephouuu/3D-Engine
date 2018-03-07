@@ -25,7 +25,7 @@ void Image::Load(std::string filename)
 	ofFileDialogResult result = ofSystemLoadDialog("Load file");
 	if (result.bSuccess) {
 		string path = result.getPath();
-		name = result.getName;
+		name = result.getName();
 		// load your file at `path`
 		theImg.load(path);
 		isLoaded = true;
