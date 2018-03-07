@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IBasicMeshGenerator.hpp"
+#include "ConePrimitive.hpp"
 
 class ConeGenerator : IBasicMeshGenerator
 {
@@ -13,6 +14,6 @@ public:
 	void setPosition(const ofVec3f pos);
 
 private:
-	ofConePrimitive		cone_;
+	ConePrimitive		cone_;
 };
 

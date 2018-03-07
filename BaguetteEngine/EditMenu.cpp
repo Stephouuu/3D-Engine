@@ -28,7 +28,7 @@ void EditMenu::setup()
 
 	gui_.setup();
 	gui_.setName("Menu d'édition");
-	gui_.setPosition(10, 100);
+	gui_.setPosition(820, 10);
 
 	gui_.add(position_);
 	gui_.add(colorFill_);
@@ -36,7 +36,7 @@ void EditMenu::setup()
 	gui_.add(radius_);
 }
 
-void EditMenu::setFocus(const int id)
+void EditMenu::setFocus(Identifiable & obj)
 {
-
+	std::cout << "SetFocus" << std::endl;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IBasicMeshGenerator.hpp"
+#include "PlanePrimitive.hpp"
 
 class PlanGenerator : IBasicMeshGenerator
 {
@@ -13,5 +14,5 @@ public:
 	void setPosition(const ofVec3f pos);
 
 private:
-	ofPlanePrimitive plan_;
+	PlanePrimitive plan_;
 };

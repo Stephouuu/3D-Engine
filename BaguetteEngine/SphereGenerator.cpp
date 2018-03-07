@@ -19,7 +19,7 @@ AMesh SphereGenerator::operator()(void) const
 
 AMesh SphereGenerator::generate() const
 {
-	return AMesh(sphere_.getMesh());
+	return sphere_;
 }
 
 void SphereGenerator::setRadius(const float radius)

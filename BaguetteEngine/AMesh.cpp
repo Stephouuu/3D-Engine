@@ -27,6 +27,7 @@ void AMesh::init(void)
 {
 	shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
 	shader_.bindDefaults();
+	meshType_ = InstantiableMesh::UNDEFINED;
 }
 
 void AMesh::setMesh(const ofMesh & oMesh)
@@ -43,6 +44,11 @@ void AMesh::setColor(const ofFloatColor & c)
 	for (int i = 0; i < vertices.size(); i++) {
 		vbo_.setColor(i, c);
 	}
+}
+
+AMesh::InstantiableMesh AMesh::getType(void) const
+{
+	return meshType_;
 }
 
 void AMesh::update(float dt)

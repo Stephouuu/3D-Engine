@@ -3,6 +3,7 @@
 #include "ofxGui.h"
 
 #include "IGuiView.hpp"
+#include "Identifiable.hpp"
 
 class EditMenu : public IGuiView
 {
@@ -11,7 +12,7 @@ public:
 	~EditMenu();
 	virtual void draw();
 	virtual void setup();
-	void setFocus(const int id);
+	void setFocus(Identifiable & obj);
 
 private:
 	ofxPanel				gui_;

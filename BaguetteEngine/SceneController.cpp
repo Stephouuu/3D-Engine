@@ -12,11 +12,11 @@ SceneController::SceneController(void)
 	cam_.lookAt(ofVec3f(0, 0, 0));
 
 	// demo
-	const Identifiable & sphereId = instanciateMesh(InstantiableMesh::SPHERE);
+	const Identifiable & sphereId = instanciateMesh(AMesh::InstantiableMesh::SPHERE);
 	setMeshPosition(sphereId, ofVec3f(5, 0, 2));
-	const Identifiable & planId = instanciateMesh(InstantiableMesh::PLAN, sphereId); // drew in (5, 2, 2).
+	const Identifiable & planId = instanciateMesh(AMesh::InstantiableMesh::PLANE, sphereId); // drew in (5, 2, 2).
 	setMeshPosition(planId, ofVec3f(0, 2, 0));
-	const Identifiable & plan2Id = instanciateMesh(InstantiableMesh::PLAN);
+	const Identifiable & plan2Id = instanciateMesh(AMesh::InstantiableMesh::PLANE);
 	setMeshPosition(plan2Id, ofVec3f(0, 1, 0));
 	setMeshRotation(plan2Id, 20, ofVec3f(1, 1, 0));
 	// removeMesh(planId);
@@ -60,17 +60,17 @@ int SceneController::selected(int x, int y)
 	return -1;
 }
 
-const Identifiable & SceneController::instanciateMesh(InstantiableMesh meshType, const Identifiable & parent)
+const Identifiable & SceneController::instanciateMesh(AMesh::InstantiableMesh meshType, const Identifiable & parent)
 {
 	SceneNode::Ptr node = nullptr;
 
-	if (meshType == InstantiableMesh::SPHERE)
+	if (meshType == AMesh::InstantiableMesh::SPHERE)
 		node = SceneGraph::CreateSceneNode<SphereGenerator>();
-	else if (meshType == InstantiableMesh::PLAN)
+	else if (meshType == AMesh::InstantiableMesh::PLANE)
 		node = SceneGraph::CreateSceneNode<PlanGenerator>();
-	else if (meshType == InstantiableMesh::BOX)
+	else if (meshType == AMesh::InstantiableMesh::CUBE)
 		node = SceneGraph::CreateSceneNode<CubeGenerator>();
-	else if (meshType == InstantiableMesh::CONE)
+	else if (meshType == AMesh::InstantiableMesh::CONE)
 		node = SceneGraph::CreateSceneNode<ConeGenerator>();
 	try {
 		return graph_.attachTo(std::move(node), parent);

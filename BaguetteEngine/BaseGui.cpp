@@ -1,6 +1,6 @@
 #include "BaseGui.hpp"
 
-BaseGui::BaseGui(SceneController &scene) : scene_(scene), mainMenu_(scene)
+BaseGui::BaseGui(SceneController &scene) : scene_(scene), mainMenu_(scene, editMenu_)
 {
 }
 

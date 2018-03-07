@@ -1,6 +1,6 @@
 #include "MainMenu.hpp"
 
-MainMenu::MainMenu(SceneController & scene) : scene_(scene)
+MainMenu::MainMenu(SceneController & scene, EditMenu & editMenu) : scene_(scene), editMenu_(editMenu)
 {
 }
 
@@ -54,13 +54,17 @@ void MainMenu::setup()
 void MainMenu::buttonPressed(const void * sender)
 {
 	ofxButton * button = (ofxButton*)sender;
+	Identifiable createObj;
 
 	if (button->getName() == "Ajouter une sphere")
-		scene_.instanciateMesh(SceneController::InstantiableMesh::SPHERE);
+		scene_.instanciateMesh(AMesh::InstantiableMesh::SPHERE);
 	else if (button->getName() == "Ajouter un plan")
-		scene_.instanciateMesh(SceneController::InstantiableMesh::PLAN);
+		scene_.instanciateMesh(AMesh::InstantiableMesh::PLANE);
 	else if (button->getName() == "Ajouter un cube")
-		scene_.instanciateMesh(SceneController::InstantiableMesh::BOX);
+		scene_.instanciateMesh(AMesh::InstantiableMesh::CUBE);
 	else if (button->getName() == "Ajouter un cone")
-		scene_.instanciateMesh(SceneController::InstantiableMesh::CONE);
+		scene_.instanciateMesh(AMesh::InstantiableMesh::CONE);
+	else
+		return;
+	editMenu_.setFocus(createObj);
 }

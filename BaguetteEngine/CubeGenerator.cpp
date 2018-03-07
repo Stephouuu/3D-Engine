@@ -3,12 +3,12 @@
 CubeGenerator::CubeGenerator()
 {
 	box_.setPosition(ofVec3f(0, 0, 0));
-	box_.set(0.5f, 0.5f, 0.5f);
+	box_.setSize(0.5f, 0.5f, 0.5f);
 }
 
 CubeGenerator::CubeGenerator(const float width, const float height, const float depth)
 {
-	box_.set(width, height, depth);
+	box_.setSize(width, height, depth);
 }
 
 AMesh CubeGenerator::operator()(void) const
@@ -18,12 +18,12 @@ AMesh CubeGenerator::operator()(void) const
 
 AMesh CubeGenerator::generate() const
 {
-	return AMesh(box_.getMesh());
+	return box_;
 }
 
 void CubeGenerator::setSize(const float width, const float height, const float depth)
 {
-	box_.set(width, height, depth);
+	box_.setSize(width, height, depth);
 }
 
 void CubeGenerator::setPosition(const ofVec3f pos)
