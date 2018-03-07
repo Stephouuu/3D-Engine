@@ -5,6 +5,8 @@
 class PlanGenerator : IBasicMeshGenerator
 {
 public:
+	PlanGenerator();
+	PlanGenerator(const ofVec2f pos, const float width, const float height);
 	ofMesh operator()(void) const;
 	ofMesh generate() const;
 	void setSize(const float width, const float height);

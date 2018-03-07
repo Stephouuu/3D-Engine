@@ -28,7 +28,9 @@ void MainMenu::setup()
 	primitiveGroup_.setup();
 	primitiveGroup_.setName("Primitives Géométriques");
 	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
+	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
 	insertSphere_.addListener(this, &MainMenu::buttonPressed);
+	insertPlan_.addListener(this, &MainMenu::buttonPressed);
 
 	insertGroup_.setup();
 	insertGroup_.setName("Inserer");
@@ -48,7 +50,9 @@ void MainMenu::setup()
 void MainMenu::buttonPressed(const void * sender)
 {
 	ofxButton * button = (ofxButton*)sender;
-	button->getName();
-	std::cout << "click on " << button->getName() << std::endl;;
-	//scene_.instanciateMesh();
+
+	if (button->getName() == "Ajouter une sphere")
+		scene_.instanciateMesh(SceneController::InstatiableMesh::SPHERE);
+	else if (button->getName() == "Ajouter un plan")
+		scene_.instanciateMesh(SceneController::InstatiableMesh::PLAN);
 }

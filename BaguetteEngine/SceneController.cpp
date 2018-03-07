@@ -35,9 +35,12 @@ void SceneController::render(ARenderer & renderer)
 {
 	cam_.begin();
 
-	//This is just for Anthony test	
-	mesh1_.draw(renderer);
-	mesh2_.draw(renderer);
+	//mesh1_.draw(renderer);
+	//mesh2_.draw(renderer);
+
+	std::vector<AMesh>::iterator it;
+	for (it = scenegraph_.begin(); it != scenegraph_.end(); ++it)
+		it->draw(renderer);
 
 	cam_.end();
 }
@@ -48,7 +51,13 @@ int SceneController::selected(int x, int y)
 	return -1;
 }
 
-int SceneController::instanciateMesh(float x, float y, float z)
+int SceneController::instanciateMesh(InstatiableMesh meshType, float x, float y, float z)
 {
+	AMesh mesh;
+
+	if (meshType == InstatiableMesh::SPHERE)
+		scenegraph_.push_back(std::move(SphereGenerator(ofVec3f(x, y, z), 0.5)()));
+	else if (meshType == InstatiableMesh::PLAN)
+		scenegraph_.push_back(std::move(PlanGenerator(ofVec3f(x, y, z), 0.5, 0.5)()));
 	return 0;
 }

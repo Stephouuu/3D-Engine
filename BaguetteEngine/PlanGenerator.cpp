@@ -1,5 +1,15 @@
 #include "PlanGenerator.hpp"
 
+PlanGenerator::PlanGenerator()
+{
+}
+
+PlanGenerator::PlanGenerator(const ofVec2f pos, const float width, const float height)
+{
+	plan_.setPosition(pos);
+	plan_.set(width, height);
+}
+
 ofMesh PlanGenerator::operator()(void) const
 {
 	return generate();

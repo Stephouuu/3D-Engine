@@ -12,8 +12,8 @@ BaseGui::~BaseGui()
 void BaseGui::draw()
 {
 	ofDisableDepthTest();
-	mainMenu_.draw();
 	editMenu_.draw();
+	mainMenu_.draw();
 	ofEnableDepthTest();
 }
 

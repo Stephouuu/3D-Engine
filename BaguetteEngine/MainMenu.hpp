@@ -22,6 +22,7 @@ private:
 	ofxGuiGroup			fileGroup_;
 
 	ofxButton			insertSphere_;
+	ofxButton			insertPlan_;
 	ofxButton			exportScene_;
 	ofMouseEventArgs	mouseEvents_;
 

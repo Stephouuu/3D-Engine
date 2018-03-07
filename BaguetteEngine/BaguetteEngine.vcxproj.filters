@@ -166,6 +166,8 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="EditMenu.cpp" />
+    <ClCompile Include="Identifiable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1121,6 +1123,7 @@
     <ClInclude Include="IGuiView.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
+    <ClInclude Include="EditMenu.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

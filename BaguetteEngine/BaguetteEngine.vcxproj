@@ -176,6 +176,8 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ARenderer.cpp" />
     <ClCompile Include="BaseGui.cpp" />
+    <ClCompile Include="EditMenu.cpp" />
+    <ClCompile Include="Identifiable.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Transformable.cpp" />
@@ -233,6 +235,7 @@
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ARenderer.hpp" />
     <ClInclude Include="BaseGui.hpp" />
+    <ClInclude Include="EditMenu.hpp" />
     <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />

@@ -1,5 +1,15 @@
 #include "SphereGenerator.hpp"
 
+SphereGenerator::SphereGenerator(const ofVec3f & pos, float radius)
+{
+	sphere_.setPosition(pos);
+	sphere_.setRadius(radius);
+}
+
+SphereGenerator::SphereGenerator()
+{
+}
+
 ofMesh SphereGenerator::operator()(void) const
 {
 	return generate();
