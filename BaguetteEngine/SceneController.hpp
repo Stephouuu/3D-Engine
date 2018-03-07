@@ -6,6 +6,8 @@
 #include "SphereGenerator.hpp"
 #include "PlanGenerator.hpp"
 
+#include "SceneGraph.hpp"
+
 class ARenderer;
 
 // Singleton ?
@@ -33,4 +35,5 @@ private:
 	AMesh mesh1_;
 	AMesh mesh2_;
 	std::vector<AMesh> scenegraph_;
+	SceneGraph graph_;
 };

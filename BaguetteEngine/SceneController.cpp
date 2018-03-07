@@ -7,41 +7,50 @@ SceneController::SceneController(void)
 	cam_.setNearClip(0.01);
 	cam_.setFarClip(1000);
 
+	cam_.setPosition(ofVec3f(0, 10, 5));
+	cam_.rotate(0, 0, 0, 0);
+	cam_.lookAt(ofVec3f(0, 0, 0));
+
+	// Test
 	SphereGenerator sphere;
 	sphere.setRadius(1);
 
-	PlanGenerator	plan;
+	PlanGenerator plan;
 	plan.setSize(1, 1);
 
 	mesh1_ = sphere.generate();
-	mesh1_.setPosition(ofVec3f(6, 1, 0));
+	mesh1_.setPosition(ofVec3f(3, 1, 0));
 
 	mesh2_ = plan.generate();
-	mesh2_.setPosition(ofVec3f(4, 4, 0));
+	mesh2_.setPosition(ofVec3f(2, 0, 3));
 	mesh2_.setScale(ofVec3f(1, 1, 1));
+	// End test
 }
 
 SceneController::~SceneController(void)
 {
-
 }
 
 void SceneController::update(float dt)
 {
 	// ...
+	graph_.update(dt);
 }
 
 void SceneController::render(ARenderer & renderer)
 {
 	cam_.begin();
 
-	//mesh1_.draw(renderer);
-	//mesh2_.draw(renderer);
-
 	std::vector<AMesh>::iterator it;
 	for (it = scenegraph_.begin(); it != scenegraph_.end(); ++it)
 		it->draw(renderer);
 
+	graph_.render(renderer);
+
+	ofDrawGrid(1.25f, 8U, false, false, true, false);
+
+	// x = red ; y = green ; z = blue.
+	// ofDrawAxis(2);
 	cam_.end();
 }
 

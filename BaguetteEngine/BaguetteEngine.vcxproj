@@ -178,6 +178,7 @@
     <ClCompile Include="BaseGui.cpp" />
     <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="Identifiable.cpp" />
+    <ClCompile Include="GridFloor.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Transformable.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="ARenderer.hpp" />
     <ClInclude Include="BaseGui.hpp" />
     <ClInclude Include="EditMenu.hpp" />
+    <ClInclude Include="GridFloor.hpp" />
     <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />

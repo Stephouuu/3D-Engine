@@ -14,6 +14,8 @@ AMesh::~AMesh(void)
 
 AMesh::AMesh(const ofMesh & oMesh)
 {
+	shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
+	shader_.bindDefaults();
 	vbo_ = oMesh;
 }
 

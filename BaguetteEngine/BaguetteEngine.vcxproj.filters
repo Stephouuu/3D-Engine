@@ -168,6 +168,9 @@
     </ClCompile>
     <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="Identifiable.cpp" />
+    <ClCompile Include="GridFloor.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1124,6 +1127,9 @@
       <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="EditMenu.hpp" />
+    <ClInclude Include="GridFloor.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
