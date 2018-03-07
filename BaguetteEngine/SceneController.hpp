@@ -43,6 +43,7 @@ public:
 
 	void setMeshPosition(const Identifiable & meshId, const ofVec3f & pos);
 	void setMeshScale(const Identifiable & meshId, const ofVec3f & scale);
+	void setMeshColor(const Identifiable & meshId, const ofFloatColor & color);
 
 private:
 	ofEasyCam cam_;

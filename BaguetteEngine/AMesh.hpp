@@ -17,9 +17,13 @@ public:
 
 	void init(void);
 	void setMesh(const ofMesh &oMesh);
+	void setColor(const ofFloatColor & c);
 
 	void update(float dt);
 	virtual void draw(ARenderer & renderer);
+
+private:
+	void initColor(void);
 
 private:
 	ofVboMesh	vbo_;

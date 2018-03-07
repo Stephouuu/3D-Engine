@@ -16,6 +16,8 @@ SceneController::SceneController(void)
 	const Identifiable & planId = instanciateMesh(InstantiableMesh::PLAN, sphereId);
 	setMeshPosition(planId, ofVec3f(0, 2, 0));
 	// removeMesh(planId);
+	setMeshColor(planId, ofFloatColor::orange);
+	setMeshColor(sphereId, ofFloatColor::red);
 }
 
 SceneController::~SceneController(void)
@@ -84,6 +86,20 @@ void SceneController::setMeshScale(const Identifiable & meshId, const ofVec3f & 
 
 	if (node) {
 		node->getMesh()->setScale(scale);
+	}
+	else {
+		std::ostringstream oss;
+		oss << "Mesh #" << meshId << " not found" << std::endl;
+		throw std::runtime_error(oss.str());
+	}
+}
+
+void SceneController::setMeshColor(const Identifiable & meshId, const ofFloatColor & color)
+{
+	SceneNode *node = graph_.findNode(meshId);
+
+	if (node) {
+		node->getMesh()->setColor(color);
 	}
 	else {
 		std::ostringstream oss;
