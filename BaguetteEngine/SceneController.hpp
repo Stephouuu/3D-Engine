@@ -22,5 +22,6 @@ public:
 
 private:
 	ofEasyCam cam_;
-	AMesh mesh_;
+	AMesh mesh1_;
+	AMesh mesh2_;
 };

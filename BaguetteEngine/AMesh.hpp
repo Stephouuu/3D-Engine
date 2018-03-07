@@ -4,7 +4,7 @@
 
 class ARenderer;
 
-class AMesh
+class AMesh : public ofNode
 {
 public:
 	AMesh(void);
@@ -14,6 +14,8 @@ public:
 	void setMesh(const ofMesh &oMesh);
 
 	virtual void draw(ARenderer & renderer);
+
 private:
-	ofVboMesh	vbo_;
+	ofVboMesh vbo_;
+	ofShader shader_;
 };

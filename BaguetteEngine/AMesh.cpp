@@ -1,8 +1,11 @@
 #include "AMesh.hpp"
 #include "ARenderer.hpp"
+#include "ofGraphics.h"
 
 AMesh::AMesh(void)
 {
+	shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
+	shader_.bindDefaults();
 }
 
 AMesh::~AMesh(void)
@@ -27,5 +30,10 @@ void AMesh::setMesh(const ofMesh & oMesh)
 
 void AMesh::draw(ARenderer & renderer)
 {
-	renderer.draw(vbo_);
+	shader_.begin();
+	shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
+
+	vbo_.draw();
+	
+	shader_.end();
 }

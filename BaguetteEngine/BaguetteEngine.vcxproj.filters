@@ -345,6 +345,9 @@
     <Filter Include="src\Graphics\Mesh\Generator">
       <UniqueIdentifier>{0a87b584-fd8c-4ab1-b557-bb54d2cc8286}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{ea849085-4125-4b02-b13d-83f1e720ef22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h">
@@ -1121,5 +1124,13 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\fragment_shader.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\vertex_shader.vert">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

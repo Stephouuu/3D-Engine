@@ -1,13 +1,13 @@
 #include "PlanGenerator.hpp"
 
-AMesh PlanGenerator::operator()(void) const
+ofMesh PlanGenerator::operator()(void) const
 {
 	return generate();
 }
 
-AMesh PlanGenerator::generate() const
+ofMesh PlanGenerator::generate() const
 {
-	return AMesh(plan_.getMesh());
+	return plan_.getMesh();
 }
 
 void PlanGenerator::setSize(const float width, const float height)

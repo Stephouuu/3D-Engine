@@ -3,9 +3,22 @@
 
 SceneController::SceneController(void)
 {
-	cam_.setDistance(5);
+	cam_.setDistance(10);
 	cam_.setNearClip(0.01);
 	cam_.setFarClip(1000);
+
+	SphereGenerator sphere;
+	sphere.setRadius(1);
+
+	PlanGenerator	plan;
+	plan.setSize(1, 1);
+
+	mesh1_ = sphere.generate();
+	mesh1_.setPosition(ofVec3f(6, 1, 0));
+
+	mesh2_ = plan.generate();
+	mesh2_.setPosition(ofVec3f(4, 4, 0));
+	mesh2_.setScale(ofVec3f(1, 1, 1));
 }
 
 SceneController::~SceneController(void)
@@ -22,22 +35,9 @@ void SceneController::render(ARenderer & renderer)
 {
 	cam_.begin();
 
-	//This is just for Anthony test
-	SphereGenerator sphere;
-	sphere.setPosition(ofVec3f(100, 0, 0));
-	sphere.setRadius(0.1);
-
-	AMesh mesh = sphere.generate();
-	mesh.draw(renderer);
-
-	PlanGenerator	plan;
-	plan.setPosition(ofVec3f(0, 0, 0));
-	plan.setSize(0.5, 0.5);
-
-	plan.generate().draw(renderer);
-	//END Anthony test
-
-	mesh_.draw(renderer);
+	//This is just for Anthony test	
+	mesh1_.draw(renderer);
+	mesh2_.draw(renderer);
 
 	cam_.end();
 }
