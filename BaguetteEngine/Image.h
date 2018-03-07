@@ -7,7 +7,9 @@ class Image
 {
 public:
 	Image(std::string filename);
+	Image();
 	~Image();
+	void Load(std::string filename);
 	void Export(std::string filename);
 	void Draw(float x, float y);
 	void Draw(float x, float y, int width, int heigh);
@@ -16,6 +18,7 @@ public:
 	ofImage theImg;
 	std::string name;
 	std::string path;
+	bool isLoaded;
 
 };
 

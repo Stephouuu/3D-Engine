@@ -1,19 +1,30 @@
 #include "Image.h"
 #include "ofMain.h"
 
-
+Image::Image()
+{
+	isLoaded = false;
+}
 
 Image::Image(std::string filename)
 {
 	if (theImg.load("Image/" + filename) == 0)
-	{
-		std::cout << "error: " << filename << " does not exist." << std::endl;
-	}
+		throw std::invalid_argument("Wrong Path.");
+	else
+		isLoaded = true;
 }
 
 
 Image::~Image()
 {
+}
+
+void Image::Load(std::string filename)
+{
+	if (theImg.load("Image/" + filename) == 0)
+		throw std::invalid_argument("Wrong Path.");
+	else
+		isLoaded = true;
 }
 
 void Image::Export(std::string filename)
