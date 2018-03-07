@@ -72,7 +72,7 @@ const Identifiable & SceneController::instanciateMesh(AMesh::InstantiableMesh me
 	if (meshType == AMesh::InstantiableMesh::SPHERE)
 		node = SceneGraph::CreateSceneNode<SphereGenerator>();
 	else if (meshType == AMesh::InstantiableMesh::PLANE)
-		node = SceneGraph::CreateSceneNode<PlanGenerator>();
+		node = SceneGraph::CreateSceneNode<PlaneGenerator>();
 	else if (meshType == AMesh::InstantiableMesh::CUBE)
 		node = SceneGraph::CreateSceneNode<CubeGenerator>();
 	else if (meshType == AMesh::InstantiableMesh::CONE)

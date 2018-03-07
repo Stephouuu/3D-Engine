@@ -6,6 +6,7 @@
 #include "IGuiView.hpp"
 #include "SceneController.hpp"
 #include "EditMenu.hpp"
+#include "Image.h"
 
 class MainMenu : public IGuiView
 {
@@ -31,4 +32,6 @@ private:
 
 	SceneController		&scene_;
 	EditMenu			&editMenu_;
+
+	Image				exportImg_;
 };
