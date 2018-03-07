@@ -2,6 +2,8 @@
 
 PlanGenerator::PlanGenerator()
 {
+	plan_.setPosition(ofVec3f(0, 0, 0));
+	plan_.set(1, 1);
 }
 
 PlanGenerator::PlanGenerator(const ofVec2f pos, const float width, const float height)

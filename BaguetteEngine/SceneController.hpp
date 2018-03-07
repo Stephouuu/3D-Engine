@@ -14,6 +14,13 @@ class ARenderer;
 class SceneController
 {
 public:
+	enum InstatiableMesh
+	{
+		SPHERE,
+		PLAN
+	};
+
+public:
 	SceneController(void);
 	~SceneController(void);
 
@@ -22,18 +29,16 @@ public:
 
 	int selected(int x, int y);
 
-	enum InstatiableMesh
-	{
-		SPHERE,
-		PLAN
-	};
-
-	int instanciateMesh(InstatiableMesh meshType, float x = 0, float y = 0, float z = 0);
+	/**
+	** \Brief: Add a mesh in the graph scene.
+	** \param meshType: The type of the mesh to be created.
+	** \param parent: The ID of the parent ; 0 (root) by default.
+	** \Return success: The ID of the new mesh added.
+	** \Return failure: Throw runtime exception.
+	**/
+	const Identifiable & instanciateMesh(InstatiableMesh meshType, const Identifiable & parent = Identifiable());
 
 private:
 	ofEasyCam cam_;
-	AMesh mesh1_;
-	AMesh mesh2_;
-	std::vector<AMesh> scenegraph_;
 	SceneGraph graph_;
 };

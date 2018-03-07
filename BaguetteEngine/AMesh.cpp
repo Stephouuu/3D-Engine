@@ -4,8 +4,7 @@
 
 AMesh::AMesh(void)
 {
-	shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
-	shader_.bindDefaults();
+	init();
 }
 
 AMesh::~AMesh(void)
@@ -14,8 +13,7 @@ AMesh::~AMesh(void)
 
 AMesh::AMesh(const ofMesh & oMesh)
 {
-	shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
-	shader_.bindDefaults();
+	init();
 	vbo_ = oMesh;
 }
 
@@ -25,9 +23,19 @@ AMesh AMesh::operator=(const ofMesh & oMesh)
 	return *this;
 }
 
+void AMesh::init(void)
+{
+	shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
+	shader_.bindDefaults();
+}
+
 void AMesh::setMesh(const ofMesh & oMesh)
 {
 	vbo_ = oMesh;
+}
+
+void AMesh::update(float dt)
+{
 }
 
 void AMesh::draw(ARenderer & renderer)

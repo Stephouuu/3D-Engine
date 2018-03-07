@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 
+#include "Identifiable.hpp"
 #include "SceneNode.hpp"
 
 class ARenderer;
@@ -9,15 +10,26 @@ class ARenderer;
 class SceneGraph
 {
 public:
+	template <typename T>
+	static SceneNode::Ptr CreateSceneNode(void)
+	{
+		static int cpt = 1;
+		SceneNode::Ptr node(new SceneNode(cpt));
+		node->setMesh(new AMesh(T()()));
+		++cpt;
+		return std::move(node);
+	}
+
+public:
 	SceneGraph(void);
 	~SceneGraph(void);
 
 	void update(float dt);
 	void render(ARenderer & renderer);
 
-	void attachTo(int idParent);
-	SceneNode::Ptr detach(int id); // todo: return the detached child
+	const Identifiable & attachTo(SceneNode::Ptr child, const Identifiable & parent);
+	SceneNode::Ptr detach(const Identifiable & node);
 
 private:
-	SceneNode root_;
+	SceneNode::Ptr root_;
 };

@@ -8,6 +8,8 @@ SphereGenerator::SphereGenerator(const ofVec3f & pos, float radius)
 
 SphereGenerator::SphereGenerator()
 {
+	sphere_.setPosition(ofVec3f(0, 0, 0));
+	sphere_.setRadius(1.0f);
 }
 
 ofMesh SphereGenerator::operator()(void) const
