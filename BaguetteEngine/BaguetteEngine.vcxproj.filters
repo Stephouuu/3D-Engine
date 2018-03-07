@@ -169,9 +169,15 @@
     <ClCompile Include="SpherePrimitive.cpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="ConePrimitive.cpp" />
-    <ClCompile Include="PlanePrimitive.cpp" />
-    <ClCompile Include="CubePrimitive.cpp" />
+    <ClCompile Include="CubePrimitive.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="ConePrimitive.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanePrimitive.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1128,9 +1134,15 @@
     <ClInclude Include="SpherePrimitive.hpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="ConePrimitive.hpp" />
-    <ClInclude Include="PlanePrimitive.hpp" />
-    <ClInclude Include="CubePrimitive.hpp" />
+    <ClInclude Include="CubePrimitive.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="ConePrimitive.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanePrimitive.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
