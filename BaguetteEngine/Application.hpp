@@ -1,11 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxGui.h"
 
 #include "Timer.hpp"
 #include "WindowRenderer.hpp"
 #include "SceneController.hpp"
+#include "BaseGui.hpp"
 
 class Application : public ofBaseApp
 {
@@ -34,6 +34,5 @@ private:
 	WindowRenderer window_;
 	SceneController scene_;
 
-	ofxPanel gui_;
-	ofxLabel label_;
+	BaseGui gui_;
 };

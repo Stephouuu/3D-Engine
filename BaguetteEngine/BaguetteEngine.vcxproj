@@ -175,6 +175,7 @@
     <ClCompile Include="AMesh.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ARenderer.cpp" />
+    <ClCompile Include="BaseGui.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Transformable.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="AMesh.hpp" />
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ARenderer.hpp" />
+    <ClInclude Include="BaseGui.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />
     <ClInclude Include="Transformable.hpp" />

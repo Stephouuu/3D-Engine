@@ -4,9 +4,6 @@
 Application::Application(void)
 {
 	ofSetVerticalSync(true);
-
-	gui_.setup("test");
-	gui_.add(label_.setup("sdddddddddddddddddddd ", "adddddddddddddddddddddddd"));
 }
 
 Application::~Application(void)
@@ -15,6 +12,7 @@ Application::~Application(void)
 
 void Application::setup(void)
 {
+	gui_.setup();
 }
 
 void Application::update(void)
@@ -28,12 +26,12 @@ void Application::draw(void)
 {
 	scene_.render(window_);
 
-	Image img("loutre.jpg");
+	/*Image img("loutre.jpg");
 	img.Draw(0, 0, 300, 300);
-	img.DrawPartOfImage(400, 400, 200, 200, 0, 0);
+	img.DrawPartOfImage(400, 400, 200, 200, 0, 0);*/
 
 	gui_.draw();
-	img.Export("screenshot.jpg");
+	//img.Export("screenshot.jpg");
 }
 
 void Application::keyPressed(int key)
