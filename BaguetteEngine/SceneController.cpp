@@ -41,3 +41,14 @@ void SceneController::render(ARenderer & renderer)
 
 	cam_.end();
 }
+
+int SceneController::selected(int x, int y)
+{
+	//Il faut vérifier dans le graph de scène si un objet correspond à ces coordonnées et renvoyer son id
+	return -1;
+}
+
+int SceneController::instanciateMesh(float x, float y, float z)
+{
+	return 0;
+}

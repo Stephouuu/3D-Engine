@@ -1,16 +1,19 @@
 #pragma once
 
 #include "MainMenu.hpp"
+#include "EditMenu.hpp"
 
 class BaseGui : public IGuiView
 {
 public:
-	BaseGui();
+	BaseGui(SceneController &scene);
 	~BaseGui();
 	void draw();
 	void setup();
-	void buttonPressed(const void * sender);
+	void focus(int id);
 
 private:
-	MainMenu	mainMenu_;
+	MainMenu			mainMenu_;
+	EditMenu			editMenu_;
+	SceneController		&scene_;
 };

@@ -1,6 +1,6 @@
 #include "MainMenu.hpp"
 
-MainMenu::MainMenu()
+MainMenu::MainMenu(SceneController & scene) : scene_(scene)
 {
 }
 
@@ -12,6 +12,10 @@ MainMenu::~MainMenu()
 void MainMenu::draw()
 {
 	gui_.draw();
+
+	gui_.mouseReleased(mouseEvents_);
+	gui_.mouseEntered(mouseEvents_);
+
 }
 
 void MainMenu::setup()
@@ -46,4 +50,5 @@ void MainMenu::buttonPressed(const void * sender)
 	ofxButton * button = (ofxButton*)sender;
 	button->getName();
 	std::cout << "click on " << button->getName() << std::endl;;
+	//scene_.instanciateMesh();
 }

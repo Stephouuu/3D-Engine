@@ -4,11 +4,12 @@
 #include "ofxGui.h"
 
 #include "IGuiView.hpp"
+#include "SceneController.hpp"
 
 class MainMenu : public IGuiView
 {
 public:
-	MainMenu();
+	MainMenu(SceneController & scene);
 	~MainMenu();
 	void draw();
 	void setup();
@@ -22,6 +23,8 @@ private:
 
 	ofxButton			insertSphere_;
 	ofxButton			exportScene_;
+	ofMouseEventArgs	mouseEvents_;
 
+	SceneController		&scene_;
 };
 

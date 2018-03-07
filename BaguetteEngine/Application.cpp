@@ -1,7 +1,7 @@
 #include "Application.hpp"
 #include "Image.h"
 
-Application::Application(void)
+Application::Application(void) : gui_(scene_)
 {
 	ofSetVerticalSync(true);
 }
@@ -52,6 +52,10 @@ void Application::mouseDragged(int x, int y, int button)
 
 void Application::mousePressed(int x, int y, int button)
 {
+	int id;
+
+	if ((id = scene_.selected(x, y)) > 0)
+		gui_.focus(0);
 }
 
 void Application::mouseReleased(int x, int y, int button)

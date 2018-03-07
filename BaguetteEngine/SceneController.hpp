@@ -17,6 +17,9 @@ public:
 	void update(float dt);
 	void render(ARenderer & renderer);
 
+	int selected(int x, int y);
+	int instanciateMesh(float x = 0, float y = 0, float z = 0);
+
 private:
 	ofEasyCam cam_;
 	AMesh mesh_;
