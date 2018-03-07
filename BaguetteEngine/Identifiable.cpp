@@ -14,6 +14,11 @@ Identifiable::Identifiable(int id)
 	name_ = oss.str();
 }
 
+Identifiable::Identifiable(const Identifiable & other)
+{
+	*this = other;
+}
+
 Identifiable::~Identifiable(void)
 {
 }
@@ -36,6 +41,13 @@ int Identifiable::getID(void) const
 const std::string & Identifiable::getName(void) const
 {
 	return name_;
+}
+
+Identifiable & Identifiable::operator=(const Identifiable & other)
+{
+	setID(other.getID());
+	setName(other.getName());
+	return *this;
 }
 
 bool Identifiable::operator==(const Identifiable & other)

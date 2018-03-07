@@ -164,6 +164,9 @@
     <ClCompile Include="Identifiable.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="TransformableHistory.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1114,6 +1117,9 @@
       <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="EditMenu.hpp" />
+    <ClInclude Include="TransformableHistory.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

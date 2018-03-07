@@ -3,10 +3,11 @@
 #include <vector>
 #include "ofMain.h"
 #include "Identifiable.hpp"
+#include "TransformableHistory.hpp"
 
 class ARenderer;
 
-class AMesh : public ofNode
+class AMesh : public ofNode // : public TransformableHistory
 {
 public:
 	AMesh(void);

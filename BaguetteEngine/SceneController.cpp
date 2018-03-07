@@ -16,12 +16,18 @@ SceneController::SceneController(void)
 	setMeshPosition(sphereId, ofVec3f(5, 0, 2));
 	const Identifiable & planId = instanciateMesh(InstantiableMesh::PLAN, sphereId); // drew in (5, 2, 2).
 	setMeshPosition(planId, ofVec3f(0, 2, 0));
+	setMeshPosition(planId, ofVec3f(0, 2, 3));
+
+	// setMeshPosition(sphereId, ofVec3f(-1, 0, -1));
 	const Identifiable & plan2Id = instanciateMesh(InstantiableMesh::PLAN);
-	setMeshPosition(plan2Id, ofVec3f(0, 1, 0));
+	setMeshPosition(plan2Id, ofVec3f(0, 2, 0));
 	setMeshRotation(plan2Id, 20, ofVec3f(1, 1, 0));
-	// removeMesh(planId);
+
+	setMeshPosition(plan2Id, ofVec3f(3, 0, 3));
 	setMeshColor(planId, ofFloatColor::orange);
 	setMeshColor(sphereId, ofFloatColor::red);
+
+	// removeMesh(planId);
 
 	/* Dump graph scene content - to use with GUI */
 	SceneNode::TreeData data;
@@ -62,6 +68,7 @@ int SceneController::selected(int x, int y)
 
 const Identifiable & SceneController::instanciateMesh(InstantiableMesh meshType, const Identifiable & parent)
 {
+	ensureMeshExistance(parent);
 	SceneNode::Ptr node = nullptr;
 
 	if (meshType == InstantiableMesh::SPHERE)
@@ -69,7 +76,9 @@ const Identifiable & SceneController::instanciateMesh(InstantiableMesh meshType,
 	else if (meshType == InstantiableMesh::PLAN)
 		node = SceneGraph::CreateSceneNode<PlanGenerator>();
 	try {
-		return graph_.attachTo(std::move(node), parent);
+		const Identifiable & id = graph_.attachTo(std::move(node), parent);
+		historic_.pushTransformation(std::make_pair(id, ofMatrix4x4::newIdentityMatrix()));
+		return id;
 	}
 	catch (const std::runtime_error & e) {
 		throw (e);
@@ -79,22 +88,32 @@ const Identifiable & SceneController::instanciateMesh(InstantiableMesh meshType,
 void SceneController::removeMesh(const Identifiable & meshId)
 {
 	ensureMeshExistance(meshId);
+	historic_.deleteTransformations(meshId);
 	graph_.detach(meshId);
 }
 
 void SceneController::setMeshPosition(const Identifiable & meshId, const ofVec3f & pos)
 {
-	ensureMeshExistance(meshId)->getMesh()->setPosition(pos);
+	SceneNode *node = ensureMeshExistance(meshId);
+	
+	node->getMesh()->setPosition(pos);
+	historic_.pushTransformation(std::make_pair(meshId, node->getMesh()->getLocalTransformMatrix()));
 }
 
 void SceneController::setMeshRotation(const Identifiable & meshId, float degrees, const ofVec3f & axis)
 {
-	ensureMeshExistance(meshId)->getMesh()->rotate(degrees, axis);
+	SceneNode *node = ensureMeshExistance(meshId);
+	
+	node->getMesh()->rotate(degrees, axis);
+	historic_.pushTransformation(std::make_pair(meshId, node->getMesh()->getLocalTransformMatrix()));
 }
 
 void SceneController::setMeshScale(const Identifiable & meshId, const ofVec3f & scale)
 {
-	ensureMeshExistance(meshId)->getMesh()->setScale(scale);
+	SceneNode *node = ensureMeshExistance(meshId);
+	
+	node->getMesh()->setScale(scale);
+	historic_.pushTransformation(std::make_pair(meshId, node->getMesh()->getLocalTransformMatrix()));
 }
 
 void SceneController::setMeshColor(const Identifiable & meshId, const ofFloatColor & color)
@@ -105,6 +124,34 @@ void SceneController::setMeshColor(const Identifiable & meshId, const ofFloatCol
 void SceneController::graphContent(SceneNode::TreeData & data) const
 {
 	graph_.dump(data);
+}
+
+void SceneController::undo(void)
+{
+	try {
+		const TransformableHistory::Item & t = historic_.undo();
+		SceneNode * node = graph_.findNode(t.first);
+		if (node) {
+			node->getMesh()->setTransformMatrix(t.second);
+		}
+	}
+	catch (const std::runtime_error & e) {
+		std::cerr << e.what() << std::endl;
+	}
+}
+
+void SceneController::redo(void)
+{
+	try {
+		const TransformableHistory::Item & t = historic_.redo();
+		SceneNode * node = graph_.findNode(t.first);
+		if (node) {
+			node->getMesh()->setTransformMatrix(t.second);
+		}
+	}
+	catch (const std::runtime_error & e) {
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 SceneNode * SceneController::ensureMeshExistance(const Identifiable & id)

@@ -9,6 +9,7 @@
 #include "PlanGenerator.hpp"
 
 #include "SceneGraph.hpp"
+#include "TransformableHistory.hpp"
 
 class ARenderer;
 
@@ -41,10 +42,14 @@ public:
 
 	void graphContent(SceneNode::TreeData & data) const;
 
+	void undo(void);
+	void redo(void);
+
 private:
 	SceneNode * ensureMeshExistance(const Identifiable & id);
 
 private:
 	ofEasyCam cam_;
 	SceneGraph graph_;
+	TransformableHistory historic_;
 };
