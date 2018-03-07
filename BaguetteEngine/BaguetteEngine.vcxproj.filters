@@ -157,6 +157,15 @@
     <ClCompile Include="Transformable.cpp">
       <Filter>src\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseGui.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1097,8 +1106,20 @@
     <ClInclude Include="Transformable.hpp">
       <Filter>src\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
     <ClInclude Include="CacheManager.hpp">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseGui.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="IGuiView.hpp">
+      <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
