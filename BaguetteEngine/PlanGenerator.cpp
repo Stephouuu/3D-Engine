@@ -3,31 +3,31 @@
 PlanGenerator::PlanGenerator()
 {
 	plan_.setPosition(ofVec3f(0, 0, 0));
-	plan_.set(1, 1);
+	plan_.setSize(1, 1);
 }
 
 PlanGenerator::PlanGenerator(const ofVec2f pos, const float width, const float height)
 {
 	plan_.setPosition(pos);
-	plan_.set(width, height);
+	plan_.setSize(width, height);
 }
 
-ofMesh PlanGenerator::operator()(void) const
+AMesh PlanGenerator::operator()(void) const
 {
 	return generate();
 }
 
-ofMesh PlanGenerator::generate() const
+AMesh PlanGenerator::generate() const
 {
-	return plan_.getMesh();
+	return plan_;
 }
 
 void PlanGenerator::setSize(const float width, const float height)
 {
-	plan_.set(width, height);
+	plan_.setSize(width, height);
 }
 
-void PlanGenerator::setPosition(const ofVec2f pos)
+void PlanGenerator::setPosition(const ofVec3f pos)
 {
 	plan_.setPosition(pos);
 }

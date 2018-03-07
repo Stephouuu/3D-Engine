@@ -118,9 +118,6 @@
     <ClCompile Include="AMesh.cpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="CubeMesh.cpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="Model3D.cpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
@@ -142,9 +139,6 @@
     <ClCompile Include="WindowRenderer.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="PlaneMesh.cpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="PropertiesEditor.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
@@ -160,13 +154,24 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
-    <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="Identifiable.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
     <ClCompile Include="TransformableHistory.cpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="EditMenu.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ConeGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="SpherePrimitive.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="ConePrimitive.cpp" />
+    <ClCompile Include="PlanePrimitive.cpp" />
+    <ClCompile Include="CubePrimitive.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1065,9 +1070,6 @@
     <ClInclude Include="AMesh.hpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="CubeMesh.hpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="Model3D.hpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
@@ -1091,9 +1093,6 @@
     </ClInclude>
     <ClInclude Include="IBasicMeshGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
-    </ClInclude>
-    <ClInclude Include="PlaneMesh.hpp">
-      <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="PropertiesEditor.hpp">
       <Filter>src\UI</Filter>
@@ -1120,6 +1119,18 @@
     <ClInclude Include="TransformableHistory.hpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="EditMenu.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ConeGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="SpherePrimitive.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="ConePrimitive.hpp" />
+    <ClInclude Include="PlanePrimitive.hpp" />
+    <ClInclude Include="CubePrimitive.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

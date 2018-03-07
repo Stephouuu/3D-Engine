@@ -1,18 +1,19 @@
 #pragma once
 
 #include "IBasicMeshGenerator.hpp"
+#include "SpherePrimitive.hpp"
 
 class SphereGenerator : IBasicMeshGenerator
 {
 public:
 	SphereGenerator(const ofVec3f & pos, float radius);
 	SphereGenerator();
-	ofMesh operator()(void) const;
-	ofMesh generate() const;
+	AMesh operator()(void) const;
+	AMesh generate() const;
 	void setRadius(const float radius);
-	void setPosition(const ofVec2f pos);
+	void setPosition(const ofVec3f pos);
 
 
 private:
-	ofSpherePrimitive	sphere_;
+	SpherePrimitive		sphere_;
 };

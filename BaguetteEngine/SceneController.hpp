@@ -7,6 +7,8 @@
 #include "AMesh.hpp"
 #include "SphereGenerator.hpp"
 #include "PlanGenerator.hpp"
+#include "CubeGenerator.hpp"
+#include "ConeGenerator.hpp"
 
 #include "SceneGraph.hpp"
 #include "TransformableHistory.hpp"
@@ -17,13 +19,6 @@ class ARenderer;
 class SceneController
 {
 public:
-	enum InstantiableMesh
-	{
-		SPHERE,
-		PLAN
-	};
-
-public:
 	SceneController(void);
 	~SceneController(void);
 
@@ -32,7 +27,7 @@ public:
 
 	int selected(int x, int y);
 
-	const Identifiable & instanciateMesh(InstantiableMesh meshType, const Identifiable & parent = Identifiable());
+	const Identifiable & instanciateMesh(AMesh::InstantiableMesh meshType, const Identifiable & parent = Identifiable());
 	void removeMesh(const Identifiable & meshId);
 
 	void setMeshPosition(const Identifiable & meshId, const ofVec3f & pos);
