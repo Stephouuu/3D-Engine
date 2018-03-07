@@ -74,7 +74,7 @@ const TransformableHistory::Item & TransformableHistory::redo(void)
 		auto tmp = current_;
 		current_--;
 
-		if (tmp->first.getID() != current_->first.getID()) {
+		if (current_ != historic_.cbegin() && tmp->first.getID() != current_->first.getID()) {
 			return *(--current_);
 		}
 		else {
