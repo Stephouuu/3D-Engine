@@ -39,6 +39,7 @@ public:
 	** \Return failure: Runtime exception.
 	**/
 	const Identifiable & instanciateMesh(InstantiableMesh meshType, const Identifiable & parent = Identifiable());
+	void removeMesh(const Identifiable & meshId);
 
 	void setMeshPosition(const Identifiable & meshId, const ofVec3f & pos);
 	void setMeshScale(const Identifiable & meshId, const ofVec3f & scale);

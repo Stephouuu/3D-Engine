@@ -15,7 +15,6 @@ public:
 	template <typename T>
 	static SceneNode::Ptr CreateSceneNode(void)
 	{
-		cpt++;
 		SceneNode::Ptr node(new SceneNode(++cpt));
 		node->setMesh(new AMesh(T()()));
 		return std::move(node);
@@ -32,6 +31,7 @@ public:
 	SceneNode::Ptr detach(const Identifiable & node);
 
 	SceneNode * findNode(const Identifiable & id);
+	void dump(void);
 
 private:
 	SceneNode::Ptr root_;

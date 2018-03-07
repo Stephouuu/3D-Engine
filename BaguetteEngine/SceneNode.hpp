@@ -26,18 +26,20 @@ public:
 
 	const Identifiable & attachTo(SceneNode::Ptr child, const Identifiable & parent);
 	SceneNode::Ptr detach(const Identifiable & node);
+	void destroy(void);
 
 	void setMesh(AMesh *mesh);
 	void setParent(SceneNode *parent);
 
 	AMesh *getMesh(void);
 
-// private:
 	SceneNode * findNode(const Identifiable & node);
-	// SceneNode *findNode(const Identifiable & node);
+	void dump(int depth = 0);
+
+private:
+	const Identifiable & addChild(SceneNode::Ptr child);
 
 private:
 	std::vector<Ptr> childs_;
-	SceneNode *parent_;
 	AMesh *mesh_;
 };

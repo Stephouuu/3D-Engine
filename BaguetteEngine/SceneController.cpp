@@ -15,6 +15,7 @@ SceneController::SceneController(void)
 	setMeshPosition(sphereId, ofVec3f(5, 0, 2));
 	const Identifiable & planId = instanciateMesh(InstantiableMesh::PLAN, sphereId);
 	setMeshPosition(planId, ofVec3f(0, 2, 0));
+	// removeMesh(planId);
 }
 
 SceneController::~SceneController(void)
@@ -50,13 +51,17 @@ const Identifiable & SceneController::instanciateMesh(InstantiableMesh meshType,
 		node = SceneGraph::CreateSceneNode<SphereGenerator>();
 	else if (meshType == InstantiableMesh::PLAN)
 		node = SceneGraph::CreateSceneNode<PlanGenerator>();
-
 	try {
 		return graph_.attachTo(std::move(node), parent);
 	}
 	catch (const std::runtime_error & e) {
 		throw (e);
 	}
+}
+
+void SceneController::removeMesh(const Identifiable & meshId)
+{
+	graph_.detach(meshId);
 }
 
 void SceneController::setMeshPosition(const Identifiable & meshId, const ofVec3f & pos)

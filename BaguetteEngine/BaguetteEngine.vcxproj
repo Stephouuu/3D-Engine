@@ -178,10 +178,8 @@
     <ClCompile Include="BaseGui.cpp" />
     <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="Identifiable.cpp" />
-    <ClCompile Include="GridFloor.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="Transformable.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
     <ClCompile Include="CubeMesh.cpp" />
     <ClCompile Include="PropertiesEditor.cpp" />
@@ -193,7 +191,6 @@
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="SceneViewer.cpp" />
-    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SphereGenerator.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
@@ -237,12 +234,10 @@
     <ClInclude Include="ARenderer.hpp" />
     <ClInclude Include="BaseGui.hpp" />
     <ClInclude Include="EditMenu.hpp" />
-    <ClInclude Include="GridFloor.hpp" />
     <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />
     <ClInclude Include="MainMenu.hpp" />
-    <ClInclude Include="Transformable.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
     <ClInclude Include="CubeMesh.hpp" />
     <ClInclude Include="PropertiesEditor.hpp" />
@@ -257,7 +252,6 @@
     <ClInclude Include="SceneGraph.hpp" />
     <ClInclude Include="SceneNode.hpp" />
     <ClInclude Include="SceneViewer.hpp" />
-    <ClInclude Include="Shader.hpp" />
     <ClInclude Include="SphereGenerator.hpp" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />

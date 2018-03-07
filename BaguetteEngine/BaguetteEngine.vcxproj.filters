@@ -112,9 +112,6 @@
     <ClCompile Include="Texture.cpp">
       <Filter>src\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>src\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="SceneViewer.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
@@ -154,9 +151,6 @@
     <ClCompile Include="Timer.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Transformable.cpp">
-      <Filter>src\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>src\Graphics</Filter>
     </ClCompile>
@@ -168,9 +162,6 @@
     </ClCompile>
     <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="Identifiable.cpp" />
-    <ClCompile Include="GridFloor.cpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1060,9 +1051,6 @@
     <ClInclude Include="Texture.hpp">
       <Filter>src\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.hpp">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="SceneViewer.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
@@ -1108,9 +1096,6 @@
     <ClInclude Include="Timer.hpp">
       <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Transformable.hpp">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>src\Graphics</Filter>
     </ClInclude>
@@ -1127,9 +1112,6 @@
       <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="EditMenu.hpp" />
-    <ClInclude Include="GridFloor.hpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

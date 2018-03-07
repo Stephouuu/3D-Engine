@@ -4,12 +4,10 @@
 SceneGraph::SceneGraph(void)
 	: root_(new SceneNode(0))
 {
-	// root_->setTransformMatrix(ofMatrix4x4::newIdentityMatrix());
 }
 
 SceneGraph::~SceneGraph(void)
 {
-	// tout delete
 }
 
 void SceneGraph::update(float dt)
@@ -41,4 +39,9 @@ SceneNode::Ptr SceneGraph::detach(const Identifiable & parent)
 SceneNode * SceneGraph::findNode(const Identifiable & id)
 {
 	return root_->findNode(id);
+}
+
+void SceneGraph::dump(void)
+{
+	root_->dump();
 }

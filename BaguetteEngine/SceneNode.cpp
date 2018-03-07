@@ -1,12 +1,13 @@
 #include "SceneNode.hpp"
 
 SceneNode::SceneNode(int id)
-	: Identifiable(id), parent_(nullptr), mesh_(nullptr)
+	: Identifiable(id), mesh_(nullptr)
 {
 }
 
 SceneNode::~SceneNode(void)
 {
+	destroy();
 }
 
 void SceneNode::update(float dt)
@@ -31,8 +32,7 @@ const Identifiable & SceneNode::attachTo(SceneNode::Ptr child, const Identifiabl
 	SceneNode *nodeParent = findNode(parent);
 	if (nodeParent) {
 		child->setParent(nodeParent);
-		childs_.push_back(std::move(child));
-		return *childs_.back();
+		return nodeParent->addChild(std::move(child));
 	}
 	std::ostringstream oss;
 	oss << "Can't find the parent #" << parent.getID() << " in the scene graph.";
@@ -52,11 +52,23 @@ SceneNode::Ptr SceneNode::detach(const Identifiable & node)
 		childs_.erase(found);
 		return result;
 	}
+
 	for (auto & it : childs_) {
 		SceneNode::Ptr n = std::move(it->detach(node));
 		if (n) return n;
 	}
 	return nullptr;
+}
+
+void SceneNode::destroy(void)
+{
+	for (auto & it : childs_) {
+		it->destroy();
+	}
+	if (mesh_) {
+		delete (mesh_);
+		mesh_ = nullptr;
+	}
 }
 
 void SceneNode::setMesh(AMesh *mesh)
@@ -66,8 +78,10 @@ void SceneNode::setMesh(AMesh *mesh)
 
 void SceneNode::setParent(SceneNode *parent)
 {
-	if (mesh_ && parent->getMesh()) {
-		parent_ = parent;
+	if (!parent) {
+		mesh_->clearParent();
+	}
+	else if (mesh_ && parent->getMesh()) {
 		mesh_->setParent(*parent->getMesh());
 	}
 }
@@ -87,4 +101,22 @@ SceneNode * SceneNode::findNode(const Identifiable & node)
 		if (n) return n;
 	}
 	return nullptr;
+}
+
+void SceneNode::dump(int depth)
+{
+	for (int i = 0; i < depth; i++) {
+		std::clog << "-";
+	}
+	std::clog << " " << getID() << std::endl;
+
+	for (auto & it : childs_) {
+		it->dump(depth + 1);
+	}
+}
+
+const Identifiable & SceneNode::addChild(SceneNode::Ptr child)
+{
+	childs_.push_back(std::move(child));
+	return *childs_.back();
 }
