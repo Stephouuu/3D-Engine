@@ -24,9 +24,10 @@ SceneController::SceneController(void)
 	setMeshColor(sphereId, ofFloatColor::red);
 
 	/* Dump graph scene content - to use with GUI */
-	SceneNode::TreeData graphContent;
-	graph_.dump(graphContent);
-	for (auto & it : graphContent) {
+	SceneNode::TreeData data;
+	graphContent(data);
+	std::clog << " Scene graph: " << std::endl;
+	for (auto & it : data) {
 		for (int i = 0; i < it.first; ++i) {
 			std::clog << "-";
 		}
@@ -46,7 +47,7 @@ void SceneController::update(float dt)
 void SceneController::render(ARenderer & renderer)
 {
 	cam_.begin();
-	ofDrawGrid(1.25f, 8U, false, false, true, false);
+	ofDrawGrid(1, 8U, false, false, true, false);
 
 	graph_.render(renderer);
 	// ofDrawAxis(2); // x = red ; y = green ; z = blue.
@@ -99,6 +100,11 @@ void SceneController::setMeshScale(const Identifiable & meshId, const ofVec3f & 
 void SceneController::setMeshColor(const Identifiable & meshId, const ofFloatColor & color)
 {
 	ensureMeshExistance(meshId)->getMesh()->setColor(color);
+}
+
+void SceneController::graphContent(SceneNode::TreeData & data) const
+{
+	graph_.dump(data);
 }
 
 SceneNode * SceneController::ensureMeshExistance(const Identifiable & id)

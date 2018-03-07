@@ -35,7 +35,7 @@ public:
 	AMesh *getMesh(void);
 
 	SceneNode * findNode(const Identifiable & node);
-	void dump(TreeData & graph, int depth = 0);
+	void dump(TreeData & graph, int depth = 0) const;
 
 private:
 	const Identifiable & addChild(SceneNode::Ptr child);

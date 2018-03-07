@@ -39,6 +39,8 @@ public:
 	void setMeshScale(const Identifiable & meshId, const ofVec3f & scale);
 	void setMeshColor(const Identifiable & meshId, const ofFloatColor & color);
 
+	void graphContent(SceneNode::TreeData & data) const;
+
 private:
 	SceneNode * ensureMeshExistance(const Identifiable & id);
 

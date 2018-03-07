@@ -45,7 +45,7 @@ SceneNode * SceneGraph::findNode(const Identifiable & id)
 	return root_->findNode(id);
 }
 
-void SceneGraph::dump(SceneNode::TreeData & graph)
+void SceneGraph::dump(SceneNode::TreeData & graph) const
 {
 	root_->dump(graph);
 }

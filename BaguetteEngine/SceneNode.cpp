@@ -103,9 +103,9 @@ SceneNode * SceneNode::findNode(const Identifiable & node)
 	return nullptr;
 }
 
-void SceneNode::dump(TreeData & graph, int depth)
+void SceneNode::dump(TreeData & graph, int depth) const
 {
-	graph.emplace_back(depth, *static_cast<Identifiable *>(this));
+	graph.emplace_back(depth, *static_cast<const Identifiable *>(this));
 	for (auto & it : childs_) {
 		it->dump(graph, depth + 1);
 	}
