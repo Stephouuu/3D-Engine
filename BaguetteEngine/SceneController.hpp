@@ -11,6 +11,7 @@
 #include "ConeGenerator.hpp"
 
 #include "SceneGraph.hpp"
+#include "TransformableHistory.hpp"
 
 class ARenderer;
 
@@ -35,9 +36,18 @@ public:
 	void setMeshColor(const Identifiable & meshId, const ofFloatColor & color);
 
 	void graphContent(SceneNode::TreeData & data) const;
+<<<<<<< HEAD
+=======
+
+	void undo(void);
+	void redo(void);
+
+private:
+>>>>>>> e86c2f7028c6dbb66100bf3dbd0893849b9503a8
 	SceneNode * ensureMeshExistance(const Identifiable & id);
 
 private:
 	ofEasyCam cam_;
 	SceneGraph graph_;
+	TransformableHistory historic_;
 };

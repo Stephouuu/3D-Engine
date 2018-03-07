@@ -40,6 +40,12 @@ void Application::keyPressed(int key)
 
 void Application::keyReleased(int key)
 {
+	if ((char)key == 'z') {
+		scene_.undo();
+	}
+	else if ((char)key == 'y') {
+		scene_.redo();
+	}
 }
 
 void Application::mouseMoved(int x, int y )

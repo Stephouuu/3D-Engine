@@ -4,6 +4,7 @@
 SceneGraph::SceneGraph(void)
 	: root_(new SceneNode(0))
 {
+	root_->setName("Scene root");
 }
 
 SceneGraph::~SceneGraph(void)
@@ -48,4 +49,14 @@ SceneNode * SceneGraph::findNode(const Identifiable & id)
 void SceneGraph::dump(SceneNode::TreeData & graph) const
 {
 	root_->dump(graph);
+}
+
+void SceneGraph::undo(void)
+{
+	root_->undo();
+}
+
+void SceneGraph::redo(void)
+{
+	root_->redo();
 }

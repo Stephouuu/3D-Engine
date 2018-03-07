@@ -8,6 +8,7 @@ struct Identifiable
 public:
 	Identifiable(void);
 	Identifiable(int id);
+	Identifiable(const Identifiable & other);
 	virtual ~Identifiable(void);
 
 	void setID(const int id);
@@ -16,6 +17,7 @@ public:
 	int getID(void) const;
 	const std::string & getName(void) const;
 
+	Identifiable & operator=(const Identifiable & other);
 
 	bool operator==(const Identifiable & other);
 	bool operator!=(const Identifiable & other);

@@ -154,6 +154,9 @@
     <ClCompile Include="Identifiable.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="TransformableHistory.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
     <ClCompile Include="EditMenu.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
@@ -167,6 +170,10 @@
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="CubePrimitive.cpp">
+    <ClCompile Include="CubePrimitive.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="ConePrimitive.cpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="PlanePrimitive.cpp">
@@ -1115,6 +1122,10 @@
     <ClInclude Include="IGuiView.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
+    <ClInclude Include="EditMenu.hpp" />
+    <ClInclude Include="TransformableHistory.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
     <ClInclude Include="EditMenu.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
@@ -1128,6 +1139,10 @@
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="CubePrimitive.hpp">
+    <ClInclude Include="CubePrimitive.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="ConePrimitive.hpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="PlanePrimitive.hpp">
