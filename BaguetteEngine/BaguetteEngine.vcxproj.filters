@@ -163,6 +163,9 @@
     <ClCompile Include="BaseGui.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1107,6 +1110,12 @@
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="BaseGui.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="IGuiView.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>

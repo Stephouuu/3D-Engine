@@ -177,6 +177,7 @@
     <ClCompile Include="ARenderer.cpp" />
     <ClCompile Include="BaseGui.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Transformable.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
     <ClCompile Include="CubeMesh.cpp" />
@@ -232,8 +233,10 @@
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ARenderer.hpp" />
     <ClInclude Include="BaseGui.hpp" />
+    <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />
+    <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="Transformable.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
     <ClInclude Include="CubeMesh.hpp" />
