@@ -6,16 +6,19 @@
 class Image
 {
 public:
+	Image();
 	Image(std::string filename);
 	~Image();
+	void Load(std::string filename);
 	void Export(std::string filename);
 	void Draw(float x, float y);
 	void Draw(float x, float y, int width, int heigh);
 	void DrawPartOfImage(float posx, float posy, float toxpx, float toypx, float fromxpx, float fromypx);
 
 	ofImage theImg;
-	std::string name;
+	string name;
 	std::string path;
+	bool isLoaded;
 
 };
 
