@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IBasicMeshGenerator.hpp"
+#include "CubePrimitive.hpp"
 
 class CubeGenerator : IBasicMeshGenerator
 {
@@ -13,5 +14,5 @@ public:
 	void setPosition(const ofVec3f pos);
 
 private:
-	ofBoxPrimitive box_;
+	CubePrimitive box_;
 };

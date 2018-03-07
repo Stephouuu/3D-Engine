@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IBasicMeshGenerator.hpp"
+#include "SpherePrimitive.hpp"
 
 class SphereGenerator : IBasicMeshGenerator
 {
@@ -14,5 +15,5 @@ public:
 
 
 private:
-	ofSpherePrimitive	sphere_;
+	SpherePrimitive		sphere_;
 };

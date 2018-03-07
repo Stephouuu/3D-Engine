@@ -5,11 +5,12 @@
 
 #include "IGuiView.hpp"
 #include "SceneController.hpp"
+#include "EditMenu.hpp"
 
 class MainMenu : public IGuiView
 {
 public:
-	MainMenu(SceneController & scene);
+	MainMenu(SceneController & scene, EditMenu & editMenu);
 	~MainMenu();
 	void draw();
 	void setup();
@@ -29,4 +30,5 @@ private:
 	ofMouseEventArgs	mouseEvents_;
 
 	SceneController		&scene_;
+	EditMenu			&editMenu_;
 };
