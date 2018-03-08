@@ -41,7 +41,6 @@ void EditMenu::setFocus(const Identifiable & obj)
 		//
 	}
 	setValues();
-	//scene_.setFocusedMesh(obj);
 }
 
 void EditMenu::vecSliderPositionChange(ofVec3f & vec)
@@ -59,10 +58,7 @@ void EditMenu::vecSliderSizeChange(ofVec3f & vec)
 void EditMenu::vecSliderColorChange(ofColor & color)
 {
 	if (currentObj_ != nullptr)
-	{
 		scene_.setMeshColor(static_cast<Identifiable>(*currentObj_), ofFloatColor(color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f));
-		std::cout << "Set Color" << color << std::endl;
-	}
 }
 
 void EditMenu::setValues()
@@ -78,13 +74,10 @@ void EditMenu::setValues()
 	{
 		ofVec3f position = currentMesh->getPosition();
 		position_.setValue(ofVec3f(position.x, position.y, position.z));
-		//position_.setup("Positions", ofVec3f(position.x, position.y, position.z), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30));
 		ofVec3f scale = currentMesh->getScale();
-		//size_.setup("Taille", ofVec3f(scale.x, scale.y, scale.z), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30));
 		size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
-		//ofColor color = currentMesh->getColor();
-		//colorFill_.setup("Couleur", ofColor(color.r, color.g, color.b, color.a), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
-		//baseSetup();
+		ofColor color = currentMesh->getColor();
+		colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
 	}
 }
 

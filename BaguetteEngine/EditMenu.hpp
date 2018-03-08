@@ -7,6 +7,7 @@
 #include "Identifiable.hpp"
 #include "SceneController.hpp"
 #include "Vec3Slider.hpp"
+#include "ColorSlider.hpp"
 
 class EditMenu : public IGuiView
 {
@@ -33,7 +34,7 @@ private:
 
 
 	Vec3Slider					position_;
-	Vec3Slider				size_;
-	ofxColorSlider				colorFill_;
+	Vec3Slider					size_;
+	ColorSlider					colorFill_;
 };
 

@@ -74,5 +74,6 @@ void MainMenu::buttonPressed(const void * sender)
 		return;
 
 	sceneViewer_.update();
+	scene_.setFocusedMesh(createObj);
 	editMenu_.setFocus(createObj);
 }

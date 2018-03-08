@@ -176,6 +176,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ARenderer.cpp" />
     <ClCompile Include="BaseGui.cpp" />
+    <ClCompile Include="ColorSlider.cpp" />
     <ClCompile Include="ConeGenerator.cpp" />
     <ClCompile Include="ConePrimitive.cpp" />
     <ClCompile Include="CubePrimitive.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ARenderer.hpp" />
     <ClInclude Include="BaseGui.hpp" />
+    <ClInclude Include="ColorSlider.hpp" />
     <ClInclude Include="ConeGenerator.hpp" />
     <ClInclude Include="ConePrimitive.hpp" />
     <ClInclude Include="CubePrimitive.hpp" />
