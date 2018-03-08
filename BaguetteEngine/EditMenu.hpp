@@ -1,10 +1,12 @@
 #pragma once
 
 #include "ofxGui.h"
+#include "ofMain.h"
 
 #include "IGuiView.hpp"
 #include "Identifiable.hpp"
 #include "SceneController.hpp"
+#include "Vec3Slider.hpp"
 
 class EditMenu : public IGuiView
 {
@@ -13,9 +15,14 @@ public:
 	~EditMenu();
 	virtual void draw();
 	virtual void setup();
-	void setFocus(Identifiable & obj);
-	void vecSliderChange(const void * sender);
+	void setFocus(const Identifiable & obj);
+	void vecSliderPositionChange(ofVec3f & vec);
+	void vecSliderSizeChange(ofVec3f & vec);
+	void vecSliderColorChange(ofColor & color);
 
+private:
+	void setValues();
+	void baseSetup();
 
 private:
 	ofxPanel					gui_;
@@ -24,9 +31,9 @@ private:
 	SceneNode					*currentObj_;
 	SceneController				&scene_;
 
-	ofParameter<ofVec3f>		position_;
-	ofParameter<ofColor>		colorFill_;
-	ofParameter<float>			radius_;
-	ofParameter<ofVec2f>		size_;
+
+	Vec3Slider					position_;
+	Vec3Slider				size_;
+	ofxColorSlider				colorFill_;
 };
 

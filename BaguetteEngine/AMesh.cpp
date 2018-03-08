@@ -46,6 +46,11 @@ void AMesh::setColor(const ofFloatColor & c)
 	}
 }
 
+ofColor AMesh::getColor(void) const
+{
+	return vbo_.getColor(0);
+}
+
 AMesh::InstantiableMesh AMesh::getType(void) const
 {
 	return meshType_;

@@ -175,6 +175,7 @@
     <ClCompile Include="PlaneGenerator.cpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Vec3Slider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1137,6 +1138,7 @@
     <ClInclude Include="PlaneGenerator.hpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Vec3Slider.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

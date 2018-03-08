@@ -29,6 +29,7 @@ public:
 	void init(void);
 	void setMesh(const ofMesh &oMesh);
 	void setColor(const ofFloatColor & c);
+	ofColor getColor(void) const;
 
 	InstantiableMesh getType(void) const;
 
