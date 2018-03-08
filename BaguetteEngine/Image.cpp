@@ -1,7 +1,7 @@
 #include "Image.h"
 #include "ofMain.h"
 #include <commdlg.h>
-
+#include <ctime>
 Image::Image()
 {
 	isLoaded = false;
@@ -34,8 +34,18 @@ void Image::Load(std::string filename)
 
 void Image::Export(std::string filename)
 {
+	time_t rawtime;
+	struct tm * timeinfo;
+	char buffer[80];
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+
+	strftime(buffer, sizeof(buffer), "%d%m%Y%I%M%S", timeinfo);
+	std::string str(buffer);
+	std::cout << str << std::endl;
 	theImg.grabScreen(0,0,ofGetWidth(), ofGetHeight());
-	theImg.save("Image/"+filename + ".jpg");
+	theImg.save("Image/"+filename+str+".jpg");
 }
 
 void Image::Draw(float x, float y)

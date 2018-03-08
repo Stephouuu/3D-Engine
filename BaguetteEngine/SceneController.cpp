@@ -156,6 +156,14 @@ void SceneController::redo(void)
 	}
 }
 
+void SceneController::AddImage(const Image & img)
+{
+	if (img.isLoaded == true)
+		cacheManager.insert(img.path, img.theImg);
+	else
+		throw std::invalid_argument("Cant insert an empty image.");
+}
+
 SceneNode * SceneController::ensureMeshExistance(const Identifiable & id)
 {
 	SceneNode *node = graph_.findNode(id);
