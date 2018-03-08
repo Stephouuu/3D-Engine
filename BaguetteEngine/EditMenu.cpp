@@ -28,6 +28,7 @@ void EditMenu::setup()
 	position_.setup("Positions", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30));
 	size_.setup("Taille", ofVec3f(1, 1, 1), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30));
 	colorFill_.setup("Couleur", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
+	rotation_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(360, 360, 360));
 	baseSetup();
 }
 
@@ -61,6 +62,12 @@ void EditMenu::vecSliderColorChange(ofColor & color)
 		scene_.setMeshColor(static_cast<Identifiable>(*currentObj_), ofFloatColor(color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f));
 }
 
+void EditMenu::vecSliderRotationChange(ofColor & color)
+{
+	//if (currentObj_ != nullptr)
+	//	scene_.setMeshScale(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
+}
+
 void EditMenu::setValues()
 {
 	AMesh *currentMesh = currentObj_->getMesh();
@@ -78,6 +85,8 @@ void EditMenu::setValues()
 		size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
 		ofColor color = currentMesh->getColor();
 		colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
+		//const float roll = currentMesh->getRoll();
+		//const float yawl = currentMesh->get
 	}
 }
 
@@ -95,4 +104,5 @@ void EditMenu::baseSetup()
 	gui_.add(&position_);
 	gui_.add(&size_);
 	gui_.add(&colorFill_);
+	gui_.add(&rotation_);
 }
