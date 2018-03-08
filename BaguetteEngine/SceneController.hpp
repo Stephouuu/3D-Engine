@@ -9,6 +9,8 @@
 #include "PlaneGenerator.hpp"
 #include "CubeGenerator.hpp"
 #include "ConeGenerator.hpp"
+#include "Image.h" 
+#include "CacheManager.hpp"
 
 #include "SceneGraph.hpp"
 #include "TransformableHistory.hpp"
@@ -40,10 +42,14 @@ public:
 	void undo(void);
 	void redo(void);
 
+	void AddImage(const Image & img);
+
 	SceneNode * ensureMeshExistance(const Identifiable & id);
 
 private:
 	ofEasyCam cam_;
 	SceneGraph graph_;
 	TransformableHistory historic_;
+	string pathkey;
+	CacheManager<string, ofImage> cacheManager;
 };
