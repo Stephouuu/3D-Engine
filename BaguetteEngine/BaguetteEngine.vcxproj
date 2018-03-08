@@ -186,7 +186,6 @@
     <ClCompile Include="CubeGenerator.cpp" />
     <ClCompile Include="PlaneGenerator.cpp" />
     <ClCompile Include="PlanePrimitive.cpp" />
-    <ClCompile Include="PropertiesEditor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model3D.cpp" />
     <ClCompile Include="SceneController.cpp" />
@@ -248,7 +247,6 @@
     <ClInclude Include="CubeGenerator.hpp" />
     <ClInclude Include="PlaneGenerator.hpp" />
     <ClInclude Include="PlanePrimitive.hpp" />
-    <ClInclude Include="PropertiesEditor.hpp" />
     <ClInclude Include="Identifiable.hpp" />
     <ClInclude Include="IBasicMeshGenerator.hpp" />
     <ClInclude Include="IMeshReadOnly.hpp" />

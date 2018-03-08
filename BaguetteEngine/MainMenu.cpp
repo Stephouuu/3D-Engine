@@ -1,6 +1,7 @@
 #include "MainMenu.hpp"
 
-MainMenu::MainMenu(SceneController & scene, EditMenu & editMenu) : scene_(scene), editMenu_(editMenu)
+MainMenu::MainMenu(SceneController & scene, EditMenu & editMenu, SceneViewer & sceneViewer)
+	: scene_(scene), editMenu_(editMenu), sceneViewer_(sceneViewer)
 {
 }
 
@@ -71,5 +72,7 @@ void MainMenu::buttonPressed(const void * sender)
 	}
 	else
 		return;
+
+	sceneViewer_.update();
 	editMenu_.setFocus(createObj);
 }

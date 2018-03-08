@@ -2,6 +2,7 @@
 
 #include "MainMenu.hpp"
 #include "EditMenu.hpp"
+#include "SceneViewer.hpp"
 
 class BaseGui : public IGuiView
 {
@@ -15,5 +16,6 @@ public:
 private:
 	MainMenu			mainMenu_;
 	EditMenu			editMenu_;
+	SceneViewer			sceneViewer_;
 	SceneController		&scene_;
 };

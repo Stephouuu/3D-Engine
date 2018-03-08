@@ -136,9 +136,6 @@
     <ClCompile Include="WindowRenderer.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="PropertiesEditor.cpp">
-      <Filter>src\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
@@ -1096,9 +1093,6 @@
     </ClInclude>
     <ClInclude Include="IBasicMeshGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
-    </ClInclude>
-    <ClInclude Include="PropertiesEditor.hpp">
-      <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="Timer.hpp">
       <Filter>src\Utils</Filter>
