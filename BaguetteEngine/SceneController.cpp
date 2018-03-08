@@ -2,6 +2,7 @@
 #include "ARenderer.hpp"
 
 SceneController::SceneController(void)
+	: focusedMesh_(nullptr)
 {
 	cam_.setDistance(10);
 	cam_.setNearClip(0.01);
@@ -79,6 +80,7 @@ const Identifiable & SceneController::instanciateMesh(AMesh::InstantiableMesh me
 		node = SceneGraph::CreateSceneNode<ConeGenerator>();
 	try {
 		const Identifiable & id = graph_.attachTo(std::move(node), parent);
+		focusedMesh_ = &id;
 		historic_.pushTransformation(std::make_pair(id, ofMatrix4x4::newIdentityMatrix()));
 		return id;
 	}
@@ -156,8 +158,23 @@ void SceneController::redo(void)
 	}
 }
 
+void SceneController::setFocusedMesh(const Identifiable & id)
+{
+	SceneNode *node = ensureMeshExistance(id);
+
+	if (node) {
+		focusedMesh_ = node;
+	}
+}
+
+const Identifiable * SceneController::getFocusedMesh(void) const
+{
+	return focusedMesh_;
+}
+
 void SceneController::AddImage(const Image & img)
-{
+{
+
 	if (img.isLoaded == true)
 		cacheManager.insert(img.path, img.theImg);
 	else

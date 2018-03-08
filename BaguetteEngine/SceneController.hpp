@@ -42,6 +42,9 @@ public:
 	void undo(void);
 	void redo(void);
 
+	void setFocusedMesh(const Identifiable & id);
+	const Identifiable * getFocusedMesh(void) const;
+
 	void AddImage(const Image & img);
 
 	SceneNode * ensureMeshExistance(const Identifiable & id);
@@ -52,4 +55,6 @@ private:
 	TransformableHistory historic_;
 	string pathkey;
 	CacheManager<string, ofImage> cacheManager;
+
+	const Identifiable * focusedMesh_;
 };
