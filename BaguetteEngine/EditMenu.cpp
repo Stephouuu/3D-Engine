@@ -85,7 +85,7 @@ void EditMenu::setValues()
 		size_.setValue(ofVec3f(0, 0, 0));
 		//setup();
 	}
-	else
+	else if (currentDrawable)
 	{
 		ofVec3f position = currentDrawable->getPosition();
 		position_.setValue(ofVec3f(position.x, position.y, position.z));

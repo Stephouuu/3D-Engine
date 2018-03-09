@@ -93,8 +93,14 @@ void MainMenu::refresh(int newEditorDimension)
 void MainMenu::refresh2D(void)
 {
 	primitiveGroup_.clear();
-
 	primitiveGroup_.setName("Primitives Vectorielles");
+	
+	insertTriangle_.removeListener(this, &MainMenu::buttonPressed2D);
+	insertEllipse_.removeListener(this, &MainMenu::buttonPressed2D);
+	insertPoint_.removeListener(this, &MainMenu::buttonPressed2D);
+	insertCircle_.removeListener(this, &MainMenu::buttonPressed2D);
+	insertRectangle_.removeListener(this, &MainMenu::buttonPressed2D);
+
 	primitiveGroup_.add(insertTriangle_.setup("Ajouter un triangle"));
 	primitiveGroup_.add(insertEllipse_.setup("Ajouter une ellipse"));
 	primitiveGroup_.add(insertPoint_.setup("Ajouter un point"));
@@ -106,15 +112,20 @@ void MainMenu::refresh2D(void)
 	insertPoint_.addListener(this, &MainMenu::buttonPressed2D);
 	insertCircle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
-
-	insertGroup_.minimizeAll();
+	
+	// insertGroup_.minimizeAll();
 }
 
 void MainMenu::refresh3D(void)
 {
 	primitiveGroup_.clear();
-
 	primitiveGroup_.setName("Primitives Geometriques");
+
+	insertSphere_.removeListener(this, &MainMenu::buttonPressed3D);
+	insertPlan_.removeListener(this, &MainMenu::buttonPressed3D);
+	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
+	insertCone_.removeListener(this, &MainMenu::buttonPressed3D);
+
 	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
 	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
 	primitiveGroup_.add(insertBox_.setup("Ajouter un cube"));
@@ -125,7 +136,7 @@ void MainMenu::refresh3D(void)
 	insertBox_.addListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.addListener(this, &MainMenu::buttonPressed3D);
 
-	insertGroup_.minimizeAll();
+	// insertGroup_.minimizeAll();
 }
 
 void MainMenu::buttonPressedFile(const void * sender)
@@ -145,7 +156,7 @@ void MainMenu::buttonPressed2D(const void * sender)
 	Identifiable createObj;
 
 	std::cerr << "insert " << button->getName() << std::endl;
-	if (button->getName() == "Ajouter un triangle")
+	/* if (button->getName() == "Ajouter un triangle")
 		createObj = scene_.instanciateDrawable("triangle");
 	else if (button->getName() == "Ajouter une ellipse")
 		createObj = scene_.instanciateDrawable("ellipse");
@@ -154,7 +165,7 @@ void MainMenu::buttonPressed2D(const void * sender)
 	else if (button->getName() == "Ajouter un cercle")
 		createObj = scene_.instanciateDrawable("circle");
 	else if (button->getName() == "Ajouter un rectangle")
-		createObj = scene_.instanciateDrawable("rectangle");
+		createObj = scene_.instanciateDrawable("rectangle"); */
 	/* Identifiable createObj;
 
 	if (button->getName() == "Ajouter une sphere")
