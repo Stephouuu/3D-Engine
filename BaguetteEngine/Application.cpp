@@ -40,11 +40,19 @@ void Application::keyPressed(int key)
 
 void Application::keyReleased(int key)
 {
-	if ((char)key == 'z') {
+	switch (key)
+	{
+	case 'z':
 		scene_.undo();
-	}
-	else if ((char)key == 'y') {
+		break;
+	case 'y':
 		scene_.redo();
+		break;
+	case 'm':
+		scene_.swapMode();
+		break;
+	default:
+		break;
 	}
 }
 

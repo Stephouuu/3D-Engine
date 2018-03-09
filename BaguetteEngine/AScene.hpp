@@ -9,16 +9,6 @@
 
 class AScene
 {
-/* public:
-	enum InstantiableDrawable
-	{
-		UNDEFINED,
-		SPHERE,
-		PLANE,
-		CUBE,
-		CONE
-	}; */
-
 public:
 	AScene(void);
 	virtual ~AScene(void);

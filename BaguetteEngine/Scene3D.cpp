@@ -65,7 +65,7 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 	else if (type == "cone")
 		node = SceneGraph::CreateSceneNode<AMesh, ConeGenerator>();
 	else
-		std::cerr << type << " not found" << std::endl;
+		std::cerr << type << " not found !" << std::endl;
 	try {
 		const Identifiable & id = graph_.attachTo(std::move(node), parent);
 		focusedMesh_ = &id;

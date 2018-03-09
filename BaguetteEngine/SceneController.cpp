@@ -14,77 +14,86 @@ SceneController::SceneController(void)
 	triangle_.setOutlineColor(ofColor::red);
 	triangle_.invalidate(); */
 
-	scene_ = new Scene3D;
+	scenes_.emplace_back(new Scene3D);
+	scenes_.emplace_back(new Scene2D);
+	currentScene_ = std::begin(scenes_);
 }
 
 SceneController::~SceneController(void)
 {
-	delete scene_;
+}
+
+void SceneController::swapMode(void)
+{
+	currentScene_++;
+	if (currentScene_ == std::end(scenes_)) {
+		currentScene_ = std::begin(scenes_);
+	}
 }
 
 void SceneController::update(float dt)
 {
-	scene_->update(dt);
+	(*currentScene_)->update(dt);
 }
 
 void SceneController::render(ARenderer & renderer)
 {
-	scene_->render(renderer);
+	(*currentScene_)->render(renderer);
 	// triangle_.draw(renderer);
 }
 
 const Identifiable & SceneController::instanciateDrawable(const std::string & type, const Identifiable & parent)
 {
-	return scene_->instanciateDrawable(type, parent);}
+	return (*currentScene_)->instanciateDrawable(type, parent);}
 
 void SceneController::removeDrawable(const Identifiable & drawableId)
 {
-	scene_->removeDrawable(drawableId);
+	(*currentScene_)->removeDrawable(drawableId);
 }
 
 void SceneController::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos)
 {
-	scene_->setDrawablePosition(drawableId, pos);
+	(*currentScene_)->setDrawablePosition(drawableId, pos);
 }
 
 void SceneController::setDrawableRotation(const Identifiable & drawableId, float degrees, const ofVec3f & axis)
 {
-	scene_->setDrawableRotation(drawableId, degrees, axis);
+	(*currentScene_)->setDrawableRotation(drawableId, degrees, axis);
 }
 
 void SceneController::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale)
 {
-	scene_->setDrawableScale(drawableId, scale);
+	(*currentScene_)->setDrawableScale(drawableId, scale);
 }
 
 void SceneController::setDrawableColor(const Identifiable & drawableId, const ofColor & color)
 {
-	scene_->setDrawableColor(drawableId, color);
+	(*currentScene_)->setDrawableColor(drawableId, color);
 }
 
 void SceneController::graphContent(SceneNode::TreeData & data) const
 {
-	scene_->graphContent(data);
+	(*currentScene_)->graphContent(data);
 }
 
 void SceneController::undo(void)
 {
-	scene_->undo();
+	(*currentScene_)->undo();
 }
 
 void SceneController::redo(void)
 {
-	scene_->redo();
+	(*currentScene_)->redo();
 }
 
 void SceneController::setFocusedDrawable(const Identifiable & drawableId)
 {
-	scene_->setFocusedDrawable(drawableId);
+	(*currentScene_)->setFocusedDrawable(drawableId);
 }
 
 const Identifiable * SceneController::getFocusedDrawable(void) const
 {
-	return scene_->getFocusedDrawable();
+	return (*currentScene_)->getFocusedDrawable();
 }
 
 void SceneController::AddImage(const Image & img)
@@ -97,5 +106,5 @@ void SceneController::AddImage(const Image & img)
 
 SceneNode * SceneController::ensureDrawableExistance(const Identifiable & drawableId)
 {
-	return scene_->ensureDrawableExistance(drawableId);
+	return (*currentScene_)->ensureDrawableExistance(drawableId);
 }

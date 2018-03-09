@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <sstream>
+#include <memory>
 
 // #include "ofxAssimpModelLoader.h"
 // #include "AMesh.hpp"
@@ -26,6 +27,7 @@
 #include "SceneNode.hpp"
 
 #include "AScene.hpp"
+#include "Scene2D.hpp"
 #include "Scene3D.hpp"
 
 class ARenderer;
@@ -34,8 +36,16 @@ class ARenderer;
 class SceneController
 {
 public:
+	enum class Mode : int {
+		Mode3D = 0,
+		Mode2D = 1
+	};
+
+public:
 	SceneController(void);
 	~SceneController(void);
+
+	void swapMode(void);
 
 	void update(float dt);
 	void render(ARenderer & renderer);
@@ -57,12 +67,13 @@ public:
 	const Identifiable * getFocusedDrawable(void) const;
 
 	void AddImage(const Image & img);
-
 	SceneNode * ensureDrawableExistance(const Identifiable & drawableId);
 
 private:
 	// TriangleVector triangle_;
-	AScene *scene_;
+	std::vector<std::unique_ptr<AScene> > scenes_;
+	std::vector<std::unique_ptr<AScene> >::const_iterator currentScene_;
+
 	string pathkey;
 	CacheManager<string, ofImage> cacheManager;
 };
