@@ -3,25 +3,10 @@
 #include <vector>
 #include <sstream>
 #include <memory>
-
-// #include "ofxAssimpModelLoader.h"
-// #include "AMesh.hpp"
-
-/* #include "SphereGenerator.hpp"
-#include "PlaneGenerator.hpp"
-#include "CubeGenerator.hpp"
-#include "ConeGenerator.hpp" */
+#include <functional>
 
 #include "Image.h" 
 #include "CacheManager.hpp"
-
-// #include "SceneGraph.hpp"
-// #include "TransformableHistory.hpp"
-
-/* #include "PointVector.hpp"
-#include "TriangleVector.hpp"
-#include "RectangleVector.hpp"
-#include "EllipseVector.hpp" */
 
 #include "Identifiable.hpp"
 #include "SceneNode.hpp"
@@ -32,7 +17,6 @@
 
 class ARenderer;
 
-// Singleton ?
 class SceneController
 {
 public:
@@ -46,6 +30,8 @@ public:
 	~SceneController(void);
 
 	void swapMode(void);
+	void setOnSceneDimensionChanged(std::function<void(int)> callback);
+	void setOnGraphSceneChanged(std::function<void(void)> callback);
 
 	void update(float dt);
 	void render(ARenderer & renderer);
@@ -73,6 +59,9 @@ private:
 	// TriangleVector triangle_;
 	std::vector<std::unique_ptr<AScene> > scenes_;
 	std::vector<std::unique_ptr<AScene> >::const_iterator currentScene_;
+	std::function<void(int)> onSceneDimensionChanged_;
+	std::function<void(void)> onGraphSceneChanged_;
+	
 
 	string pathkey;
 	CacheManager<string, ofImage> cacheManager;

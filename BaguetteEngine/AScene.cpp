@@ -1,13 +1,12 @@
 #include "AScene.hpp"
 
-AScene::AScene()
+AScene::AScene(void)
 {
 }
 
-AScene::~AScene()
+AScene::~AScene(void)
 {
 }
-
 
 void AScene::update(float dt)
 {

@@ -14,6 +14,9 @@ public:
 	void focus(int id);
 
 private:
+	// void refreshGui(void);
+
+private:
 	MainMenu			mainMenu_;
 	EditMenu			editMenu_;
 	SceneViewer			sceneViewer_;

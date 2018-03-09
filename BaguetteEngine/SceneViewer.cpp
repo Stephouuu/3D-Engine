@@ -4,7 +4,7 @@
 SceneViewer::SceneViewer(SceneController & scene)
 	: scene_(scene)
 {
-
+	scene_.setOnGraphSceneChanged(std::bind(&SceneViewer::update, this));
 }
 
 SceneViewer::~SceneViewer(void)
@@ -32,6 +32,7 @@ void SceneViewer::setup(void)
 
 void SceneViewer::update(void)
 {
+	std::cerr << "update scene viewer" << std::endl;
 	layout_.clear();
 	buttons_.clear();
 

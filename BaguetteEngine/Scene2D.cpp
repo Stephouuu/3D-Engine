@@ -24,7 +24,7 @@ const Identifiable & Scene2D::instanciateDrawable(const std::string & type, cons
 	try {
 		const Identifiable & id = graph_.attachTo(std::move(node), parent);
 		focusedMesh_ = &id;
-		historic_.pushTransformation(std::make_pair(id, ofMatrix4x4::newIdentityMatrix()));
+		// historic_.pushTransformation(std::make_pair(id, ofMatrix4x4::newIdentityMatrix()));
 		return id;
 	}
 	catch (const std::runtime_error & e) {

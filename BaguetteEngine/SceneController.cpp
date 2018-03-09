@@ -29,6 +29,18 @@ void SceneController::swapMode(void)
 	if (currentScene_ == std::end(scenes_)) {
 		currentScene_ = std::begin(scenes_);
 	}
+	if (onSceneDimensionChanged_) onSceneDimensionChanged_((*currentScene_)->getNbDimensions());
+	if (onGraphSceneChanged_) onGraphSceneChanged_();
+}
+
+void SceneController::setOnSceneDimensionChanged(std::function<void(int)> callback)
+{
+	onSceneDimensionChanged_ = callback;
+}
+
+void SceneController::setOnGraphSceneChanged(std::function<void(void)> callback)
+{
+	onGraphSceneChanged_ = callback;
 }
 
 void SceneController::update(float dt)
@@ -44,7 +56,15 @@ void SceneController::render(ARenderer & renderer)
 
 const Identifiable & SceneController::instanciateDrawable(const std::string & type, const Identifiable & parent)
 {
-	return (*currentScene_)->instanciateDrawable(type, parent);}
+	try {
+		const Identifiable & id = (*currentScene_)->instanciateDrawable(type, parent);
+		onGraphSceneChanged_();
+		return id;
+	}
+	catch (const std::runtime_error & e) {
+		std::cerr << e.what() << std::endl;
+	}
+}
 
 void SceneController::removeDrawable(const Identifiable & drawableId)
 {

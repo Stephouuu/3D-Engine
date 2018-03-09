@@ -73,7 +73,6 @@ void MainMenu::buttonPressed(const void * sender)
 	else
 		return;
 
-	sceneViewer_.update();
 	scene_.setFocusedDrawable(createObj);
 	editMenu_.setFocus(createObj);
 }
