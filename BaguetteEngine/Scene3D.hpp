@@ -1,8 +1,24 @@
 #pragma once
 
-class Scene3D
+#include "AScene.hpp"
+#include "AMesh.hpp"
+
+#include "SphereGenerator.hpp"
+#include "PlaneGenerator.hpp"
+#include "CubeGenerator.hpp"
+#include "ConeGenerator.hpp"
+
+class Scene3D : public AScene
 {
 public:
 	Scene3D(void);
-	~Scene3D(void);
+	virtual ~Scene3D(void);
+	
+	virtual void render(ARenderer & renderer);
+
+	virtual const Identifiable & instanciateDrawable(const std::string & type, const Identifiable & parent = Identifiable());
+	virtual int getNbDimensions(void) const;
+
+private:
+	ofEasyCam cam_;
 };

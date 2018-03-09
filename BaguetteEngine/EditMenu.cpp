@@ -13,7 +13,7 @@ EditMenu::~EditMenu()
 
 void EditMenu::draw()
 {
-	const Identifiable  * obj = scene_.getFocusedMesh();
+	const Identifiable  * obj = scene_.getFocusedDrawable();
 	if (obj != nullptr)
 		setFocus(*obj);
 
@@ -34,7 +34,7 @@ void EditMenu::setup()
 
 void EditMenu::setFocus(const Identifiable & obj)
 {
-	currentObj_ = scene_.ensureMeshExistance(obj);
+	currentObj_ = scene_.ensureDrawableExistance(obj);
 
 	AMesh *mesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
 	//if (currentObj_->getMesh()->getType() == AMesh::InstantiableMesh::SPHERE)
@@ -48,19 +48,19 @@ void EditMenu::setFocus(const Identifiable & obj)
 void EditMenu::vecSliderPositionChange(ofVec3f & vec)
 {
 	if (currentObj_ != nullptr)
-		scene_.setMeshPosition(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
+		scene_.setDrawablePosition(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
 }
 
 void EditMenu::vecSliderSizeChange(ofVec3f & vec)
 {
 	if (currentObj_ != nullptr)
-		scene_.setMeshScale(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
+		scene_.setDrawableScale(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
 }
 
 void EditMenu::vecSliderColorChange(ofColor & color)
 {
 	if (currentObj_ != nullptr)
-		scene_.setMeshColor(static_cast<Identifiable>(*currentObj_), color);
+		scene_.setDrawableColor(static_cast<Identifiable>(*currentObj_), color);
 }
 
 void EditMenu::vecSliderRotationChange(ofColor & color)

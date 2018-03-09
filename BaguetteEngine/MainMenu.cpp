@@ -58,13 +58,13 @@ void MainMenu::buttonPressed(const void * sender)
 	Identifiable createObj;
 
 	if (button->getName() == "Ajouter une sphere")
-		createObj = scene_.instanciateMesh(AMesh::InstantiableMesh::SPHERE);
+		createObj = scene_.instanciateDrawable("sphere");
 	else if (button->getName() == "Ajouter un plan")
-		createObj = scene_.instanciateMesh(AMesh::InstantiableMesh::PLANE);
+		createObj = scene_.instanciateDrawable("plane");
 	else if (button->getName() == "Ajouter un cube")
-		createObj = scene_.instanciateMesh(AMesh::InstantiableMesh::CUBE);
+		createObj = scene_.instanciateDrawable("cube");
 	else if (button->getName() == "Ajouter un cone")
-		createObj = scene_.instanciateMesh(AMesh::InstantiableMesh::CONE);
+		createObj = scene_.instanciateDrawable("cone");
 	else if (button->getName() == "Exporter la scene")
 	{
 		exportImg_.Export("screenshot");
@@ -74,6 +74,6 @@ void MainMenu::buttonPressed(const void * sender)
 		return;
 
 	sceneViewer_.update();
-	scene_.setFocusedMesh(createObj);
+	scene_.setFocusedDrawable(createObj);
 	editMenu_.setFocus(createObj);
 }

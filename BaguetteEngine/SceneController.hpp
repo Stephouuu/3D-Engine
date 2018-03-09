@@ -3,22 +3,30 @@
 #include <vector>
 #include <sstream>
 
-#include "ofxAssimpModelLoader.h"
-#include "AMesh.hpp"
-#include "SphereGenerator.hpp"
+// #include "ofxAssimpModelLoader.h"
+// #include "AMesh.hpp"
+
+/* #include "SphereGenerator.hpp"
 #include "PlaneGenerator.hpp"
 #include "CubeGenerator.hpp"
-#include "ConeGenerator.hpp"
+#include "ConeGenerator.hpp" */
+
 #include "Image.h" 
 #include "CacheManager.hpp"
 
-#include "SceneGraph.hpp"
-#include "TransformableHistory.hpp"
+// #include "SceneGraph.hpp"
+// #include "TransformableHistory.hpp"
 
-#include "PointVector.hpp"
+/* #include "PointVector.hpp"
 #include "TriangleVector.hpp"
 #include "RectangleVector.hpp"
-#include "EllipseVector.hpp"
+#include "EllipseVector.hpp" */
+
+#include "Identifiable.hpp"
+#include "SceneNode.hpp"
+
+#include "AScene.hpp"
+#include "Scene3D.hpp"
 
 class ARenderer;
 
@@ -32,40 +40,29 @@ public:
 	void update(float dt);
 	void render(ARenderer & renderer);
 
-	int selected(int x, int y);
+	const Identifiable & instanciateDrawable(const std::string & type, const Identifiable & parent = Identifiable());
+	void removeDrawable(const Identifiable & drawableId);
 
-	const Identifiable & instanciateMesh(AMesh::InstantiableMesh meshType, const Identifiable & parent = Identifiable());
-	void removeMesh(const Identifiable & meshId);
-
-	void setMeshPosition(const Identifiable & meshId, const ofVec3f & pos);
-	void setMeshRotation(const Identifiable & meshId, float degrees, const ofVec3f & axis);
-	void setMeshScale(const Identifiable & meshId, const ofVec3f & scale);
-	void setMeshColor(const Identifiable & meshId, const ofColor & color);
+	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos);
+	void setDrawableRotation(const Identifiable & drawableId, float degrees, const ofVec3f & axis);
+	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale);
+	void setDrawableColor(const Identifiable & drawableId, const ofColor & color);
 
 	void graphContent(SceneNode::TreeData & data) const;
 
 	void undo(void);
 	void redo(void);
 
-	void setFocusedMesh(const Identifiable & id);
-	const Identifiable * getFocusedMesh(void) const;
+	void setFocusedDrawable(const Identifiable & drawableId);
+	const Identifiable * getFocusedDrawable(void) const;
 
 	void AddImage(const Image & img);
 
-	SceneNode * ensureMeshExistance(const Identifiable & id);
+	SceneNode * ensureDrawableExistance(const Identifiable & drawableId);
 
 private:
-	ofEasyCam cam_;
-	SceneGraph graph_;
-	TransformableHistory historic_;
-	const Identifiable * focusedMesh_;
-	// test
-	// PointVector point_;
-	TriangleVector triangle_;
-	// RectangleVector rectangle_;
-	// EllipseVector ellipse_;
-
-	// code boris:
+	// TriangleVector triangle_;
+	AScene *scene_;
 	string pathkey;
 	CacheManager<string, ofImage> cacheManager;
 };

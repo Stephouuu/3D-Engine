@@ -72,5 +72,5 @@ void SceneViewer::buttonPressed(const void * sender)
 	std::string sid = name.substr(start, end - start);
 
 	Identifiable id(std::stoi(sid));
-	scene_.setFocusedMesh(id);
+	scene_.setFocusedDrawable(id);
 }
