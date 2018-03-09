@@ -113,7 +113,10 @@ void MainMenu::refresh2D(void)
 	insertCircle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
 	
-	// insertGroup_.minimizeAll();
+	insertGroup_.minimizeAll();
+	fileGroup_.minimizeAll();
+	insertGroup_.minimize();
+	fileGroup_.minimize();
 }
 
 void MainMenu::refresh3D(void)
@@ -136,7 +139,10 @@ void MainMenu::refresh3D(void)
 	insertBox_.addListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.addListener(this, &MainMenu::buttonPressed3D);
 
-	// insertGroup_.minimizeAll();
+	insertGroup_.minimizeAll();
+	fileGroup_.minimizeAll();
+	insertGroup_.minimize();
+	fileGroup_.minimize();
 }
 
 void MainMenu::buttonPressedFile(const void * sender)
