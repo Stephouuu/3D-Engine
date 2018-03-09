@@ -48,15 +48,16 @@ void SceneViewer::update(void)
 
 	for (auto & it : data)
 	{
-		buttons_.emplace_back();
+		if (it.first > 0)
+			buttons_.emplace_back();
 	}
 
-	int i = 0;
+	int i = 1;
 	for (auto & it : buttons_)
 	{
 		std::ostringstream oss;
 
-		for (int j = 0; j < data[i].first ; ++j) {
+		for (int j = 0; j < data[i].first - 1; ++j) {
 			oss << "  ";
 		}
 		oss << data[i].second.getID() << "-" << data[i].second.getName();

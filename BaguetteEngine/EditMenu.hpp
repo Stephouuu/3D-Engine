@@ -20,7 +20,6 @@ public:
 	virtual void refresh(int newEditorDimension);
 	virtual void focus(const Identifiable & id);
 
-	// void setFocus(const Identifiable & obj);
 	void vecSliderPositionChange(ofVec3f & vec);
 	void vecSliderSizeChange(ofVec3f & vec);
 	void vecSliderColorChange(ofColor & color);
@@ -34,7 +33,6 @@ private:
 	ofxPanel					gui_;
 	ofMouseEventArgs			mouseEvents_;
 
-	// SceneNode					*currentObj_;
 	SceneController				&scene_;
 
 
