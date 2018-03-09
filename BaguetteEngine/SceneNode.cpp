@@ -1,7 +1,7 @@
 #include "SceneNode.hpp"
 
 SceneNode::SceneNode(int id)
-	: Identifiable(id), mesh_(nullptr)
+	: Identifiable(id), drawable_(nullptr)
 {
 }
 
@@ -12,15 +12,15 @@ SceneNode::~SceneNode(void)
 
 void SceneNode::update(float dt)
 {
-	if (mesh_) {
-		mesh_->update(dt);
+	if (drawable_) {
+		drawable_->update(dt);
 	}
 }
 
 void SceneNode::render(ARenderer & renderer)
 {
-	if (mesh_) {
-		mesh_->draw(renderer);
+	if (drawable_) {
+		drawable_->draw(renderer);
 	}
 	for (auto & it : childs_) {
 		it->render(renderer);
@@ -65,30 +65,40 @@ void SceneNode::destroy(void)
 	for (auto & it : childs_) {
 		it->destroy();
 	}
-	if (mesh_) {
-		delete (mesh_);
-		mesh_ = nullptr;
+	if (drawable_) {
+		delete (drawable_);
+		drawable_ = nullptr;
 	}
 }
 
-void SceneNode::setMesh(AMesh *mesh)
+/* void SceneNode::setMesh(AMesh *mesh)
 {
 	mesh_ = mesh;
+} */
+
+void SceneNode::setDrawable(IDrawable * drawable)
+{
+	drawable_ = drawable;
 }
 
 void SceneNode::setParent(SceneNode *parent)
 {
 	if (!parent) {
-		mesh_->clearParent();
+		drawable_->clearParent();
 	}
-	else if (mesh_ && parent->getMesh()) {
-		mesh_->setParent(*parent->getMesh());
+	else if (drawable_ && parent->getDrawable()) {
+		drawable_->setParent(*parent->getDrawable());
 	}
 }
 
-AMesh *SceneNode::getMesh(void)
+/* AMesh *SceneNode::getMesh(void)
 {
 	return (mesh_);
+} */
+
+IDrawable * SceneNode::getDrawable(void) const
+{
+	return (drawable_);
 }
 
 SceneNode * SceneNode::findNode(const Identifiable & node)

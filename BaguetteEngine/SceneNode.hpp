@@ -6,7 +6,8 @@
 
 #include "ofMain.h"
 
-#include "AMesh.hpp"
+// #include "AMesh.hpp"
+#include "IDrawable.hpp"
 #include "Identifiable.hpp"
 #include "SceneNode.hpp"
 
@@ -29,10 +30,12 @@ public:
 	SceneNode::Ptr detach(const Identifiable & node);
 	void destroy(void);
 
-	void setMesh(AMesh *mesh);
+	// void setMesh(AMesh *mesh);
+	void setDrawable(IDrawable * drawable);
 	void setParent(SceneNode *parent);
 
-	AMesh *getMesh(void);
+	// AMesh *getMesh(void);
+	IDrawable * getDrawable(void) const;
 
 	SceneNode * findNode(const Identifiable & node);
 	void dump(TreeData & graph, int depth = 0) const;
@@ -42,5 +45,6 @@ private:
 
 private:
 	std::vector<Ptr> childs_;
-	AMesh *mesh_;
+	// AMesh *mesh_;
+	IDrawable *drawable_;
 };

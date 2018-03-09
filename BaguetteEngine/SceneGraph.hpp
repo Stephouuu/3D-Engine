@@ -12,11 +12,11 @@ static int cpt = 0;
 class SceneGraph
 {
 public:
-	template <typename T>
+	template <typename T, typename U>
 	static SceneNode::Ptr CreateSceneNode(void)
 	{
 		SceneNode::Ptr node(new SceneNode(++cpt));
-		node->setMesh(new AMesh(T()()));
+		node->setDrawable(new T(U()()));
 		return std::move(node);
 	}
 

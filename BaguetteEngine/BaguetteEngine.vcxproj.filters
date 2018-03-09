@@ -197,6 +197,15 @@
     <ClCompile Include="EllipseVector.cpp">
       <Filter>src\Graphics\Vector\Primitive</Filter>
     </ClCompile>
+    <ClCompile Include="AScene.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3D.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2D.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1189,6 +1198,18 @@
     </ClInclude>
     <ClInclude Include="EllipseVector.hpp">
       <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="AScene.hpp">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3D.hpp">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2D.hpp">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawable.hpp">
+      <Filter>src\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ AMesh::AMesh(const ofMesh & oMesh)
 	setMesh(oMesh);
 }
 
-AMesh AMesh::operator=(const ofMesh & oMesh)
+AMesh & AMesh::operator=(const ofMesh & oMesh)
 {
 	setMesh(oMesh);
 	return *this;
@@ -37,16 +37,16 @@ void AMesh::setMesh(const ofMesh & oMesh)
 	initColor();
 }
 
-void AMesh::setColor(const ofFloatColor & c)
+void AMesh::setColor(const ofColor & c)
 {
 	const std::vector<ofPoint> & vertices = vbo_.getVertices();
 
 	for (int i = 0; i < vertices.size(); i++) {
-		vbo_.setColor(i, c);
+		vbo_.setColor(i, { c.r / 255.f, c.g / 255.f, c.b / 255.f, c.a / 255.f });
 	}
 }
 
-ofColor AMesh::getColor(void) const
+const ofColor & AMesh::getColor(void) const
 {
 	return vbo_.getColor(0);
 }

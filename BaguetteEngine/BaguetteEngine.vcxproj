@@ -175,6 +175,7 @@
     <ClCompile Include="AMesh.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ARenderer.cpp" />
+    <ClCompile Include="AScene.cpp" />
     <ClCompile Include="AVectorPrimitive.cpp" />
     <ClCompile Include="BaseGui.cpp" />
     <ClCompile Include="ColorSlider.cpp" />
@@ -194,6 +195,8 @@
     <ClCompile Include="Model3D.cpp" />
     <ClCompile Include="PointVector.cpp" />
     <ClCompile Include="RectangleVector.cpp" />
+    <ClCompile Include="Scene2D.cpp" />
+    <ClCompile Include="Scene3D.cpp" />
     <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SceneNode.cpp" />
@@ -243,6 +246,7 @@
     <ClInclude Include="AMesh.hpp" />
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ARenderer.hpp" />
+    <ClInclude Include="AScene.hpp" />
     <ClInclude Include="AVectorPrimitive.hpp" />
     <ClInclude Include="BaseGui.hpp" />
     <ClInclude Include="ColorSlider.hpp" />
@@ -251,6 +255,7 @@
     <ClInclude Include="CubePrimitive.hpp" />
     <ClInclude Include="EditMenu.hpp" />
     <ClInclude Include="EllipseVector.hpp" />
+    <ClInclude Include="IDrawable.hpp" />
     <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />
@@ -266,6 +271,8 @@
     <ClInclude Include="NonCopyable.hpp" />
     <ClInclude Include="PointVector.hpp" />
     <ClInclude Include="RectangleVector.hpp" />
+    <ClInclude Include="Scene2D.hpp" />
+    <ClInclude Include="Scene3D.hpp" />
     <ClInclude Include="SceneController.hpp" />
     <ClInclude Include="SceneGraph.hpp" />
     <ClInclude Include="SceneNode.hpp" />

@@ -36,8 +36,9 @@ void EditMenu::setFocus(const Identifiable & obj)
 {
 	currentObj_ = scene_.ensureMeshExistance(obj);
 
-
-	if (currentObj_->getMesh()->getType() == AMesh::InstantiableMesh::SPHERE)
+	AMesh *mesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
+	//if (currentObj_->getMesh()->getType() == AMesh::InstantiableMesh::SPHERE)
+	if (mesh && mesh->getType() == AMesh::InstantiableMesh::SPHERE)
 	{
 		//
 	}
@@ -59,7 +60,7 @@ void EditMenu::vecSliderSizeChange(ofVec3f & vec)
 void EditMenu::vecSliderColorChange(ofColor & color)
 {
 	if (currentObj_ != nullptr)
-		scene_.setMeshColor(static_cast<Identifiable>(*currentObj_), ofFloatColor(color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f));
+		scene_.setMeshColor(static_cast<Identifiable>(*currentObj_), color);
 }
 
 void EditMenu::vecSliderRotationChange(ofColor & color)
@@ -70,7 +71,8 @@ void EditMenu::vecSliderRotationChange(ofColor & color)
 
 void EditMenu::setValues()
 {
-	AMesh *currentMesh = currentObj_->getMesh();
+	AMesh *currentMesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
+	// AMesh *currentMesh = currentObj_->getMesh();
 	if (currentObj_ == nullptr)
 	{
 		position_.setValue(ofVec3f(0, 0, 0));
