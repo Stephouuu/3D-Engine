@@ -12,6 +12,7 @@ public:
 	virtual ~Scene2D(void);
 
 	virtual const Identifiable & instanciateDrawable(const std::string & type, const Identifiable & parent = Identifiable());
+	virtual std::string getName(void) const;
 	virtual int getNbDimensions(void) const;
 
 private:

@@ -8,13 +8,13 @@ class BaseGui : public IGuiView
 {
 public:
 	BaseGui(SceneController &scene);
-	~BaseGui();
-	void draw();
-	void setup();
-	void focus(int id);
+	virtual ~BaseGui();
 
-private:
-	// void refreshGui(void);
+	virtual void draw();
+	virtual void setup();
+	virtual void refresh(int newEditorDimension);
+
+	void focus(int id);
 
 private:
 	MainMenu			mainMenu_;

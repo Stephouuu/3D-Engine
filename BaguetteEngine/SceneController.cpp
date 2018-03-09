@@ -17,6 +17,7 @@ SceneController::SceneController(void)
 	scenes_.emplace_back(new Scene3D);
 	scenes_.emplace_back(new Scene2D);
 	currentScene_ = std::begin(scenes_);
+	ofSetWindowTitle((*currentScene_)->getName());
 }
 
 SceneController::~SceneController(void)
@@ -29,13 +30,15 @@ void SceneController::swapMode(void)
 	if (currentScene_ == std::end(scenes_)) {
 		currentScene_ = std::begin(scenes_);
 	}
-	if (onSceneDimensionChanged_) onSceneDimensionChanged_((*currentScene_)->getNbDimensions());
+	if (onSceneChanged_) onSceneChanged_((*currentScene_)->getNbDimensions());
 	if (onGraphSceneChanged_) onGraphSceneChanged_();
+
+	ofSetWindowTitle((*currentScene_)->getName());
 }
 
-void SceneController::setOnSceneDimensionChanged(std::function<void(int)> callback)
+void SceneController::setOnSceneChanged(std::function<void(int)> callback)
 {
-	onSceneDimensionChanged_ = callback;
+	onSceneChanged_ = callback;
 }
 
 void SceneController::setOnGraphSceneChanged(std::function<void(void)> callback)

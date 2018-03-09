@@ -52,6 +52,11 @@ void MainMenu::setup()
 	fileGroup_.minimize();
 }
 
+void MainMenu::refresh(int newEditorDimension)
+{
+	std::cerr << "new dimension: " << newEditorDimension << std::endl;
+}
+
 void MainMenu::buttonPressed(const void * sender)
 {
 	ofxButton * button = (ofxButton*)sender;

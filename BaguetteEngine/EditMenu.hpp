@@ -13,9 +13,12 @@ class EditMenu : public IGuiView
 {
 public:
 	EditMenu(SceneController &scene);
-	~EditMenu();
+	virtual ~EditMenu();
+
 	virtual void draw();
 	virtual void setup();
+	virtual void refresh(int newEditorDimension);
+
 	void setFocus(const Identifiable & obj);
 	void vecSliderPositionChange(ofVec3f & vec);
 	void vecSliderSizeChange(ofVec3f & vec);

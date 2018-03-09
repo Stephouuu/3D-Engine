@@ -32,6 +32,11 @@ void EditMenu::setup()
 	baseSetup();
 }
 
+void EditMenu::refresh(int newEditorDimension)
+{
+	std::cerr << "new dimension: " << newEditorDimension << std::endl;
+}
+
 void EditMenu::setFocus(const Identifiable & obj)
 {
 	currentObj_ = scene_.ensureDrawableExistance(obj);

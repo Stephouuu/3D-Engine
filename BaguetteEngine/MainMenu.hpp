@@ -13,9 +13,11 @@ class MainMenu : public IGuiView
 {
 public:
 	MainMenu(SceneController & scene, EditMenu & editMenu, SceneViewer & sceneViewer);
-	~MainMenu();
-	void draw();
-	void setup();
+	virtual ~MainMenu();
+	virtual void draw();
+	virtual void setup();
+	virtual void refresh(int newEditorDimension);
+
 	void buttonPressed(const void * sender);
 
 private:

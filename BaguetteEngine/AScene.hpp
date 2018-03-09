@@ -34,6 +34,7 @@ public:
 	SceneNode * ensureDrawableExistance(const Identifiable & drawableId);
 	
 	virtual const Identifiable & instanciateDrawable(const std::string & type, const Identifiable & parent = Identifiable()) = 0;
+	virtual std::string getName(void) const = 0;
 	virtual int getNbDimensions(void) const = 0;
 
 protected:

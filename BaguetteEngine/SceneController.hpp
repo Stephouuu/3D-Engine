@@ -30,7 +30,7 @@ public:
 	~SceneController(void);
 
 	void swapMode(void);
-	void setOnSceneDimensionChanged(std::function<void(int)> callback);
+	void setOnSceneChanged(std::function<void(int)> callback);
 	void setOnGraphSceneChanged(std::function<void(void)> callback);
 
 	void update(float dt);
@@ -59,9 +59,8 @@ private:
 	// TriangleVector triangle_;
 	std::vector<std::unique_ptr<AScene> > scenes_;
 	std::vector<std::unique_ptr<AScene> >::const_iterator currentScene_;
-	std::function<void(int)> onSceneDimensionChanged_;
+	std::function<void(int)> onSceneChanged_;
 	std::function<void(void)> onGraphSceneChanged_;
-	
 
 	string pathkey;
 	CacheManager<string, ofImage> cacheManager;

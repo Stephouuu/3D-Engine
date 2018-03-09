@@ -9,7 +9,6 @@ SceneViewer::SceneViewer(SceneController & scene)
 
 SceneViewer::~SceneViewer(void)
 {
-
 }
 
 void SceneViewer::draw(void)
@@ -20,19 +19,23 @@ void SceneViewer::draw(void)
 void SceneViewer::setup(void)
 {
 	layout_.setup();
-	layout_.setName("lol");
 
 	update();
 
 	gui_.setup();
 	gui_.setName("SceneViewer");
-	gui_.setPosition(ofPoint(0, 100));
+	gui_.setPosition(ofPoint(0, 300));
 	gui_.add(&layout_);
+}
+
+void SceneViewer::refresh(int newEditorDimension)
+{
+	(void)newEditorDimension;
+	std::cerr << "new dimension: " << newEditorDimension << std::endl;
 }
 
 void SceneViewer::update(void)
 {
-	std::cerr << "update scene viewer" << std::endl;
 	layout_.clear();
 	buttons_.clear();
 

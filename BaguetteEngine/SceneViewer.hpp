@@ -16,6 +16,7 @@ public:
 
 	virtual void draw(void);
 	virtual void setup(void);
+	virtual void refresh(int newEditorDimension);
 
 	void update(void);
 

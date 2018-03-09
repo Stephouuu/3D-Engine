@@ -3,6 +3,7 @@
 BaseGui::BaseGui(SceneController &scene)
 	: scene_(scene), editMenu_(scene), sceneViewer_(scene), mainMenu_(scene, editMenu_, sceneViewer_)
 {
+	scene_.setOnSceneChanged(std::bind(&BaseGui::refresh, this, std::placeholders::_1));
 }
 
 
@@ -30,4 +31,11 @@ void BaseGui::setup()
 void BaseGui::focus(int id)
 {
 	std::cout << "L'user veut le focus" << std::endl;
+}
+
+void BaseGui::refresh(int newEditorDimension)
+{
+	mainMenu_.refresh(newEditorDimension);
+	editMenu_.refresh(newEditorDimension);
+	sceneViewer_.refresh(newEditorDimension);
 }
