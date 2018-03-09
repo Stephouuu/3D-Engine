@@ -101,7 +101,7 @@ void EditMenu::setValues()
 void EditMenu::baseSetup()
 {
 	gui_.setup();
-	gui_.setName("Menu d'édition");
+	gui_.setName("Menu d'edition");
 	gui_.setPosition(820, 10);
 
 	position_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderPositionChange);

@@ -5,7 +5,6 @@ MainMenu::MainMenu(SceneController & scene, EditMenu & editMenu, SceneViewer & s
 {
 }
 
-
 MainMenu::~MainMenu()
 {
 }
@@ -16,7 +15,6 @@ void MainMenu::draw()
 
 	gui_.mouseReleased(mouseEvents_);
 	gui_.mouseEntered(mouseEvents_);
-
 }
 
 void MainMenu::setup()
@@ -26,17 +24,10 @@ void MainMenu::setup()
 	fileGroup_.add(exportScene_.setup("Exporter la scene"));
 	exportScene_.addListener(this, &MainMenu::buttonPressedFile);
 
+	modeGroup_.setup();
+
 	primitiveGroup_.setup();
 	refresh3D();
-	/* primitiveGroup_.setName("Primitives Geometriques");
-	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
-	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
-	primitiveGroup_.add(insertBox_.setup("Ajouter un cube"));
-	primitiveGroup_.add(insertCone_.setup("Ajouter un cone"));
-	insertSphere_.addListener(this, &MainMenu::buttonPressed);
-	insertPlan_.addListener(this, &MainMenu::buttonPressed);
-	insertBox_.addListener(this, &MainMenu::buttonPressed);
-	insertCone_.addListener(this, &MainMenu::buttonPressed); */
 
 	insertGroup_.setup();
 	insertGroup_.setName("Inserer");
@@ -45,12 +36,15 @@ void MainMenu::setup()
 	gui_.setup();
 	gui_.setName("Menu");
 	gui_.add(&fileGroup_);
+	gui_.add(&modeGroup_);
 	gui_.add(&insertGroup_);
 
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
+	modeGroup_.minimizeAll();
 	insertGroup_.minimize();
 	fileGroup_.minimize();
+	modeGroup_.minimize();
 }
 
 void MainMenu::refresh(int newEditorDimension)
@@ -64,34 +58,15 @@ void MainMenu::refresh(int newEditorDimension)
 	}
 }
 
-/* void MainMenu::buttonPressed(const void * sender)
-{
-	ofxButton * button = (ofxButton*)sender;
-	Identifiable createObj;
-
-	if (button->getName() == "Ajouter une sphere")
-		createObj = scene_.instanciateDrawable("sphere");
-	else if (button->getName() == "Ajouter un plan")
-		createObj = scene_.instanciateDrawable("plane");
-	else if (button->getName() == "Ajouter un cube")
-		createObj = scene_.instanciateDrawable("cube");
-	else if (button->getName() == "Ajouter un cone")
-		createObj = scene_.instanciateDrawable("cone");
-	else if (button->getName() == "Exporter la scene")
-	{
-		exportImg_.Export("screenshot");
-		return;
-	}
-	else
-		return;
-
-	scene_.setFocusedDrawable(createObj);
-	editMenu_.setFocus(createObj);
-} */
-
-
 void MainMenu::refresh2D(void)
 {
+	modeGroup_.clear();
+	modeGroup_.setName("Mode");
+
+	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
+	modeGroup_.add(swapMode_.setup("Mode 3D"));
+	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
+	
 	primitiveGroup_.clear();
 	primitiveGroup_.setName("Primitives Vectorielles");
 	
@@ -121,6 +96,13 @@ void MainMenu::refresh2D(void)
 
 void MainMenu::refresh3D(void)
 {
+	modeGroup_.clear();
+	modeGroup_.setName("Mode");
+
+	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
+	modeGroup_.add(swapMode_.setup("Mode 2D"));
+	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
+
 	primitiveGroup_.clear();
 	primitiveGroup_.setName("Primitives Geometriques");
 
@@ -154,6 +136,14 @@ void MainMenu::buttonPressedFile(const void * sender)
 		exportImg_.Export("screenshot");
 		return;
 	}
+}
+
+void MainMenu::buttonPressedMode(const void * sender)
+{
+	ofxButton * button = (ofxButton*)sender;
+
+	if (button->getName() == "Mode 2D" || button->getName() == "Mode 3D")
+		scene_.swapMode();
 }
 
 void MainMenu::buttonPressed2D(const void * sender)
@@ -196,6 +186,5 @@ void MainMenu::buttonPressed3D(const void * sender)
 	else
 		return;
 
-	// scene_.setFocusedDrawable(createObj);
 	editMenu_.setFocus(createObj);
 }

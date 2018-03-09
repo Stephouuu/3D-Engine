@@ -23,6 +23,7 @@ private:
 	void refresh3D(void);
 
 	void buttonPressedFile(const void * sender);
+	void buttonPressedMode(const void * sender);
 	void buttonPressed2D(const void * sender);
 	void buttonPressed3D(const void * sender);
 
@@ -31,6 +32,7 @@ private:
 	ofxGuiGroup			insertGroup_;
 	ofxGuiGroup			primitiveGroup_;
 	ofxGuiGroup			fileGroup_;
+	ofxGuiGroup			modeGroup_;
 
 	ofxButton			insertSphere_;
 	ofxButton			insertPlan_;
@@ -42,6 +44,8 @@ private:
 	ofxButton			insertPoint_;
 	ofxButton			insertCircle_;
 	ofxButton			insertRectangle_;
+
+	ofxButton			swapMode_;
 
 	ofxButton			exportScene_;
 	ofMouseEventArgs	mouseEvents_;
