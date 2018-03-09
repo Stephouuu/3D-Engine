@@ -23,7 +23,7 @@ public:
 	void vecSliderPositionChange(ofVec3f & vec);
 	void vecSliderSizeChange(ofVec3f & vec);
 	void vecSliderColorChange(ofColor & color);
-	void vecSliderRotationChange(ofColor & color);
+	void vecSliderRotationChange(ofVec3f & color);
 
 private:
 	void baseSetup();

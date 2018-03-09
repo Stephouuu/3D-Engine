@@ -19,7 +19,7 @@ public:
 	void removeDrawable(const Identifiable & drawableId);
 
 	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos);
-	void setDrawableRotation(const Identifiable & drawableId, float degrees, const ofVec3f & axis);
+	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation);
 	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale);
 	void setDrawableColor(const Identifiable & drawableId, const ofFloatColor & color);
 

@@ -41,7 +41,6 @@ void EditMenu::focus(const Identifiable & id)
 
 void EditMenu::vecSliderPositionChange(ofVec3f & vec)
 {
-	std::cout << "vec slider position change: " << vec << std::endl;
 	const Identifiable * focused = scene_.getFocusedDrawable();
 	if (focused != nullptr) scene_.setDrawablePosition(*focused, ofVec3f(vec.x, vec.y, vec.z));
 }
@@ -58,10 +57,10 @@ void EditMenu::vecSliderColorChange(ofColor & color)
 	if (focused != nullptr) scene_.setDrawableColor(*focused, color);
 }
 
-void EditMenu::vecSliderRotationChange(ofColor & color)
+void EditMenu::vecSliderRotationChange(ofVec3f & vec)
 {
-	//if (currentObj_ != nullptr)
-	//	scene_.setMeshScale(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec);
 }
 
 void EditMenu::baseSetup()
@@ -73,6 +72,7 @@ void EditMenu::baseSetup()
 	position_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderPositionChange);
 	size_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderSizeChange);
 	colorFill_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorChange);
+	rotation_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderRotationChange);
 
 	gui_.add(&position_);
 	gui_.add(&size_);
@@ -93,13 +93,14 @@ void EditMenu::updateValues(SceneNode *node)
 		size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
 		ofColor color = currentDrawable->getFillColor();
 		colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
-		//const float roll = currentMesh->getRoll();
-		//const float yawl = currentMesh->get
+		ofVec3f rotation = currentDrawable->getOrientationEuler();
+		rotation_.setValue(rotation);
 	}
-	else {
-		position_.setValue(ofVec3f(0, 0, 0));
-		size_.setValue(ofVec3f(0, 0, 0));
-		//setup();
-	}
+	//else {
+	//	position_.setValue(ofVec3f(0, 0, 0));
+	//	size_.setValue(ofVec3f(1, 1, 1));
+	//	colorFill_.setValue(ofColor(0, 0, 0, 255));
+	//	rotation_.setValue(ofVec3f(0, 0, 0));
+	//}
 }
 
