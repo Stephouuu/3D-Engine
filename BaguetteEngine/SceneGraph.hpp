@@ -33,9 +33,6 @@ public:
 	SceneNode * findNode(const Identifiable & id);
 	void dump(SceneNode::TreeData & graph) const;
 
-	void undo(void);
-	void redo(void);
-
 private:
 	SceneNode::Ptr root_;
 };

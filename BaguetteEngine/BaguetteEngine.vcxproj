@@ -175,20 +175,25 @@
     <ClCompile Include="AMesh.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ARenderer.cpp" />
+    <ClCompile Include="AVectorPrimitive.cpp" />
     <ClCompile Include="BaseGui.cpp" />
     <ClCompile Include="ColorSlider.cpp" />
     <ClCompile Include="ConeGenerator.cpp" />
     <ClCompile Include="ConePrimitive.cpp" />
     <ClCompile Include="CubePrimitive.cpp" />
     <ClCompile Include="EditMenu.cpp" />
+    <ClCompile Include="EllipseVector.cpp" />
     <ClCompile Include="Identifiable.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
+    <ClCompile Include="MathUtils.cpp" />
     <ClCompile Include="PlaneGenerator.cpp" />
     <ClCompile Include="PlanePrimitive.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model3D.cpp" />
+    <ClCompile Include="PointVector.cpp" />
+    <ClCompile Include="RectangleVector.cpp" />
     <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SceneNode.cpp" />
@@ -230,6 +235,7 @@
     <ClCompile Include="TextureRender.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformableHistory.cpp" />
+    <ClCompile Include="TriangleVector.cpp" />
     <ClCompile Include="Vec3Slider.cpp" />
     <ClCompile Include="WindowRenderer.cpp" />
   </ItemGroup>
@@ -237,17 +243,20 @@
     <ClInclude Include="AMesh.hpp" />
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ARenderer.hpp" />
+    <ClInclude Include="AVectorPrimitive.hpp" />
     <ClInclude Include="BaseGui.hpp" />
     <ClInclude Include="ColorSlider.hpp" />
     <ClInclude Include="ConeGenerator.hpp" />
     <ClInclude Include="ConePrimitive.hpp" />
     <ClInclude Include="CubePrimitive.hpp" />
     <ClInclude Include="EditMenu.hpp" />
+    <ClInclude Include="EllipseVector.hpp" />
     <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />
     <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
+    <ClInclude Include="MathUtils.hpp" />
     <ClInclude Include="PlaneGenerator.hpp" />
     <ClInclude Include="PlanePrimitive.hpp" />
     <ClInclude Include="Identifiable.hpp" />
@@ -255,6 +264,8 @@
     <ClInclude Include="IMeshReadOnly.hpp" />
     <ClInclude Include="Model3D.hpp" />
     <ClInclude Include="NonCopyable.hpp" />
+    <ClInclude Include="PointVector.hpp" />
+    <ClInclude Include="RectangleVector.hpp" />
     <ClInclude Include="SceneController.hpp" />
     <ClInclude Include="SceneGraph.hpp" />
     <ClInclude Include="SceneNode.hpp" />
@@ -493,6 +504,7 @@
     <ClInclude Include="TextureRenderer.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="TransformableHistory.hpp" />
+    <ClInclude Include="TriangleVector.hpp" />
     <ClInclude Include="Vec3Slider.hpp" />
     <ClInclude Include="WindowRenderer.hpp" />
   </ItemGroup>

@@ -37,9 +37,6 @@ public:
 	SceneNode * findNode(const Identifiable & node);
 	void dump(TreeData & graph, int depth = 0) const;
 
-	void undo(void);
-	void redo(void);
-
 private:
 	const Identifiable & addChild(SceneNode::Ptr child);
 

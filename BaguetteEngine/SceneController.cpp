@@ -38,6 +38,40 @@ SceneController::SceneController(void)
 		}
 		std::clog << " " << "id: " << it.second.getID() << " name: " << it.second.getName() << std::endl;
 	}
+
+	// vector tests
+	/* point_.setFillColor(ofColor::blue);
+	point_.setRadius(10.f);
+	point_.setPosition(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
+	point_.setOutlineThickness(5);
+	point_.setOutlineColor(ofColor::red);
+	point_.invalidate(); */
+
+	triangle_.setFillColor(ofColor::blue);
+	// triangle_.setVerticesPosition({0, 0}, {100, 0}, {100, 80});
+	triangle_.setSize(100.f);
+	triangle_.setRotation(45);
+	triangle_.setPosition(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
+	// triangle_.setAlignment(AVectorPrimitive::Alignment::Middle);
+	triangle_.setOutlineThickness(5);
+	triangle_.setOutlineColor(ofColor::red);
+	triangle_.invalidate();
+
+	/* rectangle_.setFillColor(ofColor::blue);
+	rectangle_.setDimension(200, 100);
+	rectangle_.setRotation(90);
+	rectangle_.setPosition(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
+	rectangle_.setOutlineThickness(2);
+	rectangle_.setOutlineColor(ofColor::orange);
+	rectangle_.invalidate(); */
+
+	/* ellipse_.setFillColor(ofColor::blue);
+	ellipse_.setDimension(200, 100);
+	ellipse_.setRotation(90);
+	ellipse_.setPosition(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
+	ellipse_.setOutlineThickness(5);
+	ellipse_.setOutlineColor(ofColor::orange);
+	ellipse_.invalidate(); */
 }
 
 SceneController::~SceneController(void)
@@ -56,7 +90,14 @@ void SceneController::render(ARenderer & renderer)
 
 	graph_.render(renderer);
 	// ofDrawAxis(2); // x = red ; y = green ; z = blue.
+
+
 	cam_.end();
+
+	// point_.draw();
+	triangle_.draw();
+	// rectangle_.draw();
+	// ellipse_.draw();
 }
 
 int SceneController::selected(int x, int y)
@@ -169,12 +210,12 @@ void SceneController::setFocusedMesh(const Identifiable & id)
 
 const Identifiable * SceneController::getFocusedMesh(void) const
 {
-	return focusedMesh_;
+	// return focusedMesh_;
+	return nullptr;
 }
 
 void SceneController::AddImage(const Image & img)
 {
-
 	if (img.isLoaded == true)
 		cacheManager.insert(img.path, img.theImg);
 	else

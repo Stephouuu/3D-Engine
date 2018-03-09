@@ -179,6 +179,24 @@
       <Filter>src\UI</Filter>
     </ClCompile>
     <ClCompile Include="ColorSlider.cpp" />
+    <ClCompile Include="PointVector.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="AVectorPrimitive.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleVector.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtils.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleVector.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="EllipseVector.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -360,6 +378,15 @@
     </Filter>
     <Filter Include="shaders">
       <UniqueIdentifier>{ea849085-4125-4b02-b13d-83f1e720ef22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics\Vector">
+      <UniqueIdentifier>{f846f5f8-d222-4b66-ad06-5816e5f60e1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics\Vector\Shape">
+      <UniqueIdentifier>{e386280c-7331-4d39-aee9-125d24126051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics\Vector\Primitive">
+      <UniqueIdentifier>{c1140c66-75bd-42f0-9379-68c88fd83a06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1145,6 +1172,24 @@
       <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="ColorSlider.hpp" />
+    <ClInclude Include="PointVector.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="AVectorPrimitive.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleVector.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtils.hpp">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangleVector.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="EllipseVector.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

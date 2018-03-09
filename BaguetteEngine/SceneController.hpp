@@ -15,6 +15,11 @@
 #include "SceneGraph.hpp"
 #include "TransformableHistory.hpp"
 
+#include "PointVector.hpp"
+#include "TriangleVector.hpp"
+#include "RectangleVector.hpp"
+#include "EllipseVector.hpp"
+
 class ARenderer;
 
 // Singleton ?
@@ -53,8 +58,14 @@ private:
 	ofEasyCam cam_;
 	SceneGraph graph_;
 	TransformableHistory historic_;
+	const Identifiable * focusedMesh_;
+	// test
+	// PointVector point_;
+	TriangleVector triangle_;
+	// RectangleVector rectangle_;
+	// EllipseVector ellipse_;
+
+	// code boris:
 	string pathkey;
 	CacheManager<string, ofImage> cacheManager;
-
-	const Identifiable * focusedMesh_;
 };

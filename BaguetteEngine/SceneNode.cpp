@@ -111,28 +111,6 @@ void SceneNode::dump(TreeData & graph, int depth) const
 	}
 }
 
-void SceneNode::undo(void)
-{
-	/* if (mesh_) {
-		std::clog << "undo " << getID() << std::endl;
-		mesh_->undo();
-	}
-	for (auto & it : childs_) {
-		it->undo();
-	} */
-}
-
-void SceneNode::redo(void)
-{
-	/* if (mesh_) {
-		std::clog << "redo " << getID() << std::endl;
-		mesh_->redo();
-	}
-	for (auto & it : childs_) {
-		it->redo();
-	} */
-}
-
 const Identifiable & SceneNode::addChild(SceneNode::Ptr child)
 {
 	childs_.push_back(std::move(child));

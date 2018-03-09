@@ -50,13 +50,3 @@ void SceneGraph::dump(SceneNode::TreeData & graph) const
 {
 	root_->dump(graph);
 }
-
-void SceneGraph::undo(void)
-{
-	root_->undo();
-}
-
-void SceneGraph::redo(void)
-{
-	root_->redo();
-}
