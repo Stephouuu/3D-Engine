@@ -3,7 +3,9 @@
 #include "ofMain.h"
 #include "MathUtils.hpp"
 
-class AVectorPrimitive
+#include "IDrawable.hpp"
+
+class AVectorPrimitive : public IDrawable
 {
 public:
 	enum class Alignment : int {
@@ -14,16 +16,18 @@ public:
 	AVectorPrimitive(void);
 	virtual ~AVectorPrimitive(void);
 
-	void draw(void);
+	// void draw(void);
+	virtual void update(float dt);
+	virtual void draw(ARenderer & renderer);
 
-	void setPosition(const ofVec2f & position);
-	const ofVec2f & getPosition(void) const;
+	// void setPosition(const ofVec2f & position);
+	// const ofVec2f & getPosition(void) const;
 
-	void setRotation(float angle);
-	float getRotation(void) const;
+	// void setRotation(float angle);
+	// float getRotation(void) const;
 
-	void setFillColor(const ofColor & color);
-	const ofColor & getFillColor(void) const;
+	virtual void setFillColor(const ofColor & color);
+	virtual const ofColor & getFillColor(void) const;
 
 	void setOutlineColor(const ofColor & color);
 	const ofColor & getOutlineColor(void) const;
@@ -50,6 +54,8 @@ private:
 	ofColor fillColor_;
 	ofColor outlineColor_;
 	int outlineThickness_;
+	
+	// to delete:
 	ofVec2f position_;
 	float rotation_;
 	ofPoint origin_;

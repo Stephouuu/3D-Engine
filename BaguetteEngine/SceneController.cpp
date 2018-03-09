@@ -95,7 +95,7 @@ void SceneController::render(ARenderer & renderer)
 	cam_.end();
 
 	// point_.draw();
-	triangle_.draw();
+	triangle_.draw(renderer);
 	// rectangle_.draw();
 	// ellipse_.draw();
 }
@@ -163,7 +163,7 @@ void SceneController::setMeshScale(const Identifiable & meshId, const ofVec3f & 
 
 void SceneController::setMeshColor(const Identifiable & meshId, const ofColor & color)
 {
-	ensureMeshExistance(meshId)->getDrawable()->setColor(color);
+	ensureMeshExistance(meshId)->getDrawable()->setFillColor(color);
 }
 
 void SceneController::graphContent(SceneNode::TreeData & data) const

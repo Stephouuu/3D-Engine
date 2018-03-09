@@ -30,8 +30,8 @@ public:
 	void init(void);
 	void setMesh(const ofMesh &oMesh);
 
-	virtual void setColor(const ofColor & color);
-	virtual const ofColor & getColor(void) const;
+	virtual void setFillColor(const ofColor & color);
+	virtual const ofColor & getFillColor(void) const;
 
 	InstantiableMesh getType(void) const;
 

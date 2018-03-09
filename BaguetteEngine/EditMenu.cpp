@@ -85,7 +85,7 @@ void EditMenu::setValues()
 		position_.setValue(ofVec3f(position.x, position.y, position.z));
 		ofVec3f scale = currentMesh->getScale();
 		size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
-		ofColor color = currentMesh->getColor();
+		ofColor color = currentMesh->getFillColor();
 		colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
 		//const float roll = currentMesh->getRoll();
 		//const float yawl = currentMesh->get

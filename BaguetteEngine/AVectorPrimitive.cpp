@@ -14,7 +14,7 @@ AVectorPrimitive::~AVectorPrimitive(void)
 {
 }
 
-void AVectorPrimitive::draw(void)
+/* void AVectorPrimitive::draw(void)
 {
 	fbo_.draw(position_ - origin_);
 }
@@ -37,6 +37,21 @@ void AVectorPrimitive::setRotation(float angle)
 float AVectorPrimitive::getRotation(void) const
 {
 	return rotation_;
+} */
+
+void AVectorPrimitive::update(float dt)
+{
+	(void)dt;
+}
+
+void AVectorPrimitive::draw(ARenderer & renderer)
+{
+	// shader_.begin();
+	// shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
+
+	fbo_.draw(getPosition() - getOrigin());
+
+	// shader_.end();
 }
 
 void AVectorPrimitive::setFillColor(const ofColor & color)
