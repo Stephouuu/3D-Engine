@@ -31,7 +31,11 @@ void SceneViewer::setup(void)
 void SceneViewer::refresh(int newEditorDimension)
 {
 	(void)newEditorDimension;
-	std::cerr << "new dimension: " << newEditorDimension << std::endl;
+}
+
+void SceneViewer::focus(const Identifiable & id)
+{
+	(void)id;
 }
 
 void SceneViewer::update(void)

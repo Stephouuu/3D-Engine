@@ -17,6 +17,7 @@ public:
 	virtual void draw();
 	virtual void setup();
 	virtual void refresh(int newEditorDimension);
+	virtual void focus(const Identifiable & id);
 
 private:
 	void refresh2D(void);

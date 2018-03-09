@@ -46,6 +46,11 @@ void SceneController::setOnGraphSceneChanged(std::function<void(void)> callback)
 	onGraphSceneChanged_ = callback;
 }
 
+void SceneController::setOnFocusChanged(std::function<void(const Identifiable &)> callback)
+{
+	onFocusChanged_ = callback;
+}
+
 void SceneController::update(float dt)
 {
 	(*currentScene_)->update(dt);
@@ -54,7 +59,6 @@ void SceneController::update(float dt)
 void SceneController::render(ARenderer & renderer)
 {
 	(*currentScene_)->render(renderer);
-	// triangle_.draw(renderer);
 }
 
 const Identifiable & SceneController::instanciateDrawable(const std::string & type, const Identifiable & parent)
@@ -111,8 +115,17 @@ void SceneController::redo(void)
 }
 
 void SceneController::setFocusedDrawable(const Identifiable & drawableId)
-{
-	(*currentScene_)->setFocusedDrawable(drawableId);
+{	
+	const Identifiable * currentFocus = getFocusedDrawable();
+
+	if (currentFocus && currentFocus->getID() != drawableId.getID()) {
+		(*currentScene_)->setFocusedDrawable(drawableId);
+		if (onFocusChanged_) onFocusChanged_(drawableId);
+	}
+	else if (!currentFocus) {
+		(*currentScene_)->setFocusedDrawable(drawableId);
+		if (onFocusChanged_) onFocusChanged_(drawableId);
+	}
 }
 
 const Identifiable * SceneController::getFocusedDrawable(void) const

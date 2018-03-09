@@ -29,7 +29,7 @@ const Identifiable & Scene2D::instanciateDrawable(const std::string & type, cons
 		const Identifiable & id = graph_.attachTo(std::move(node), parent);
 		setDrawablePosition(id, ofVec3f(ofGetWidth() / 2.f, ofGetHeight() / 2.f));
 		setDrawableScale(id, ofVec3f(100, 100));
-		focusedMesh_ = &id;
+		// focusedMesh_ = &id;
 		return id;
 	}
 	catch (const std::runtime_error & e) {

@@ -68,7 +68,7 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 		std::cerr << type << " not found !" << std::endl;
 	try {
 		const Identifiable & id = graph_.attachTo(std::move(node), parent);
-		focusedMesh_ = &id;
+		// focusedMesh_ = &id;
 		historic_.pushTransformation(std::make_pair(id, ofMatrix4x4::newIdentityMatrix()));
 		return id;
 	}

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Identifiable.hpp"
+
 class IGuiView
 {
 public:
@@ -7,4 +9,5 @@ public:
 	virtual void draw(void) = 0;
 	virtual void setup(void) = 0;
 	virtual void refresh(int newEditorDimension) = 0;
+	virtual void focus(const Identifiable & id) = 0;
 };

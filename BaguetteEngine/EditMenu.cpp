@@ -1,21 +1,20 @@
 #include "EditMenu.hpp"
 
-
-
-EditMenu::EditMenu(SceneController & scene) : scene_(scene)
+EditMenu::EditMenu(SceneController & scene)
+	: scene_(scene)
 {
-	currentObj_ = nullptr;
+	// currentObj_ = nullptr;
 }
 
-EditMenu::~EditMenu()
+EditMenu::~EditMenu(void)
 {
 }
 
-void EditMenu::draw()
+void EditMenu::draw(void)
 {
-	const Identifiable  * obj = scene_.getFocusedDrawable();
+	/* const Identifiable  * obj = scene_.getFocusedDrawable();
 	if (obj != nullptr)
-		setFocus(*obj);
+		setFocus(*obj); */
 
 	gui_.draw();
 
@@ -34,10 +33,21 @@ void EditMenu::setup()
 
 void EditMenu::refresh(int newEditorDimension)
 {
-	std::cerr << "new dimension: " << newEditorDimension << std::endl;
 }
 
-void EditMenu::setFocus(const Identifiable & obj)
+void EditMenu::focus(const Identifiable & id)
+{
+	SceneNode * node = scene_.ensureDrawableExistance(id);
+
+	/* AMesh *mesh = dynamic_cast<AMesh *>(node->getDrawable());
+	if (mesh && mesh->getType() == AMesh::InstantiableMesh::SPHERE)
+	{
+		//
+	} */
+	updateValues(node);
+}
+
+/* void EditMenu::setFocus(const Identifiable & obj)
 {
 	currentObj_ = scene_.ensureDrawableExistance(obj);
 
@@ -48,54 +58,31 @@ void EditMenu::setFocus(const Identifiable & obj)
 		//
 	}
 	setValues();
-}
+} */
 
 void EditMenu::vecSliderPositionChange(ofVec3f & vec)
 {
-	if (currentObj_ != nullptr)
-		scene_.setDrawablePosition(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
+	std::cout << "vec slider position change: " << vec << std::endl;
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	if (focused != nullptr) scene_.setDrawablePosition(*focused, ofVec3f(vec.x, vec.y, vec.z));
 }
 
 void EditMenu::vecSliderSizeChange(ofVec3f & vec)
 {
-	if (currentObj_ != nullptr)
-		scene_.setDrawableScale(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	if (focused != nullptr) scene_.setDrawableScale(*focused, ofVec3f(vec.x, vec.y, vec.z));
 }
 
 void EditMenu::vecSliderColorChange(ofColor & color)
 {
-	if (currentObj_ != nullptr)
-		scene_.setDrawableColor(static_cast<Identifiable>(*currentObj_), color);
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	if (focused != nullptr) scene_.setDrawableColor(*focused, color);
 }
 
 void EditMenu::vecSliderRotationChange(ofColor & color)
 {
 	//if (currentObj_ != nullptr)
 	//	scene_.setMeshScale(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
-}
-
-void EditMenu::setValues()
-{
-	// AMesh *currentMesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
-	// AMesh *currentMesh = currentObj_->getMesh();
-	IDrawable *currentDrawable = currentObj_->getDrawable();
-	if (currentObj_ == nullptr)
-	{
-		position_.setValue(ofVec3f(0, 0, 0));
-		size_.setValue(ofVec3f(0, 0, 0));
-		//setup();
-	}
-	else if (currentDrawable)
-	{
-		ofVec3f position = currentDrawable->getPosition();
-		position_.setValue(ofVec3f(position.x, position.y, position.z));
-		ofVec3f scale = currentDrawable->getScale();
-		size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
-		ofColor color = currentDrawable->getFillColor();
-		colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
-		//const float roll = currentMesh->getRoll();
-		//const float yawl = currentMesh->get
-	}
 }
 
 void EditMenu::baseSetup()
@@ -114,3 +101,44 @@ void EditMenu::baseSetup()
 	gui_.add(&colorFill_);
 	gui_.add(&rotation_);
 }
+
+void EditMenu::updateValues(SceneNode *node)
+{
+	// AMesh *currentMesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
+	// AMesh *currentMesh = currentObj_->getMesh();
+	IDrawable *currentDrawable = node->getDrawable();
+	/* if (currentObj_ == nullptr)
+	{
+		position_.setValue(ofVec3f(0, 0, 0));
+		size_.setValue(ofVec3f(0, 0, 0));
+		//setup();
+	}
+	else if (currentDrawable)
+	{
+		ofVec3f position = currentDrawable->getPosition();
+		position_.setValue(ofVec3f(position.x, position.y, position.z));
+		ofVec3f scale = currentDrawable->getScale();
+		size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
+		ofColor color = currentDrawable->getFillColor();
+		colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
+		//const float roll = currentMesh->getRoll();
+		//const float yawl = currentMesh->get
+	} */
+
+	if (currentDrawable) {
+		ofVec3f position = currentDrawable->getPosition();
+		position_.setValue(ofVec3f(position.x, position.y, position.z));
+		ofVec3f scale = currentDrawable->getScale();
+		size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
+		ofColor color = currentDrawable->getFillColor();
+		colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
+		//const float roll = currentMesh->getRoll();
+		//const float yawl = currentMesh->get
+	}
+	else {
+		position_.setValue(ofVec3f(0, 0, 0));
+		size_.setValue(ofVec3f(0, 0, 0));
+		//setup();
+	}
+}
+

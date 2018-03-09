@@ -49,13 +49,17 @@ void MainMenu::setup()
 
 void MainMenu::refresh(int newEditorDimension)
 {
-	std::cerr << "new dimension: " << newEditorDimension << std::endl;
 	if (newEditorDimension == 2) {
 		refresh2D();
 	}
 	else {
 		refresh3D();
 	}
+}
+
+void MainMenu::focus(const Identifiable & id)
+{
+	(void)id;
 }
 
 void MainMenu::refresh2D(void)
@@ -162,7 +166,7 @@ void MainMenu::buttonPressed2D(const void * sender)
 	else if (button->getName() == "Ajouter un rectangle")
 		createObj = scene_.instanciateDrawable("rectangle");
 
-	editMenu_.setFocus(createObj);
+	// editMenu_.setFocus(createObj);
 }
 
 void MainMenu::buttonPressed3D(const void * sender)
@@ -186,5 +190,5 @@ void MainMenu::buttonPressed3D(const void * sender)
 	else
 		return;
 
-	editMenu_.setFocus(createObj);
+	// editMenu_.setFocus(createObj);
 }

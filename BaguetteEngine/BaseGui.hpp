@@ -13,8 +13,7 @@ public:
 	virtual void draw();
 	virtual void setup();
 	virtual void refresh(int newEditorDimension);
-
-	void focus(int id);
+	virtual void focus(const Identifiable & id);
 
 private:
 	MainMenu			mainMenu_;

@@ -32,6 +32,7 @@ public:
 	void swapMode(void);
 	void setOnSceneChanged(std::function<void(int)> callback);
 	void setOnGraphSceneChanged(std::function<void(void)> callback);
+	void setOnFocusChanged(std::function<void(const Identifiable &)> callback);
 
 	void update(float dt);
 	void render(ARenderer & renderer);
@@ -61,6 +62,7 @@ private:
 	std::vector<std::unique_ptr<AScene> >::const_iterator currentScene_;
 	std::function<void(int)> onSceneChanged_;
 	std::function<void(void)> onGraphSceneChanged_;
+	std::function<void(const Identifiable &)> onFocusChanged_;
 
 	string pathkey;
 	CacheManager<string, ofImage> cacheManager;

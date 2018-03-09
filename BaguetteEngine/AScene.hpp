@@ -40,6 +40,6 @@ public:
 protected:
 	SceneGraph graph_;
 	TransformableHistory historic_;
-	const Identifiable * focusedMesh_;
+	const Identifiable * focusedDrawable_;
 };
 

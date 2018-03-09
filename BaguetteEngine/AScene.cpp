@@ -1,6 +1,7 @@
 #include "AScene.hpp"
 
 AScene::AScene(void)
+	: focusedDrawable_(nullptr)
 {
 }
 
@@ -92,14 +93,13 @@ void AScene::setFocusedDrawable(const Identifiable & drawableId)
 	SceneNode *node = ensureDrawableExistance(drawableId);
 
 	if (node) {
-		focusedMesh_ = node;
+		focusedDrawable_ = node;
 	}
 }
 
 const Identifiable * AScene::getFocusedDrawable(void) const
 {
-	// return focusedMesh_;
-	return nullptr;
+	return focusedDrawable_;
 }
 
 SceneNode * AScene::ensureDrawableExistance(const Identifiable & id)

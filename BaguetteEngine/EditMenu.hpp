@@ -18,22 +18,23 @@ public:
 	virtual void draw();
 	virtual void setup();
 	virtual void refresh(int newEditorDimension);
+	virtual void focus(const Identifiable & id);
 
-	void setFocus(const Identifiable & obj);
+	// void setFocus(const Identifiable & obj);
 	void vecSliderPositionChange(ofVec3f & vec);
 	void vecSliderSizeChange(ofVec3f & vec);
 	void vecSliderColorChange(ofColor & color);
 	void vecSliderRotationChange(ofColor & color);
 
 private:
-	void setValues();
 	void baseSetup();
+	void updateValues(SceneNode *node);
 
 private:
 	ofxPanel					gui_;
 	ofMouseEventArgs			mouseEvents_;
 
-	SceneNode					*currentObj_;
+	// SceneNode					*currentObj_;
 	SceneController				&scene_;
 
 

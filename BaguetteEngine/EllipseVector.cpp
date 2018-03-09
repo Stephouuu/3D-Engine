@@ -11,29 +11,15 @@ EllipseVector::~EllipseVector(void)
 void EllipseVector::invalidate(void)
 {
 	float ot = getOutlineThickness();
+	float w = getScale().x;
+	float h = getScale().y;
 
-	reallocate(w_ + ot * 2, h_ + ot * 2);
+	reallocate(w + ot * 2, h + ot * 2);
 	drawFboBegin();
 		ofSetColor(getFillColor());
-		ofDrawEllipse(ofPoint((w_ / 2.f) + ot, (h_ / 2.f) + ot), w_ + ot, h_ + ot);
+		ofDrawEllipse(ofPoint((w / 2.f) + ot, (h / 2.f) + ot), w + ot, h + ot);
 
 		ofSetColor(getOutlineColor());
-		ofDrawEllipse(ofPoint(w_ / 2.f + ot, h_ / 2.f + ot), w_ + 2 * ot, h_ + 2 * ot);
+		ofDrawEllipse(ofPoint(w / 2.f + ot, h / 2.f + ot), w + 2 * ot, h + 2 * ot);
 	drawFboEnd();
-}
-
-void EllipseVector::setDimension(int w, int h)
-{
-	setWidth(w);
-	setHeight(h);
-}
-
-void EllipseVector::setWidth(int w)
-{
-	w_ = w;
-}
-
-void EllipseVector::setHeight(int h)
-{
-	h_ = h;
 }
