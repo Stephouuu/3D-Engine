@@ -37,8 +37,9 @@ void AScene::setDrawablePosition(const Identifiable & drawableId, const ofVec3f 
 void AScene::setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);
+	ofQuaternion	qOrientation(orientation.x, ofVec3f(1, 0, 0), orientation.y, ofVec3f(0, 1, 0), orientation.z, ofVec3f(0, 0, 1));
 
-	node->getDrawable()->setOrientation(orientation);
+	node->getDrawable()->setOrientation(qOrientation);
 	historic_.pushTransformation(std::make_pair(drawableId, node->getDrawable()->getLocalTransformMatrix()));
 }
 
