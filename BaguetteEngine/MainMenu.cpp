@@ -161,8 +161,7 @@ void MainMenu::buttonPressed2D(const void * sender)
 	ofxButton * button = (ofxButton*)sender;
 	Identifiable createObj;
 
-	std::cerr << "insert " << button->getName() << std::endl;
-	/* if (button->getName() == "Ajouter un triangle")
+	if (button->getName() == "Ajouter un triangle")
 		createObj = scene_.instanciateDrawable("triangle");
 	else if (button->getName() == "Ajouter une ellipse")
 		createObj = scene_.instanciateDrawable("ellipse");
@@ -171,26 +170,8 @@ void MainMenu::buttonPressed2D(const void * sender)
 	else if (button->getName() == "Ajouter un cercle")
 		createObj = scene_.instanciateDrawable("circle");
 	else if (button->getName() == "Ajouter un rectangle")
-		createObj = scene_.instanciateDrawable("rectangle"); */
-	/* Identifiable createObj;
+		createObj = scene_.instanciateDrawable("rectangle");
 
-	if (button->getName() == "Ajouter une sphere")
-		createObj = scene_.instanciateDrawable("sphere");
-	else if (button->getName() == "Ajouter un plan")
-		createObj = scene_.instanciateDrawable("plane");
-	else if (button->getName() == "Ajouter un cube")
-		createObj = scene_.instanciateDrawable("cube");
-	else if (button->getName() == "Ajouter un cone")
-		createObj = scene_.instanciateDrawable("cone");
-	else if (button->getName() == "Exporter la scene")
-	{
-		exportImg_.Export("screenshot");
-		return;
-	}
-	else
-		return;
-
-	scene_.setFocusedDrawable(createObj);*/ 
 	editMenu_.setFocus(createObj);
 }
 
