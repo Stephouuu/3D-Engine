@@ -61,6 +61,7 @@ const Identifiable & SceneController::instanciateDrawable(const std::string & ty
 {
 	try {
 		const Identifiable & id = (*currentScene_)->instanciateDrawable(type, parent);
+		setFocusedDrawable(id);
 		onGraphSceneChanged_();
 		return id;
 	}

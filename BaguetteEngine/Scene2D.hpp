@@ -4,6 +4,9 @@
 #include "AVectorPrimitive.hpp"
 
 #include "TriangleVector.hpp"
+#include "EllipseVector.hpp"
+#include "PointVector.hpp"
+#include "RectangleVector.hpp"
 
 class Scene2D : public AScene
 {

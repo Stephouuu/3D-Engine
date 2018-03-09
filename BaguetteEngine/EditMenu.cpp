@@ -76,8 +76,9 @@ void EditMenu::vecSliderRotationChange(ofColor & color)
 
 void EditMenu::setValues()
 {
-	AMesh *currentMesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
+	// AMesh *currentMesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
 	// AMesh *currentMesh = currentObj_->getMesh();
+	IDrawable *currentDrawable = currentObj_->getDrawable();
 	if (currentObj_ == nullptr)
 	{
 		position_.setValue(ofVec3f(0, 0, 0));
@@ -86,11 +87,11 @@ void EditMenu::setValues()
 	}
 	else
 	{
-		ofVec3f position = currentMesh->getPosition();
+		ofVec3f position = currentDrawable->getPosition();
 		position_.setValue(ofVec3f(position.x, position.y, position.z));
-		ofVec3f scale = currentMesh->getScale();
+		ofVec3f scale = currentDrawable->getScale();
 		size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
-		ofColor color = currentMesh->getFillColor();
+		ofColor color = currentDrawable->getFillColor();
 		colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
 		//const float roll = currentMesh->getRoll();
 		//const float yawl = currentMesh->get
