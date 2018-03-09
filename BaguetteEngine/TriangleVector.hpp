@@ -11,9 +11,9 @@ public:
 
 	virtual void invalidate(void);
 
-	void setSize(float size);
+	// void setSize(float size);
 
 private:
-	float size_;
+	// float size_;
 };
 

@@ -70,6 +70,10 @@ void AMesh::draw(ARenderer & renderer)
 	shader_.end();
 }
 
+void AMesh::invalidate(void)
+{
+}
+
 void AMesh::initColor(void)
 {
 	const std::vector<ofPoint> & vertices = vbo_.getVertices();

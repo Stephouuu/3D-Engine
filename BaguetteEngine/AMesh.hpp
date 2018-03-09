@@ -38,6 +38,8 @@ public:
 	virtual void update(float dt);
 	virtual void draw(ARenderer & renderer);
 
+	virtual void invalidate(void);
+
 private:
 	void initColor(void);
 

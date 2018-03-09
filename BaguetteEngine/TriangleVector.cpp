@@ -1,7 +1,7 @@
 #include "TriangleVector.hpp"
 
 TriangleVector::TriangleVector(void)
-	: size_(1)
+	// : size_(1)
 {
 }
 
@@ -11,17 +11,19 @@ TriangleVector::~TriangleVector(void)
 
 void TriangleVector::invalidate(void)
 {
+	std::cout << "invalidate triangle" << std::endl;
+	float size = getScale().x;
 	int ot = getOutlineThickness();
-	float altitude = std::sqrt(3) / 2.f * size_;
-	ofPoint fboSize = { (size_ * 1.5f) + (ot * 4), (size_ * 1.5f) + (ot * 4) };
+	float altitude = std::sqrt(3) / 2.f * size;
+	ofPoint fboSize = { (size * 1.5f) + (ot * 4), (size * 1.5f) + (ot * 4) };
 	ofPoint fboMiddle = { fboSize.x / 2.f, fboSize.y / 2.f };
 
 	if (getAlignment() == Alignment::Middle) {
 		setOrigin(fboMiddle);
 	}
 
-	ofPoint p1 = { fboMiddle.x - size_ / 2.f, fboMiddle.y - size_ / 2.f };
-	ofPoint p2 = { fboMiddle.x + size_ / 2.f, fboMiddle.y - size_ / 2.f };
+	ofPoint p1 = { fboMiddle.x - size / 2.f, fboMiddle.y - size / 2.f };
+	ofPoint p2 = { fboMiddle.x + size / 2.f, fboMiddle.y - size / 2.f };
 	ofPoint p3 = { fboMiddle.x,	fboMiddle.y + altitude / 2.f };
 
 	/* ofPoint p1InRot = MathUtils::Rotate2D(p1, getRotation(), fboMiddle);
@@ -45,10 +47,10 @@ void TriangleVector::invalidate(void)
 		ofSetColor(getOutlineColor());
 		// ofDrawTriangle(p1OutRot, p2OutRot, p3OutRot);
 		ofDrawTriangle(p1Out, p2Out, p3Out);
-		drawFboEnd();
+	drawFboEnd();
 }
 
-void TriangleVector::setSize(float size)
+/* void TriangleVector::setSize(float size)
 {
 	size_ = size;
-}
+} */
