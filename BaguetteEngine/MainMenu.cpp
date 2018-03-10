@@ -22,7 +22,10 @@ void MainMenu::setup()
 	fileGroup_.setup();
 	fileGroup_.setName("Fichier");
 	fileGroup_.add(exportScene_.setup("Exporter la scene"));
+	fileGroup_.add(importImage_.setup("Importer une Image"));
+
 	exportScene_.addListener(this, &MainMenu::buttonPressedFile);
+	importImage_.addListener(this, &MainMenu::buttonPressedFile);
 
 	modeGroup_.setup();
 
@@ -138,6 +141,21 @@ void MainMenu::buttonPressedFile(const void * sender)
 	if (button->getName() == "Exporter la scene")
 	{
 		exportImg_.Export("screenshot");
+		return;
+	}
+
+	else if (button->getName() == "Importer une Image")
+	{
+		Image uneImage;
+		std::cout << "ca passe" << std::endl;
+		uneImage.Load();
+		scene_.AddImage(uneImage);
+
+		std::cout<<scene_.getCache().getSize()<<std::endl;
+		for (auto image = scene_.getCache().getObject().begin(); image != scene_.getCache().getObject().end() ; ++image)
+		{
+			std::cout << image->first <<std::endl;
+		}
 		return;
 	}
 }

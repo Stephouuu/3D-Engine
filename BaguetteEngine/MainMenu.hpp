@@ -49,6 +49,7 @@ private:
 	ofxButton			swapMode_;
 
 	ofxButton			exportScene_;
+	ofxButton			importImage_;
 	ofMouseEventArgs	mouseEvents_;
 
 	SceneController		&scene_;

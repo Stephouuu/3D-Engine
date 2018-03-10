@@ -20,11 +20,11 @@ Image::~Image()
 {
 }
 
-void Image::Load(std::string filename)
+void Image::Load()
 {
 	ofFileDialogResult result = ofSystemLoadDialog("Load file");
 	if (result.bSuccess) {
-		string path = result.getPath();
+		path = result.getPath();
 		name = result.getName();
 		// load your file at `path`
 		theImg.load(path);

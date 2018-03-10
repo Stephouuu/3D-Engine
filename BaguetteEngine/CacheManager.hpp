@@ -16,6 +16,8 @@ public:
 	void insert(Key const& key, Cache const& cache);
 	Cache const& at(Key const& key) const;
 	bool find(Key const& key) const;
+	const int getSize() const;
+	const std::unordered_map<Key, Cache> & getObject() const;
 
 private:
 	std::unordered_map<Key, Cache> _cache;
@@ -47,4 +49,17 @@ template<typename Key, typename Cache>
 bool CacheManager<Key, Cache>::find(Key const& key) const
 {
 	return (_cache.find(key) != _cache.end());
+}
+
+template<typename Key, typename Cache>
+const int CacheManager<Key, Cache>::getSize() const
+{
+	return _cache.size();
+
+}
+
+template<typename Key, typename Cache>
+const std::unordered_map<Key, Cache> & CacheManager<Key, Cache>::getObject() const
+{
+	return _cache;
 }

@@ -54,6 +54,7 @@ public:
 	const Identifiable * getFocusedDrawable(void) const;
 
 	void AddImage(const Image & img);
+	const CacheManager<string, ofImage> & getCache() const;
 	SceneNode * ensureDrawableExistance(const Identifiable & drawableId);
 
 private:
@@ -64,6 +65,5 @@ private:
 	std::function<void(void)> onGraphSceneChanged_;
 	std::function<void(const Identifiable &)> onFocusChanged_;
 
-	string pathkey;
 	CacheManager<string, ofImage> cacheManager;
 };
