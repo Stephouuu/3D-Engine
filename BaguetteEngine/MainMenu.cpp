@@ -30,10 +30,12 @@ void MainMenu::setup()
 	modeGroup_.setup();
 
 	primitiveGroup_.setup();
+	model3DGroup_.setup();
 	refresh3D();
 
 	insertGroup_.setup();
 	insertGroup_.setName("Inserer");
+	insertGroup_.add(&model3DGroup_);
 	insertGroup_.add(&primitiveGroup_);
 
 	gui_.setup();
@@ -75,8 +77,10 @@ void MainMenu::refresh2D(void)
 	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
 	
 	primitiveGroup_.clear();
+	model3DGroup_.clear();
 	primitiveGroup_.setName("Primitives Vectorielles");
-	
+	insertGroup_.clear();
+
 	insertTriangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertEllipse_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertPoint_.removeListener(this, &MainMenu::buttonPressed2D);
@@ -95,6 +99,9 @@ void MainMenu::refresh2D(void)
 	insertPoint_.addListener(this, &MainMenu::buttonPressed2D);
 	insertCircle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
+
+	insertGroup_.setName("Inserer");
+	insertGroup_.add(&primitiveGroup_);
 	
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
@@ -113,6 +120,9 @@ void MainMenu::refresh3D(void)
 
 	primitiveGroup_.clear();
 	primitiveGroup_.setName("Primitives Geometriques");
+	model3DGroup_.clear();
+	model3DGroup_.setName("Modele 3D");
+	insertGroup_.clear();
 
 	insertSphere_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.removeListener(this, &MainMenu::buttonPressed3D);
@@ -124,13 +134,17 @@ void MainMenu::refresh3D(void)
 	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
 	primitiveGroup_.add(insertBox_.setup("Ajouter un cube"));
 	primitiveGroup_.add(insertCone_.setup("Ajouter un cone"));
-	insertGroup_.add(insert3DModel_.setup("Inserer un modele 3D"));
+	model3DGroup_.add(insert3DModel_.setup("Ajouter un modele 3D"));
 
 	insertSphere_.addListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.addListener(this, &MainMenu::buttonPressed3D);
 	insertBox_.addListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.addListener(this, &MainMenu::buttonPressed3D);
 	insert3DModel_.addListener(this, &MainMenu::buttonPressed3DModel);
+
+	insertGroup_.setName("Inserer");
+	insertGroup_.add(&model3DGroup_);
+	insertGroup_.add(&primitiveGroup_);
 
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
@@ -208,9 +222,12 @@ void MainMenu::buttonPressed3DModel(const void * sender)
 	ofxButton	*button = (ofxButton*)sender;
 	std::string	path;
 
-	ofFileDialogResult result = ofSystemLoadDialog("Load file");
-	if (result.bSuccess) {
-		path = result.getPath();
-		scene_.instanciateDrawable(path);
+	if (button->getName() == "Ajouter un modele 3D")
+	{
+		ofFileDialogResult result = ofSystemLoadDialog("Load file");
+		if (result.bSuccess) {
+			path = result.getPath();
+			scene_.instanciateDrawable(path);
+		}
 	}
 }

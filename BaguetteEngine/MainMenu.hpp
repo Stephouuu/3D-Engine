@@ -33,6 +33,7 @@ private:
 	ofxPanel			gui_;
 	ofxGuiGroup			insertGroup_;
 	ofxGuiGroup			primitiveGroup_;
+	ofxGuiGroup			model3DGroup_;
 	ofxGuiGroup			fileGroup_;
 	ofxGuiGroup			modeGroup_;
 
