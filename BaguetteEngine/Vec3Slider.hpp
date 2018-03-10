@@ -7,7 +7,8 @@ class Vec3Slider : public ofxVec3Slider
 {
 public:
 	Vec3Slider();
-	~Vec3Slider();
+	virtual ~Vec3Slider();
+
 	void setValue(ofVec3f & vec);
 };
 

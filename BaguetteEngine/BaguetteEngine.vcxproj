@@ -239,6 +239,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformableHistory.cpp" />
     <ClCompile Include="TriangleVector.cpp" />
+    <ClCompile Include="Vec2Slider.cpp" />
     <ClCompile Include="Vec3Slider.cpp" />
     <ClCompile Include="WindowRenderer.cpp" />
   </ItemGroup>
@@ -512,6 +513,7 @@
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="TransformableHistory.hpp" />
     <ClInclude Include="TriangleVector.hpp" />
+    <ClInclude Include="Vec2Slider.hpp" />
     <ClInclude Include="Vec3Slider.hpp" />
     <ClInclude Include="WindowRenderer.hpp" />
   </ItemGroup>

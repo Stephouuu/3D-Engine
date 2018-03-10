@@ -206,6 +206,9 @@
     <ClCompile Include="Scene2D.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Vec2Slider.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1210,6 +1213,9 @@
     </ClInclude>
     <ClInclude Include="IDrawable.hpp">
       <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2Slider.hpp">
+      <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

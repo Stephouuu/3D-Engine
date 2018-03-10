@@ -48,9 +48,9 @@ void Application::keyReleased(int key)
 	case 'y':
 		scene_.redo();
 		break;
-	case 'm':
+	/* case 'm':
 		scene_.swapMode();
-		break;
+		break; */
 	default:
 		break;
 	}

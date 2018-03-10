@@ -136,9 +136,18 @@ const Identifiable * SceneController::getFocusedDrawable(void) const
 void SceneController::AddImage(const Image & img)
 {
 	if (img.isLoaded == true)
+	{
 		cacheManager.insert(img.path, img.theImg);
+		std::cout << img.path << std::endl;
+
+	}
 	else
 		throw std::invalid_argument("Cant insert an empty image.");
+}
+
+const CacheManager<string, ofImage> & SceneController::getCache() const
+{
+	return cacheManager;
 }
 
 SceneNode * SceneController::ensureDrawableExistance(const Identifiable & drawableId)

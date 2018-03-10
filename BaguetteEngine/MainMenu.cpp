@@ -22,7 +22,10 @@ void MainMenu::setup()
 	fileGroup_.setup();
 	fileGroup_.setName("Fichier");
 	fileGroup_.add(exportScene_.setup("Exporter la scene"));
+	fileGroup_.add(importImage_.setup("Importer une Image"));
+
 	exportScene_.addListener(this, &MainMenu::buttonPressedFile);
+	importImage_.addListener(this, &MainMenu::buttonPressedFile);
 
 	modeGroup_.setup();
 
@@ -140,6 +143,21 @@ void MainMenu::buttonPressedFile(const void * sender)
 		exportImg_.Export("screenshot");
 		return;
 	}
+
+	else if (button->getName() == "Importer une Image")
+	{
+		Image uneImage;
+		std::cout << "ca passe" << std::endl;
+		uneImage.Load();
+		scene_.AddImage(uneImage);
+
+		std::cout<<scene_.getCache().getSize()<<std::endl;
+		for (auto image = scene_.getCache().getObject().begin(); image != scene_.getCache().getObject().end() ; ++image)
+		{
+			std::cout << image->first <<std::endl;
+		}
+		return;
+	}
 }
 
 void MainMenu::buttonPressedMode(const void * sender)
@@ -165,8 +183,6 @@ void MainMenu::buttonPressed2D(const void * sender)
 		createObj = scene_.instanciateDrawable("circle");
 	else if (button->getName() == "Ajouter un rectangle")
 		createObj = scene_.instanciateDrawable("rectangle");
-
-	// editMenu_.setFocus(createObj);
 }
 
 void MainMenu::buttonPressed3D(const void * sender)
@@ -182,13 +198,4 @@ void MainMenu::buttonPressed3D(const void * sender)
 		createObj = scene_.instanciateDrawable("cube");
 	else if (button->getName() == "Ajouter un cone")
 		createObj = scene_.instanciateDrawable("cone");
-	else if (button->getName() == "Exporter la scene")
-	{
-		exportImg_.Export("screenshot");
-		return;
-	}
-	else
-		return;
-
-	// editMenu_.setFocus(createObj);
 }

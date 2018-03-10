@@ -9,7 +9,7 @@ public:
 	Image();
 	Image(std::string filename);
 	~Image();
-	void Load(std::string filename);
+	void Load();
 	void Export(std::string filename);
 	void Draw(float x, float y);
 	void Draw(float x, float y, int width, int heigh);
