@@ -28,6 +28,15 @@ public:
 		return std::move(node);
 	}
 
+	template <typename T, typename U>
+	static SceneNode::Ptr CreateSceneNode(const std::string &path)
+	{
+		SceneNode::Ptr node(new SceneNode(++cpt));
+		node->setDrawable(new T(U(path)()));
+		return std::move(node);
+	}
+
+
 public:
 	SceneGraph(void);
 	~SceneGraph(void);

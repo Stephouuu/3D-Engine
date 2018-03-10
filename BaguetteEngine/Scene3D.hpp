@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "AScene.hpp"
 #include "AMesh.hpp"
 
@@ -7,6 +9,7 @@
 #include "PlaneGenerator.hpp"
 #include "CubeGenerator.hpp"
 #include "ConeGenerator.hpp"
+#include "Model3DGenerator.hpp"
 
 class Scene3D : public AScene
 {

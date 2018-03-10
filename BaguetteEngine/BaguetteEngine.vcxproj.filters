@@ -214,6 +214,9 @@
     <ClCompile Include="ColorSlider.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Model3DGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -398,9 +401,6 @@
     </Filter>
     <Filter Include="src\Graphics\Vector">
       <UniqueIdentifier>{f846f5f8-d222-4b66-ad06-5816e5f60e1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphics\Vector\Shape">
-      <UniqueIdentifier>{e386280c-7331-4d39-aee9-125d24126051}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Graphics\Vector\Primitive">
       <UniqueIdentifier>{c1140c66-75bd-42f0-9379-68c88fd83a06}</UniqueIdentifier>
@@ -1226,6 +1226,9 @@
     </ClInclude>
     <ClInclude Include="ColorSlider.hpp">
       <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Model3DGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

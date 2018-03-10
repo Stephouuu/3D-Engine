@@ -30,10 +30,12 @@ void MainMenu::setup()
 	modeGroup_.setup();
 
 	primitiveGroup_.setup();
+	model3DGroup_.setup();
 	refresh3D();
 
 	insertGroup_.setup();
 	insertGroup_.setName("Inserer");
+	insertGroup_.add(&model3DGroup_);
 	insertGroup_.add(&primitiveGroup_);
 
 	gui_.setup();
@@ -75,13 +77,16 @@ void MainMenu::refresh2D(void)
 	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
 	
 	primitiveGroup_.clear();
+	model3DGroup_.clear();
 	primitiveGroup_.setName("Primitives Vectorielles");
-	
+	insertGroup_.clear();
+
 	insertTriangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertEllipse_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertPoint_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertCircle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.removeListener(this, &MainMenu::buttonPressed2D);
+	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
 
 	primitiveGroup_.add(insertTriangle_.setup("Ajouter un triangle"));
 	primitiveGroup_.add(insertEllipse_.setup("Ajouter une ellipse"));
@@ -94,6 +99,9 @@ void MainMenu::refresh2D(void)
 	insertPoint_.addListener(this, &MainMenu::buttonPressed2D);
 	insertCircle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
+
+	insertGroup_.setName("Inserer");
+	insertGroup_.add(&primitiveGroup_);
 	
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
@@ -112,21 +120,31 @@ void MainMenu::refresh3D(void)
 
 	primitiveGroup_.clear();
 	primitiveGroup_.setName("Primitives Geometriques");
+	model3DGroup_.clear();
+	model3DGroup_.setName("Modele 3D");
+	insertGroup_.clear();
 
 	insertSphere_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.removeListener(this, &MainMenu::buttonPressed3D);
+	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
 
 	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
 	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
 	primitiveGroup_.add(insertBox_.setup("Ajouter un cube"));
 	primitiveGroup_.add(insertCone_.setup("Ajouter un cone"));
+	model3DGroup_.add(insert3DModel_.setup("Ajouter un modele 3D"));
 
 	insertSphere_.addListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.addListener(this, &MainMenu::buttonPressed3D);
 	insertBox_.addListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.addListener(this, &MainMenu::buttonPressed3D);
+	insert3DModel_.addListener(this, &MainMenu::buttonPressed3DModel);
+
+	insertGroup_.setName("Inserer");
+	insertGroup_.add(&model3DGroup_);
+	insertGroup_.add(&primitiveGroup_);
 
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
@@ -171,18 +189,17 @@ void MainMenu::buttonPressedMode(const void * sender)
 void MainMenu::buttonPressed2D(const void * sender)
 {
 	ofxButton * button = (ofxButton*)sender;
-	Identifiable createObj;
 
 	if (button->getName() == "Ajouter un triangle")
-		createObj = scene_.instanciateDrawable("triangle");
+		scene_.instanciateDrawable("triangle");
 	else if (button->getName() == "Ajouter une ellipse")
-		createObj = scene_.instanciateDrawable("ellipse");
+		scene_.instanciateDrawable("ellipse");
 	else if (button->getName() == "Ajouter un point")
-		createObj = scene_.instanciateDrawable("point");
+		scene_.instanciateDrawable("point");
 	else if (button->getName() == "Ajouter un cercle")
-		createObj = scene_.instanciateDrawable("circle");
+		scene_.instanciateDrawable("circle");
 	else if (button->getName() == "Ajouter un rectangle")
-		createObj = scene_.instanciateDrawable("rectangle");
+		scene_.instanciateDrawable("rectangle");
 }
 
 void MainMenu::buttonPressed3D(const void * sender)
@@ -191,11 +208,26 @@ void MainMenu::buttonPressed3D(const void * sender)
 	Identifiable createObj;
 
 	if (button->getName() == "Ajouter une sphere")
-		createObj = scene_.instanciateDrawable("sphere");
+		scene_.instanciateDrawable("sphere");
 	else if (button->getName() == "Ajouter un plan")
-		createObj = scene_.instanciateDrawable("plane");
+		scene_.instanciateDrawable("plane");
 	else if (button->getName() == "Ajouter un cube")
-		createObj = scene_.instanciateDrawable("cube");
+		scene_.instanciateDrawable("cube");
 	else if (button->getName() == "Ajouter un cone")
-		createObj = scene_.instanciateDrawable("cone");
+		scene_.instanciateDrawable("cone");
+}
+
+void MainMenu::buttonPressed3DModel(const void * sender)
+{
+	ofxButton	*button = (ofxButton*)sender;
+	std::string	path;
+
+	if (button->getName() == "Ajouter un modele 3D")
+	{
+		ofFileDialogResult result = ofSystemLoadDialog("Load file");
+		if (result.bSuccess) {
+			path = result.getPath();
+			scene_.instanciateDrawable(path);
+		}
+	}
 }

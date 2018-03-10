@@ -24,6 +24,9 @@ Scene3D::Scene3D(void)
 	setDrawableColor(planId, ofColor::orange);
 	setDrawableColor(sphereId, ofColor::red);
 
+	//const Identifiable & modelId = instanciateDrawable("dragon.obj");
+	//setDrawablePosition(modelId, ofVec3f(-5, 2, 0));
+
 	// removeMesh(planId);
 
 	SceneNode::TreeData data;
@@ -63,6 +66,10 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 		node = SceneGraph::CreateSceneNode<AMesh, CubeGenerator>();
 	else if (type == "cone")
 		node = SceneGraph::CreateSceneNode<AMesh, ConeGenerator>();
+	else if (type.find("/") != std::string::npos
+				|| type.find("\\") != std::string::npos
+				|| type.find(".") != std::string::npos)
+		node = SceneGraph::CreateSceneNode<AMesh, Model3DGenerator>(type);
 	else
 		std::cerr << type << " not found !" << std::endl;
 	try {
