@@ -33,12 +33,11 @@ public:
 	void setOnSceneChanged(std::function<void(int)> callback);
 	void setOnGraphSceneChanged(std::function<void(void)> callback);
 	void setOnFocusChanged(std::function<void(const Identifiable &)> callback);
-	void setOnImageImported(std::function<void(void)> callback);
 
 	void update(float dt);
 	void render(ARenderer & renderer);
 
-	const Identifiable & instanciateDrawable(const std::string & type, const Identifiable & parent = Identifiable());
+	const Identifiable & instanciateDrawable(const std::string & type);
 	void removeDrawable(const Identifiable & drawableId);
 
 	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos);
@@ -59,19 +58,16 @@ public:
 	void setFocusedDrawable(const Identifiable & drawableId);
 	const Identifiable * getFocusedDrawable(void) const;
 
-	void AddImage(const Image & img);
-	void refreshImage();
+	void addImage(const Image & img);
 	const CacheManager<string, ofImage> & getCache() const;
 	SceneNode * ensureDrawableExistance(const Identifiable & drawableId);
 
 private:
-	// TriangleVector triangle_;
 	std::vector<std::unique_ptr<AScene> > scenes_;
 	std::vector<std::unique_ptr<AScene> >::const_iterator currentScene_;
 	std::function<void(int)> onSceneChanged_;
 	std::function<void(void)> onGraphSceneChanged_;
 	std::function<void(const Identifiable &)> onFocusChanged_;
-	std::function<void(void)> onImageImported_;
 
-	CacheManager<string, ofImage> cacheManager;
+	CacheManager<string, ofImage> cacheManager_;
 };

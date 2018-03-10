@@ -41,11 +41,6 @@ void SceneController::setOnSceneChanged(std::function<void(int)> callback)
 	onSceneChanged_ = callback;
 }
 
-void SceneController::setOnImageImported(std::function<void(void)> callback)
-{
-	onImageImported_ = callback;
-}
-
 void SceneController::setOnGraphSceneChanged(std::function<void(void)> callback)
 {
 	onGraphSceneChanged_ = callback;
@@ -66,9 +61,15 @@ void SceneController::render(ARenderer & renderer)
 	(*currentScene_)->render(renderer);
 }
 
-const Identifiable & SceneController::instanciateDrawable(const std::string & type, const Identifiable & parent)
+const Identifiable & SceneController::instanciateDrawable(const std::string & type)
 {
 	try {
+		Identifiable parent(0);
+		const Identifiable * focused = getFocusedDrawable();
+		if (focused) {
+			parent = *focused;
+		}
+
 		const Identifiable & id = (*currentScene_)->instanciateDrawable(type, parent);
 		setFocusedDrawable(id);
 		onGraphSceneChanged_();
@@ -81,37 +82,37 @@ const Identifiable & SceneController::instanciateDrawable(const std::string & ty
 
 void SceneController::removeDrawable(const Identifiable & drawableId)
 {
-	(*currentScene_)->removeDrawable(drawableId);
+	if (drawableId != 0) (*currentScene_)->removeDrawable(drawableId);
 }
 
 void SceneController::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos)
 {
-	(*currentScene_)->setDrawablePosition(drawableId, pos);
+	if (drawableId != 0) (*currentScene_)->setDrawablePosition(drawableId, pos);
 }
 
 void SceneController::setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation)
 {
-	(*currentScene_)->setDrawableRotation(drawableId, orientation);
+	if (drawableId != 0) (*currentScene_)->setDrawableRotation(drawableId, orientation);
 }
 
 void SceneController::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale)
 {
-	(*currentScene_)->setDrawableScale(drawableId, scale);
+	if (drawableId != 0) (*currentScene_)->setDrawableScale(drawableId, scale);
 }
 
 void SceneController::setDrawableColor(const Identifiable & drawableId, const ofColor & color)
 {
-	(*currentScene_)->setDrawableColor(drawableId, color);
+	if (drawableId != 0) (*currentScene_)->setDrawableColor(drawableId, color);
 }
 
 void SceneController::setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color)
 {
-	(*currentScene_)->setDrawableOutlineColor(drawableId, color);
+	if (drawableId != 0) (*currentScene_)->setDrawableOutlineColor(drawableId, color);
 }
 
 void SceneController::setDrawableOutlineThickness(const Identifiable & drawableId, int thickness)
 {
-	(*currentScene_)->setDrawableOutlineThickness(drawableId, thickness);
+	if (drawableId != 0) (*currentScene_)->setDrawableOutlineThickness(drawableId, thickness);
 }
 
 void SceneController::setSceneColor(const ofColor & color)
@@ -158,27 +159,18 @@ const Identifiable * SceneController::getFocusedDrawable(void) const
 	return (*currentScene_)->getFocusedDrawable();
 }
 
-void SceneController::AddImage(const Image & img)
+void SceneController::addImage(const Image & img)
 {
-	if (img.isLoaded == true)
-	{
-		cacheManager.insert(img.name, img.theImg);
+	if (img.isLoaded) {
+		cacheManager_.insert(img.name, img.theImg);
+		return;
 	}
-	else
-		throw std::invalid_argument("Cant insert an empty image.");
-}
-
-void SceneController::refreshImage()
-{
-	if (onImageImported_)
-	{
-		onImageImported_();
-	}
+	throw std::invalid_argument("Cant insert an empty image.");
 }
 
 const CacheManager<string, ofImage> & SceneController::getCache() const
 {
-	return cacheManager;
+	return cacheManager_;
 }
 
 SceneNode * SceneController::ensureDrawableExistance(const Identifiable & drawableId)

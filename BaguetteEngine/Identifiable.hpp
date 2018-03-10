@@ -19,9 +19,6 @@ public:
 
 	Identifiable & operator=(const Identifiable & other);
 
-	bool operator==(const Identifiable & other);
-	bool operator!=(const Identifiable & other);
-
 private:
 	int id_;
 	std::string name_;
@@ -31,4 +28,34 @@ inline std::ostream & operator<<(std::ostream & os, const Identifiable & identif
 {
 	os << identifiable.getID();
 	return os;
+}
+
+inline bool operator==(const Identifiable & lhs, const Identifiable & rhs)
+{
+	return lhs.getID() == rhs.getID();
+}
+
+inline bool operator==(const Identifiable & lhs, const Identifiable * rhs)
+{
+	return lhs.getID() == rhs->getID();
+}
+
+inline bool operator==(const Identifiable & lhs, int rhs)
+{
+	return lhs.getID() == rhs;
+}
+
+inline bool operator!=(const Identifiable & lhs, const Identifiable & rhs)
+{
+	return lhs.getID() != rhs.getID();
+}
+
+inline bool operator!=(const Identifiable & lhs, const Identifiable * rhs)
+{
+	return lhs.getID() != rhs->getID();
+}
+
+inline bool operator!=(const Identifiable & lhs, int rhs)
+{
+	return lhs.getID() != rhs;
 }

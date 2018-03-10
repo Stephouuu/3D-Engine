@@ -162,20 +162,14 @@ void MainMenu::buttonPressedFile(const void * sender)
 {
 	ofxButton * button = (ofxButton*)sender;
 
-	if (button->getName() == "Exporter la scene")
-	{
+	if (button->getName() == "Exporter la scene") {
 		exportImg_.Export("screenshot");
-		return;
 	}
-
-	else if (button->getName() == "Importer une Image")
-	{
+	else if (button->getName() == "Importer une Image") {
 		Image uneImage;
 		uneImage.Load();
-		scene_.AddImage(uneImage);
+		scene_.addImage(uneImage);
 		editMenu_.setIsImported(true);
-
-		return;
 	}
 }
 

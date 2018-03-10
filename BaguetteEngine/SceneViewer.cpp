@@ -36,6 +36,7 @@ void SceneViewer::refresh(int newEditorDimension)
 void SceneViewer::focus(const Identifiable & id)
 {
 	(void)id;
+	update();
 }
 
 void SceneViewer::windowsResized(const ofPoint & size)
@@ -45,6 +46,8 @@ void SceneViewer::windowsResized(const ofPoint & size)
 
 void SceneViewer::update(void)
 {
+	const Identifiable * focused = scene_.getFocusedDrawable();
+
 	layout_.clear();
 	buttons_.clear();
 
@@ -53,22 +56,26 @@ void SceneViewer::update(void)
 
 	for (auto & it : data)
 	{
-		if (it.first > 0)
-			buttons_.emplace_back();
+		buttons_.emplace_back();
 	}
 
-	int i = 1;
+	int i = 0;
 	for (auto & it : buttons_)
 	{
 		std::ostringstream oss;
 
-		for (int j = 0; j < data[i].first - 1; ++j) {
+		for (int j = 0; j < data[i].first; ++j) {
 			oss << "  ";
 		}
 		oss << data[i].second.getID() << "-" << data[i].second.getName();
 		std::string s = oss.str();
 
 		it.setup(s);
+
+		if (focused && data[i].second.getID() == focused->getID()) {
+			it.setBackgroundColor(ofColor(255, 0, 0, 128));
+		}
+
 		it.addListener(this, &SceneViewer::buttonPressed);
 		layout_.add(&it);
 

@@ -49,13 +49,3 @@ Identifiable & Identifiable::operator=(const Identifiable & other)
 	setName(other.getName());
 	return *this;
 }
-
-bool Identifiable::operator==(const Identifiable & other)
-{
-	return getID() == other.getID();
-}
-
-bool Identifiable::operator!=(const Identifiable & other)
-{
-	return getID() != other.getID();
-}
