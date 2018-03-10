@@ -24,7 +24,7 @@ public:
 	void vecSliderPositionChange(ofVec3f & vec);
 	void vecSliderSizeChange(ofVec3f & vec);
 	void vecSliderColorChange(ofColor & color);
-	void vecSliderRotationChange(ofColor & color);
+	void vecSliderRotationChange(ofVec3f & color);
 
 	void vec2SliderPositionChange(ofVec2f & vec);
 	void vec2SliderSizeChange(ofVec2f & vec);

@@ -84,9 +84,9 @@ void SceneController::setDrawablePosition(const Identifiable & drawableId, const
 	(*currentScene_)->setDrawablePosition(drawableId, pos);
 }
 
-void SceneController::setDrawableRotation(const Identifiable & drawableId, float degrees, const ofVec3f & axis)
+void SceneController::setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation)
 {
-	(*currentScene_)->setDrawableRotation(drawableId, degrees, axis);
+	(*currentScene_)->setDrawableRotation(drawableId, orientation);
 }
 
 void SceneController::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale)

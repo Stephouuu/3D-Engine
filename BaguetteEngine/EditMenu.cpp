@@ -77,10 +77,10 @@ void EditMenu::vecSliderColorChange(ofColor & color)
 	if (focused != nullptr) scene_.setDrawableColor(*focused, color);
 }
 
-void EditMenu::vecSliderRotationChange(ofColor & color)
+void EditMenu::vecSliderRotationChange(ofVec3f & vec)
 {
-	//if (currentObj_ != nullptr)
-	//	scene_.setMeshScale(static_cast<Identifiable>(*currentObj_), ofVec3f(vec.x, vec.y, vec.z));
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec);
 }
 
 void EditMenu::vec2SliderPositionChange(ofVec2f & vec)
@@ -105,6 +105,7 @@ void EditMenu::baseSetup()
 	position_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderPositionChange);
 	size_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderSizeChange);
 	colorFill_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorChange);
+	rotation_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderRotationChange);
 
 	position2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderPositionChange);
 	size2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderSizeChange);
@@ -120,6 +121,7 @@ void EditMenu::updateValues(SceneNode *node)
 	// AMesh *currentMesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
 	// AMesh *currentMesh = currentObj_->getMesh();
 	IDrawable *currentDrawable = node->getDrawable();
+
 	if (currentDimension_ == 3)
 	{
 		if (currentDrawable) {
@@ -152,6 +154,5 @@ void EditMenu::updateValues(SceneNode *node)
 			size2d_.setValue(ofVec2f(0, 0));
 		}
 	}
-
 }
 

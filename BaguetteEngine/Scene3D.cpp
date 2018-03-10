@@ -18,7 +18,7 @@ Scene3D::Scene3D(void)
 
 	const Identifiable & plan2Id = instanciateDrawable("plane");
 	setDrawablePosition(plan2Id, ofVec3f(0, 1, 0));
-	setDrawableRotation(plan2Id, 20, ofVec3f(1, 1, 0));
+	setDrawableRotation(plan2Id, ofVec3f(20, 20, 0));
 
 	setDrawablePosition(plan2Id, ofVec3f(3, 0, 3));
 	setDrawableColor(planId, ofColor::orange);
