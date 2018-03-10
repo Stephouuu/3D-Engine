@@ -209,6 +209,9 @@
     <ClCompile Include="Vec2Slider.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Model3DGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1216,6 +1219,9 @@
     </ClInclude>
     <ClInclude Include="Vec2Slider.hpp">
       <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Model3DGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

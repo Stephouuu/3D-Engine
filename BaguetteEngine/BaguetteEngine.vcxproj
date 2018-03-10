@@ -189,6 +189,7 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
     <ClCompile Include="MathUtils.cpp" />
+    <ClCompile Include="Model3DGenerator.cpp" />
     <ClCompile Include="PlaneGenerator.cpp" />
     <ClCompile Include="PlanePrimitive.cpp" />
     <ClCompile Include="main.cpp" />
@@ -263,6 +264,7 @@
     <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
     <ClInclude Include="MathUtils.hpp" />
+    <ClInclude Include="Model3DGenerator.hpp" />
     <ClInclude Include="PlaneGenerator.hpp" />
     <ClInclude Include="PlanePrimitive.hpp" />
     <ClInclude Include="Identifiable.hpp" />

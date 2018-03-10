@@ -27,6 +27,7 @@ private:
 	void buttonPressedMode(const void * sender);
 	void buttonPressed2D(const void * sender);
 	void buttonPressed3D(const void * sender);
+	void buttonPressed3DModel(const void * sender);
 
 private:
 	ofxPanel			gui_;
@@ -39,6 +40,7 @@ private:
 	ofxButton			insertPlan_;
 	ofxButton			insertBox_;
 	ofxButton			insertCone_;
+	ofxButton			insert3DModel_;
 
 	ofxButton			insertTriangle_;
 	ofxButton			insertEllipse_;
