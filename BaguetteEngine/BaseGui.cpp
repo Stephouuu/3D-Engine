@@ -8,11 +8,11 @@ BaseGui::BaseGui(SceneController &scene)
 	scene_.setOnImageImported(std::bind(&EditMenu::refreshImages, editMenu_));
 }
 
-BaseGui::~BaseGui()
+BaseGui::~BaseGui(void)
 {
 }
 
-void BaseGui::draw()
+void BaseGui::draw(void)
 {
 	ofDisableDepthTest();
 	editMenu_.draw();
@@ -41,4 +41,11 @@ void BaseGui::focus(const Identifiable & id)
 	mainMenu_.focus(id);
 	editMenu_.focus(id);
 	sceneViewer_.focus(id);
+}
+
+void BaseGui::windowsResized(const ofPoint & size)
+{
+	mainMenu_.windowsResized(size);
+	editMenu_.windowsResized(size);
+	sceneViewer_.windowsResized(size);
 }

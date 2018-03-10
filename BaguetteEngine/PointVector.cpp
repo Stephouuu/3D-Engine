@@ -1,7 +1,6 @@
 #include "PointVector.hpp"
 
 PointVector::PointVector(void)
-	: radius_(1)
 {
 }
 
@@ -12,18 +11,14 @@ PointVector::~PointVector(void)
 void PointVector::invalidate(void)
 {
 	int ot = getOutlineThickness();
+	float r = std::max({ getScale().x, getScale().y, getScale().z });
 
-	reallocate((radius_ * 2.f) + (ot * 2), (radius_ * 2.f) + (ot * 2));
+	reallocate((r * 2.f) + (ot * 2), (r * 2.f) + (ot * 2));
 	drawFboBegin();
 		ofSetColor(getFillColor());
-		ofDrawCircle(ofPoint(radius_ + ot, radius_ + ot), radius_);
+		ofDrawCircle(ofPoint(r + ot, r + ot), r);
 
 		ofSetColor(getOutlineColor());
-		ofDrawCircle(ofPoint(radius_ + ot, radius_ + ot), radius_ + ot);
+		ofDrawCircle(ofPoint(r + ot, r + ot), r + ot);
 	drawFboEnd();
-}
-
-void PointVector::setRadius(float radius)
-{
-	radius_ = radius;
 }

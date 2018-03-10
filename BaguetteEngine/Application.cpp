@@ -26,12 +26,7 @@ void Application::draw(void)
 {
 	scene_.render(window_);
 
-	/*Image img("loutre.jpg");
-	img.Draw(0, 0, 300, 300);
-	img.DrawPartOfImage(400, 400, 200, 200, 0, 0);*/
-
 	gui_.draw();
-	//img.Export("screenshot.jpg");
 }
 
 void Application::keyPressed(int key)
@@ -48,9 +43,6 @@ void Application::keyReleased(int key)
 	case 'y':
 		scene_.redo();
 		break;
-	/* case 'm':
-		scene_.swapMode();
-		break; */
 	default:
 		break;
 	}
@@ -86,7 +78,7 @@ void Application::mouseExited(int x, int y)
 
 void Application::windowResized(int w, int h)
 {
-	std::cout << "new windows size: " << w << " " << h << std::endl;
+	gui_.windowsResized(ofPoint(w, h));
 }
 
 void Application::gotMessage(ofMessage msg)

@@ -22,6 +22,7 @@ public:
 	virtual void refresh(int newEditorDimension);
 	virtual void refreshImages();
 	virtual void focus(const Identifiable & id);
+	virtual void windowsResized(const ofPoint & size);
 
 	bool getIsImported();
 	void setIsImported(bool value);
@@ -41,6 +42,9 @@ public:
 private:
 	void baseSetup();
 	void updateValues(SceneNode *node);
+
+	void initListeners(void);
+	void removeListeners(void);
 
 private:
 	ofxPanel					gui_;

@@ -10,4 +10,5 @@ public:
 	virtual void setup(void) = 0;
 	virtual void refresh(int newEditorDimension) = 0;
 	virtual void focus(const Identifiable & id) = 0;
+	virtual void windowsResized(const ofPoint & size) = 0;
 };

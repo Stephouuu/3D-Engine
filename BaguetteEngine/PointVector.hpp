@@ -10,10 +10,6 @@ public:
 	PointVector(void);
 	virtual ~PointVector(void);
 
-	void setRadius(float radius);
 	virtual void invalidate(void);
-
-private:
-	float radius_;
 };
 

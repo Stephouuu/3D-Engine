@@ -1,13 +1,10 @@
 #include "ColorSlider.hpp"
 
-
-
-ColorSlider::ColorSlider()
+ColorSlider::ColorSlider(void)
 {
 }
 
-
-ColorSlider::~ColorSlider()
+ColorSlider::~ColorSlider(void)
 {
 }
 

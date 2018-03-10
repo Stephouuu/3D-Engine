@@ -48,6 +48,9 @@ public:
 	void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
 	void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
 
+	void setSceneColor(const ofColor & color);
+	const ofColor & getSceneColor(void) const;
+
 	void graphContent(SceneNode::TreeData & data) const;
 
 	void undo(void);

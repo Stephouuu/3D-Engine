@@ -9,35 +9,6 @@ Scene3D::Scene3D(void)
 	cam_.setPosition(ofVec3f(0, 10, 5));
 	cam_.rotate(0, 0, 0, 0);
 	cam_.lookAt(ofVec3f(0, 0, 0));
-
-	// demo
-	/*const Identifiable & sphereId = instanciateDrawable("sphere");
-	setDrawablePosition(sphereId, ofVec3f(5, 0, 2));
-	const Identifiable & planId = instanciateDrawable("plane", sphereId); // drew in (5, 2, 2).
-	setDrawablePosition(planId, ofVec3f(0, 2, 0));
-
-	const Identifiable & plan2Id = instanciateDrawable("plane");
-	setDrawablePosition(plan2Id, ofVec3f(0, 1, 0));
-	setDrawableRotation(plan2Id, ofVec3f(20, 20, 0));
-
-	setDrawablePosition(plan2Id, ofVec3f(3, 0, 3));
-	setDrawableColor(planId, ofColor::orange);
-	setDrawableColor(sphereId, ofColor::red);
-
-	//const Identifiable & modelId = instanciateDrawable("dragon.obj");
-	//setDrawablePosition(modelId, ofVec3f(-5, 2, 0));
-
-	// removeMesh(planId);
-
-	SceneNode::TreeData data;
-	graphContent(data);
-	std::clog << " Scene graph: " << std::endl;
-	for (auto & it : data) {
-		for (int i = 0; i < it.first; ++i) {
-			std::clog << "-";
-		}
-		std::clog << " " << "id: " << it.second.getID() << " name: " << it.second.getName() << std::endl;
-	} */
 }
 
 Scene3D::~Scene3D(void)

@@ -39,6 +39,7 @@ void MainMenu::setup()
 	insertGroup_.add(&primitiveGroup_);
 
 	gui_.setup();
+	gui_.setPosition(0, 10);
 	gui_.setName("Menu");
 	gui_.add(&fileGroup_);
 	gui_.add(&modeGroup_);
@@ -65,6 +66,11 @@ void MainMenu::refresh(int newEditorDimension)
 void MainMenu::focus(const Identifiable & id)
 {
 	(void)id;
+}
+
+void MainMenu::windowsResized(const ofPoint & size)
+{
+
 }
 
 void MainMenu::refresh2D(void)

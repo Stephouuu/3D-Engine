@@ -15,6 +15,8 @@ public:
 	virtual void refresh(int newEditorDimension);
 	virtual void focus(const Identifiable & id);
 
+	virtual void windowsResized(const ofPoint & size);
+
 private:
 	MainMenu			mainMenu_;
 	EditMenu			editMenu_;

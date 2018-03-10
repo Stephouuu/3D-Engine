@@ -18,6 +18,7 @@ public:
 	virtual void setup(void);
 	virtual void refresh(int newEditorDimension);
 	virtual void focus(const Identifiable & id);
+	virtual void windowsResized(const ofPoint & size);
 
 	void update(void);
 

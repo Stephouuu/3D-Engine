@@ -14,31 +14,6 @@ AVectorPrimitive::~AVectorPrimitive(void)
 {
 }
 
-/* void AVectorPrimitive::draw(void)
-{
-	fbo_.draw(position_ - origin_);
-}
-
-void AVectorPrimitive::setPosition(const ofVec2f & position)
-{
-	position_ = position;
-}
-
-const ofVec2f & AVectorPrimitive::getPosition(void) const
-{
-	return position_;
-}
-
-void AVectorPrimitive::setRotation(float angle)
-{
-	rotation_ = angle;
-}
-
-float AVectorPrimitive::getRotation(void) const
-{
-	return rotation_;
-} */
-
 void AVectorPrimitive::update(float dt)
 {
 	(void)dt;

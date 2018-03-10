@@ -14,15 +14,14 @@ void EditMenu::draw(void)
 	gui_.draw();
 	if (isImported) {
 		refreshImages();
-		// scene_.refreshImage();
 		isImported = false;
 	}
-	//gui_.mouseReleased(mouseEvents_);
-	//gui_.mouseEntered(mouseEvents_);
 }
 
 void EditMenu::setup()
 {
+	removeListeners();
+
 	colorFill_.setup("Couleur", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
 
 	position_.setup("Positions", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30));
@@ -44,6 +43,7 @@ void EditMenu::refresh(int newEditorDimension)
 {
 	currentDimension_ = newEditorDimension;
 	gui_.clear();
+	ofSetBackgroundColor(scene_.getSceneColor());
 	if (newEditorDimension == 2) {
 		gui_.add(&position2d_);
 		gui_.add(&size2d_);
@@ -69,13 +69,10 @@ void EditMenu::refreshImages()
 	selectTextures_.setName("Appliquer Images");
 	for (auto image = scene_.getCache().getObject().begin(); image != scene_.getCache().getObject().end(); ++image)
 	{
-		//std::size_t found = image->first.find_last_of("/\\");
-		//string name = image->first.substr(found + 1);
 		string name = image->first;
 		ofxButton *aButton = new ofxButton();
 		images_.push_back(aButton->setup(name));
 		selectTextures_.add(images_[i]);
-		
 		i++;
 	}
 }
@@ -87,6 +84,20 @@ void EditMenu::focus(const Identifiable & id)
 	if (node) {
 		updateValues(node);
 	}
+}
+
+void EditMenu::windowsResized(const ofPoint & size)
+{
+	const Identifiable * id = scene_.getFocusedDrawable();
+
+	gui_.clear();
+	setup();
+	refresh(currentDimension_);
+	refreshImages();
+	if (id) {
+		focus(*id);
+	}
+	gui_.setPosition(size.x - gui_.getWidth(), 10);
 }
 
 void EditMenu::vecSliderPositionChange(ofVec3f & vec)
@@ -145,8 +156,8 @@ void EditMenu::onThicknessChange(ofVec2f & vec)
 
 void EditMenu::onColorSceneChange(ofColor & color)
 {
-	std::cerr << color << std::endl;
-	
+	scene_.setSceneColor(color);
+	ofSetBackgroundColor(color);
 }
 
 void EditMenu::baseSetup()
@@ -155,22 +166,10 @@ void EditMenu::baseSetup()
 	gui_.setName("Menu d'edition");
 	gui_.setPosition(820, 10);
 
-	colorFill_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorChange);
-
 	selectTextures_.setup();
 	selectTextures_.setName("Appliquer Images");
 
-	position_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderPositionChange);
-	size_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderSizeChange);
-	rotation_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderRotationChange);
-
-	position2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderPositionChange);
-	size2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderSizeChange);
-	rotation2d_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vec2SliderRotationChange);
-
-	thickness_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::onThicknessChange);
-	colorOut_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorOutChange);
-	colorScene_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorSceneChange);
+	initListeners();
 
 	gui_.add(&position_);
 	gui_.add(&size_);
@@ -191,8 +190,6 @@ void EditMenu::setIsImported(bool value)
 
 void EditMenu::updateValues(SceneNode *node)
 {
-	// AMesh *currentMesh = dynamic_cast<AMesh *>(currentObj_->getDrawable());
-	// AMesh *currentMesh = currentObj_->getMesh();
 	IDrawable *currentDrawable = node->getDrawable();
 
 	if (currentDimension_ == 3)
@@ -235,5 +232,41 @@ void EditMenu::updateValues(SceneNode *node)
 			size2d_.setValue(ofVec2f(0, 0));
 		}
 	}
+
+	ofColor sceneColor = scene_.getSceneColor();
+	colorScene_.setValue(sceneColor);
 }
 
+void EditMenu::initListeners(void)
+{
+	colorFill_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorChange);
+
+	position_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderPositionChange);
+	size_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderSizeChange);
+	rotation_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderRotationChange);
+
+	position2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderPositionChange);
+	size2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderSizeChange);
+	rotation2d_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vec2SliderRotationChange);
+
+	thickness_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::onThicknessChange);
+	colorOut_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorOutChange);
+	colorScene_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorSceneChange);
+}
+
+void EditMenu::removeListeners(void)
+{
+	colorFill_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::vecSliderColorChange);
+
+	position_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vecSliderPositionChange);
+	size_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vecSliderSizeChange);
+	rotation_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vecSliderRotationChange);
+
+	position2d_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderPositionChange);
+	size2d_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderSizeChange);
+	rotation2d_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vec2SliderRotationChange);
+
+	thickness_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::onThicknessChange);
+	colorOut_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorOutChange);
+	colorScene_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorSceneChange);
+}

@@ -22,9 +22,11 @@ public:
 	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation);
 	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale);
 	void setDrawableColor(const Identifiable & drawableId, const ofFloatColor & color);
-	
 	void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
 	void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
+
+	void setSceneColor(const ofColor & color);
+	const ofColor & getSceneColor(void) const;
 
 	void graphContent(SceneNode::TreeData & data) const;
 
@@ -44,5 +46,6 @@ protected:
 	SceneGraph graph_;
 	TransformableHistory historic_;
 	const Identifiable * focusedDrawable_;
+	ofColor sceneColor_;
 };
 
