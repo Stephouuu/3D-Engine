@@ -5,6 +5,7 @@ BaseGui::BaseGui(SceneController &scene)
 {
 	scene_.setOnSceneChanged(std::bind(&BaseGui::refresh, this, std::placeholders::_1));
 	scene_.setOnFocusChanged(std::bind(&BaseGui::focus, this, std::placeholders::_1));
+	scene_.setOnImageImported(std::bind(&EditMenu::refreshImages, editMenu_));
 }
 
 

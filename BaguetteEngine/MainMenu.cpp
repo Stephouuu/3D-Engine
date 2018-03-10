@@ -165,15 +165,10 @@ void MainMenu::buttonPressedFile(const void * sender)
 	else if (button->getName() == "Importer une Image")
 	{
 		Image uneImage;
-		std::cout << "ca passe" << std::endl;
 		uneImage.Load();
 		scene_.AddImage(uneImage);
+		editMenu_.setIsImported(true);
 
-		std::cout<<scene_.getCache().getSize()<<std::endl;
-		for (auto image = scene_.getCache().getObject().begin(); image != scene_.getCache().getObject().end() ; ++image)
-		{
-			std::cout << image->first <<std::endl;
-		}
 		return;
 	}
 }

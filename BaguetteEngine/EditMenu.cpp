@@ -1,7 +1,7 @@
 #include "EditMenu.hpp"
 
 EditMenu::EditMenu(SceneController & scene)
-	: scene_(scene), currentDimension_(3)
+	: scene_(scene), currentDimension_(3), isImported(false)
 {
 }
 
@@ -12,7 +12,11 @@ EditMenu::~EditMenu(void)
 void EditMenu::draw(void)
 {
 	gui_.draw();
-
+	if (isImported) {
+		refreshImages();
+		// scene_.refreshImage();
+		isImported = false;
+	}
 	//gui_.mouseReleased(mouseEvents_);
 	//gui_.mouseEntered(mouseEvents_);
 }
@@ -47,6 +51,25 @@ void EditMenu::refresh(int newEditorDimension)
 		gui_.add(&rotation_);
 	}
 	gui_.add(&colorFill_);
+}
+
+void EditMenu::refreshImages()
+{
+	int i = 0;
+	images_.clear();
+	selectTextures_.clear();
+	selectTextures_.setName("Appliquer Images");
+	for (auto image = scene_.getCache().getObject().begin(); image != scene_.getCache().getObject().end(); ++image)
+	{
+		//std::size_t found = image->first.find_last_of("/\\");
+		//string name = image->first.substr(found + 1);
+		string name = image->first;
+		ofxButton *aButton = new ofxButton();
+		images_.push_back(aButton->setup(name));
+		selectTextures_.add(images_[i]);
+		
+		i++;
+	}
 }
 
 void EditMenu::focus(const Identifiable & id)
@@ -102,6 +125,10 @@ void EditMenu::baseSetup()
 	gui_.setName("Menu d'edition");
 	gui_.setPosition(820, 10);
 
+	selectTextures_.setup();
+	selectTextures_.setName("Appliquer Images");
+
+
 	position_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderPositionChange);
 	size_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderSizeChange);
 	colorFill_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorChange);
@@ -114,6 +141,17 @@ void EditMenu::baseSetup()
 	gui_.add(&size_);
 	gui_.add(&colorFill_);
 	gui_.add(&rotation_);
+	gui_.add(&selectTextures_);
+}
+
+bool EditMenu::getIsImported()
+{
+	return isImported;
+}
+
+void EditMenu::setIsImported(bool value)
+{
+	isImported = value;
 }
 
 void EditMenu::updateValues(SceneNode *node)
