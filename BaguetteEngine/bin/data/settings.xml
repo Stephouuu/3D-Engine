@@ -1,4 +1,7 @@
-<SceneViewer>
-	<Scene_viewer/>
-<SceneViewer/>
-</SceneViewer>
+<Menu_d'edition>
+	<Positions>0, 0, 0</Positions>
+	<Taille>1, 1, 1</Taille>
+	<Couleur>0, 0, 0, 255</Couleur>
+	<Rotation>0, 0, 0</Rotation>
+	<Appliquer_Images/>
+</Menu_d'edition>

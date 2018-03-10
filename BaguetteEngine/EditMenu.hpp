@@ -20,8 +20,11 @@ public:
 	virtual void draw();
 	virtual void setup();
 	virtual void refresh(int newEditorDimension);
+	virtual void refreshImages();
 	virtual void focus(const Identifiable & id);
 
+	bool getIsImported();
+	void setIsImported(bool value);
 	void vecSliderPositionChange(ofVec3f & vec);
 	void vecSliderSizeChange(ofVec3f & vec);
 	void vecSliderColorChange(ofColor & color);
@@ -41,6 +44,7 @@ private:
 
 private:
 	ofxPanel					gui_;
+	ofxGuiGroup					selectTextures_;
 	ofMouseEventArgs			mouseEvents_;
 
 	SceneController				&scene_;
@@ -59,5 +63,9 @@ private:
 	ColorSlider					colorOut_;
 	ColorSlider					colorScene_;
 	int							currentDimension_;
+
+	vector<ofxButton*>			images_;
+public:
+	bool				isImported;
 };
 

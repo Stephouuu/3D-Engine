@@ -41,6 +41,11 @@ void SceneController::setOnSceneChanged(std::function<void(int)> callback)
 	onSceneChanged_ = callback;
 }
 
+void SceneController::setOnImageImported(std::function<void(void)> callback)
+{
+	onImageImported_ = callback;
+}
+
 void SceneController::setOnGraphSceneChanged(std::function<void(void)> callback)
 {
 	onGraphSceneChanged_ = callback;
@@ -70,7 +75,7 @@ const Identifiable & SceneController::instanciateDrawable(const std::string & ty
 		return id;
 	}
 	catch (const std::runtime_error & e) {
-		std::cerr << e.what() << std::endl;
+		throw(e);
 	}
 }
 
@@ -147,12 +152,18 @@ void SceneController::AddImage(const Image & img)
 {
 	if (img.isLoaded == true)
 	{
-		cacheManager.insert(img.path, img.theImg);
-		std::cout << img.path << std::endl;
-
+		cacheManager.insert(img.name, img.theImg);
 	}
 	else
 		throw std::invalid_argument("Cant insert an empty image.");
+}
+
+void SceneController::refreshImage()
+{
+	if (onImageImported_)
+	{
+		onImageImported_();
+	}
 }
 
 const CacheManager<string, ofImage> & SceneController::getCache() const
