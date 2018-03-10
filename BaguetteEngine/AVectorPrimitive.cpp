@@ -27,6 +27,8 @@ void AVectorPrimitive::draw(ARenderer & renderer)
 		ofTranslate(getPosition());
 		ofRotateZ(getRotation());
 		fbo_.draw(-getOrigin());
+		ofRotateZ(-getRotation());
+		if (isFocused()) ofDrawAxis(100);
 	ofPopMatrix();
 
 	ofEnableDepthTest();

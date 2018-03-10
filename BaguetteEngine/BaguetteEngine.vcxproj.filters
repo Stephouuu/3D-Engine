@@ -405,6 +405,9 @@
     <Filter Include="src\Graphics\Vector\Primitive">
       <UniqueIdentifier>{c1140c66-75bd-42f0-9379-68c88fd83a06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Graphics\Vector\Shape">
+      <UniqueIdentifier>{7f3a7ac3-709d-4486-bd50-9ed46cc4f15e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h">

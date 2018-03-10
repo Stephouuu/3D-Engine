@@ -12,20 +12,13 @@ SceneNode::~SceneNode(void)
 
 void SceneNode::update(float dt)
 {
-	if (drawable_) {
-		drawable_->update(dt);
-	}
+	if (drawable_) drawable_->update(dt);
 }
 
 void SceneNode::render(ARenderer & renderer)
 {
-	for (auto & it : childs_)
-	{
-		it->render(renderer);
-	}
-	if (drawable_) {
-		drawable_->draw(renderer);
-	}
+	if (drawable_) drawable_->draw(renderer);
+	for (auto & it : childs_) it->render(renderer);
 }
 
 const Identifiable & SceneNode::attachTo(SceneNode::Ptr child, const Identifiable & parent)
@@ -63,9 +56,7 @@ SceneNode::Ptr SceneNode::detach(const Identifiable & node)
 
 void SceneNode::destroy(void)
 {
-	for (auto & it : childs_) {
-		it->destroy();
-	}
+	for (auto & it : childs_) it->destroy();
 	if (drawable_) {
 		delete (drawable_);
 		drawable_ = nullptr;

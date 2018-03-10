@@ -80,11 +80,13 @@ void AMesh::update(float dt)
 
 void AMesh::draw(ARenderer & renderer)
 {
+	ofPushMatrix();
+		ofTranslate(getGlobalPosition().x, getGlobalPosition().y, getGlobalPosition().z);
+		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
+	ofPopMatrix();
 	shader_.begin();
-	shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
-
-	renderer.draw(vbo_);
-	
+		shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
+		renderer.draw(vbo_);
 	shader_.end();
 }
 

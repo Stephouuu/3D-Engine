@@ -129,7 +129,12 @@ void AScene::setFocusedDrawable(const Identifiable & drawableId)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);
 
+	if (focusedDrawable_) {
+		SceneNode *focused = ensureDrawableExistance(*focusedDrawable_);
+		if (focused && focused != 0 && focused->getDrawable()) focused->getDrawable()->setFocused(false);
+	}
 	if (node) {
+		if (node->getDrawable()) node->getDrawable()->setFocused(true);
 		focusedDrawable_ = node;
 	}
 }

@@ -14,6 +14,7 @@ void WindowRenderer::create(void)
 	ofSetVerticalSync(true);
 	ofEnableDepthTest();
 	ofEnableSmoothing();
+	ofEnableAntiAliasing();
 	ofEnableAlphaBlending();
 
 	setFramerate(60);

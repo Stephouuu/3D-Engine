@@ -8,7 +8,7 @@ class ARenderer;
 struct IDrawable : public ofNode
 {
 public:
-	IDrawable(void) : rotation_(0) {};
+	IDrawable(void) : rotation_(0), focused_(false) {};
 	virtual ~IDrawable(void) {};
 
 	virtual void update(float dt) = 0;
@@ -33,6 +33,16 @@ public:
 		return rotation_;
 	}
 
+	void setFocused(bool v)
+	{
+		focused_ = v;
+	}
+
+	bool isFocused(void) const
+	{
+		return focused_;
+	}
+
 	virtual void invalidate(void) = 0;
 
 	virtual void onPositionChanged(void) override
@@ -52,4 +62,5 @@ public:
 
 private:
 	float rotation_;
+	bool focused_;
 };
