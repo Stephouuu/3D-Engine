@@ -1,7 +1,7 @@
 #include "AScene.hpp"
 
 AScene::AScene(void)
-	: focusedDrawable_(nullptr)
+	: dtUpdate_(0.000000f), focusedDrawable_(nullptr)
 {
 	setSceneColor(ofColor(63, 63, 63));
 }
@@ -12,6 +12,18 @@ AScene::~AScene(void)
 
 void AScene::update(float dt)
 {
+	if (dtUpdate_ > 0.000000f) {
+		dtUpdate_ -= dt;
+		if (dtUpdate_ <= 0.00000f) {
+			dtUpdate_ = 0;
+			const Identifiable * focused = getFocusedDrawable();
+			if (focused && focused->getID() > 0) {
+				SceneNode *node = ensureDrawableExistance(*focused);
+				historic_.pushTransformation(std::make_pair(*focused, node->getDrawable()->getLocalTransformMatrix()));
+			}
+		}
+	}
+
 	graph_.update(dt);
 }
 
@@ -27,36 +39,37 @@ void AScene::removeDrawable(const Identifiable & drawableId)
 	graph_.detach(drawableId);
 }
 
-void AScene::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos)
+void AScene::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);
 
 	node->getDrawable()->setPosition(pos);
-	historic_.pushTransformation(std::make_pair(drawableId, node->getDrawable()->getLocalTransformMatrix()));
+	if (save) dtUpdate_ = 0.400f;
 }
 
-void AScene::setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation)
+void AScene::setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation, bool save)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);
 	ofQuaternion	qOrientation(orientation.x, ofVec3f(1, 0, 0), orientation.y, ofVec3f(0, 1, 0), orientation.z, ofVec3f(0, 0, 1));
 
 	node->getDrawable()->setOrientation(qOrientation);
-	historic_.pushTransformation(std::make_pair(drawableId, node->getDrawable()->getLocalTransformMatrix()));
+	if (save) dtUpdate_ = 0.400f;
 }
 
-void AScene::setDrawableRotation(const Identifiable & drawableId, float degrees)
+void AScene::setDrawableRotation(const Identifiable & drawableId, float degrees, bool save)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);
 
 	node->getDrawable()->setRotation(degrees);
+	(void)save;
 }
 
-void AScene::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale)
+void AScene::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale, bool save)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);
 
 	node->getDrawable()->setScale(scale);
-	historic_.pushTransformation(std::make_pair(drawableId, node->getDrawable()->getLocalTransformMatrix()));
+	if (save) dtUpdate_ = 0.400f;
 }
 
 void AScene::setDrawableColor(const Identifiable & drawableId, const ofFloatColor & color)

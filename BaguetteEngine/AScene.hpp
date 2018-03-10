@@ -18,10 +18,10 @@ public:
 
 	void removeDrawable(const Identifiable & drawableId);
 
-	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos);
-	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation);
-	void setDrawableRotation(const Identifiable & drawableId, float degrees);
-	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale);
+	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save = true);
+	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation, bool save = true);
+	void setDrawableRotation(const Identifiable & drawableId, float degrees, bool save = true);
+	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale, bool save = true);
 	void setDrawableColor(const Identifiable & drawableId, const ofFloatColor & color);
 	void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
 	void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
@@ -46,6 +46,7 @@ public:
 protected:
 	SceneGraph graph_;
 	TransformableHistory historic_;
+	float dtUpdate_;
 	const Identifiable * focusedDrawable_;
 	ofColor sceneColor_;
 };

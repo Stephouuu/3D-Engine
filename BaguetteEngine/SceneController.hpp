@@ -33,6 +33,7 @@ public:
 	void setOnSceneChanged(std::function<void(int)> callback);
 	void setOnGraphSceneChanged(std::function<void(void)> callback);
 	void setOnFocusChanged(std::function<void(const Identifiable &)> callback);
+	void setOnTransformationChanged(std::function<void(void)> callback);
 
 	void update(float dt);
 	void render(ARenderer & renderer);
@@ -40,10 +41,10 @@ public:
 	const Identifiable & instanciateDrawable(const std::string & type);
 	void removeFocusedDrawable(void);
 
-	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos);
-	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation);
-	void setDrawableRotation(const Identifiable & drawableId, float degrees);
-	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale);
+	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save = true);
+	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation, bool save = true);
+	void setDrawableRotation(const Identifiable & drawableId, float degrees, bool save = true);
+	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale, bool save = true);
 	void setDrawableColor(const Identifiable & drawableId, const ofColor & color);
 	void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
 	void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
@@ -69,6 +70,7 @@ private:
 	std::function<void(int)> onSceneChanged_;
 	std::function<void(void)> onGraphSceneChanged_;
 	std::function<void(const Identifiable &)> onFocusChanged_;
+	std::function<void(void)> onTransformationChanged_;
 
 	CacheManager<string, ofImage> cacheManager_;
 };

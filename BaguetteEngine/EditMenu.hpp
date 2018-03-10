@@ -42,6 +42,7 @@ public:
 private:
 	void baseSetup();
 	void updateValues(SceneNode *node);
+	void onTransformationChange(void);
 
 	void initListeners(void);
 	void removeListeners(void);
@@ -67,6 +68,7 @@ private:
 	ColorSlider					colorOut_;
 	ColorSlider					colorScene_;
 	int							currentDimension_;
+	bool						resetting_;
 
 	vector<ofxButton*>			images_;
 public:

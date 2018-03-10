@@ -51,6 +51,11 @@ void SceneController::setOnFocusChanged(std::function<void(const Identifiable &)
 	onFocusChanged_ = callback;
 }
 
+void SceneController::setOnTransformationChanged(std::function<void(void)> callback)
+{
+	onTransformationChanged_ = callback;
+}
+
 void SceneController::update(float dt)
 {
 	(*currentScene_)->update(dt);
@@ -89,24 +94,24 @@ void SceneController::removeFocusedDrawable(void)
 	}
 }
 
-void SceneController::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos)
+void SceneController::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save)
 {
-	if (drawableId != 0) (*currentScene_)->setDrawablePosition(drawableId, pos);
+	if (drawableId != 0) (*currentScene_)->setDrawablePosition(drawableId, pos, save);
 }
 
-void SceneController::setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation)
+void SceneController::setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation, bool save)
 {
-	if (drawableId != 0) (*currentScene_)->setDrawableRotation(drawableId, orientation);
+	if (drawableId != 0) (*currentScene_)->setDrawableRotation(drawableId, orientation, save);
 }
 
-void SceneController::setDrawableRotation(const Identifiable & drawableId, float degrees)
+void SceneController::setDrawableRotation(const Identifiable & drawableId, float degrees, bool save)
 {
-	if (drawableId != 0) (*currentScene_)->setDrawableRotation(drawableId, degrees);
+	if (drawableId != 0) (*currentScene_)->setDrawableRotation(drawableId, degrees, save);
 }
 
-void SceneController::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale)
+void SceneController::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale, bool save)
 {
-	if (drawableId != 0) (*currentScene_)->setDrawableScale(drawableId, scale);
+	if (drawableId != 0) (*currentScene_)->setDrawableScale(drawableId, scale, save);
 }
 
 void SceneController::setDrawableColor(const Identifiable & drawableId, const ofColor & color)
@@ -142,11 +147,13 @@ void SceneController::graphContent(SceneNode::TreeData & data) const
 void SceneController::undo(void)
 {
 	(*currentScene_)->undo();
+	if (onTransformationChanged_) onTransformationChanged_();
 }
 
 void SceneController::redo(void)
 {
 	(*currentScene_)->redo();
+	if (onTransformationChanged_) onTransformationChanged_();
 }
 
 void SceneController::setFocusedDrawable(const Identifiable & drawableId)

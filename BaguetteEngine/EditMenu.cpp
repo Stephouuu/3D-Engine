@@ -1,8 +1,9 @@
 #include "EditMenu.hpp"
 
 EditMenu::EditMenu(SceneController & scene)
-	: scene_(scene), currentDimension_(3), isImported(false)
+	: scene_(scene), currentDimension_(3), resetting_(false), isImported(false)
 {
+	scene_.setOnTransformationChanged(std::bind(&EditMenu::onTransformationChange, this));
 }
 
 EditMenu::~EditMenu(void)
@@ -103,13 +104,13 @@ void EditMenu::windowsResized(const ofPoint & size)
 void EditMenu::vecSliderPositionChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	if (focused != nullptr) scene_.setDrawablePosition(*focused, ofVec3f(vec.x, vec.y, vec.z));
+	if (focused != nullptr) scene_.setDrawablePosition(*focused, ofVec3f(vec.x, vec.y, vec.z), !resetting_);
 }
 
 void EditMenu::vecSliderSizeChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	if (focused != nullptr) scene_.setDrawableScale(*focused, ofVec3f(vec.x, vec.y, vec.z));
+	if (focused != nullptr) scene_.setDrawableScale(*focused, ofVec3f(vec.x, vec.y, vec.z), !resetting_);
 }
 
 void EditMenu::vecSliderColorChange(ofColor & color)
@@ -121,25 +122,25 @@ void EditMenu::vecSliderColorChange(ofColor & color)
 void EditMenu::vecSliderRotationChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec);
+	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec, !resetting_);
 }
 
 void EditMenu::vec2SliderPositionChange(ofVec2f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	if (focused != nullptr) scene_.setDrawablePosition(*focused, ofVec3f(vec.x, vec.y, 0));
+	if (focused != nullptr) scene_.setDrawablePosition(*focused, ofVec3f(vec.x, vec.y, 0), !resetting_);
 }
 
 void EditMenu::vec2SliderSizeChange(ofVec2f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	if (focused != nullptr) scene_.setDrawableScale(*focused, ofVec3f(vec.x, vec.y, 0));
+	if (focused != nullptr) scene_.setDrawableScale(*focused, ofVec3f(vec.x, vec.y, 0), !resetting_);
 }
 
 void EditMenu::vec2SliderRotationChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z);
+	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
 }
 
 void EditMenu::onColorOutChange(ofColor & color)
@@ -192,6 +193,7 @@ void EditMenu::updateValues(SceneNode *node)
 {
 	IDrawable *currentDrawable = node->getDrawable();
 
+	resetting_ = true;
 	if (currentDimension_ == 3)
 	{
 		if (currentDrawable) {
@@ -235,6 +237,16 @@ void EditMenu::updateValues(SceneNode *node)
 
 	ofColor sceneColor = scene_.getSceneColor();
 	colorScene_.setValue(sceneColor);
+	resetting_ = false;
+}
+
+void EditMenu::onTransformationChange(void)
+{
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	if (focused && focused->getID() > 0) {
+		SceneNode * node = scene_.ensureDrawableExistance(*focused);
+		updateValues(node);
+	}
 }
 
 void EditMenu::initListeners(void)
