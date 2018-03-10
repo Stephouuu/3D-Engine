@@ -14,6 +14,7 @@ public:
 	enum InstantiableMesh
 	{
 		UNDEFINED,
+		MODEL,
 		SPHERE,
 		PLANE,
 		CUBE,
