@@ -16,24 +16,17 @@ public:
 	AVectorPrimitive(void);
 	virtual ~AVectorPrimitive(void);
 
-	// void draw(void);
 	virtual void update(float dt);
 	virtual void draw(ARenderer & renderer);
-
-	// void setPosition(const ofVec2f & position);
-	// const ofVec2f & getPosition(void) const;
-
-	// void setRotation(float angle);
-	// float getRotation(void) const;
 
 	virtual void setFillColor(const ofColor & color);
 	virtual const ofColor & getFillColor(void) const;
 
-	void setOutlineColor(const ofColor & color);
-	const ofColor & getOutlineColor(void) const;
+	virtual void setOutlineColor(const ofColor & color);
+	virtual const ofColor &getOutlineColor(void) const;
 
-	void setOutlineThickness(int thickness);
-	int getOutlineThickness(void) const;
+	virtual void setOutlineThickness(int thickness);
+	virtual int getOutlineThickness(void) const;
 
 	const ofPoint & getOrigin(void) const;
 	void setAlignment(Alignment alignment);
@@ -51,6 +44,8 @@ protected:
 
 private:
 	ofFbo fbo_;
+	ofShader shader_;
+
 	ofColor fillColor_;
 	ofColor outlineColor_;
 	int outlineThickness_;

@@ -99,6 +99,16 @@ void SceneController::setDrawableColor(const Identifiable & drawableId, const of
 	(*currentScene_)->setDrawableColor(drawableId, color);
 }
 
+void SceneController::setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color)
+{
+	(*currentScene_)->setDrawableOutlineColor(drawableId, color);
+}
+
+void SceneController::setDrawableOutlineThickness(const Identifiable & drawableId, int thickness)
+{
+	(*currentScene_)->setDrawableOutlineThickness(drawableId, thickness);
+}
+
 void SceneController::graphContent(SceneNode::TreeData & data) const
 {
 	(*currentScene_)->graphContent(data);

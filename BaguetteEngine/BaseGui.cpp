@@ -7,7 +7,6 @@ BaseGui::BaseGui(SceneController &scene)
 	scene_.setOnFocusChanged(std::bind(&BaseGui::focus, this, std::placeholders::_1));
 }
 
-
 BaseGui::~BaseGui()
 {
 }
@@ -38,7 +37,6 @@ void BaseGui::refresh(int newEditorDimension)
 
 void BaseGui::focus(const Identifiable & id)
 {
-	std::cout << "new focused drawable: " << id << std::endl;
 	mainMenu_.focus(id);
 	editMenu_.focus(id);
 	sceneViewer_.focus(id);

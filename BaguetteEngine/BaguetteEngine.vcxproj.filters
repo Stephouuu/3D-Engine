@@ -178,7 +178,6 @@
     <ClCompile Include="Vec3Slider.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
-    <ClCompile Include="ColorSlider.cpp" />
     <ClCompile Include="PointVector.cpp">
       <Filter>src\Graphics\Vector\Primitive</Filter>
     </ClCompile>
@@ -207,6 +206,12 @@
       <Filter>src\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Vec2Slider.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec1Slider.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorSlider.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1183,7 +1188,6 @@
     <ClInclude Include="Vec3Slider.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
-    <ClInclude Include="ColorSlider.hpp" />
     <ClInclude Include="PointVector.hpp">
       <Filter>src\Graphics\Vector\Primitive</Filter>
     </ClInclude>
@@ -1217,6 +1221,12 @@
     <ClInclude Include="Vec2Slider.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Vec1Slider.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorSlider.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
@@ -1226,6 +1236,12 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="bin\data\vertex_shader.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\fragment_shader_2d.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\vertex_shader_2d.vert">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

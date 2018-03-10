@@ -86,6 +86,7 @@ void Application::mouseExited(int x, int y)
 
 void Application::windowResized(int w, int h)
 {
+	std::cout << "new windows size: " << w << " " << h << std::endl;
 }
 
 void Application::gotMessage(ofMessage msg)

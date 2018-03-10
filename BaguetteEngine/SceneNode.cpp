@@ -19,11 +19,12 @@ void SceneNode::update(float dt)
 
 void SceneNode::render(ARenderer & renderer)
 {
+	for (auto & it : childs_)
+	{
+		it->render(renderer);
+	}
 	if (drawable_) {
 		drawable_->draw(renderer);
-	}
-	for (auto & it : childs_) {
-		it->render(renderer);
 	}
 }
 

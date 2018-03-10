@@ -34,6 +34,7 @@ void AScene::setDrawablePosition(const Identifiable & drawableId, const ofVec3f 
 	historic_.pushTransformation(std::make_pair(drawableId, node->getDrawable()->getLocalTransformMatrix()));
 }
 
+#include "MathUtils.hpp"
 void AScene::setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);
@@ -54,6 +55,24 @@ void AScene::setDrawableScale(const Identifiable & drawableId, const ofVec3f & s
 void AScene::setDrawableColor(const Identifiable & drawableId, const ofFloatColor & color)
 {
 	ensureDrawableExistance(drawableId)->getDrawable()->setFillColor(color);
+}
+
+void AScene::setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color)
+{
+	SceneNode *node = ensureDrawableExistance(drawableId);
+
+	if (node) {
+		node->getDrawable()->setOutlineColor(color);
+	}
+}
+
+void AScene::setDrawableOutlineThickness(const Identifiable & drawableId, int thickness)
+{
+	SceneNode *node = ensureDrawableExistance(drawableId);
+
+	if (node) {
+		node->getDrawable()->setOutlineThickness(thickness);
+	}
 }
 
 void AScene::graphContent(SceneNode::TreeData & data) const

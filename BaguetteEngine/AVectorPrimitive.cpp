@@ -57,6 +57,7 @@ void AVectorPrimitive::draw(ARenderer & renderer)
 void AVectorPrimitive::setFillColor(const ofColor & color)
 {
 	fillColor_ = color;
+	invalidate();
 }
 
 const ofColor & AVectorPrimitive::getFillColor(void) const
@@ -67,6 +68,7 @@ const ofColor & AVectorPrimitive::getFillColor(void) const
 void AVectorPrimitive::setOutlineColor(const ofColor & color)
 {
 	outlineColor_ = color;
+	invalidate();
 }
 
 const ofColor & AVectorPrimitive::getOutlineColor(void) const
@@ -77,6 +79,7 @@ const ofColor & AVectorPrimitive::getOutlineColor(void) const
 void AVectorPrimitive::setOutlineThickness(int thickness)
 {
 	outlineThickness_ = thickness;
+	invalidate();
 }
 
 int AVectorPrimitive::getOutlineThickness(void) const

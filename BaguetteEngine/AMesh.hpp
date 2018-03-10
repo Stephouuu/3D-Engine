@@ -33,6 +33,12 @@ public:
 	virtual void setFillColor(const ofColor & color);
 	virtual const ofColor & getFillColor(void) const;
 
+	virtual void setOutlineColor(const ofColor & color);
+	virtual const ofColor &getOutlineColor(void) const;
+
+	virtual void setOutlineThickness(int thickness);
+	virtual int getOutlineThickness(void) const;
+
 	InstantiableMesh getType(void) const;
 
 	virtual void update(float dt);

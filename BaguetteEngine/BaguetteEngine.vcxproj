@@ -239,6 +239,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformableHistory.cpp" />
     <ClCompile Include="TriangleVector.cpp" />
+    <ClCompile Include="Vec1Slider.cpp" />
     <ClCompile Include="Vec2Slider.cpp" />
     <ClCompile Include="Vec3Slider.cpp" />
     <ClCompile Include="WindowRenderer.cpp" />
@@ -513,6 +514,7 @@
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="TransformableHistory.hpp" />
     <ClInclude Include="TriangleVector.hpp" />
+    <ClInclude Include="Vec1Slider.hpp" />
     <ClInclude Include="Vec2Slider.hpp" />
     <ClInclude Include="Vec3Slider.hpp" />
     <ClInclude Include="WindowRenderer.hpp" />
@@ -531,7 +533,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\data\fragment_shader.frag" />
+    <None Include="bin\data\fragment_shader_2d.frag" />
     <None Include="bin\data\vertex_shader.vert" />
+    <None Include="bin\data\vertex_shader_2d.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

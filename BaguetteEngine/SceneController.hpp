@@ -44,6 +44,8 @@ public:
 	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation);
 	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale);
 	void setDrawableColor(const Identifiable & drawableId, const ofColor & color);
+	void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
+	void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
 
 	void graphContent(SceneNode::TreeData & data) const;
 

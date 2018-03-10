@@ -10,10 +10,5 @@ public:
 	virtual ~TriangleVector(void);
 
 	virtual void invalidate(void);
-
-	// void setSize(float size);
-
-private:
-	// float size_;
 };
 

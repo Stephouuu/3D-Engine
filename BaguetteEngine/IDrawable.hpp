@@ -7,6 +7,7 @@ class ARenderer;
 
 struct IDrawable : public ofNode
 {
+public:
 	virtual ~IDrawable(void) {};
 
 	virtual void update(float dt) = 0;
@@ -14,6 +15,12 @@ struct IDrawable : public ofNode
 
 	virtual void setFillColor(const ofColor & color) = 0;
 	virtual const ofColor & getFillColor(void) const = 0;
+
+	virtual void setOutlineColor(const ofColor & color) = 0;
+	virtual const ofColor &getOutlineColor(void) const = 0;
+
+	virtual void setOutlineThickness(int thickness) = 0;
+	virtual int getOutlineThickness(void) const = 0;
 
 	virtual void invalidate(void) = 0;
 
@@ -31,4 +38,5 @@ struct IDrawable : public ofNode
 	{
 		invalidate();
 	}
+
 };

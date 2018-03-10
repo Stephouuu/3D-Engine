@@ -51,6 +51,24 @@ const ofColor & AMesh::getFillColor(void) const
 	return vbo_.getColor(0);
 }
 
+void AMesh::setOutlineColor(const ofColor & color)
+{
+}
+
+const ofColor & AMesh::getOutlineColor(void) const
+{
+	return getFillColor();
+}
+
+void AMesh::setOutlineThickness(int thickness)
+{
+}
+
+int AMesh::getOutlineThickness(void) const
+{
+	return 0;
+}
+
 AMesh::InstantiableMesh AMesh::getType(void) const
 {
 	return meshType_;

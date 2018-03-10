@@ -8,6 +8,7 @@
 #include "SceneController.hpp"
 #include "Vec3Slider.hpp"
 #include "Vec2Slider.hpp"
+#include "Vec1Slider.hpp"
 #include "ColorSlider.hpp"
 
 class EditMenu : public IGuiView
@@ -28,6 +29,11 @@ public:
 
 	void vec2SliderPositionChange(ofVec2f & vec);
 	void vec2SliderSizeChange(ofVec2f & vec);
+	void vec2SliderRotationChange(ofVec3f & v);
+
+	void onColorOutChange(ofColor & color);
+	void onThicknessChange(ofVec2f & vec);
+	void onColorSceneChange(ofColor & color);
 
 private:
 	void baseSetup();
@@ -45,9 +51,13 @@ private:
 
 	Vec2Slider					position2d_;
 	Vec2Slider					size2d_;
-	Vec2Slider					rotation2d_;
+	Vec3Slider					rotation2d_;
+
+	Vec2Slider					thickness_;
 
 	ColorSlider					colorFill_;
+	ColorSlider					colorOut_;
+	ColorSlider					colorScene_;
 	int							currentDimension_;
 };
 
