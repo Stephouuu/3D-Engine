@@ -80,9 +80,13 @@ const Identifiable & SceneController::instanciateDrawable(const std::string & ty
 	}
 }
 
-void SceneController::removeDrawable(const Identifiable & drawableId)
+void SceneController::removeFocusedDrawable(void)
 {
-	if (drawableId != 0) (*currentScene_)->removeDrawable(drawableId);
+	const Identifiable * focused = getFocusedDrawable();
+	if (focused && focused != 0) {
+		(*currentScene_)->removeDrawable(*focused);
+		onGraphSceneChanged_();
+	}
 }
 
 void SceneController::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos)

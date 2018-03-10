@@ -43,6 +43,10 @@ void Application::keyReleased(int key)
 	case 'y':
 		scene_.redo();
 		break;
+	case 127:
+	case 8:
+		scene_.removeFocusedDrawable();
+		break;
 	default:
 		break;
 	}

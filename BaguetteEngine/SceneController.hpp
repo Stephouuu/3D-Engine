@@ -38,7 +38,7 @@ public:
 	void render(ARenderer & renderer);
 
 	const Identifiable & instanciateDrawable(const std::string & type);
-	void removeDrawable(const Identifiable & drawableId);
+	void removeFocusedDrawable(void);
 
 	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos);
 	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation);
