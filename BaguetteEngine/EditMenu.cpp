@@ -58,6 +58,7 @@ void EditMenu::refresh(int newEditorDimension)
 		gui_.add(&rotation_);
 	}
 	gui_.add(&colorFill_);
+	gui_.add(&selectTextures_);
 }
 
 void EditMenu::refreshImages()
