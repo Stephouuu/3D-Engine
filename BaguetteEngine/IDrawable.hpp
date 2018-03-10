@@ -8,6 +8,7 @@ class ARenderer;
 struct IDrawable : public ofNode
 {
 public:
+	IDrawable(void) : rotation_(0) {};
 	virtual ~IDrawable(void) {};
 
 	virtual void update(float dt) = 0;
@@ -21,6 +22,16 @@ public:
 
 	virtual void setOutlineThickness(int thickness) = 0;
 	virtual int getOutlineThickness(void) const = 0;
+
+	void setRotation(float degrees)
+	{
+		rotation_ = degrees;
+	}
+
+	float getRotation(void) const
+	{
+		return rotation_;
+	}
 
 	virtual void invalidate(void) = 0;
 
@@ -39,4 +50,6 @@ public:
 		invalidate();
 	}
 
+private:
+	float rotation_;
 };

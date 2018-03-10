@@ -139,7 +139,7 @@ void EditMenu::vec2SliderSizeChange(ofVec2f & vec)
 void EditMenu::vec2SliderRotationChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	if (focused != nullptr) scene_.setDrawableRotation(*focused, ofVec3f(0, 0, vec.z));
+	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z);
 }
 
 void EditMenu::onColorOutChange(ofColor & color)

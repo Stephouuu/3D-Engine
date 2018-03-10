@@ -5,6 +5,10 @@
 
 #include "IDrawable.hpp"
 
+// fix rotation
+// screenshot without gui
+// radius gui instead of scale
+// create more primitives 
 class AVectorPrimitive : public IDrawable
 {
 public:

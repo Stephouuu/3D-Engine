@@ -21,12 +21,15 @@ void AVectorPrimitive::update(float dt)
 
 void AVectorPrimitive::draw(ARenderer & renderer)
 {
-	// shader_.begin();
-	// shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
+	ofDisableDepthTest();
 
-	fbo_.draw(getPosition() - getOrigin());
+	ofPushMatrix();
+		ofTranslate(getPosition());
+		ofRotateZ(getRotation());
+		fbo_.draw(-getOrigin());
+	ofPopMatrix();
 
-	// shader_.end();
+	ofEnableDepthTest();
 }
 
 void AVectorPrimitive::setFillColor(const ofColor & color)

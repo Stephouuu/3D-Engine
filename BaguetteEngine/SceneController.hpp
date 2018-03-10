@@ -42,6 +42,7 @@ public:
 
 	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos);
 	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation);
+	void setDrawableRotation(const Identifiable & drawableId, float degrees);
 	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale);
 	void setDrawableColor(const Identifiable & drawableId, const ofColor & color);
 	void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);

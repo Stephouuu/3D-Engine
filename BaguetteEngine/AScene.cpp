@@ -44,6 +44,13 @@ void AScene::setDrawableRotation(const Identifiable & drawableId, const ofVec3f 
 	historic_.pushTransformation(std::make_pair(drawableId, node->getDrawable()->getLocalTransformMatrix()));
 }
 
+void AScene::setDrawableRotation(const Identifiable & drawableId, float degrees)
+{
+	SceneNode *node = ensureDrawableExistance(drawableId);
+
+	node->getDrawable()->setRotation(degrees);
+}
+
 void AScene::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);

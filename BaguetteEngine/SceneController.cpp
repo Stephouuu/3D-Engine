@@ -99,6 +99,11 @@ void SceneController::setDrawableRotation(const Identifiable & drawableId, const
 	if (drawableId != 0) (*currentScene_)->setDrawableRotation(drawableId, orientation);
 }
 
+void SceneController::setDrawableRotation(const Identifiable & drawableId, float degrees)
+{
+	if (drawableId != 0) (*currentScene_)->setDrawableRotation(drawableId, degrees);
+}
+
 void SceneController::setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale)
 {
 	if (drawableId != 0) (*currentScene_)->setDrawableScale(drawableId, scale);

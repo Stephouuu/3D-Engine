@@ -13,7 +13,12 @@ void PointVector::invalidate(void)
 	int ot = getOutlineThickness();
 	float r = std::max({ getScale().x, getScale().y, getScale().z });
 
-	reallocate((r * 2.f) + (ot * 2), (r * 2.f) + (ot * 2));
+	ofPoint fboSize = { (r * 2.f) + (ot * 2), (r * 2.f) + (ot * 2) };
+	ofPoint fboMiddle = fboSize / 2.f;
+
+	setOrigin(fboMiddle);
+
+	reallocate(fboSize.x, fboSize.y);
 	drawFboBegin();
 		ofSetColor(getFillColor());
 		ofDrawCircle(ofPoint(r + ot, r + ot), r);
