@@ -71,11 +71,6 @@ void SceneNode::destroy(void)
 	}
 }
 
-/* void SceneNode::setMesh(AMesh *mesh)
-{
-	mesh_ = mesh;
-} */
-
 void SceneNode::setDrawable(IDrawable * drawable)
 {
 	drawable_ = drawable;
@@ -90,11 +85,6 @@ void SceneNode::setParent(SceneNode *parent)
 		drawable_->setParent(*parent->getDrawable());
 	}
 }
-
-/* AMesh *SceneNode::getMesh(void)
-{
-	return (mesh_);
-} */
 
 IDrawable * SceneNode::getDrawable(void) const
 {

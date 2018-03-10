@@ -34,7 +34,9 @@ void TransformableHistory::deleteTransformations(const Identifiable & id)
 
 void TransformableHistory::pushTransformation(const Item & t)
 {
-	current_ = historic_.insert(current_, t);
+	// current_ = historic_.insert(current_, t);
+	historic_.push_front(t);
+	current_ = std::begin(historic_);
 
 	std::list<Item>::iterator it = historic_.begin();
 	size_t cpt = 0;

@@ -11,7 +11,7 @@ Scene3D::Scene3D(void)
 	cam_.lookAt(ofVec3f(0, 0, 0));
 
 	// demo
-	const Identifiable & sphereId = instanciateDrawable("sphere");
+	/*const Identifiable & sphereId = instanciateDrawable("sphere");
 	setDrawablePosition(sphereId, ofVec3f(5, 0, 2));
 	const Identifiable & planId = instanciateDrawable("plane", sphereId); // drew in (5, 2, 2).
 	setDrawablePosition(planId, ofVec3f(0, 2, 0));
@@ -26,7 +26,6 @@ Scene3D::Scene3D(void)
 
 	// removeMesh(planId);
 
-	/* Dump graph scene content - to use with GUI */
 	SceneNode::TreeData data;
 	graphContent(data);
 	std::clog << " Scene graph: " << std::endl;
@@ -35,7 +34,7 @@ Scene3D::Scene3D(void)
 			std::clog << "-";
 		}
 		std::clog << " " << "id: " << it.second.getID() << " name: " << it.second.getName() << std::endl;
-	}
+	} */
 }
 
 Scene3D::~Scene3D(void)
@@ -68,7 +67,6 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 		std::cerr << type << " not found !" << std::endl;
 	try {
 		const Identifiable & id = graph_.attachTo(std::move(node), parent);
-		// focusedMesh_ = &id;
 		historic_.pushTransformation(std::make_pair(id, ofMatrix4x4::newIdentityMatrix()));
 		return id;
 	}

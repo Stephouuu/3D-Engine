@@ -165,8 +165,6 @@ void MainMenu::buttonPressed2D(const void * sender)
 		createObj = scene_.instanciateDrawable("circle");
 	else if (button->getName() == "Ajouter un rectangle")
 		createObj = scene_.instanciateDrawable("rectangle");
-
-	// editMenu_.setFocus(createObj);
 }
 
 void MainMenu::buttonPressed3D(const void * sender)
@@ -182,13 +180,4 @@ void MainMenu::buttonPressed3D(const void * sender)
 		createObj = scene_.instanciateDrawable("cube");
 	else if (button->getName() == "Ajouter un cone")
 		createObj = scene_.instanciateDrawable("cone");
-	else if (button->getName() == "Exporter la scene")
-	{
-		exportImg_.Export("screenshot");
-		return;
-	}
-	else
-		return;
-
-	// editMenu_.setFocus(createObj);
 }
