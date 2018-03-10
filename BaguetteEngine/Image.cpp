@@ -43,7 +43,6 @@ void Image::Export(std::string filename)
 
 	strftime(buffer, sizeof(buffer), "%d%m%Y%I%M%S", timeinfo);
 	std::string str(buffer);
-	std::cout << str << std::endl;
 	theImg.grabScreen(0,0,ofGetWidth(), ofGetHeight());
 	theImg.save("Image/"+filename+str+".jpg");
 }

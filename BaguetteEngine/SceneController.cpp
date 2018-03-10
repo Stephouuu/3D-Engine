@@ -177,11 +177,17 @@ const Identifiable * SceneController::getFocusedDrawable(void) const
 
 void SceneController::addImage(const Image & img)
 {
-	if (img.isLoaded) {
-		cacheManager_.insert(img.name, img.theImg);
-		return;
+	try {
+		if (img.isLoaded) {
+			cacheManager_.insert(img.name, img.theImg);
+			return;
+		}
 	}
-	throw std::invalid_argument("Cant insert an empty image.");
+	catch (const std::invalid_argument& ia)
+	{
+		std::cerr<< "Invalid argument: " << ia.what() << std::endl;
+		//throw std::invalid_argument("Cant insert an empty image.");
+	}
 }
 
 const CacheManager<string, ofImage> & SceneController::getCache() const
