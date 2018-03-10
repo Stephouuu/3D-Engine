@@ -209,6 +209,7 @@ void EditMenu::updateValues(SceneNode *node)
 		else {
 			position_.setValue(ofVec3f(0, 0, 0));
 			size_.setValue(ofVec3f(0, 0, 0));
+			colorFill_.setValue(ofColor(0, 0, 0, 0));
 			//setup();
 		}
 	}
