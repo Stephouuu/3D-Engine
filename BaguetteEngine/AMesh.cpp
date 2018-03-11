@@ -15,8 +15,8 @@ AMesh::~AMesh(void)
 void AMesh::draw(ARenderer & renderer)
 {
 	ofPushMatrix();
-	ofTranslate(getGlobalPosition().x, getGlobalPosition().y, getGlobalPosition().z);
-	if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
+		ofTranslate(getGlobalPosition().x, getGlobalPosition().y, getGlobalPosition().z);
+		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
 	ofPopMatrix();
 
 	if (texture()) texture()->getTexture().bind();
@@ -108,37 +108,9 @@ void AMesh::update(float dt)
 {
 }
 
-/* void AMesh::draw(ARenderer & renderer)
-{
-	ofPushMatrix();
-		ofTranslate(getGlobalPosition().x, getGlobalPosition().y, getGlobalPosition().z);
-		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
-	ofPopMatrix();
-
-	shader_.begin();
-	// if (texture()) texture()->getTexture().bind();
-		shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
-		renderer.draw(*mesh_);
-	// if (texture()) texture()->getTexture().unbind();
-	shader_.end();
-} */
-
 void AMesh::setTexture(Texture * texture)
 {
 	texture_ = texture;
-	/* if (texture_) {
-		mapTexCoordsFromTexture(texture_->getTexture());
-	} */
-}
-void AMesh::mapTexCoordsFromTexture(const ofTexture& inTexture)
-{
-	// const ofTextureData & tdata = inTexture.getTextureData();
-	// mapTexCoords(0, 0, inTexture.getWidth(), inTexture.getHeight());
-}
-
-void AMesh::mapTexCoords(float u1, float v1, float u2, float v2)
-{
-
 }
 
 void AMesh::invalidate(void)
