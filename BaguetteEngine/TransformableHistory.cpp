@@ -15,6 +15,7 @@ void TransformableHistory::deleteTransformations(const Identifiable & id)
 	std::list<Item>::iterator it = historic_.begin();
 
 	while (it != historic_.end()) {
+
 		if (it->first == id) {
 			if (current_->first.getID() == it->first.getID()) {
 				if (current_ == --historic_.cend()) {

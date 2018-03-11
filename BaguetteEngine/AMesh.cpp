@@ -27,9 +27,9 @@ void AMesh::draw(ARenderer & renderer)
 
 	ofPushMatrix();
 	ofTranslate(getGlobalPosition());
-	ofRotateX(getOrientationEuler().x);
-	ofRotateY(getOrientationEuler().y);
-	ofRotateZ(getOrientationEuler().z);
+	ofRotateX(getGlobalOrientation().getEuler().x);
+	ofRotateY(getGlobalOrientation().getEuler().y);
+	ofRotateZ(getGlobalOrientation().getEuler().z);
 	ofScale(getScale());
 	draw_();
 	ofPopMatrix();
