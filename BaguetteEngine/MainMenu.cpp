@@ -20,9 +20,22 @@ void MainMenu::setup()
 	fileGroup_.setName("Fichier");
 	fileGroup_.add(exportScene_.setup("Exporter la scene"));
 	fileGroup_.add(importImage_.setup("Importer une Image"));
+	cropImage_.setup();
+	cropImage_.setName("Importer une portion d'IMG");
+	fromXY_.setup("From x/y", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
+	cropWH_.setup("Width/Height", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
 
+
+	cropImage_.add(&fromXY_);
+	cropImage_.add(&cropWH_);
+	cropImage_.add(importCroppedImage_.setup("Importer Portion"));
+	fileGroup_.add(&cropImage_);
+
+	fromXY_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::setFromXYValues);
+	cropWH_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::setFromWHValues);
 	exportScene_.addListener(this, &MainMenu::buttonPressedFile);
 	importImage_.addListener(this, &MainMenu::buttonPressedFile);
+	importCroppedImage_.addListener(this, &MainMenu::buttonPressedFile);
 
 	modeGroup_.setup();
 
@@ -181,6 +194,13 @@ void MainMenu::buttonPressedFile(const void * sender)
 		scene_.addImage(uneImage);
 		editMenu_.setIsImported(true);
 	}
+	else if (button->getName() == "Importer Portion") {
+		std::cout << "bonjour" << std::endl;
+		Image uneImage;
+		uneImage.LoadCrop((int)fromXYValues_.x,(int)fromXYValues_.y,(int)fromWHValues_.x,(int)fromWHValues_.y);
+		scene_.addImage(uneImage);
+		editMenu_.setIsImported(true);
+	}
 }
 
 void MainMenu::buttonPressedMode(const void * sender)
@@ -259,4 +279,14 @@ void MainMenu::buttonPressed3DModel(const void * sender)
 void MainMenu::vecSliderModel3DBoxChange(ofVec3f & vec)
 {
 	model3DBox_ = vec;
+}
+
+void MainMenu::setFromXYValues(ofVec2f & vec)
+{
+	fromXYValues_ = vec;
+}
+
+void MainMenu::setFromWHValues(ofVec2f & vec)
+{
+	fromWHValues_ = vec;
 }
