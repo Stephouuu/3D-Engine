@@ -11,6 +11,9 @@ public:
 	Model3D();
 	virtual ~Model3D();
 	bool load(const string &path);
+	void stopAnimations();
+	void playAnimations();
+	bool isPlayingAnimations() const;
 	virtual void update(float dt);
 
 private:
@@ -18,4 +21,5 @@ private:
 
 	ofxAssimpModelLoader		model_;
 	ofMesh						modelMesh_;
+	bool						isPlayingAnimations_;
 };

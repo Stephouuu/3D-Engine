@@ -10,6 +10,7 @@
 #include "EditMenu.hpp"
 #include "SceneViewer.hpp"
 #include "Image.h"
+#include "Model3D.hpp"
 
 class MainMenu : public IGuiView
 {

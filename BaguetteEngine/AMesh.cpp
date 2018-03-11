@@ -3,6 +3,7 @@
 #include "ofGraphics.h"
 
 AMesh::AMesh(void)
+	: meshType_(UNDEFINED)
 {
 	mesh_ = nullptr;
 	init();
@@ -41,7 +42,6 @@ void AMesh::draw(ARenderer & renderer)
 void AMesh::init(void)
 {
 	// shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
-	meshType_ = InstantiableMesh::UNDEFINED;
 
 	texture_ = new Texture;
 	texture_->loadImage(TextureGenerator::perlinNoise(500, 500, 0.01f));
