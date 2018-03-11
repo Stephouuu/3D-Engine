@@ -19,6 +19,7 @@ void Application::update(void)
 {
 	double dt = timer_.restart();
 
+	gui_.update(dt);
 	scene_.update(dt);
 }
 

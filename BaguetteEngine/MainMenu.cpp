@@ -9,6 +9,10 @@ MainMenu::~MainMenu()
 {
 }
 
+void MainMenu::update(float dt)
+{
+}
+
 void MainMenu::draw()
 {
 	gui_.draw();

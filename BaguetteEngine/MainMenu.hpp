@@ -26,6 +26,8 @@ public:
 	void vec2SliderFromWHChange(ofVec2f & vec);
 	bool wantScreenshot(void);
 
+	virtual void update(float dt);
+
 private:
 	void refresh2D(void);
 	void refresh3D(void);

@@ -11,6 +11,13 @@ BaseGui::~BaseGui(void)
 {
 }
 
+void BaseGui::update(float dt)
+{
+	mainMenu_.update(dt);
+	editMenu_.update(dt);
+	sceneViewer_.update(dt);
+}
+
 void BaseGui::draw(void)
 {
 	ofDisableDepthTest();

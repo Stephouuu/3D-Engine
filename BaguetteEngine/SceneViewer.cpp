@@ -4,10 +4,14 @@
 SceneViewer::SceneViewer(SceneController & scene)
 	: scene_(scene)
 {
-	scene_.setOnGraphSceneChanged(std::bind(&SceneViewer::update, this));
+	scene_.setOnGraphSceneChanged(std::bind(&SceneViewer::update2, this));
 }
 
 SceneViewer::~SceneViewer(void)
+{
+}
+
+void SceneViewer::update(float dt)
 {
 }
 
@@ -20,7 +24,7 @@ void SceneViewer::setup(void)
 {
 	layout_.setup();
 
-	update();
+	update2();
 
 	gui_.setup();
 	gui_.setName("Visualiseur de scene");
@@ -36,7 +40,7 @@ void SceneViewer::refresh(int newEditorDimension)
 void SceneViewer::focus(const Identifiable & id)
 {
 	(void)id;
-	update();
+	update2();
 }
 
 void SceneViewer::windowsResized(const ofPoint & size)
@@ -44,7 +48,7 @@ void SceneViewer::windowsResized(const ofPoint & size)
 	gui_.setPosition(0, size.y / 2.f);
 }
 
-void SceneViewer::update(void)
+void SceneViewer::update2(void)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
 

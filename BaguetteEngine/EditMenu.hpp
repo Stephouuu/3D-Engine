@@ -27,6 +27,8 @@ public:
 	virtual void focus(const Identifiable & id);
 	virtual void windowsResized(const ofPoint & size);
 
+	virtual void update(float dt);
+
 	bool getIsImported();
 	void setIsImported(bool value);
 	void vecSliderPositionChange(ofVec3f & vec);
@@ -86,6 +88,8 @@ private:
 	ColorSlider					colorScene_;
 	int							currentDimension_;
 	bool						resetting_;
+	float						yolo_;
+	ofVec3f						yoloArg_;
 	Texture::CompositionType	compositionMode_;
 
 	Vec3Slider					perlinNoiseSize_;

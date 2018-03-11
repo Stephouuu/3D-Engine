@@ -1,7 +1,7 @@
 #include "EditMenu.hpp"
 
 EditMenu::EditMenu(SceneController & scene)
-	: scene_(scene), currentDimension_(3), resetting_(false), isImported(false)
+	: scene_(scene), currentDimension_(3), resetting_(false), isImported(false), yolo_(0)
 {
 	scene_.setOnTransformationChanged(std::bind(&EditMenu::onTransformationChange, this));
 
@@ -104,6 +104,32 @@ void EditMenu::refresh(int newEditorDimension)
 	}
 }
 
+void EditMenu::update(float dt)
+{
+	if (yolo_ > 0.000000f) {
+		yolo_ -= dt;
+		if (yolo_ <= 0.000000f) {
+			yolo_ = 0;
+			const Identifiable * id = scene_.getFocusedDrawable();
+			if (id && (*id) != 0) {
+				SceneNode * node = scene_.ensureDrawableExistance(*id);
+				if (node->getDrawable()->texture() == nullptr) {
+					node->getDrawable()->setTexture(new Texture);
+				}
+				node->getDrawable()->texture()->loadImage(TextureGenerator::perlinNoise(yoloArg_.x, yoloArg_.y, yoloArg_.z));
+				for (const auto &e : primaryTextureList_) {
+					if (e->getName() == "Bruit de perlin") {
+					toggle * t = reinterpret_cast<toggle *>(e);
+					if (t->getValue() == false) {
+						t->setValue(true);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 void EditMenu::displayListImage()
 {
 	toggle *aButton;
@@ -190,22 +216,8 @@ void EditMenu::vecSliderPositionChange(ofVec3f & vec)
 
 void EditMenu::vec3SliderPerlinChange(ofVec3f & vec)
 {
-	const Identifiable * id = scene_.getFocusedDrawable();
-	if (id && (*id) != 0) {
-		SceneNode * node = scene_.ensureDrawableExistance(*id);
-		if (node->getDrawable()->texture() == nullptr) {
-			node->getDrawable()->setTexture(new Texture);
-		}
-		node->getDrawable()->texture()->loadImage(TextureGenerator::perlinNoise(vec.x, vec.y, vec.z));
-		for (const auto &e : primaryTextureList_) {
-			if (e->getName() == "Bruit de perlin") {
-				toggle * t = reinterpret_cast<toggle *>(e);
-				if (t->getValue() == false) {
-					t->setValue(true);
-				}
-			}
-		}
-	}
+	yolo_ = 0.400f;
+	yoloArg_ = vec;
 }
 
 void EditMenu::vecSliderSizeChange(ofVec3f & vec)

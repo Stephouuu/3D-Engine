@@ -20,7 +20,9 @@ public:
 	virtual void focus(const Identifiable & id);
 	virtual void windowsResized(const ofPoint & size);
 
-	void update(void);
+	virtual void update(float dt);
+
+	void update2(void);
 
 private:
 	void buttonPressed(const void * sender);
