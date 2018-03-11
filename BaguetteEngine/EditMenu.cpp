@@ -93,6 +93,10 @@ void EditMenu::windowsResized(const ofPoint & size)
 
 	gui_.clear();
 	setup();
+
+	// position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((float)ofGetWidth(), (float)ofGetHeight()));
+	// size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f((float)ofGetWidth(), (float)ofGetHeight()));
+
 	refresh(currentDimension_);
 	refreshImages();
 	if (id) {

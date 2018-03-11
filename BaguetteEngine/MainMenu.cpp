@@ -126,6 +126,9 @@ void MainMenu::refresh2D(void)
 	primitiveGroup_.add(insertCircle_.setup("Ajouter un cercle"));
 	primitiveGroup_.add(insertRectangle_.setup("Ajouter un rectangle"));
 
+	vectorShapeGroup_.add(insertDialogVector_.setup("Ajouter dialog"));
+	vectorShapeGroup_.add(insertSmileVector_.setup("Ajouter smile"));
+
 	insertTriangle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertEllipse_.addListener(this, &MainMenu::buttonPressed2D);
 	insertPoint_.addListener(this, &MainMenu::buttonPressed2D);
@@ -133,9 +136,6 @@ void MainMenu::refresh2D(void)
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertDialogVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
 	insertSmileVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
-
-	vectorShapeGroup_.add(insertDialogVector_.setup("Ajouter dialog"));
-	vectorShapeGroup_.add(insertSmileVector_.setup("Ajouter smile"));
 
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&primitiveGroup_);

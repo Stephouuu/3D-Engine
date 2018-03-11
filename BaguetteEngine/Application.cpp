@@ -70,6 +70,7 @@ void Application::mousePressed(int x, int y, int button)
 
 void Application::mouseReleased(int x, int y, int button)
 {
+
 }
 
 void Application::mouseEntered(int x, int y)
