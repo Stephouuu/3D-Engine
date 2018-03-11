@@ -51,9 +51,6 @@ public:
 	virtual void invalidate(void);
 
 	virtual void setTexture(Texture * texture);
-	void mapTexCoordsFromTexture(const ofTexture& inTexture);
-	void mapTexCoords(float u1, float v1, float u2, float v2);
-
 
 private:
 	virtual void draw_(void) = 0;
