@@ -41,7 +41,7 @@ void SceneViewer::focus(const Identifiable & id)
 
 void SceneViewer::windowsResized(const ofPoint & size)
 {
-	gui_.setPosition(0, size.y / 3.f);
+	gui_.setPosition(0, size.y / 2.f);
 }
 
 void SceneViewer::update(void)
