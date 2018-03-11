@@ -58,7 +58,7 @@ void EditMenu::setup()
 	colorOut_.setup("Couleur bordure", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
 	colorScene_.setup("Couleur scene", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
 
-	perlinNoiseSize_.setup("Parametre bruit de perlin", ofVec3f(150, 150, 0.1f), ofVec3f(0, 0, 0.001f), ofVec3f(1000, 1000, 1));
+	perlinNoiseSize_.setup("Parametre bruit de perlin", ofVec3f(300, 300, 0.01f), ofVec3f(100, 100, 0.01f), ofVec3f(1000, 1000, 1));
 
 	selectPrimaryTextures_.setup();
 	composition_.setup();
