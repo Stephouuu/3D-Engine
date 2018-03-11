@@ -73,7 +73,11 @@ void Texture::applyModifier() {
 
 void Texture::compose() {
 
-	if (selectedComposition_ == CompositionType::NONE || image_ == nullptr || composition_ == nullptr) {
+	if (image_ == nullptr) {
+		render_ = ofImage();
+		render_.allocate(100, 100, OF_IMAGE_COLOR);
+		return;
+	} else if (selectedComposition_ == CompositionType::NONE || composition_ == nullptr) {
 		render_.clone(*image_);
 		return;
 	}
@@ -117,7 +121,7 @@ void Texture::compose() {
 
 void Texture::filter() {
 
-	if (selectedFilter_ == FilterType::NONE_FILTER) {
+	if (selectedFilter_ == FilterType::NONE_FILTER || image_ == nullptr) {
 		return;
 	}
 
