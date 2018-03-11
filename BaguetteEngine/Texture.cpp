@@ -82,7 +82,7 @@ void Texture::compose() {
 	draft.allocate(static_cast<int>(image_->getWidth()), static_cast<int>(image_->getHeight()), OF_IMAGE_COLOR);
 
 	unsigned int i = 0;
-	while (i < image_->getPixels().size()) {
+	while (i < image_->getPixels().size() && i < composition_->getPixels().size()) {
 		switch (selectedComposition_) {
 		case AVG:
 			draft.setColor(i, (image_->getColor(i) + composition_->getColor(i)) / 2);
