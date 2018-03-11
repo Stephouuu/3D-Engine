@@ -29,8 +29,8 @@ void EditMenu::setup()
 	size_.setup("Taille", ofVec3f(1, 1, 1), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30));
 	rotation_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(360, 360, 360));
 
-	position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((float)ofGetWidth(), (float)ofGetHeight()));
-	size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f((float)ofGetWidth(), (float)ofGetHeight()));
+	position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(1900, 1000));
+	size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	rotation2d_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(0, 0, 360));
 
 	thickness_.setup("Epaisseur bordure", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(30, 0));
@@ -95,10 +95,7 @@ void EditMenu::windowsResized(const ofPoint & size)
 	const Identifiable * id = scene_.getFocusedDrawable();
 
 	gui_.clear();
-	setup();
-
-	// position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((float)ofGetWidth(), (float)ofGetHeight()));
-	// size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f((float)ofGetWidth(), (float)ofGetHeight()));
+	// setup();
 
 	refresh(currentDimension_);
 	refreshImages();

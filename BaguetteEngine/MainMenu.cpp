@@ -207,7 +207,6 @@ void MainMenu::buttonPressedFile(const void * sender)
 		editMenu_.setIsImported(true);
 	}
 	else if (button->getName() == "Importer Portion") {
-		std::cout << "bonjour" << std::endl;
 		Image uneImage;
 		uneImage.LoadCrop((int)fromXYValues_.x,(int)fromXYValues_.y,(int)fromWHValues_.x,(int)fromWHValues_.y);
 		scene_.addImage(uneImage);
