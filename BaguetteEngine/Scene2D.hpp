@@ -8,6 +8,8 @@
 #include "PointVector.hpp"
 #include "RectangleVector.hpp"
 
+#include "DialogVectorShape.hpp"
+
 class Scene2D : public AScene
 {
 public:

@@ -220,6 +220,15 @@
     <ClCompile Include="PlaneGenerator.cpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClCompile>
+    <ClCompile Include="DialogVectorShape.cpp">
+      <Filter>src\Graphics\Vector\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="AVectorShape.cpp">
+      <Filter>src\Graphics\Vector\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="SmileVectorShape.cpp">
+      <Filter>src\Graphics\Vector\Shape</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1235,6 +1244,15 @@
     </ClInclude>
     <ClInclude Include="PlaneGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogVectorShape.hpp">
+      <Filter>src\Graphics\Vector\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="AVectorShape.hpp">
+      <Filter>src\Graphics\Vector\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="SmileVectorShape.hpp">
+      <Filter>src\Graphics\Vector\Shape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

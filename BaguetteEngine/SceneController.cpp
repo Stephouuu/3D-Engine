@@ -16,9 +16,7 @@ SceneController::~SceneController(void)
 void SceneController::swapMode(void)
 {
 	currentScene_++;
-	if (currentScene_ == std::end(scenes_)) {
-		currentScene_ = std::begin(scenes_);
-	}
+	if (currentScene_ == std::end(scenes_)) currentScene_ = std::begin(scenes_);
 	if (onSceneChanged_) onSceneChanged_((*currentScene_)->getNbDimensions());
 	if (onGraphSceneChanged_) onGraphSceneChanged_();
 

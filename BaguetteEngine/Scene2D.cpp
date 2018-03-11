@@ -23,6 +23,8 @@ const Identifiable & Scene2D::instanciateDrawable(const std::string & type, cons
 		node = SceneGraph::CreateSceneNode<PointVector>();
 	else if (type == "rectangle")
 		node = SceneGraph::CreateSceneNode<RectangleVector>();
+	else if (type == "dialog")
+		node = SceneGraph::CreateSceneNode<DialogVectorShape>();
 	else
 		std::cerr << type << " not found !" << std::endl;
 	try {
