@@ -4,6 +4,7 @@ EditMenu::EditMenu(SceneController & scene)
 	: scene_(scene), currentDimension_(3), resetting_(false), isImported(false)
 {
 	scene_.setOnTransformationChanged(std::bind(&EditMenu::onTransformationChange, this));
+	refreshImages();
 }
 
 EditMenu::~EditMenu(void)
@@ -12,7 +13,9 @@ EditMenu::~EditMenu(void)
 
 void EditMenu::draw(void)
 {
+
 	gui_.draw();
+
 	if (isImported) {
 		refreshImages();
 		isImported = false;
@@ -59,21 +62,31 @@ void EditMenu::refresh(int newEditorDimension)
 		gui_.add(&rotation_);
 	}
 	gui_.add(&colorFill_);
-	gui_.add(&selectTextures_);
+	gui_.add(&selectPrimaryTextures_);
 }
 
 void EditMenu::refreshImages()
 {
+	ofxToggle *aButton;
 	int i = 0;
+
 	images_.clear();
-	selectTextures_.clear();
-	selectTextures_.setName("Appliquer Images");
+	selectPrimaryTextures_.clear();
+
+	selectPrimaryTextures_.setName("Texture principale");
+	aButton = new ofxToggle();
+	images_.push_back(aButton->setup("Aucune", false, 20, 20));
+	selectPrimaryTextures_.add(images_[i++]);
+	aButton = new ofxToggle();
+	images_.push_back(aButton->setup("Bruit de perlin", false, 20, 20));
+	selectPrimaryTextures_.add(images_[i++]);
+
 	for (auto image = scene_.getCache().getObject().begin(); image != scene_.getCache().getObject().end(); ++image)
 	{
 		string name = image->first;
-		ofxButton *aButton = new ofxButton();
-		images_.push_back(aButton->setup(name));
-		selectTextures_.add(images_[i]);
+		aButton = new ofxToggle();
+		images_.push_back(aButton->setup(name, false, 20, 20));
+		selectPrimaryTextures_.add(images_[i]);
 		i++;
 	}
 }
@@ -167,8 +180,8 @@ void EditMenu::baseSetup()
 	gui_.setName("Menu d'edition");
 	gui_.setPosition(820, 10);
 
-	selectTextures_.setup();
-	selectTextures_.setName("Appliquer Images");
+	selectPrimaryTextures_.setup();
+	selectPrimaryTextures_.setName("Appliquer Images");
 
 	initListeners();
 
@@ -176,7 +189,7 @@ void EditMenu::baseSetup()
 	gui_.add(&size_);
 	gui_.add(&colorFill_);
 	gui_.add(&rotation_);
-	gui_.add(&selectTextures_);
+	gui_.add(&selectPrimaryTextures_);
 }
 
 bool EditMenu::getIsImported()

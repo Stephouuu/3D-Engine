@@ -49,7 +49,7 @@ private:
 
 private:
 	ofxPanel					gui_;
-	ofxGuiGroup					selectTextures_;
+	ofxGuiGroup					selectPrimaryTextures_;
 	ofMouseEventArgs			mouseEvents_;
 
 	SceneController				&scene_;
@@ -70,7 +70,7 @@ private:
 	int							currentDimension_;
 	bool						resetting_;
 
-	vector<ofxButton*>			images_;
+	vector<ofxToggle*>			images_;
 public:
 	bool				isImported;
 };
