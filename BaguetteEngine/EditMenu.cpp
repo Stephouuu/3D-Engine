@@ -46,6 +46,7 @@ void EditMenu::refresh(int newEditorDimension)
 {
 	currentDimension_ = newEditorDimension;
 	gui_.clear();
+	gui_.setName("Menu d'edition");
 	ofSetBackgroundColor(scene_.getSceneColor());
 	if (newEditorDimension == 2) {
 		gui_.add(&position2d_);
@@ -95,6 +96,7 @@ void EditMenu::windowsResized(const ofPoint & size)
 	const Identifiable * id = scene_.getFocusedDrawable();
 
 	gui_.clear();
+	gui_.setName("Menu d'edition");
 	// setup();
 
 	refresh(currentDimension_);
