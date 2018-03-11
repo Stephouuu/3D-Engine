@@ -43,7 +43,7 @@ const Identifiable & Scene2D::instanciateDrawable(const std::string & type, cons
 
 std::string Scene2D::getName(void) const
 {
-	return "Editeur vectorielle";
+	return "Editeur de dessin vectoriel";
 }
 
 int Scene2D::getNbDimensions(void) const
