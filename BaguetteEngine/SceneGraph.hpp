@@ -24,7 +24,6 @@ public:
 	static SceneNode::Ptr CreateSceneNode(void)
 	{
 		SceneNode::Ptr node(new SceneNode(++cpt));
-		// node->setDrawable(new T(U()()));
 		node->setDrawable(U()());
 		return std::move(node);
 	}
@@ -33,7 +32,6 @@ public:
 	static SceneNode::Ptr CreateSceneNode(const std::string &path)
 	{
 		SceneNode::Ptr node(new SceneNode(++cpt));
-		// node->setDrawable(new T(U(path)()));
 		node->setDrawable(U(path)());
 		return std::move(node);
 	}

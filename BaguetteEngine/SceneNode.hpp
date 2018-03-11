@@ -30,11 +30,9 @@ public:
 	SceneNode::Ptr detach(const Identifiable & node);
 	void destroy(void);
 
-	// void setMesh(AMesh *mesh);
 	void setDrawable(IDrawable * drawable);
 	void setParent(SceneNode *parent);
 
-	// AMesh *getMesh(void);
 	IDrawable * getDrawable(void) const;
 
 	SceneNode * findNode(const Identifiable & node);
@@ -45,6 +43,5 @@ private:
 
 private:
 	std::vector<Ptr> childs_;
-	// AMesh *mesh_;
 	IDrawable *drawable_;
 };
