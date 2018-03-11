@@ -17,15 +17,24 @@ bool Model3D::load(const string & path)
 
 	model_.clear();
 	isLoaded = model_.loadModel(path);
-	modelMesh_ = model_.getMesh(0);
-	setMesh(&modelMesh_);
-	if (model_.getAnimationCount() > 0)
+	if (isLoaded)
 	{
-		model_.setLoopStateForAllAnimations(OF_LOOP_NORMAL);
-		model_.playAllAnimations();
-		isPlayingAnimations_ = true;
+		modelMesh_ = model_.getMesh(0);
+		if (model_.getAnimationCount() > 0)
+		{
+			model_.setLoopStateForAllAnimations(OF_LOOP_NORMAL);
+			model_.playAllAnimations();
+			isPlayingAnimations_ = true;
+		}
+		animNb = model_.getAnimationCount();
 	}
-	animNb = model_.getAnimationCount();
+	else
+	{
+		modelMesh_ = ofMesh();
+		modelMesh_.addVertex(ofVec3f(0, 0, 0));
+	}
+
+	setMesh(&modelMesh_);
 	return isLoaded;
 }
 
@@ -60,6 +69,5 @@ void Model3D::update(float dt)
 
 void Model3D::draw_(void)
 {
-	ofEnableDepthTest();
 	modelMesh_.draw();
 }
