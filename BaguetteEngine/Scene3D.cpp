@@ -55,7 +55,7 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 
 std::string Scene3D::getName(void) const
 {
-	return "World Editor";
+	return "Editeur 3D";
 }
 
 int Scene3D::getNbDimensions(void) const

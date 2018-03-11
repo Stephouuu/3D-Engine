@@ -23,7 +23,7 @@ void SceneViewer::setup(void)
 	update();
 
 	gui_.setup();
-	gui_.setName("SceneViewer");
+	gui_.setName("Visualiseur de scene");
 	gui_.setPosition(ofPoint(0, 300));
 	gui_.add(&layout_);
 }
