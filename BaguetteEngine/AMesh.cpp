@@ -37,6 +37,11 @@ void AMesh::setMesh(const ofMesh & oMesh)
 	initColor();
 }
 
+const std::vector<ofPoint>& AMesh::getVertices() const
+{
+	return vbo_.getVertices();
+}
+
 void AMesh::setFillColor(const ofColor & c)
 {
 	const std::vector<ofPoint> & vertices = vbo_.getVertices();

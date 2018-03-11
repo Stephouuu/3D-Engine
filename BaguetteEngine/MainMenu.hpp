@@ -30,6 +30,8 @@ private:
 	void buttonPressed3D(const void * sender);
 	void buttonPressed3DModel(const void * sender);
 
+	void vecSliderModel3DBoxChange(ofVec3f & vec);
+
 private:
 	ofxPanel			gui_;
 	ofxGuiGroup			insertGroup_;
@@ -56,9 +58,12 @@ private:
 	ofxButton			importImage_;
 	ofMouseEventArgs	mouseEvents_;
 
+	Vec3Slider			model3DBoxSlider_;
+
 	SceneController		&scene_;
 	EditMenu			&editMenu_;
 	SceneViewer			&sceneViewer_;
 
 	Image				exportImg_;
+	ofVec3f				model3DBox_;
 };

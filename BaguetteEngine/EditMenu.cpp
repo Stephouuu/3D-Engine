@@ -203,14 +203,11 @@ void EditMenu::updateValues(SceneNode *node)
 			size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
 			ofColor color = currentDrawable->getFillColor();
 			colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
-			//const float roll = currentMesh->getRoll();
-			//const float yawl = currentMesh->get
 		}
 		else {
 			position_.setValue(ofVec3f(0, 0, 0));
 			size_.setValue(ofVec3f(0, 0, 0));
 			colorFill_.setValue(ofColor(0, 0, 0, 0));
-			//setup();
 		}
 	}
 	else {

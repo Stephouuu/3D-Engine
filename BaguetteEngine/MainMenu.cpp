@@ -12,9 +12,6 @@ MainMenu::~MainMenu()
 void MainMenu::draw()
 {
 	gui_.draw();
-
-	gui_.mouseReleased(mouseEvents_);
-	gui_.mouseEntered(mouseEvents_);
 }
 
 void MainMenu::setup()
@@ -93,6 +90,7 @@ void MainMenu::refresh2D(void)
 	insertCircle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 
 	primitiveGroup_.add(insertTriangle_.setup("Ajouter un triangle"));
 	primitiveGroup_.add(insertEllipse_.setup("Ajouter une ellipse"));
@@ -135,11 +133,13 @@ void MainMenu::refresh3D(void)
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.removeListener(this, &MainMenu::buttonPressed3D);
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 
 	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
 	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
 	primitiveGroup_.add(insertBox_.setup("Ajouter un cube"));
 	primitiveGroup_.add(insertCone_.setup("Ajouter un cone"));
+	model3DGroup_.add(model3DBoxSlider_.setup("Boite de delimitation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30)));
 	model3DGroup_.add(insert3DModel_.setup("Ajouter un modele 3D"));
 
 	insertSphere_.addListener(this, &MainMenu::buttonPressed3D);
@@ -147,6 +147,7 @@ void MainMenu::refresh3D(void)
 	insertBox_.addListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.addListener(this, &MainMenu::buttonPressed3D);
 	insert3DModel_.addListener(this, &MainMenu::buttonPressed3DModel);
+	model3DBoxSlider_.getParameter().cast<ofVec3f>().addListener(this, &MainMenu::vecSliderModel3DBoxChange);
 
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&model3DGroup_);
@@ -200,7 +201,6 @@ void MainMenu::buttonPressed2D(const void * sender)
 void MainMenu::buttonPressed3D(const void * sender)
 {
 	ofxButton * button = (ofxButton*)sender;
-	Identifiable createObj;
 
 	if (button->getName() == "Ajouter une sphere")
 		scene_.instanciateDrawable("sphere");
@@ -211,18 +211,43 @@ void MainMenu::buttonPressed3D(const void * sender)
 	else if (button->getName() == "Ajouter un cone")
 		scene_.instanciateDrawable("cone");
 }
-
+#include <vector>
 void MainMenu::buttonPressed3DModel(const void * sender)
 {
-	ofxButton	*button = (ofxButton*)sender;
-	std::string	path;
+	ofxButton		*button = (ofxButton*)sender;
+	std::string		path;
+	Identifiable	createdObj;
+	AMesh			*createdMesh;
+	ofPoint			max(0, 0, 0);
+
 
 	if (button->getName() == "Ajouter un modele 3D")
 	{
 		ofFileDialogResult result = ofSystemLoadDialog("Load file");
 		if (result.bSuccess) {
 			path = result.getPath();
-			scene_.instanciateDrawable(path);
+			createdObj = scene_.instanciateDrawable(path);
+			createdMesh = dynamic_cast<AMesh*>(scene_.ensureDrawableExistance(createdObj)->getDrawable());
+
+			const std::vector<ofPoint> & vertices = createdMesh->getVertices();
+			std::vector<ofPoint>::const_iterator it;
+			for (it = vertices.begin(); it != vertices.end(); it++)
+			{
+				max.x = (it->x > max.x) ? (it->x) : (max.x);
+				max.y = (it->y > max.y) ? (it->y) : (max.y);
+				max.z = (it->z > max.z) ? (it->z) : (max.z);
+			}
+
+			if (model3DBox_ == ofPoint(0, 0, 0))
+				return;
+
+			const ofPoint	ratio(model3DBox_.x / max.x, model3DBox_.y / max.y, model3DBox_.z / max.z);
+			scene_.setDrawableScale(createdObj, ratio, false);
 		}
 	}
+}
+
+void MainMenu::vecSliderModel3DBoxChange(ofVec3f & vec)
+{
+	model3DBox_ = vec;
 }

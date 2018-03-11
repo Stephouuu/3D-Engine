@@ -30,6 +30,7 @@ public:
 
 	void init(void);
 	void setMesh(const ofMesh &oMesh);
+	const std::vector<ofPoint> & getVertices() const;
 
 	virtual void setFillColor(const ofColor & color);
 	virtual const ofColor & getFillColor(void) const;

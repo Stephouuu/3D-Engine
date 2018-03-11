@@ -12,10 +12,11 @@ Model3D::~Model3D()
 
 bool Model3D::load(const string & path)
 {
-	bool isLoaded;
+	bool		isLoaded;
 
-	model_.clear();//May be useless
+	model_.clear();
 	isLoaded = model_.loadModel(path);
-	setMesh(model_.getMesh(0));
+	modelMesh_ = model_.getMesh(0);
+	setMesh(&modelMesh_);
 	return isLoaded;
 }

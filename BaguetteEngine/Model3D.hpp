@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "ofxAssimpModelLoader.h"
 #include "AMesh.hpp"
 
@@ -12,4 +14,5 @@ public:
 
 private:
 	ofxAssimpModelLoader		model_;
+	ofMesh						modelMesh_;
 };
