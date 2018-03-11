@@ -220,6 +220,9 @@
     <ClCompile Include="PlaneGenerator.cpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClCompile>
+    <ClCompile Include="toggle.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1235,6 +1238,9 @@
     </ClInclude>
     <ClInclude Include="PlaneGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="toggle.hpp">
+      <Filter>src\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ public:
     Texture();
 
     enum CompositionType {
-        NONE,
+        NONE, 
         ADD,
         AVG,
         SUB,
@@ -33,8 +33,8 @@ public:
         UNSHARP_MASKING,
     };
 
-    void            loadImage(ofImage *image);
-    void            addComposition(ofImage *image, CompositionType mode);
+    void            loadImage(const ofImage *image);
+    void            addComposition(const ofImage *image, CompositionType mode);
     void            setFilter(FilterType filter);
     /* const */           ofTexture &getTexture();
     void            compose();

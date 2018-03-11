@@ -43,8 +43,7 @@ void AMesh::init(void)
 	// shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
 	meshType_ = InstantiableMesh::UNDEFINED;
 
-	texture_ = new Texture;
-	texture_->loadImage(TextureGenerator::perlinNoise(500, 500, 0.01f));
+	//texture_ = new Texture;
 	// texture_ = new Texture;
 	// texture_->loadImage(TextureGenerator::monochrome(1500, 1500, 255, 0, 0));
 }

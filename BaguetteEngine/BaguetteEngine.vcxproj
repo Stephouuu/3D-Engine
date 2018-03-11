@@ -239,6 +239,7 @@
     <ClCompile Include="TextureGenerator.cpp" />
     <ClCompile Include="TextureRender.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="toggle.cpp" />
     <ClCompile Include="TransformableHistory.cpp" />
     <ClCompile Include="TriangleVector.cpp" />
     <ClCompile Include="Vec1Slider.cpp" />
@@ -515,6 +516,7 @@
     <ClInclude Include="TextureGenerator.hpp" />
     <ClInclude Include="TextureRenderer.hpp" />
     <ClInclude Include="Timer.hpp" />
+    <ClInclude Include="toggle.hpp" />
     <ClInclude Include="TransformableHistory.hpp" />
     <ClInclude Include="TriangleVector.hpp" />
     <ClInclude Include="Vec1Slider.hpp" />

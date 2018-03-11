@@ -49,7 +49,7 @@ void BaseGui::focus(const Identifiable & id)
 
 void BaseGui::windowsResized(const ofPoint & size)
 {
-	mainMenu_.windowsResized(size);
+	/* mainMenu_.windowsResized(size);
 	editMenu_.windowsResized(size);
-	sceneViewer_.windowsResized(size);
+	sceneViewer_.windowsResized(size); */
 }

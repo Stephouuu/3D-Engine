@@ -4,7 +4,25 @@ EditMenu::EditMenu(SceneController & scene)
 	: scene_(scene), currentDimension_(3), resetting_(false), isImported(false)
 {
 	scene_.setOnTransformationChanged(std::bind(&EditMenu::onTransformationChange, this));
-	refreshImages();
+
+	filterLabel_["Aucun"] = Texture::FilterType::NONE_FILTER;
+	filterLabel_["Flou gaussien"] = Texture::FilterType::BLUR;
+	filterLabel_["Detection de bordure"] = Texture::FilterType::EDGE_DETECT;
+	filterLabel_["Relief"] = Texture::FilterType::EMBROSS;
+	filterLabel_["Degrossir"] = Texture::FilterType::SHARPEN;
+	filterLabel_["Bordure renforce"] = Texture::FilterType::EDGE_ENFORCED;
+	filterLabel_["Masque de flou"] = Texture::FilterType::UNSHARP_MASKING;
+
+	compositionLabel_["Aucun"] = Texture::CompositionType::NONE;
+	compositionLabel_["Somme"] = Texture::CompositionType::ADD;
+	compositionLabel_["Moyenne"] = Texture::CompositionType::AVG;
+	compositionLabel_["Soustraction"] = Texture::CompositionType::SUB;
+	compositionLabel_["Multiplication"] = Texture::CompositionType::MUL;
+	compositionLabel_["Ecart"] = Texture::CompositionType::DIFF;
+	compositionLabel_["Le plus sombre"] = Texture::CompositionType::DARK;
+	compositionLabel_["Le plus clair"] = Texture::CompositionType::LIGHT;
+
+	compositionMode_ = Texture::CompositionType::NONE;
 }
 
 EditMenu::~EditMenu(void)
@@ -13,11 +31,11 @@ EditMenu::~EditMenu(void)
 
 void EditMenu::draw(void)
 {
-
 	gui_.draw();
 
 	if (isImported) {
-		refreshImages();
+		displayListImage();
+		displayListSecondary();
 		isImported = false;
 	}
 }
@@ -40,7 +58,18 @@ void EditMenu::setup()
 	colorOut_.setup("Couleur bordure", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
 	colorScene_.setup("Couleur scene", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
 
+	perlinNoiseSize_.setup("Parametre bruit de perlin", ofVec3f(150, 150, 0.1f), ofVec3f(0, 0, 0.001f), ofVec3f(1000, 1000, 1));
+
+	selectPrimaryTextures_.setup();
+	composition_.setup();
+	filter_.setup();
+	mode_.setup();
+	selectSecondaryTextures_.setup();
+
+	displayListImage();
+	displayListSecondary();
 	baseSetup();
+	refresh(3);
 }
 
 void EditMenu::refresh(int newEditorDimension)
@@ -62,32 +91,64 @@ void EditMenu::refresh(int newEditorDimension)
 		gui_.add(&rotation_);
 	}
 	gui_.add(&colorFill_);
-	gui_.add(&selectPrimaryTextures_);
+	if (newEditorDimension == 3) {
+		gui_.add(&selectPrimaryTextures_);
+		gui_.add(&composition_);
+		composition_.minimizeAll();
+		composition_.minimize();
+		gui_.add(&filter_);
+	}
 }
 
-void EditMenu::refreshImages()
+void EditMenu::displayListImage()
 {
-	ofxToggle *aButton;
+	toggle *aButton;
 	int i = 0;
 
-	images_.clear();
+	primaryTextureList_.clear();
 	selectPrimaryTextures_.clear();
 
 	selectPrimaryTextures_.setName("Texture principale");
-	aButton = new ofxToggle();
-	images_.push_back(aButton->setup("Aucune", false, 20, 20));
-	selectPrimaryTextures_.add(images_[i++]);
-	aButton = new ofxToggle();
-	images_.push_back(aButton->setup("Bruit de perlin", false, 20, 20));
-	selectPrimaryTextures_.add(images_[i++]);
+	aButton = new toggle();
+
+	primaryTextureList_.push_back(aButton->setup("Aucune", false, 20, 20));
+	selectPrimaryTextures_.add(primaryTextureList_[i]);
+	primaryTextureList_[i++]->addListener(this, &EditMenu::toggleSelectedPrimary);	
+
+	aButton = new toggle();
+	primaryTextureList_.push_back(aButton->setup("Bruit de perlin", false, 20, 20));
+	selectPrimaryTextures_.add(primaryTextureList_[i]);
+	primaryTextureList_[i++]->addListener(this, &EditMenu::toggleSelectedPrimary);
+
+	selectPrimaryTextures_.add(&perlinNoiseSize_);
 
 	for (auto image = scene_.getCache().getObject().begin(); image != scene_.getCache().getObject().end(); ++image)
 	{
 		string name = image->first;
-		aButton = new ofxToggle();
-		images_.push_back(aButton->setup(name, false, 20, 20));
-		selectPrimaryTextures_.add(images_[i]);
-		i++;
+		aButton = new toggle();
+		primaryTextureList_.push_back(aButton->setup(name, false, 20, 20));
+		selectPrimaryTextures_.add(primaryTextureList_[i]);
+		primaryTextureList_[i++]->addListener(this, &EditMenu::toggleSelectedPrimary);
+	}
+}
+
+void EditMenu::displayListSecondary()
+{
+	toggle *aButton;
+	int i = 0;
+
+	secondaryTextureList_.clear();
+	selectSecondaryTextures_.clear();
+
+	selectSecondaryTextures_.setName("Texture de composition");
+
+	for (auto image = scene_.getCache().getObject().begin(); image != scene_.getCache().getObject().end(); ++image)
+	{
+		string name = image->first;
+		aButton = new toggle();
+		secondaryTextureList_.push_back(aButton->setup(name, false, 20, 20));
+		selectSecondaryTextures_.add(secondaryTextureList_[i]);
+		secondaryTextureList_[i++]->addListener(this, &EditMenu::toggleSelectedSecondary);
 	}
 }
 
@@ -107,7 +168,8 @@ void EditMenu::windowsResized(const ofPoint & size)
 	gui_.clear();
 	setup();
 	refresh(currentDimension_);
-	refreshImages();
+	displayListImage();
+	displayListSecondary();
 	if (id) {
 		focus(*id);
 	}
@@ -118,6 +180,26 @@ void EditMenu::vecSliderPositionChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
 	if (focused != nullptr) scene_.setDrawablePosition(*focused, ofVec3f(vec.x, vec.y, vec.z), !resetting_);
+}
+
+void EditMenu::vec3SliderPerlinChange(ofVec3f & vec)
+{
+	const Identifiable * id = scene_.getFocusedDrawable();
+	if (id && (*id) != 0) {
+		SceneNode * node = scene_.ensureDrawableExistance(*id);
+		if (node->getDrawable()->texture() == nullptr) {
+			node->getDrawable()->setTexture(new Texture);
+		}
+		node->getDrawable()->texture()->loadImage(TextureGenerator::perlinNoise(vec.x, vec.y, vec.z));
+		for (const auto &e : primaryTextureList_) {
+			if (e->getName() == "Bruit de perlin") {
+				toggle * t = reinterpret_cast<toggle *>(e);
+				if (t->getValue() == false) {
+					t->setValue(true);
+				}
+			}
+		}
+	}
 }
 
 void EditMenu::vecSliderSizeChange(ofVec3f & vec)
@@ -174,14 +256,134 @@ void EditMenu::onColorSceneChange(ofColor & color)
 	ofSetBackgroundColor(color);
 }
 
+void EditMenu::toggleSelectedFilter(const void * sender, bool & value)
+{
+	ofParameter<bool> * p = (ofParameter<bool> *) sender;
+
+	if (!resetting_) {
+		resetting_ = true;
+		for (const auto & e : filterList_) {
+			if (e->getName() != p->getName()) {
+				reinterpret_cast<toggle *>(e)->setValue(false);
+			}
+		}
+		const Identifiable * id = scene_.getFocusedDrawable();
+		if (id && (*id) != 0) {
+			SceneNode * node = scene_.ensureDrawableExistance(*id);
+			if (node->getDrawable()->texture() == nullptr) {
+				node->getDrawable()->setTexture(new Texture);
+			}
+			node->getDrawable()->texture()->setFilter(filterLabel_[p->getName()]);
+		}
+		value = true;
+		resetting_ = false;
+	}
+}
+
+void EditMenu::toggleSelectedMode(const void * sender, bool & value)
+{
+	ofParameter<bool> * p = (ofParameter<bool> *) sender;
+
+	if (!resetting_) {
+		resetting_ = true;
+		composition_.clear();
+		composition_.setName("Composition");
+		for (const auto & e : modeCompositionList_) {
+			if (e->getName() != p->getName()) {
+				reinterpret_cast<toggle *>(e)->setValue(false);
+			}
+		}
+		value = true;
+		if (p->getName() == "Aucun") {
+			composition_.add(&mode_);
+		} else {
+			composition_.add(&mode_);
+			composition_.add(&selectSecondaryTextures_);
+		}
+
+		compositionMode_ = compositionLabel_[p->getName()];
+
+		resetting_ = false;
+	}
+}
+
+void EditMenu::toggleSelectedPrimary(const void * sender, bool & value)
+{
+	ofParameter<bool> * p = (ofParameter<bool> *) sender;
+
+	if (!resetting_) {
+		resetting_ = true;
+		for (const auto & e : primaryTextureList_) {
+			if (e->getName() != p->getName()) {
+				reinterpret_cast<toggle *>(e)->setValue(false);
+			}
+		}
+		value = true;
+
+		const Identifiable * id = scene_.getFocusedDrawable();
+		if (id && (*id) != 0) {
+			SceneNode * node = scene_.ensureDrawableExistance(*id);
+			if (node->getDrawable()->texture() == nullptr) {
+				node->getDrawable()->setTexture(new Texture);
+			}
+			if (p->getName() == "Aucune") {
+				delete node->getDrawable()->texture();
+				node->getDrawable()->setTexture(nullptr);
+			} else {
+				if (p->getName() != "Bruit de perlin") {
+					node->getDrawable()->texture()->loadImage(&scene_.getCache().at(p->getName()));
+				} else {
+					node->getDrawable()->texture()->loadImage(TextureGenerator::perlinNoise(150, 150, 0.01f));
+				}
+			}
+		}
+
+		resetting_ = false;
+	}
+}
+
+void EditMenu::toggleSelectedSecondary(const void * sender, bool & value)
+{
+	ofParameter<bool> * p = (ofParameter<bool> *) sender;
+
+	if (!resetting_) {
+		resetting_ = true;
+		for (const auto & e : secondaryTextureList_) {
+			if (e->getName() != p->getName()) {
+				reinterpret_cast<toggle *>(e)->setValue(false);
+			}
+		}
+		value = true;
+
+		const Identifiable * id = scene_.getFocusedDrawable();
+		if (id && (*id) != 0) {
+			SceneNode * node = scene_.ensureDrawableExistance(*id);
+			if (node->getDrawable()->texture() == nullptr) {
+				node->getDrawable()->setTexture(new Texture);
+			}
+			node->getDrawable()->texture()->addComposition(&scene_.getCache().at(p->getName()), compositionMode_);
+		}
+
+		resetting_ = false;
+	}
+}
+
 void EditMenu::baseSetup()
 {
 	gui_.setup();
 	gui_.setName("Menu d'edition");
 	gui_.setPosition(820, 10);
 
-	selectPrimaryTextures_.setup();
-	selectPrimaryTextures_.setName("Appliquer Images");
+	initFilters();
+	initModeComposition();
+
+	composition_.add(&mode_);
+
+	mode_.minimizeAll();
+
+	selectPrimaryTextures_.setName("Texture principale");
+	composition_.setName("Composition");
+	filter_.setName("Filtres");
 
 	initListeners();
 
@@ -189,7 +391,6 @@ void EditMenu::baseSetup()
 	gui_.add(&size_);
 	gui_.add(&colorFill_);
 	gui_.add(&rotation_);
-	gui_.add(&selectPrimaryTextures_);
 }
 
 bool EditMenu::getIsImported()
@@ -260,6 +461,28 @@ void EditMenu::onTransformationChange(void)
 	}
 }
 
+void EditMenu::initFilters(void)
+{
+	toggle *tgl;
+	int i = 0;
+
+	filterList_.clear();
+	filter_.clear();
+
+	for (const auto &e : filterLabel_)
+	{
+		tgl = new toggle();
+
+		filterList_.push_back(tgl->setup(e.first, false, 20, 20));
+		if (i == 0) {
+			tgl->setValue(true);
+		}
+		
+		filter_.add(filterList_[i]);
+		filterList_[i++]->addListener(this, &EditMenu::toggleSelectedFilter);
+	}
+}
+
 void EditMenu::initListeners(void)
 {
 	colorFill_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorChange);
@@ -275,6 +498,32 @@ void EditMenu::initListeners(void)
 	thickness_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorOutChange);
 	colorScene_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorSceneChange);
+
+	perlinNoiseSize_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vec3SliderPerlinChange);
+}
+
+void EditMenu::initModeComposition(void)
+{
+	toggle *tgl;
+	int i = 0;
+
+	modeCompositionList_.clear();
+	mode_.clear();
+
+	mode_.setName("Mode de composition");
+	for (const auto &e : compositionLabel_)
+	{
+		tgl = new toggle();
+
+		modeCompositionList_.push_back(tgl->setup(e.first, false, 20, 20));
+		if (i == 0) {
+			tgl->setValue(true);
+		}
+
+		mode_.add(modeCompositionList_[i]);
+		modeCompositionList_[i++]->addListener(this, &EditMenu::toggleSelectedMode);
+	}
+
 }
 
 void EditMenu::removeListeners(void)
@@ -292,4 +541,20 @@ void EditMenu::removeListeners(void)
 	thickness_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorOutChange);
 	colorScene_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorSceneChange);
+
+	for (const auto &e : primaryTextureList_) {
+		e->removeListener(this, &EditMenu::toggleSelectedPrimary);
+	}
+
+	for (const auto &e : secondaryTextureList_) {
+		e->removeListener(this, &EditMenu::toggleSelectedSecondary);
+	}
+	
+	for (const auto &e : filterList_) {
+		e->removeListener(this, &EditMenu::toggleSelectedFilter);
+	}
+
+	for (const auto &e : modeCompositionList_) {
+		e->removeListener(this, &EditMenu::toggleSelectedMode);
+	}
 }
