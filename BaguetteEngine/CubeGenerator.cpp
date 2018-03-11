@@ -4,7 +4,7 @@ CubeGenerator::CubeGenerator()
 {
 	box_ = new CubePrimitive;
 	box_->setPosition(ofVec3f(0, 0, 0));
-	box_->setSize(0.5f, 0.5f, 0.5f);
+	box_->setSize(1.f, 1.f, 1.f);
 }
 
 CubeGenerator::CubeGenerator(const float width, const float height, const float depth)

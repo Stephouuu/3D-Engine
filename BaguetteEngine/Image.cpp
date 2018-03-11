@@ -32,6 +32,20 @@ void Image::Load()
 	}
 }
 
+void Image::LoadCrop(int x, int y, int w, int h)
+{
+	ofFileDialogResult result = ofSystemLoadDialog("Load file");
+	if (result.bSuccess) {
+		path = result.getPath();
+		name = "cropped-"+result.getName();
+		// load your file at `path`
+		theImg.load(path);
+		theImg.crop(x, y, w, h);
+		isLoaded = true;
+	}
+
+}
+
 void Image::Export(std::string filename)
 {
 	time_t rawtime;

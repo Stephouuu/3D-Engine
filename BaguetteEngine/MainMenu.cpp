@@ -20,9 +20,22 @@ void MainMenu::setup()
 	fileGroup_.setName("Fichier");
 	fileGroup_.add(exportScene_.setup("Exporter la scene"));
 	fileGroup_.add(importImage_.setup("Importer une Image"));
+	cropImage_.setup();
+	cropImage_.setName("Importer une portion d'IMG");
+	fromXY_.setup("From x/y", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
+	cropWH_.setup("Width/Height", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
 
+
+	cropImage_.add(&fromXY_);
+	cropImage_.add(&cropWH_);
+	cropImage_.add(importCroppedImage_.setup("Importer Portion"));
+	fileGroup_.add(&cropImage_);
+
+	fromXY_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::setFromXYValues);
+	cropWH_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::setFromWHValues);
 	exportScene_.addListener(this, &MainMenu::buttonPressedFile);
 	importImage_.addListener(this, &MainMenu::buttonPressedFile);
+	importCroppedImage_.addListener(this, &MainMenu::buttonPressedFile);
 
 	modeGroup_.setup();
 
@@ -192,6 +205,13 @@ void MainMenu::buttonPressedFile(const void * sender)
 		scene_.addImage(uneImage);
 		editMenu_.setIsImported(true);
 	}
+	else if (button->getName() == "Importer Portion") {
+		std::cout << "bonjour" << std::endl;
+		Image uneImage;
+		uneImage.LoadCrop((int)fromXYValues_.x,(int)fromXYValues_.y,(int)fromWHValues_.x,(int)fromWHValues_.y);
+		scene_.addImage(uneImage);
+		editMenu_.setIsImported(true);
+	}
 }
 
 void MainMenu::buttonPressedMode(const void * sender)
@@ -243,26 +263,40 @@ void MainMenu::buttonPressed3DModel(const void * sender)
 
 	if (button->getName() == "Ajouter un modele 3D")
 	{
-		ofFileDialogResult result = ofSystemLoadDialog("Load file");
+		ofFileDialogResult	result = ofSystemLoadDialog("Load file");
+		size_t				index = 0;
+
 		if (result.bSuccess) {
 			path = result.getPath();
 			createdObj = scene_.instanciateDrawable(path);
+
+			if (model3DBox_ == ofPoint(0, 0, 0))
+				return;
+
 			createdMesh = dynamic_cast<AMesh*>(scene_.ensureDrawableExistance(createdObj)->getDrawable());
 
 			const std::vector<ofPoint> & vertices = createdMesh->getVertices();
 			std::vector<ofPoint>::const_iterator it;
 			for (it = vertices.begin(); it != vertices.end(); it++)
 			{
-				max.x = (it->x > max.x) ? (it->x) : (max.x);
-				max.y = (it->y > max.y) ? (it->y) : (max.y);
-				max.z = (it->z > max.z) ? (it->z) : (max.z);
+				max.x = std::max(it->x, max.x);
+				max.y = std::max(it->y, max.y);
+				max.z = std::max(it->z, max.z);
 			}
 
-			if (model3DBox_ == ofPoint(0, 0, 0))
-				return;
+			model3DBox_.x /= 2;
+			model3DBox_.y /= 2;
+			model3DBox_.z /= 2;
 
-			const ofPoint	ratio(model3DBox_.x / max.x, model3DBox_.y / max.y, model3DBox_.z / max.z);
-			scene_.setDrawableScale(createdObj, ratio, false);
+			ofPoint ratio(model3DBox_.x / max.x, model3DBox_.y / max.y, model3DBox_.z / max.z);
+
+			for (it = vertices.begin(); it != vertices.end(); it++)
+			{				
+				createdMesh->setVertex(index, ofVec3f(it->x * ratio.x, it->y * ratio.y, it->z * ratio.z));
+				index++;
+			}
+			scene_.setFocusedDrawable(0);
+			scene_.setFocusedDrawable(createdObj);
 		}
 	}
 }
@@ -280,4 +314,14 @@ void MainMenu::buttonPressedShapeVector(const void * sender)
 void MainMenu::vecSliderModel3DBoxChange(ofVec3f & vec)
 {
 	model3DBox_ = vec;
+}
+
+void MainMenu::setFromXYValues(ofVec2f & vec)
+{
+	fromXYValues_ = vec;
+}
+
+void MainMenu::setFromWHValues(ofVec2f & vec)
+{
+	fromWHValues_ = vec;
 }

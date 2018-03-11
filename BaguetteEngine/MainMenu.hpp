@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "ofMain.h"
 #include "ofxGui.h"
 
@@ -19,6 +21,8 @@ public:
 	virtual void refresh(int newEditorDimension);
 	virtual void focus(const Identifiable & id);
 	virtual void windowsResized(const ofPoint & size);
+	void setFromXYValues(ofVec2f & vec);
+	void setFromWHValues(ofVec2f & vec);
 
 	bool wantScreenshot(void);
 
@@ -43,6 +47,7 @@ private:
 	ofxGuiGroup			fileGroup_;
 	ofxGuiGroup			modeGroup_;
 	ofxGuiGroup			vectorShapeGroup_;
+	ofxGuiGroup			cropImage_;
 
 	ofxButton			insertSphere_;
 	ofxButton			insertPlan_;
@@ -62,9 +67,14 @@ private:
 
 	ofxButton			exportScene_;
 	ofxButton			importImage_;
+	ofxButton			importCroppedImage_;
 	ofMouseEventArgs	mouseEvents_;
 
 	Vec3Slider			model3DBoxSlider_;
+	Vec2Slider			fromXY_;
+	Vec2Slider			cropWH_;
+	ofVec2f				fromXYValues_;
+	ofVec2f				fromWHValues_;
 
 	SceneController		&scene_;
 	EditMenu			&editMenu_;
