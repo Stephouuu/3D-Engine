@@ -22,7 +22,8 @@ public:
 	virtual void refresh(int newEditorDimension);
 	virtual void focus(const Identifiable & id);
 	virtual void windowsResized(const ofPoint & size);
-
+	void vec2SliderFromXYChange(ofVec2f & vec);
+	void vec2SliderFromWHChange(ofVec2f & vec);
 	bool wantScreenshot(void);
 
 private:
@@ -74,7 +75,7 @@ private:
 	Vec2Slider			fromXY_;
 	Vec2Slider			cropWH_;
 	ofVec2f				fromXYValues_;
-	ofVec2f				fromWHValues_;
+	ofVec2f				cropWHValues_;
 
 	SceneController		&scene_;
 	EditMenu			&editMenu_;
