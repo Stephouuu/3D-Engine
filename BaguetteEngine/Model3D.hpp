@@ -11,6 +11,7 @@ public:
 	Model3D();
 	virtual ~Model3D();
 	bool load(const string &path);
+	virtual void update(float dt);
 
 private:
 	virtual void draw_(void);

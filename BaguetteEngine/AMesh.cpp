@@ -77,7 +77,7 @@ void AMesh::setFillColor(const ofColor & c)
 	// const std::vector<ofPoint> & vertices = vbo_.getVertices();
 	if (mesh_)
 	{
-		const std::vector<ofPoint> & vertices = mesh_->getVertices();
+		const std::vector<ofFloatColor> & vertices = mesh_->getColors();
 
 		for (int i = 0; i < vertices.size(); i++) {
 			mesh_->setColor(i, { c.r / 255.f, c.g / 255.f, c.b / 255.f, c.a / 255.f });
