@@ -10,6 +10,8 @@ public:
 	void setRadius(const float radius);
 
 private:
+	virtual void draw_(void);
+
 	ofSpherePrimitive	sphere_;
 };
 

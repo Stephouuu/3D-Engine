@@ -216,30 +216,27 @@ void EditMenu::updateValues(SceneNode *node)
 			size_.setValue(ofVec3f(scale.x, scale.y, scale.z));
 			ofColor color = currentDrawable->getFillColor();
 			colorFill_.setValue(ofColor(color.r, color.g, color.b, color.a));
-			//const float roll = currentMesh->getRoll();
-			//const float yawl = currentMesh->get
+			ofVec3f rotater = currentDrawable->getOrientationEuler();
+			rotation_.setValue(rotater);
 		}
 		else {
 			position_.setValue(ofVec3f(0, 0, 0));
 			size_.setValue(ofVec3f(0, 0, 0));
 			colorFill_.setValue(ofColor(0, 0, 0, 0));
-			//setup();
 		}
 	}
 	else {
 		if (currentDrawable) {
 			ofVec3f position = currentDrawable->getPosition();
 			position2d_.setValue(ofVec2f(position.x, position.y));
-
 			ofVec3f scale = currentDrawable->getScale();
 			size2d_.setValue(ofVec2f(scale.x, scale.y));
-
+			float rotation = currentDrawable->getRotation();
+			rotation2d_.setValue(ofVec3f(0, 0, rotation));
 			ofColor fillColor = currentDrawable->getFillColor();
 			colorFill_.setValue(fillColor);
-
 			ofColor outColor = currentDrawable->getOutlineColor();
 			colorOut_.setValue(outColor);
-
 			int thickness = currentDrawable->getOutlineThickness();
 			thickness_.setValue(ofVec2f(thickness, 0));
 		}

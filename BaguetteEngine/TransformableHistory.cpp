@@ -14,15 +14,14 @@ void TransformableHistory::deleteTransformations(const Identifiable & id)
 {
 	std::list<Item>::iterator it = historic_.begin();
 
-	while (it != historic_.end()) {
-		if (it->first == id) {
-			if (current_->first.getID() == it->first.getID()) {
-				if (current_ == --historic_.cend()) {
-					--current_;
-				}
-				else {
-					++current_;
-				}
+	while (it != historic_.end())
+	{
+		if (it->first == id && it->first != 0) {
+			if (it == current_) {
+				++current_;
+				std::cout << "delete " << id << std::endl;
+				if (current_ == historic_.cend()) current_ = historic_.cbegin();
+				if (historic_.empty()) current_ = historic_.cend();
 			}
 			it = historic_.erase(it);
 		}
@@ -30,6 +29,8 @@ void TransformableHistory::deleteTransformations(const Identifiable & id)
 			++it;
 		}
 	}
+	if (historic_.empty()) current_ = historic_.cend();
+	std::cout << "new liste size: " << historic_.size() << std::endl;
 }
 
 void TransformableHistory::pushTransformation(const Item & t)
@@ -55,6 +56,7 @@ void TransformableHistory::pushTransformation(const Item & t)
 
 const TransformableHistory::Item & TransformableHistory::undo(void)
 {
+	std::cout << (current_ != historic_.cend()) << std::endl;
 	if (current_ != historic_.cend() && current_ != --historic_.cend()) {
 		auto tmp = current_;
 		current_++;
@@ -72,6 +74,7 @@ const TransformableHistory::Item & TransformableHistory::undo(void)
 
 const TransformableHistory::Item & TransformableHistory::redo(void)
 {
+	std::cout << (current_ != historic_.cend()) << std::endl;
 	if (current_ != historic_.cbegin()) {
 		auto tmp = current_;
 		current_--;
@@ -83,5 +86,5 @@ const TransformableHistory::Item & TransformableHistory::redo(void)
 			return *current_;
 		}
 	}
-	throw std::runtime_error("Nothing to redo");
+	throw std::runtime_error("Nothing to redo.");
 }

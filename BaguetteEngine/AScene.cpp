@@ -164,7 +164,8 @@ SceneNode * AScene::ensureDrawableExistance(const Identifiable & id)
 	if (!node) {
 		std::ostringstream oss;
 		oss << "Drawable #" << id << " not found" << std::endl;
-		throw std::runtime_error(oss.str());
+		return nullptr;
+		// throw std::runtime_error(oss.str());
 	}
 	return node;
 }

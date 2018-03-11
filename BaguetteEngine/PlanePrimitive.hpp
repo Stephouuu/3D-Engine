@@ -11,6 +11,8 @@ public:
 	void setSize(const float width, const float height);
 
 private:
+	virtual void draw_(void);
+
 	ofPlanePrimitive	plane_;
 };
 

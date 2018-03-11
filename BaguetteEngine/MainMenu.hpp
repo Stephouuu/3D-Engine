@@ -20,6 +20,8 @@ public:
 	virtual void focus(const Identifiable & id);
 	virtual void windowsResized(const ofPoint & size);
 
+	bool wantScreenshot(void);
+
 private:
 	void refresh2D(void);
 	void refresh3D(void);
@@ -29,6 +31,8 @@ private:
 	void buttonPressed2D(const void * sender);
 	void buttonPressed3D(const void * sender);
 	void buttonPressed3DModel(const void * sender);
+
+	void vecSliderModel3DBoxChange(ofVec3f & vec);
 
 private:
 	ofxPanel			gui_;
@@ -56,9 +60,13 @@ private:
 	ofxButton			importImage_;
 	ofMouseEventArgs	mouseEvents_;
 
+	Vec3Slider			model3DBoxSlider_;
+
 	SceneController		&scene_;
 	EditMenu			&editMenu_;
 	SceneViewer			&sceneViewer_;
 
 	Image				exportImg_;
+	ofVec3f				model3DBox_;
+	bool				wantScreenshot_;
 };

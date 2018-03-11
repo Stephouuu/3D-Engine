@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "ofxAssimpModelLoader.h"
 #include "AMesh.hpp"
 
@@ -11,5 +13,8 @@ public:
 	bool load(const string &path);
 
 private:
+	virtual void draw_(void);
+
 	ofxAssimpModelLoader		model_;
+	ofMesh						modelMesh_;
 };
