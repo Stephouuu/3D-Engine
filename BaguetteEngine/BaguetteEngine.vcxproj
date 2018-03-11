@@ -182,6 +182,7 @@
     <ClCompile Include="ConeGenerator.cpp" />
     <ClCompile Include="ConePrimitive.cpp" />
     <ClCompile Include="CubePrimitive.cpp" />
+    <ClCompile Include="DialogVectorShape.cpp" />
     <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="EllipseVector.cpp" />
     <ClCompile Include="Identifiable.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="SceneViewer.cpp" />
+    <ClCompile Include="SmileVectorShape.cpp" />
     <ClCompile Include="SphereGenerator.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
@@ -244,6 +246,7 @@
     <ClCompile Include="Vec1Slider.cpp" />
     <ClCompile Include="Vec2Slider.cpp" />
     <ClCompile Include="Vec3Slider.cpp" />
+    <ClCompile Include="AVectorShape.cpp" />
     <ClCompile Include="WindowRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +260,7 @@
     <ClInclude Include="ConeGenerator.hpp" />
     <ClInclude Include="ConePrimitive.hpp" />
     <ClInclude Include="CubePrimitive.hpp" />
+    <ClInclude Include="DialogVectorShape.hpp" />
     <ClInclude Include="EditMenu.hpp" />
     <ClInclude Include="EllipseVector.hpp" />
     <ClInclude Include="IDrawable.hpp" />
@@ -281,6 +285,7 @@
     <ClInclude Include="SceneGraph.hpp" />
     <ClInclude Include="SceneNode.hpp" />
     <ClInclude Include="SceneViewer.hpp" />
+    <ClInclude Include="SmileVectorShape.hpp" />
     <ClInclude Include="SphereGenerator.hpp" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />
@@ -520,6 +525,7 @@
     <ClInclude Include="Vec1Slider.hpp" />
     <ClInclude Include="Vec2Slider.hpp" />
     <ClInclude Include="Vec3Slider.hpp" />
+    <ClInclude Include="AVectorShape.hpp" />
     <ClInclude Include="WindowRenderer.hpp" />
   </ItemGroup>
   <ItemGroup>

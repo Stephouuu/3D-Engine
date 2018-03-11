@@ -23,7 +23,6 @@ void AScene::update(float dt)
 			}
 		}
 	}
-
 	graph_.update(dt);
 }
 

@@ -41,6 +41,8 @@ void MainMenu::setup()
 
 	primitiveGroup_.setup();
 	model3DGroup_.setup();
+	vectorShapeGroup_.setup();
+
 	refresh3D();
 
 	insertGroup_.setup();
@@ -58,9 +60,11 @@ void MainMenu::setup()
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
 	modeGroup_.minimizeAll();
+	vectorShapeGroup_.minimizeAll();
 	insertGroup_.minimize();
 	fileGroup_.minimize();
 	modeGroup_.minimize();
+	vectorShapeGroup_.maximize();
 }
 
 void MainMenu::refresh(int newEditorDimension)
@@ -102,8 +106,11 @@ void MainMenu::refresh2D(void)
 	
 	primitiveGroup_.clear();
 	model3DGroup_.clear();
-	primitiveGroup_.setName("Primitives Vectorielles");
 	insertGroup_.clear();
+	vectorShapeGroup_.clear();
+
+	primitiveGroup_.setName("Primitives Vectorielles");
+	vectorShapeGroup_.setName("Formes Vectorielles");
 
 	insertTriangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertEllipse_.removeListener(this, &MainMenu::buttonPressed2D);
@@ -112,6 +119,7 @@ void MainMenu::refresh2D(void)
 	insertRectangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
+	insertDialogVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
 
 	primitiveGroup_.add(insertTriangle_.setup("Ajouter un triangle"));
 	primitiveGroup_.add(insertEllipse_.setup("Ajouter une ellipse"));
@@ -124,9 +132,13 @@ void MainMenu::refresh2D(void)
 	insertPoint_.addListener(this, &MainMenu::buttonPressed2D);
 	insertCircle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
+	insertDialogVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
+
+	vectorShapeGroup_.add(insertDialogVector_.setup("Ajouter dialog"));
 
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&primitiveGroup_);
+	insertGroup_.add(&vectorShapeGroup_);
 	
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
@@ -185,7 +197,6 @@ void MainMenu::buttonPressedFile(const void * sender)
 	ofxButton * button = (ofxButton*)sender;
 
 	if (button->getName() == "Exporter la scene") {
-		// exportImg_.Export("screenshot");
 		wantScreenshot_ = true;
 	}
 	else if (button->getName() == "Importer une Image") {
@@ -287,6 +298,16 @@ void MainMenu::buttonPressed3DModel(const void * sender)
 			scene_.setFocusedDrawable(0);
 			scene_.setFocusedDrawable(createdObj);
 		}
+	}
+}
+
+void MainMenu::buttonPressedShapeVector(const void * sender)
+{
+	ofxButton		*button = (ofxButton*)sender;
+
+	if (button->getName() == "Ajouter dialog") {
+		std::cerr << "ajouter dialog" << std::endl;
+		scene_.instanciateDrawable("dialog");
 	}
 }
 

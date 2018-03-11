@@ -35,6 +35,7 @@ private:
 	void buttonPressed2D(const void * sender);
 	void buttonPressed3D(const void * sender);
 	void buttonPressed3DModel(const void * sender);
+	void buttonPressedShapeVector(const void * sender);
 
 	void vecSliderModel3DBoxChange(ofVec3f & vec);
 
@@ -45,6 +46,7 @@ private:
 	ofxGuiGroup			model3DGroup_;
 	ofxGuiGroup			fileGroup_;
 	ofxGuiGroup			modeGroup_;
+	ofxGuiGroup			vectorShapeGroup_;
 	ofxGuiGroup			cropImage_;
 
 	ofxButton			insertSphere_;
@@ -58,6 +60,8 @@ private:
 	ofxButton			insertPoint_;
 	ofxButton			insertCircle_;
 	ofxButton			insertRectangle_;
+
+	ofxButton			insertDialogVector_;
 
 	ofxButton			swapMode_;
 
