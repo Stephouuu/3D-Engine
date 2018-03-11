@@ -24,11 +24,19 @@ void Image::Load()
 {
 	ofFileDialogResult result = ofSystemLoadDialog("Load file");
 	if (result.bSuccess) {
-		path = result.getPath();
-		name = result.getName();
-		// load your file at `path`
-		theImg.load(path);
-		isLoaded = true;
+		std::size_t pos = result.getName().find(".");
+		std::string extension = result.getName().substr(pos + 1);
+		std::cout << extension << std::endl;
+		if (extension == "png" || extension == "jpg" || extension == "gif" || extension == "bmp")
+		{
+			path = result.getPath();
+			name = result.getName();
+			// load your file at `path`
+			theImg.load(path);
+			isLoaded = true;
+		}
+		else
+			std::cerr<< "Error : It's not an Image"<<std::endl;
 	}
 }
 
@@ -36,12 +44,21 @@ void Image::LoadCrop(int x, int y, int w, int h)
 {
 	ofFileDialogResult result = ofSystemLoadDialog("Load file");
 	if (result.bSuccess) {
-		path = result.getPath();
-		name = "cropped-"+result.getName();
-		// load your file at `path`
-		theImg.load(path);
-		theImg.crop(x, y, w, h);
-		isLoaded = true;
+		std::size_t pos = result.getName().find(".");
+		std::string extension = result.getName().substr(pos + 1);
+		std::cout << extension << std::endl;
+		if (extension == "png" || extension == "jpg" || extension == "gif" || extension == "bmp")
+		{
+			path = result.getPath();
+			name = "cropped-" + result.getName();
+			// load your file at `path`
+			theImg.load(path);
+			theImg.crop(x, y, w, h);
+			isLoaded = true;
+		}
+		else
+			std::cerr << "Error : It's not an Image" << std::endl;
+
 	}
 
 }
