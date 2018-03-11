@@ -29,5 +29,9 @@ public:
 
 private:
 	PointVector circle_;
+	EllipseVector eye1_;
+	EllipseVector eye2_;
+	EllipseVector eye3_;
+	EllipseVector eye4_;
 };
 

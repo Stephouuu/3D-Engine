@@ -22,8 +22,6 @@ public:
 	virtual void refresh(int newEditorDimension);
 	virtual void focus(const Identifiable & id);
 	virtual void windowsResized(const ofPoint & size);
-	void setFromXYValues(ofVec2f & vec);
-	void setFromWHValues(ofVec2f & vec);
 
 	bool wantScreenshot(void);
 
@@ -63,6 +61,7 @@ private:
 	ofxButton			insertRectangle_;
 
 	ofxButton			insertDialogVector_;
+	ofxButton			insertSmileVector_;
 
 	ofxButton			swapMode_;
 

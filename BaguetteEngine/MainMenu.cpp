@@ -31,8 +31,6 @@ void MainMenu::setup()
 	cropImage_.add(importCroppedImage_.setup("Importer Portion"));
 	fileGroup_.add(&cropImage_);
 
-	fromXY_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::setFromXYValues);
-	cropWH_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::setFromWHValues);
 	exportScene_.addListener(this, &MainMenu::buttonPressedFile);
 	importImage_.addListener(this, &MainMenu::buttonPressedFile);
 	importCroppedImage_.addListener(this, &MainMenu::buttonPressedFile);
@@ -120,6 +118,7 @@ void MainMenu::refresh2D(void)
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 	insertDialogVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
+	insertSmileVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
 
 	primitiveGroup_.add(insertTriangle_.setup("Ajouter un triangle"));
 	primitiveGroup_.add(insertEllipse_.setup("Ajouter une ellipse"));
@@ -133,8 +132,10 @@ void MainMenu::refresh2D(void)
 	insertCircle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertDialogVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
+	insertSmileVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
 
 	vectorShapeGroup_.add(insertDialogVector_.setup("Ajouter dialog"));
+	vectorShapeGroup_.add(insertSmileVector_.setup("Ajouter smile"));
 
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&primitiveGroup_);
@@ -306,22 +307,14 @@ void MainMenu::buttonPressedShapeVector(const void * sender)
 	ofxButton		*button = (ofxButton*)sender;
 
 	if (button->getName() == "Ajouter dialog") {
-		std::cerr << "ajouter dialog" << std::endl;
 		scene_.instanciateDrawable("dialog");
+	}
+	else if (button->getName() == "Ajouter smile") {
+		scene_.instanciateDrawable("smile");
 	}
 }
 
 void MainMenu::vecSliderModel3DBoxChange(ofVec3f & vec)
 {
 	model3DBox_ = vec;
-}
-
-void MainMenu::setFromXYValues(ofVec2f & vec)
-{
-	fromXYValues_ = vec;
-}
-
-void MainMenu::setFromWHValues(ofVec2f & vec)
-{
-	fromWHValues_ = vec;
 }
