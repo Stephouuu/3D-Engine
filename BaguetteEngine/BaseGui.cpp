@@ -14,6 +14,11 @@ BaseGui::~BaseGui(void)
 void BaseGui::draw(void)
 {
 	ofDisableDepthTest();
+	if (mainMenu_.wantScreenshot()) {
+		std::cout << "screenshot" << std::endl;
+		Image img;
+		img.Export("screenshot");
+	}
 	editMenu_.draw();
 	mainMenu_.draw();
 	sceneViewer_.draw();

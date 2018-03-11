@@ -1,9 +1,11 @@
 #version 330
 
-in vec4 frag_color;
+uniform sampler2DRect tex0;
 
-out vec4 out_Color;
+in vec4 out_color;
+out vec4 outputColor;
 
 void main() {
-	out_Color = frag_color;
+	outputColor = out_color;
+	// outputColor = texture(tex0, texCoordVarying);
 }

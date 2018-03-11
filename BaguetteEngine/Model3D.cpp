@@ -2,7 +2,7 @@
 
 Model3D::Model3D()
 {
-	setMesh(ofMesh());
+	// setMesh(ofMesh());
 	meshType_ = AMesh::MODEL;
 }
 
@@ -16,6 +16,11 @@ bool Model3D::load(const string & path)
 
 	model_.clear();//May be useless
 	isLoaded = model_.loadModel(path);
-	setMesh(model_.getMesh(0));
+	// setMesh(model_.getMesh(0));
 	return isLoaded;
+}
+
+void Model3D::draw_(void)
+{
+
 }

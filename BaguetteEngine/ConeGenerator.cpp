@@ -2,30 +2,31 @@
 
 ConeGenerator::ConeGenerator()
 {
-	cone_.setPosition(ofVec3f(0, 0, 0));
-	cone_.setSize(1.0f, 2);
+	cone_ = new ConePrimitive;
+	cone_->setPosition(ofVec3f(0, 0, 0));
+	cone_->setSize(1.0f, 2);
 }
 
 ConeGenerator::~ConeGenerator()
 {
 }
 
-AMesh ConeGenerator::operator()(void) const
+AMesh * ConeGenerator::operator()(void) const
 {
 	return generate();
 }
 
-AMesh ConeGenerator::generate() const
+AMesh * ConeGenerator::generate() const
 {
 	return cone_;
 }
 
 void ConeGenerator::setSize(const float radius, const float height)
 {
-	cone_.setSize(radius, height);
+	cone_->setSize(radius, height);
 }
 
 void ConeGenerator::setPosition(const ofVec3f pos)
 {
-	cone_.setPosition(pos);
+	cone_->setPosition(pos);
 }

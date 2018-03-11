@@ -20,6 +20,8 @@ public:
 	virtual void focus(const Identifiable & id);
 	virtual void windowsResized(const ofPoint & size);
 
+	bool wantScreenshot(void);
+
 private:
 	void refresh2D(void);
 	void refresh3D(void);
@@ -60,5 +62,6 @@ private:
 	EditMenu			&editMenu_;
 	SceneViewer			&sceneViewer_;
 
-	Image				exportImg_;
+	// Image				exportImg_;
+	bool				wantScreenshot_;
 };

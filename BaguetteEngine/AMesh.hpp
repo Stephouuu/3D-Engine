@@ -1,10 +1,13 @@
 #pragma once
 
 #include <vector>
+#include "ofMesh.h"
+#include "ofNode.h"
 #include "ofMain.h"
 #include "Identifiable.hpp"
 #include "TransformableHistory.hpp"
 #include "IDrawable.hpp"
+#include "TextureGenerator.hpp"
 
 class ARenderer;
 
@@ -23,13 +26,10 @@ public:
 
 public:
 	AMesh(void);
-	AMesh(const ofMesh & oMesh);
 	virtual ~AMesh(void);
 
-	AMesh & operator=(const ofMesh &oMesh);
-
 	void init(void);
-	void setMesh(const ofMesh &oMesh);
+	void setMesh(ofMesh * oMesh);
 
 	virtual void setFillColor(const ofColor & color);
 	virtual const ofColor & getFillColor(void) const;
@@ -47,13 +47,19 @@ public:
 
 	virtual void invalidate(void);
 
+	virtual void setTexture(Texture * texture);
+	void mapTexCoordsFromTexture(const ofTexture& inTexture);
+	void mapTexCoords(float u1, float v1, float u2, float v2);
+
+
 private:
+	virtual void draw_(void) = 0;
 	void initColor(void);
 
 private:
-	ofShader			shader_;
-	ofVboMesh			vbo_;
+	ofMesh * mesh_;
 
 protected:
+	ofShader			shader_;
 	InstantiableMesh	meshType_;
 };

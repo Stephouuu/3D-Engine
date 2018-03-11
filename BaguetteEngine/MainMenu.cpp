@@ -1,7 +1,7 @@
 #include "MainMenu.hpp"
 
 MainMenu::MainMenu(SceneController & scene, EditMenu & editMenu, SceneViewer & sceneViewer)
-	: scene_(scene), editMenu_(editMenu), sceneViewer_(sceneViewer)
+	: scene_(scene), editMenu_(editMenu), sceneViewer_(sceneViewer), wantScreenshot_(false)
 {
 }
 
@@ -70,7 +70,15 @@ void MainMenu::focus(const Identifiable & id)
 
 void MainMenu::windowsResized(const ofPoint & size)
 {
+}
 
+bool MainMenu::wantScreenshot(void)
+{
+	bool tmp = wantScreenshot_;
+	if (tmp) {
+		wantScreenshot_ = false;
+	}
+	return tmp;
 }
 
 void MainMenu::refresh2D(void)
@@ -163,7 +171,8 @@ void MainMenu::buttonPressedFile(const void * sender)
 	ofxButton * button = (ofxButton*)sender;
 
 	if (button->getName() == "Exporter la scene") {
-		exportImg_.Export("screenshot");
+		// exportImg_.Export("screenshot");
+		wantScreenshot_ = true;
 	}
 	else if (button->getName() == "Importer une Image") {
 		Image uneImage;

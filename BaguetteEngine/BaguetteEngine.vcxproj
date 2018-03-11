@@ -236,6 +236,7 @@
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
     <ClCompile Include="SpherePrimitive.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureGenerator.cpp" />
     <ClCompile Include="TextureRender.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformableHistory.cpp" />
@@ -270,7 +271,6 @@
     <ClInclude Include="PlanePrimitive.hpp" />
     <ClInclude Include="Identifiable.hpp" />
     <ClInclude Include="IBasicMeshGenerator.hpp" />
-    <ClInclude Include="IMeshReadOnly.hpp" />
     <ClInclude Include="Model3D.hpp" />
     <ClInclude Include="NonCopyable.hpp" />
     <ClInclude Include="PointVector.hpp" />
@@ -512,6 +512,7 @@
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxXmlSettings\libs\tinyxml.h" />
     <ClInclude Include="SpherePrimitive.hpp" />
     <ClInclude Include="Texture.hpp" />
+    <ClInclude Include="TextureGenerator.hpp" />
     <ClInclude Include="TextureRenderer.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="TransformableHistory.hpp" />
@@ -535,9 +536,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\data\fragment_shader.frag" />
-    <None Include="bin\data\fragment_shader_2d.frag" />
     <None Include="bin\data\vertex_shader.vert" />
-    <None Include="bin\data\vertex_shader_2d.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

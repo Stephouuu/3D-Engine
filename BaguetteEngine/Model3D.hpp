@@ -11,5 +11,7 @@ public:
 	bool load(const string &path);
 
 private:
+	virtual void draw_(void);
+
 	ofxAssimpModelLoader		model_;
 };
