@@ -40,7 +40,6 @@ void Image::Export(std::string filename)
 
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
-
 	strftime(buffer, sizeof(buffer), "%d%m%Y%I%M%S", timeinfo);
 	std::string str(buffer);
 	theImg.grabScreen(0,0,ofGetWidth(), ofGetHeight());
@@ -52,20 +51,22 @@ void Image::Draw(float x, float y)
 	if (isLoaded)
 		theImg.draw(x, y);
 	else
-		throw std::invalid_argument("No images Loaded.");
+		std::cerr << "No image loaded" << std::endl;
 }
 void Image::Draw(float x, float y, int width, int heigh)
 {
 	if (isLoaded)
 		theImg.draw(x, y,width, heigh);
 	else
-		throw std::invalid_argument("No images Loaded.");
+		std::cerr << "No image loaded" << std::endl;
 }
 
 void Image::DrawPartOfImage(float posx, float posy, float toxpx, float toypx, float fromxpx, float fromypx)
 {
 	if (isLoaded)
+	{
 		theImg.drawSubsection(posx, posy, toxpx, toypx, fromxpx, fromypx);
+	}
 	else
-		throw std::invalid_argument("No images Loaded.");
+		std::cerr << "No image loaded" << std::endl;
 }

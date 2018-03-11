@@ -6,6 +6,6 @@
 struct IBasicMeshGenerator
 {
 	virtual ~IBasicMeshGenerator(void) {}
-	virtual AMesh operator()(void) const = 0;
-	virtual AMesh generate() const = 0;
+	virtual AMesh * operator()(void) const = 0;
+	virtual AMesh * generate() const = 0;
 };

@@ -172,9 +172,6 @@
     <ClCompile Include="PlanePrimitive.cpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="PlaneGenerator.cpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="Vec3Slider.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
@@ -215,6 +212,12 @@
       <Filter>src\UI</Filter>
     </ClCompile>
     <ClCompile Include="Model3DGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureGenerator.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaneGenerator.cpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1130,9 +1133,6 @@
     <ClInclude Include="CubeGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
-    <ClInclude Include="IMeshReadOnly.hpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="SphereGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
@@ -1185,9 +1185,6 @@
     <ClInclude Include="PlanePrimitive.hpp">
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="PlaneGenerator.hpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="Vec3Slider.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
@@ -1224,13 +1221,19 @@
     <ClInclude Include="Vec2Slider.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Vec1Slider.hpp">
-      <Filter>src\UI</Filter>
-    </ClInclude>
     <ClInclude Include="ColorSlider.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
     <ClInclude Include="Model3DGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec1Slider.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureGenerator.hpp">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1242,12 +1245,6 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="bin\data\vertex_shader.vert">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="bin\data\fragment_shader_2d.frag">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="bin\data\vertex_shader_2d.vert">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

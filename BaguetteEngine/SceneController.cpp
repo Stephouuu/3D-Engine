@@ -3,17 +3,6 @@
 
 SceneController::SceneController(void)
 {
-	// vector tests
-	/* triangle_.setFillColor(ofColor::blue);
-	// triangle_.setVerticesPosition({0, 0}, {100, 0}, {100, 80});
-	triangle_.setSize(100.f);
-	// triangle_.setRotation(45);
-	triangle_.setPosition(ofVec2f(ofGetWidth() / 2, ofGetHeight() / 2));
-	// triangle_.setAlignment(AVectorPrimitive::Alignment::Middle);
-	triangle_.setOutlineThickness(5);
-	triangle_.setOutlineColor(ofColor::red);
-	triangle_.invalidate(); */
-
 	scenes_.emplace_back(new Scene3D);
 	scenes_.emplace_back(new Scene2D);
 	currentScene_ = std::begin(scenes_);
@@ -90,6 +79,7 @@ void SceneController::removeFocusedDrawable(void)
 	const Identifiable * focused = getFocusedDrawable();
 	if (focused && focused != 0) {
 		(*currentScene_)->removeDrawable(*focused);
+		setFocusedDrawable(0);
 		onGraphSceneChanged_();
 	}
 }

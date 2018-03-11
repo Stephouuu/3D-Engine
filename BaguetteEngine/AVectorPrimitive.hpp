@@ -28,6 +28,8 @@ public:
 	virtual void setOutlineThickness(int thickness);
 	virtual int getOutlineThickness(void) const;
 
+	virtual void setTexture(Texture * texture) {};
+
 	const ofPoint & getOrigin(void) const;
 	void setAlignment(Alignment alignment);
 	Alignment getAlignment(void) const;

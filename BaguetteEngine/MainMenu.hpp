@@ -20,6 +20,8 @@ public:
 	virtual void focus(const Identifiable & id);
 	virtual void windowsResized(const ofPoint & size);
 
+	bool wantScreenshot(void);
+
 private:
 	void refresh2D(void);
 	void refresh3D(void);
@@ -66,4 +68,5 @@ private:
 
 	Image				exportImg_;
 	ofVec3f				model3DBox_;
+	bool				wantScreenshot_;
 };
