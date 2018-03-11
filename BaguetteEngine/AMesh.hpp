@@ -30,7 +30,10 @@ public:
 
 	void init(void);
 	const std::vector<ofPoint> & getVertices() const;
+	ofVec3f getVertex(ofIndexType index) const;
+	void setVertex(ofIndexType index, const ofVec3f & v);
 	void setMesh(ofMesh * oMesh);
+	void initColor(void);
 
 	virtual void setFillColor(const ofColor & color);
 	virtual const ofColor & getFillColor(void) const;
@@ -52,7 +55,6 @@ public:
 
 private:
 	virtual void draw_(void) = 0;
-	void initColor(void);
 
 private:
 	ofMesh * mesh_;

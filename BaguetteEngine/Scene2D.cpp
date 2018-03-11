@@ -13,6 +13,7 @@ const Identifiable & Scene2D::instanciateDrawable(const std::string & type, cons
 	ensureDrawableExistance(parent);
 	SceneNode::Ptr node = nullptr;
 
+	std::cout << "smile in scene2D" << std::endl;
 	if (type == "triangle")
 		node = SceneGraph::CreateSceneNode<TriangleVector>();
 	else if (type == "ellipse")
@@ -23,6 +24,10 @@ const Identifiable & Scene2D::instanciateDrawable(const std::string & type, cons
 		node = SceneGraph::CreateSceneNode<PointVector>();
 	else if (type == "rectangle")
 		node = SceneGraph::CreateSceneNode<RectangleVector>();
+	else if (type == "dialog")
+		node = SceneGraph::CreateSceneNode<DialogVectorShape>();
+	else if (type == "smile")
+		node = SceneGraph::CreateSceneNode<SmileVectorShape>();
 	else
 		std::cerr << type << " not found !" << std::endl;
 	try {

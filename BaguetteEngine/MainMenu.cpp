@@ -20,14 +20,27 @@ void MainMenu::setup()
 	fileGroup_.setName("Fichier");
 	fileGroup_.add(exportScene_.setup("Exporter la scene"));
 	fileGroup_.add(importImage_.setup("Importer une Image"));
+	cropImage_.setup();
+	cropImage_.setName("Importer une portion d'IMG");
+	fromXY_.setup("From x/y", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
+	cropWH_.setup("Width/Height", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
+
+
+	cropImage_.add(&fromXY_);
+	cropImage_.add(&cropWH_);
+	cropImage_.add(importCroppedImage_.setup("Importer Portion"));
+	fileGroup_.add(&cropImage_);
 
 	exportScene_.addListener(this, &MainMenu::buttonPressedFile);
 	importImage_.addListener(this, &MainMenu::buttonPressedFile);
+	importCroppedImage_.addListener(this, &MainMenu::buttonPressedFile);
 
 	modeGroup_.setup();
 
 	primitiveGroup_.setup();
 	model3DGroup_.setup();
+	vectorShapeGroup_.setup();
+
 	refresh3D();
 
 	insertGroup_.setup();
@@ -45,9 +58,11 @@ void MainMenu::setup()
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
 	modeGroup_.minimizeAll();
+	vectorShapeGroup_.minimizeAll();
 	insertGroup_.minimize();
 	fileGroup_.minimize();
 	modeGroup_.minimize();
+	vectorShapeGroup_.maximize();
 }
 
 void MainMenu::refresh(int newEditorDimension)
@@ -89,8 +104,11 @@ void MainMenu::refresh2D(void)
 	
 	primitiveGroup_.clear();
 	model3DGroup_.clear();
-	primitiveGroup_.setName("Primitives Vectorielles");
 	insertGroup_.clear();
+	vectorShapeGroup_.clear();
+
+	primitiveGroup_.setName("Primitives Vectorielles");
+	vectorShapeGroup_.setName("Formes Vectorielles");
 
 	insertTriangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertEllipse_.removeListener(this, &MainMenu::buttonPressed2D);
@@ -99,6 +117,8 @@ void MainMenu::refresh2D(void)
 	insertRectangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
+	insertDialogVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
+	insertSmileVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
 
 	primitiveGroup_.add(insertTriangle_.setup("Ajouter un triangle"));
 	primitiveGroup_.add(insertEllipse_.setup("Ajouter une ellipse"));
@@ -106,14 +126,20 @@ void MainMenu::refresh2D(void)
 	primitiveGroup_.add(insertCircle_.setup("Ajouter un cercle"));
 	primitiveGroup_.add(insertRectangle_.setup("Ajouter un rectangle"));
 
+	vectorShapeGroup_.add(insertDialogVector_.setup("Ajouter dialog"));
+	vectorShapeGroup_.add(insertSmileVector_.setup("Ajouter smile"));
+
 	insertTriangle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertEllipse_.addListener(this, &MainMenu::buttonPressed2D);
 	insertPoint_.addListener(this, &MainMenu::buttonPressed2D);
 	insertCircle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
+	insertDialogVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
+	insertSmileVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
 
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&primitiveGroup_);
+	insertGroup_.add(&vectorShapeGroup_);
 	
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
@@ -172,12 +198,17 @@ void MainMenu::buttonPressedFile(const void * sender)
 	ofxButton * button = (ofxButton*)sender;
 
 	if (button->getName() == "Exporter la scene") {
-		// exportImg_.Export("screenshot");
 		wantScreenshot_ = true;
 	}
 	else if (button->getName() == "Importer une Image") {
 		Image uneImage;
 		uneImage.Load();
+		scene_.addImage(uneImage);
+		editMenu_.setIsImported(true);
+	}
+	else if (button->getName() == "Importer Portion") {
+		Image uneImage;
+		uneImage.LoadCrop((int)fromXYValues_.x,(int)fromXYValues_.y,(int)fromWHValues_.x,(int)fromWHValues_.y);
 		scene_.addImage(uneImage);
 		editMenu_.setIsImported(true);
 	}
@@ -220,7 +251,7 @@ void MainMenu::buttonPressed3D(const void * sender)
 	else if (button->getName() == "Ajouter un cone")
 		scene_.instanciateDrawable("cone");
 }
-#include <vector>
+
 void MainMenu::buttonPressed3DModel(const void * sender)
 {
 	ofxButton		*button = (ofxButton*)sender;
@@ -232,27 +263,53 @@ void MainMenu::buttonPressed3DModel(const void * sender)
 
 	if (button->getName() == "Ajouter un modele 3D")
 	{
-		ofFileDialogResult result = ofSystemLoadDialog("Load file");
+		ofFileDialogResult	result = ofSystemLoadDialog("Load file");
+		size_t				index = 0;
+
 		if (result.bSuccess) {
 			path = result.getPath();
 			createdObj = scene_.instanciateDrawable(path);
+
+			if (model3DBox_ == ofPoint(0, 0, 0))
+				return;
+
 			createdMesh = dynamic_cast<AMesh*>(scene_.ensureDrawableExistance(createdObj)->getDrawable());
 
 			const std::vector<ofPoint> & vertices = createdMesh->getVertices();
 			std::vector<ofPoint>::const_iterator it;
 			for (it = vertices.begin(); it != vertices.end(); it++)
 			{
-				max.x = (it->x > max.x) ? (it->x) : (max.x);
-				max.y = (it->y > max.y) ? (it->y) : (max.y);
-				max.z = (it->z > max.z) ? (it->z) : (max.z);
+				max.x = std::max(it->x, max.x);
+				max.y = std::max(it->y, max.y);
+				max.z = std::max(it->z, max.z);
 			}
 
-			if (model3DBox_ == ofPoint(0, 0, 0))
-				return;
+			model3DBox_.x /= 2;
+			model3DBox_.y /= 2;
+			model3DBox_.z /= 2;
 
-			const ofPoint	ratio(model3DBox_.x / max.x, model3DBox_.y / max.y, model3DBox_.z / max.z);
-			scene_.setDrawableScale(createdObj, ratio, false);
+			ofPoint ratio(model3DBox_.x / max.x, model3DBox_.y / max.y, model3DBox_.z / max.z);
+
+			for (it = vertices.begin(); it != vertices.end(); it++)
+			{				
+				createdMesh->setVertex(index, ofVec3f(it->x * ratio.x, it->y * ratio.y, it->z * ratio.z));
+				index++;
+			}
+			scene_.setFocusedDrawable(0);
+			scene_.setFocusedDrawable(createdObj);
 		}
+	}
+}
+
+void MainMenu::buttonPressedShapeVector(const void * sender)
+{
+	ofxButton		*button = (ofxButton*)sender;
+
+	if (button->getName() == "Ajouter dialog") {
+		scene_.instanciateDrawable("dialog");
+	}
+	else if (button->getName() == "Ajouter smile") {
+		scene_.instanciateDrawable("smile");
 	}
 }
 

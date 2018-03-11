@@ -10,6 +10,7 @@ public:
 	Image(std::string filename);
 	~Image();
 	void Load();
+	void LoadCrop(int x, int y, int w, int h);
 	void Export(std::string filename);
 	void Draw(float x, float y);
 	void Draw(float x, float y, int width, int heigh);

@@ -3,6 +3,7 @@
 #include "ofGraphics.h"
 
 AMesh::AMesh(void)
+	: meshType_(UNDEFINED)
 {
 	mesh_ = nullptr;
 	init();
@@ -41,11 +42,15 @@ void AMesh::draw(ARenderer & renderer)
 void AMesh::init(void)
 {
 	// shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
-	meshType_ = InstantiableMesh::UNDEFINED;
 
 	//texture_ = new Texture;
 	// texture_ = new Texture;
 	// texture_->loadImage(TextureGenerator::monochrome(1500, 1500, 255, 0, 0));
+}
+
+void AMesh::setVertex(ofIndexType index, const ofVec3f & v)
+{
+	mesh_->setVertex(index, v);
 }
 
 void AMesh::setMesh(ofMesh * oMesh)
@@ -61,12 +66,17 @@ const std::vector<ofPoint>& AMesh::getVertices() const
 	return mesh_->getVertices();
 }
 
+ofVec3f AMesh::getVertex(ofIndexType index) const
+{
+	return mesh_->getVertex(index);
+}
+
 void AMesh::setFillColor(const ofColor & c)
 {
 	// const std::vector<ofPoint> & vertices = vbo_.getVertices();
 	if (mesh_)
 	{
-		const std::vector<ofPoint> & vertices = mesh_->getVertices();
+		const std::vector<ofFloatColor> & vertices = mesh_->getColors();
 
 		for (int i = 0; i < vertices.size(); i++) {
 			mesh_->setColor(i, { c.r / 255.f, c.g / 255.f, c.b / 255.f, c.a / 255.f });

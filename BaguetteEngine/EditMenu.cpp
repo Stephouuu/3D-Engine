@@ -50,8 +50,8 @@ void EditMenu::setup()
 	size_.setup("Taille", ofVec3f(1, 1, 1), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30));
 	rotation_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(360, 360, 360));
 
-	position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((float)ofGetWidth(), (float)ofGetHeight()));
-	size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f((float)ofGetWidth(), (float)ofGetHeight()));
+	position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(1900, 1000));
+	size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	rotation2d_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(0, 0, 360));
 
 	thickness_.setup("Epaisseur bordure", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(30, 0));
@@ -68,6 +68,8 @@ void EditMenu::setup()
 
 	displayListImage();
 	displayListSecondary();
+	animationButton_.setup("Animations");
+
 	baseSetup();
 	refresh(3);
 }
@@ -76,6 +78,7 @@ void EditMenu::refresh(int newEditorDimension)
 {
 	currentDimension_ = newEditorDimension;
 	gui_.clear();
+	gui_.setName("Menu d'edition");
 	ofSetBackgroundColor(scene_.getSceneColor());
 	if (newEditorDimension == 2) {
 		gui_.add(&position2d_);
@@ -86,6 +89,7 @@ void EditMenu::refresh(int newEditorDimension)
 		gui_.add(&colorScene_);
 	}
 	else {
+		gui_.add(&animationButton_);
 		gui_.add(&position_);
 		gui_.add(&size_);
 		gui_.add(&rotation_);
@@ -166,7 +170,9 @@ void EditMenu::windowsResized(const ofPoint & size)
 	const Identifiable * id = scene_.getFocusedDrawable();
 
 	gui_.clear();
-	setup();
+	gui_.setName("Menu d'edition");
+	// setup();
+
 	refresh(currentDimension_);
 	displayListImage();
 	displayListSecondary();
@@ -236,6 +242,32 @@ void EditMenu::vec2SliderRotationChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
 	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
+}
+
+void EditMenu::buttonPressedAnimations(const void * sender)
+{
+	ofxButton				*button = (ofxButton*)sender;
+	const Identifiable		*focused = scene_.getFocusedDrawable();
+	AMesh					*mesh;
+
+	if (button->getName() == "Animations")
+	{
+		if (focused != nullptr)
+		{
+			mesh = dynamic_cast<AMesh*>(scene_.ensureDrawableExistance(*focused)->getDrawable());
+			if (mesh->getType() == AMesh::InstantiableMesh::MODEL)
+			{
+				Model3D	*model = dynamic_cast<Model3D*>(mesh);
+
+				if (model->isPlayingAnimations())
+					model->stopAnimations();
+				else
+					model->playAnimations();
+			}
+		}
+		//Need to stop animation
+	}
+
 }
 
 void EditMenu::onColorOutChange(ofColor & color)
@@ -524,6 +556,7 @@ void EditMenu::initModeComposition(void)
 		modeCompositionList_[i++]->addListener(this, &EditMenu::toggleSelectedMode);
 	}
 
+	animationButton_.addListener(this, &EditMenu::buttonPressedAnimations);
 }
 
 void EditMenu::removeListeners(void)
@@ -557,4 +590,5 @@ void EditMenu::removeListeners(void)
 	for (const auto &e : modeCompositionList_) {
 		e->removeListener(this, &EditMenu::toggleSelectedMode);
 	}
+	animationButton_.removeListener(this, &EditMenu::buttonPressedAnimations);
 }

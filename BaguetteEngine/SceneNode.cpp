@@ -13,6 +13,7 @@ SceneNode::~SceneNode(void)
 void SceneNode::update(float dt)
 {
 	if (drawable_) drawable_->update(dt);
+	for (auto & it : childs_) it->update(dt);
 }
 
 void SceneNode::render(ARenderer & renderer)

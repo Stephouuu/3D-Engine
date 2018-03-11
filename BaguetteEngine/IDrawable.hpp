@@ -34,6 +34,7 @@ public:
 	void setRotation(float degrees)
 	{
 		rotation_ = degrees;
+		invalidate();
 	}
 
 	float getRotation(void) const

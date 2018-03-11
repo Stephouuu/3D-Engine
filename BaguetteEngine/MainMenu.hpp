@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "ofMain.h"
 #include "ofxGui.h"
 
@@ -8,6 +10,7 @@
 #include "EditMenu.hpp"
 #include "SceneViewer.hpp"
 #include "Image.h"
+#include "Model3D.hpp"
 
 class MainMenu : public IGuiView
 {
@@ -31,6 +34,7 @@ private:
 	void buttonPressed2D(const void * sender);
 	void buttonPressed3D(const void * sender);
 	void buttonPressed3DModel(const void * sender);
+	void buttonPressedShapeVector(const void * sender);
 
 	void vecSliderModel3DBoxChange(ofVec3f & vec);
 
@@ -41,6 +45,8 @@ private:
 	ofxGuiGroup			model3DGroup_;
 	ofxGuiGroup			fileGroup_;
 	ofxGuiGroup			modeGroup_;
+	ofxGuiGroup			vectorShapeGroup_;
+	ofxGuiGroup			cropImage_;
 
 	ofxButton			insertSphere_;
 	ofxButton			insertPlan_;
@@ -54,13 +60,21 @@ private:
 	ofxButton			insertCircle_;
 	ofxButton			insertRectangle_;
 
+	ofxButton			insertDialogVector_;
+	ofxButton			insertSmileVector_;
+
 	ofxButton			swapMode_;
 
 	ofxButton			exportScene_;
 	ofxButton			importImage_;
+	ofxButton			importCroppedImage_;
 	ofMouseEventArgs	mouseEvents_;
 
 	Vec3Slider			model3DBoxSlider_;
+	Vec2Slider			fromXY_;
+	Vec2Slider			cropWH_;
+	ofVec2f				fromXYValues_;
+	ofVec2f				fromWHValues_;
 
 	SceneController		&scene_;
 	EditMenu			&editMenu_;

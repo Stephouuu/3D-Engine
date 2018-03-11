@@ -1,7 +1,10 @@
-<Menu_d'edition>
-	<Positions>0, 0, 0</Positions>
-	<Taille>1, 1, 1</Taille>
-	<Couleur>0, 0, 0, 255</Couleur>
+<group>
+	<Positions>1018.78, 764.082</Positions>
+	<Taille>250.776, 100</Taille>
 	<Rotation>0, 0, 0</Rotation>
+	<Epaisseur_bordure>0, 0</Epaisseur_bordure>
+	<Couleur_bordure>0, 0, 0, 255</Couleur_bordure>
+	<Couleur_scene>0, 0, 0, 255</Couleur_scene>
+	<Couleur>0, 0, 0, 255</Couleur>
 	<Appliquer_Images/>
-</Menu_d'edition>
+</group>
