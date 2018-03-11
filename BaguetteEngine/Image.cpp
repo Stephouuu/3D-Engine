@@ -46,14 +46,18 @@ void Image::LoadCrop(int x, int y, int w, int h)
 	if (result.bSuccess) {
 		std::size_t pos = result.getName().find(".");
 		std::string extension = result.getName().substr(pos + 1);
-		std::cout << extension << std::endl;
 		if (extension == "png" || extension == "jpg" || extension == "gif" || extension == "bmp")
 		{
 			path = result.getPath();
 			name = "cropped-" + result.getName();
 			// load your file at `path`
 			theImg.load(path);
-			theImg.crop(x, y, w, h);
+			if ((x <= theImg.getWidth()) && (y <= theImg.getHeight()) && (w <= (theImg.getWidth() - x)) && (h <= (theImg.getHeight() - y)))
+				theImg.crop(x, y, w, h);
+			else
+			{
+				std::cerr << "Erreur dans vos dimensions, faites attention a la resolution de votre image" << std::endl;
+			}
 			isLoaded = true;
 		}
 		else
