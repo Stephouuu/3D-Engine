@@ -37,6 +37,8 @@ void EditMenu::setup()
 	colorOut_.setup("Couleur bordure", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
 	colorScene_.setup("Couleur scene", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
 
+	animationButton_.setup("Animations");
+
 	baseSetup();
 }
 
@@ -54,6 +56,7 @@ void EditMenu::refresh(int newEditorDimension)
 		gui_.add(&colorScene_);
 	}
 	else {
+		gui_.add(&animationButton_);
 		gui_.add(&position_);
 		gui_.add(&size_);
 		gui_.add(&rotation_);
@@ -145,6 +148,32 @@ void EditMenu::vec2SliderRotationChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
 	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
+}
+
+void EditMenu::buttonPressedAnimations(const void * sender)
+{
+	ofxButton				*button = (ofxButton*)sender;
+	const Identifiable		*focused = scene_.getFocusedDrawable();
+	AMesh					*mesh;
+
+	if (button->getName() == "Animations")
+	{
+		if (focused != nullptr)
+		{
+			mesh = dynamic_cast<AMesh*>(scene_.ensureDrawableExistance(*focused)->getDrawable());
+			if (mesh->getType() == AMesh::InstantiableMesh::MODEL)
+			{
+				Model3D	*model = dynamic_cast<Model3D*>(mesh);
+
+				if (model->isPlayingAnimations())
+					model->stopAnimations();
+				else
+					model->playAnimations();
+			}
+		}
+		//Need to stop animation
+	}
+
 }
 
 void EditMenu::onColorOutChange(ofColor & color)
@@ -266,6 +295,8 @@ void EditMenu::initListeners(void)
 	thickness_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorOutChange);
 	colorScene_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorSceneChange);
+
+	animationButton_.addListener(this, &EditMenu::buttonPressedAnimations);
 }
 
 void EditMenu::removeListeners(void)
@@ -283,4 +314,6 @@ void EditMenu::removeListeners(void)
 	thickness_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorOutChange);
 	colorScene_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorSceneChange);
+
+	animationButton_.removeListener(this, &EditMenu::buttonPressedAnimations);
 }

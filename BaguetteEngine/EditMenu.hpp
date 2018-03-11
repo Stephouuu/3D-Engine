@@ -35,6 +35,8 @@ public:
 	void vec2SliderSizeChange(ofVec2f & vec);
 	void vec2SliderRotationChange(ofVec3f & v);
 
+	void buttonPressedAnimations(const void * sender);
+
 	void onColorOutChange(ofColor & color);
 	void onThicknessChange(ofVec2f & vec);
 	void onColorSceneChange(ofColor & color);
@@ -71,6 +73,8 @@ private:
 	bool						resetting_;
 
 	vector<ofxButton*>			images_;
+	ofxButton					animationButton_;
+
 public:
 	bool				isImported;
 };
