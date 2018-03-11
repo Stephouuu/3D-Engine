@@ -30,6 +30,8 @@ public:
 
 	void init(void);
 	const std::vector<ofPoint> & getVertices() const;
+	ofVec3f getVertex(ofIndexType index) const;
+	void setVertex(ofIndexType index, const ofVec3f & v);
 	void setMesh(ofMesh * oMesh);
 
 	virtual void setFillColor(const ofColor & color);

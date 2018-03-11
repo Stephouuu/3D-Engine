@@ -220,7 +220,7 @@ void MainMenu::buttonPressed3D(const void * sender)
 	else if (button->getName() == "Ajouter un cone")
 		scene_.instanciateDrawable("cone");
 }
-#include <vector>
+
 void MainMenu::buttonPressed3DModel(const void * sender)
 {
 	ofxButton		*button = (ofxButton*)sender;
@@ -232,26 +232,40 @@ void MainMenu::buttonPressed3DModel(const void * sender)
 
 	if (button->getName() == "Ajouter un modele 3D")
 	{
-		ofFileDialogResult result = ofSystemLoadDialog("Load file");
+		ofFileDialogResult	result = ofSystemLoadDialog("Load file");
+		size_t				index = 0;
+
 		if (result.bSuccess) {
 			path = result.getPath();
 			createdObj = scene_.instanciateDrawable(path);
+
+			if (model3DBox_ == ofPoint(0, 0, 0))
+				return;
+
 			createdMesh = dynamic_cast<AMesh*>(scene_.ensureDrawableExistance(createdObj)->getDrawable());
 
 			const std::vector<ofPoint> & vertices = createdMesh->getVertices();
 			std::vector<ofPoint>::const_iterator it;
 			for (it = vertices.begin(); it != vertices.end(); it++)
 			{
-				max.x = (it->x > max.x) ? (it->x) : (max.x);
-				max.y = (it->y > max.y) ? (it->y) : (max.y);
-				max.z = (it->z > max.z) ? (it->z) : (max.z);
+				max.x = std::max(it->x, max.x);
+				max.y = std::max(it->y, max.y);
+				max.z = std::max(it->z, max.z);
 			}
 
-			if (model3DBox_ == ofPoint(0, 0, 0))
-				return;
+			model3DBox_.x /= 2;
+			model3DBox_.y /= 2;
+			model3DBox_.z /= 2;
 
-			const ofPoint	ratio(model3DBox_.x / max.x, model3DBox_.y / max.y, model3DBox_.z / max.z);
-			scene_.setDrawableScale(createdObj, ratio, false);
+			ofPoint ratio(model3DBox_.x / max.x, model3DBox_.y / max.y, model3DBox_.z / max.z);
+
+			for (it = vertices.begin(); it != vertices.end(); it++)
+			{				
+				createdMesh->setVertex(index, ofVec3f(it->x * ratio.x, it->y * ratio.y, it->z * ratio.z));
+				index++;
+			}
+			scene_.setFocusedDrawable(0);
+			scene_.setFocusedDrawable(createdObj);
 		}
 	}
 }

@@ -49,6 +49,11 @@ void AMesh::init(void)
 	// texture_->loadImage(TextureGenerator::monochrome(1500, 1500, 255, 0, 0));
 }
 
+void AMesh::setVertex(ofIndexType index, const ofVec3f & v)
+{
+	mesh_->setVertex(index, v);
+}
+
 void AMesh::setMesh(ofMesh * oMesh)
 {
 	// vbo_ = oMesh;
@@ -60,6 +65,11 @@ void AMesh::setMesh(ofMesh * oMesh)
 const std::vector<ofPoint>& AMesh::getVertices() const
 {
 	return mesh_->getVertices();
+}
+
+ofVec3f AMesh::getVertex(ofIndexType index) const
+{
+	return mesh_->getVertex(index);
 }
 
 void AMesh::setFillColor(const ofColor & c)
