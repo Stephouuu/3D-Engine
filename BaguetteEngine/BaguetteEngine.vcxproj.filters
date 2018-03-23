@@ -229,6 +229,13 @@
     <ClCompile Include="SmileVectorShape.cpp">
       <Filter>src\Graphics\Vector\Shape</Filter>
     </ClCompile>
+    <ClCompile Include="toggle.cpp" />
+    <ClCompile Include="Light.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="LightGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1253,6 +1260,13 @@
     </ClInclude>
     <ClInclude Include="SmileVectorShape.hpp">
       <Filter>src\Graphics\Vector\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="toggle.hpp" />
+    <ClInclude Include="Light.hh">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="LightGenerator.hh">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
