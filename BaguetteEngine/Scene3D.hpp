@@ -4,7 +4,7 @@
 
 #include "AScene.hpp"
 #include "AMesh.hpp"
-#include "EasyCamera.hpp"
+// #include "EasyCamera.hpp"
 
 #include "SphereGenerator.hpp"
 #include "PlaneGenerator.hpp"
@@ -28,6 +28,8 @@ public:
 	virtual std::string getName(void) const;
 	virtual int getNbDimensions(void) const;
 
+	virtual CameraController & getCameraController(void);
+
 private:
-	EasyCamera cam_;
+	CameraController cc_;
 };

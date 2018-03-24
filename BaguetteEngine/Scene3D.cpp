@@ -2,13 +2,6 @@
 
 Scene3D::Scene3D(void)
 {
-	cam_.setDistance(10);
-	cam_.setNearClip(0.01);
-	cam_.setFarClip(1000);
-
-	cam_.setPosition(ofVec3f(0, 10, 5));
-	cam_.rotate(0, 0, 0, 0);
-	cam_.lookAt(ofVec3f(0, 0, 0));
 }
 
 Scene3D::~Scene3D(void)
@@ -18,22 +11,26 @@ Scene3D::~Scene3D(void)
 void Scene3D::update(float dt)
 {
 	AScene::update(dt);
-	cam_.update(dt);
+	cc_.update(dt);
 }
 
 void Scene3D::render(ARenderer & renderer)
 {
-	cam_.begin();
+	cc_.begin();
 	ofDrawGrid(1, 8U, false, false, true, false);
 	// ofDrawAxis(2); // x = red ; y = green ; z = blue.
 	AScene::render(renderer);
-	cam_.end();
+	cc_.end();
 }
 
 void Scene3D::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save)
 {
 	AScene::setDrawablePosition(drawableId, pos, save);
-	cam_.targetPositionChanged();
+
+	SceneNode *node = ensureDrawableExistance(drawableId);
+	if (node) {
+		cc_.setTarget(node->getDrawable()->getPosition());
+	}
 }
 
 const Identifiable & Scene3D::instanciateDrawable(const std::string & type, const Identifiable & parent)
@@ -80,10 +77,12 @@ void Scene3D::setFocusedDrawable(const Identifiable & drawableId)
 	AScene::setFocusedDrawable(drawableId);
 
 	SceneNode *node = ensureDrawableExistance(drawableId);
-	if (node && drawableId != 0) {
-		cam_.setTargetSceneNode(node);
+	if (node) {
+		cc_.setTarget(node->getDrawable()->getPosition());
 	}
-	else {
-		cam_.setTargetSceneNode(nullptr);
-	}
-}	
+}
+
+CameraController & Scene3D::getCameraController(void)
+{
+	return cc_;
+}

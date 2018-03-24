@@ -50,3 +50,8 @@ int Scene2D::getNbDimensions(void) const
 {
 	return 2;
 }
+
+CameraController & Scene2D::getCameraController(void)
+{
+	throw std::runtime_error("Scene2D don't have camera");
+}

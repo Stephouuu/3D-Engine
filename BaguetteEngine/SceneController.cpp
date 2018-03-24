@@ -187,3 +187,16 @@ SceneNode * SceneController::ensureDrawableExistance(const Identifiable & drawab
 {
 	return (*currentScene_)->ensureDrawableExistance(drawableId);
 }
+
+CameraController * SceneController::getCameraController(void) const
+{
+	try {
+		CameraController & cc =  (*currentScene_)->getCameraController();
+		return &cc;
+	}
+	catch (const std::runtime_error & e) {
+		std::cerr << e.what() << std::endl;
+		return nullptr;
+	}
+}
+

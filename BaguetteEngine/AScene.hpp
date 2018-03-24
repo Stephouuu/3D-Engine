@@ -7,6 +7,8 @@
 #include "SceneGraph.hpp"
 #include "TransformableHistory.hpp"
 
+#include "CameraController.hpp"
+
 class AScene
 {
 public:
@@ -42,6 +44,8 @@ public:
 	virtual const Identifiable & instanciateDrawable(const std::string & type, const Identifiable & parent = Identifiable()) = 0;
 	virtual std::string getName(void) const = 0;
 	virtual int getNbDimensions(void) const = 0;
+
+	virtual CameraController & getCameraController(void) = 0;
 
 protected:
 	SceneGraph graph_;

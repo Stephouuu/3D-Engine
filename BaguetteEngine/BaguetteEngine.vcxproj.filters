@@ -239,6 +239,9 @@
     <ClCompile Include="LightGenerator.cpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1273,6 +1276,9 @@
     </ClInclude>
     <ClInclude Include="LightGenerator.hh">
       <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.hpp">
+      <Filter>src\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

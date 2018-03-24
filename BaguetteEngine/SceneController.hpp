@@ -64,6 +64,8 @@ public:
 	const CacheManager<string, ofImage> & getCache() const;
 	SceneNode * ensureDrawableExistance(const Identifiable & drawableId);
 
+	CameraController * getCameraController(void) const;
+
 private:
 	std::vector<std::unique_ptr<AScene> > scenes_;
 	std::vector<std::unique_ptr<AScene> >::const_iterator currentScene_;

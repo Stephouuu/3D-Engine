@@ -1,10 +1,14 @@
 #include "SceneGraph.hpp"
 #include "ARenderer.hpp"
+#include "CubePrimitive.hpp"
 
 SceneGraph::SceneGraph(void)
 	: root_(new SceneNode(0))
 {
 	root_->setName("Scene root");
+	root_->setDrawable(new CubePrimitive);
+	root_->getDrawable()->setPosition(ofVec3f(0, 0, 0));
+	root_->getDrawable()->setFillColor(ofColor(0, 0, 0, 0));
 }
 
 SceneGraph::~SceneGraph(void)

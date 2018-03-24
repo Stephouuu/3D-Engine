@@ -21,3 +21,8 @@ float MathUtils::RadiansToDegrees(float radians)
 {
 	return (radians * (180.f / M_PI));
 }
+
+float MathUtils::easeInSine(float t)
+{
+	return std::sin(1.5707936f * t);
+}

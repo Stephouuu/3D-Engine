@@ -36,6 +36,8 @@ void Application::keyPressed(int key)
 
 void Application::keyReleased(int key)
 {
+	CameraController * cc = scene_.getCameraController();
+
 	switch (key)
 	{
 	case 'z':
@@ -43,6 +45,15 @@ void Application::keyReleased(int key)
 		break;
 	case 'y':
 		scene_.redo();
+		break;
+	case 'o':
+		if (cc) cc->switchOrbit();
+		break;
+	case 358:
+		if (cc) cc->right();
+		break;
+	case 356:
+		if (cc) cc->left();
 		break;
 	case 127:
 	case 8:
@@ -63,10 +74,6 @@ void Application::mouseDragged(int x, int y, int button)
 
 void Application::mousePressed(int x, int y, int button)
 {
-	/* int id;
-
-	if ((id = scene_.selected(x, y)) > 0)
-		gui_.focus(0); */
 }
 
 void Application::mouseReleased(int x, int y, int button)
@@ -80,6 +87,12 @@ void Application::mouseEntered(int x, int y)
 
 void Application::mouseExited(int x, int y)
 {
+}
+
+void Application::mouseScrolled(int x, int y, float scrollX, float scrollY)
+{
+	CameraController * cc = scene_.getCameraController();
+	if (cc) cc->zoom(-scrollY);
 }
 
 void Application::windowResized(int w, int h)

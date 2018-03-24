@@ -1,31 +1,53 @@
 #pragma once
 
 #include "ofMain.h"
-
-#include "Identifiable.hpp"
 #include "SceneNode.hpp"
 
-class EasyCamera : public ofEasyCam
+#include "Identifiable.hpp"
+#include "MathUtils.hpp"
+
+class EasyCamera : public ofCamera
 {
+public:
+	const ofVec3f BasePosition = { 0, 10, 5 };
+	enum class Direction : int {
+		East =  1, // 0,
+		West =  -1  // 180
+	};
+
 public:
 	EasyCamera(void);
 	~EasyCamera(void);
 
 	void update(float dt);
-	void targetPositionChanged(void);
+	void setTarget(const ofVec3f & position);
 
 	void begin(ofRectangle viewport = ofRectangle()) override;
 	void end(void) override;
 
-	void setTargetSceneNode(SceneNode *node);
+	void switchOrbit(void);
+	void zoom(float f);
+
+	void setDirection(Direction dir);
 
 private:
-	void reset(void);
-	void transition(float dt);
+	void targetTransition(float dt);
+	void zoomTransition(float dt);
+	void orbit(float dt);
+
+	void setDistance(float distance);
+	float getDistance(void) const;
 
 private:
 	ofVec3f currentLookAt_;
-	SceneNode *target_;
-	float dt_;
-};
+	ofVec3f target_;
+	float targetTransitionDt_;
+	float azimuth_;
+	float orbiting_;
 
+	float distance_;
+	float savedDistance_;
+	float zoomDt_;
+	float zoomFactor_;
+	Direction direction_;
+};

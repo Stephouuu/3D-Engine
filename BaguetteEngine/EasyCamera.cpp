@@ -1,13 +1,21 @@
 #include "EasyCamera.hpp"
 
 EasyCamera::EasyCamera(void)
-	: dt_(0), currentLookAt_(0, 0, 0), target_(nullptr)
+	: targetTransitionDt_(0),
+	  azimuth_(0),
+	  orbiting_(false),
+	  zoomDt_(0),
+	  direction_(Direction::East)
 {
-	setDistance(10);
 	setNearClip(0.01);
 	setFarClip(1000);
 
-	setTranslationKey('t');
+	setPosition(BasePosition);
+	rotate(0, 0, 0, 0);
+	lookAt(ofVec3f(0, 0, 0));
+
+	setTarget(ofVec3f());
+	setDistance(10);
 }
 
 EasyCamera::~EasyCamera(void)
@@ -16,57 +24,84 @@ EasyCamera::~EasyCamera(void)
 
 void EasyCamera::update(float dt)
 {
-	if (target_) {
-		if (dt_ > 0.000000f) {
-			dt_ -= dt;
-			if (dt_ < 0.000000f)
-				dt_ = 0.000000f;
-			transition(1.f - dt_);
-		}
+	if (targetTransitionDt_ > 0.000000f) {
+		targetTransitionDt_ -= dt;
+		if (targetTransitionDt_ < 0.000000f)
+			targetTransitionDt_ = 0.000000f;
+		targetTransition(1.f - targetTransitionDt_);
+	}
+	if (zoomDt_ > 0.000000f) {
+		zoomDt_ -= (dt * 3.f);
+		if (zoomDt_ < 0.000000f)
+			zoomDt_ = 0.000000f;
+		zoomTransition(1.f - zoomDt_);
+	}
+	if (orbiting_) {
+		orbit(dt);
 	}
 }
 
-void EasyCamera::targetPositionChanged(void)
+void EasyCamera::setTarget(const ofVec3f & position)
 {
-	dt_ = 1;
+	targetTransitionDt_ = 1.f;
+	target_ = position;
+	lookAt(position);
 }
 
 void EasyCamera::begin(ofRectangle viewport)
 {
-	ofEasyCam::begin(viewport);
+	ofCamera::begin(viewport);
 }
 
 void EasyCamera::end(void)
 {
-	ofEasyCam::end();
+	ofCamera::end();
+}
+void EasyCamera::switchOrbit(void)
+{
+	orbiting_ = !orbiting_;
 }
 
-void EasyCamera::setTargetSceneNode(SceneNode *node)
+void EasyCamera::zoom(float f)
 {
-	if (node) {
-		target_ = node;
-		targetPositionChanged();
-	}
-	else {
-		reset();
-	}
+	savedDistance_ = distance_;
+	zoomFactor_ = f;
+	zoomDt_ = 1.f;
 }
 
-void EasyCamera::reset(void)
+void EasyCamera::orbit(float dt)
 {
-	setPosition(ofVec3f(0, 10, 5));
-	rotate(0, 0, 0, 0);
-	lookAt(ofVec3f(0, 0, 0));
+	azimuth_ += dt * 20 * -(int)direction_;
+	
+	ofCamera::orbit(-azimuth_ , -45, getDistance(), target_);
+	lookAt(target_);
 }
 
-void EasyCamera::transition(float dt)
+void EasyCamera::setDirection(Direction dir)
 {
-	const ofVec3f & p = target_->getDrawable()->getGlobalPosition();
+	direction_ = dir;
+}
 
-	currentLookAt_ = {
-		currentLookAt_.x + ((p.x - currentLookAt_.x) * std::sin(1.5707936f * dt)),
-		currentLookAt_.y + ((p.y - currentLookAt_.y) * std::sin(1.5707936f * dt)),
-		currentLookAt_.z + ((p.z - currentLookAt_.z) * std::sin(1.5707936f * dt))
-	};
+void EasyCamera::targetTransition(float dt)
+{
+	currentLookAt_ += (target_ - currentLookAt_) * MathUtils::easeInSine(dt);
 	lookAt(currentLookAt_);
+}
+
+void EasyCamera::zoomTransition(float dt)
+{
+	setDistance(savedDistance_ + (5.f * zoomFactor_) * MathUtils::easeInSine(dt));
+}
+
+void EasyCamera::setDistance(float distance)
+{
+	if (distance > 0.00000f) {
+		setPosition(target_ + (distance * getZAxis()));
+		distance_ = distance;
+	}
+}
+
+float EasyCamera::getDistance(void) const
+{
+	return distance_;
 }

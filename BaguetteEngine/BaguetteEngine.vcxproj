@@ -178,6 +178,7 @@
     <ClCompile Include="AScene.cpp" />
     <ClCompile Include="AVectorPrimitive.cpp" />
     <ClCompile Include="BaseGui.cpp" />
+    <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="EasyCamera.cpp" />
     <ClCompile Include="ColorSlider.cpp" />
     <ClCompile Include="ConeGenerator.cpp" />
@@ -260,6 +261,7 @@
     <ClInclude Include="AScene.hpp" />
     <ClInclude Include="AVectorPrimitive.hpp" />
     <ClInclude Include="BaseGui.hpp" />
+    <ClInclude Include="CameraController.hpp" />
     <ClInclude Include="EasyCamera.hpp" />
     <ClInclude Include="ColorSlider.hpp" />
     <ClInclude Include="ConeGenerator.hpp" />
