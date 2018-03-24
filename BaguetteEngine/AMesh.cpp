@@ -55,7 +55,6 @@ void AMesh::setVertex(ofIndexType index, const ofVec3f & v)
 
 void AMesh::setMesh(ofMesh * oMesh)
 {
-	// vbo_ = oMesh;
 	mesh_ = oMesh;
 	init();
 	initColor();
@@ -73,7 +72,6 @@ ofVec3f AMesh::getVertex(ofIndexType index) const
 
 void AMesh::setFillColor(const ofColor & c)
 {
-	// const std::vector<ofPoint> & vertices = vbo_.getVertices();
 	if (mesh_)
 	{
 		const std::vector<ofFloatColor> & vertices = mesh_->getColors();
@@ -86,7 +84,6 @@ void AMesh::setFillColor(const ofColor & c)
 
 const ofColor & AMesh::getFillColor(void) const
 {
-	// return vbo_.getColor(0);
 	return mesh_->getColor(0);
 }
 

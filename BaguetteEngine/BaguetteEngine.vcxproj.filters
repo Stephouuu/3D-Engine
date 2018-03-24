@@ -232,7 +232,7 @@
     <ClCompile Include="toggle.cpp" />
     <ClCompile Include="EasyCamera.cpp">
       <Filter>src\Scene</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>src\Graphics</Filter>
     </ClCompile>
@@ -1267,7 +1267,7 @@
     <ClInclude Include="toggle.hpp" />
     <ClInclude Include="EasyCamera.hpp">
       <Filter>src\Scene</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Light.hh">
       <Filter>src\Graphics</Filter>
     </ClInclude>
@@ -1277,13 +1277,5 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\data\fragment_shader.frag">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="bin\data\vertex_shader.vert">
-      <Filter>shaders</Filter>
-    </None>
   </ItemGroup>
 </Project>

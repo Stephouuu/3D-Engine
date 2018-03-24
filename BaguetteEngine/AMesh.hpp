@@ -11,7 +11,7 @@
 
 class ARenderer;
 
-class AMesh : public IDrawable // ofNode
+class AMesh : public IDrawable
 {
 public:
 	enum InstantiableMesh

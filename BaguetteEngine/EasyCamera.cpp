@@ -6,6 +6,8 @@ EasyCamera::EasyCamera(void)
 	setDistance(10);
 	setNearClip(0.01);
 	setFarClip(1000);
+
+	setTranslationKey('t');
 }
 
 EasyCamera::~EasyCamera(void)

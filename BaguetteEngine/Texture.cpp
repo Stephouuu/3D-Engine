@@ -142,9 +142,9 @@ void Texture::filter() {
 				sum[c] = 0;
 			for (int j = 0; j < kernel_size; ++j) {
 				for (int i = 0; i < kernel_size; ++i) {
-					if (src.size() > static_cast<size_t>((draft.getWidth() * (y + j - kernel_offset) + (x + i - kernel_offset)) * 3)){
-						pixel_color_src = src.getColor(
-							static_cast<size_t>((draft.getWidth() * (y + j - kernel_offset) + (x + i - kernel_offset)) * 3));
+					size_t idx = static_cast<size_t>((draft.getWidth() * (y + j - kernel_offset) + (x + i - kernel_offset)) * 3);
+					if (idx < src.size()){
+						pixel_color_src = src.getColor(idx);
 						for (int c = 0; c < 3; ++c) {
 							sum[c] = sum[c] + kernels_[selectedFilter_][i][j] * pixel_color_src[c];
 						}	
