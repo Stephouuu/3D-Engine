@@ -15,6 +15,12 @@ Scene3D::~Scene3D(void)
 {
 }
 
+void Scene3D::update(float dt)
+{
+	AScene::update(dt);
+	cam_.update(dt);
+}
+
 void Scene3D::render(ARenderer & renderer)
 {
 	cam_.begin();
@@ -22,6 +28,12 @@ void Scene3D::render(ARenderer & renderer)
 	// ofDrawAxis(2); // x = red ; y = green ; z = blue.
 	AScene::render(renderer);
 	cam_.end();
+}
+
+void Scene3D::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save)
+{
+	AScene::setDrawablePosition(drawableId, pos, save);
+	cam_.targetPositionChanged();
 }
 
 const Identifiable & Scene3D::instanciateDrawable(const std::string & type, const Identifiable & parent)
@@ -62,3 +74,16 @@ int Scene3D::getNbDimensions(void) const
 {
 	return 3;
 }
+
+void Scene3D::setFocusedDrawable(const Identifiable & drawableId)
+{
+	AScene::setFocusedDrawable(drawableId);
+
+	SceneNode *node = ensureDrawableExistance(drawableId);
+	if (node && drawableId != 0) {
+		cam_.setTargetSceneNode(node);
+	}
+	else {
+		cam_.setTargetSceneNode(nullptr);
+	}
+}	

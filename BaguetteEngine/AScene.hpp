@@ -13,18 +13,18 @@ public:
 	AScene(void);
 	virtual ~AScene(void);
 
-	void update(float dt);
+	virtual void update(float dt);
 	virtual void render(ARenderer & renderer);
 
 	void removeDrawable(const Identifiable & drawableId);
 
-	void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save = true);
-	void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation, bool save = true);
-	void setDrawableRotation(const Identifiable & drawableId, float degrees, bool save = true);
-	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale, bool save = true);
-	void setDrawableColor(const Identifiable & drawableId, const ofFloatColor & color);
-	void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
-	void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
+	virtual void setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save = true);
+	virtual void setDrawableRotation(const Identifiable & drawableId, const ofVec3f & orientation, bool save = true);
+	virtual void setDrawableRotation(const Identifiable & drawableId, float degrees, bool save = true);
+	virtual void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale, bool save = true);
+	virtual void setDrawableColor(const Identifiable & drawableId, const ofFloatColor & color);
+	virtual void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
+	virtual void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
 
 	void setSceneColor(const ofColor & color);
 	const ofColor & getSceneColor(void) const;
@@ -34,7 +34,7 @@ public:
 	void undo(void);
 	void redo(void);
 
-	void setFocusedDrawable(const Identifiable & drawableId);
+	virtual void setFocusedDrawable(const Identifiable & drawableId);
 	const Identifiable * getFocusedDrawable(void) const;
 
 	SceneNode * ensureDrawableExistance(const Identifiable & drawableId);

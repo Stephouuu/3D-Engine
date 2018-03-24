@@ -229,6 +229,10 @@
     <ClCompile Include="SmileVectorShape.cpp">
       <Filter>src\Graphics\Vector\Shape</Filter>
     </ClCompile>
+    <ClCompile Include="toggle.cpp" />
+    <ClCompile Include="EasyCamera.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1253,6 +1257,10 @@
     </ClInclude>
     <ClInclude Include="SmileVectorShape.hpp">
       <Filter>src\Graphics\Vector\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="toggle.hpp" />
+    <ClInclude Include="EasyCamera.hpp">
+      <Filter>src\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
