@@ -188,6 +188,8 @@
     <ClCompile Include="EllipseVector.cpp" />
     <ClCompile Include="Identifiable.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightGenerator.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="CubeGenerator.cpp" />
     <ClCompile Include="MathUtils.cpp" />
@@ -270,6 +272,8 @@
     <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />
+    <ClInclude Include="Light.hh" />
+    <ClInclude Include="LightGenerator.hh" />
     <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />
     <ClInclude Include="MathUtils.hpp" />

@@ -232,6 +232,12 @@
     <ClCompile Include="toggle.cpp" />
     <ClCompile Include="EasyCamera.cpp">
       <Filter>src\Scene</Filter>
+	</ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="LightGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1261,6 +1267,12 @@
     <ClInclude Include="toggle.hpp" />
     <ClInclude Include="EasyCamera.hpp">
       <Filter>src\Scene</Filter>
+	</ClInclude>
+    <ClInclude Include="Light.hh">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="LightGenerator.hh">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
