@@ -22,6 +22,8 @@ public:
 	void right(void);
 	void left(void);
 
+	void swapPerspectiveOrtho(bool value);
+
 private:
 	EasyCamera cam_;
 };

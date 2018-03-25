@@ -29,6 +29,10 @@ void MainMenu::setup()
 	fromXY_.setup("From x/y", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
 	cropWH_.setup("Width/Height", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
 
+	cameraMode_.setup();
+	cameraMode_.setName("Camera Mode");
+	cameraMode_.add(swapCameraMode_.setup("Swap Orthographic/Perspective", false, 20, 20));
+	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
 
 	cropImage_.add(&fromXY_);
 	cropImage_.add(&cropWH_);
@@ -63,6 +67,7 @@ void MainMenu::setup()
 	gui_.add(&fileGroup_);
 	gui_.add(&modeGroup_);
 	gui_.add(&insertGroup_);
+	gui_.add(&cameraMode_);
 
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
@@ -334,4 +339,10 @@ void MainMenu::vec2SliderFromXYChange(ofVec2f & vec)
 void MainMenu::vec2SliderFromWHChange(ofVec2f & vec)
 {
 	cropWHValues_ = vec;
+}
+
+void MainMenu::toggleSwapMode(const void * sender, bool & value)
+{
+	std::cout << value << std::endl;
+	scene_.getCameraController()->swapPerspectiveOrtho(value);
 }

@@ -38,7 +38,7 @@ private:
 	void buttonPressed3D(const void * sender);
 	void buttonPressed3DModel(const void * sender);
 	void buttonPressedShapeVector(const void * sender);
-
+	void toggleSwapMode(const void * sender, bool & value);
 	void vecSliderModel3DBoxChange(ofVec3f & vec);
 
 private:
@@ -50,6 +50,7 @@ private:
 	ofxGuiGroup			modeGroup_;
 	ofxGuiGroup			vectorShapeGroup_;
 	ofxGuiGroup			cropImage_;
+	ofxGuiGroup			cameraMode_;
 
 	ofxButton			insertSphere_;
 	ofxButton			insertPlan_;
@@ -86,4 +87,6 @@ private:
 	Image				exportImg_;
 	ofVec3f				model3DBox_;
 	bool				wantScreenshot_;
+
+	ofxToggle			swapCameraMode_;
 };

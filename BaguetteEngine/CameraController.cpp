@@ -52,3 +52,18 @@ void CameraController::left(void)
 {
 	cam_.setLongitudeDirection(EasyCamera::OrbitDirection::Backward);
 }
+
+
+void CameraController::swapPerspectiveOrtho(bool value)
+{
+	if (value == true)
+	{
+		if (cam_.getOrtho() == false)
+			cam_.enableOrtho();
+	}
+	else
+	{
+		if (cam_.getOrtho() == true)
+			cam_.disableOrtho();
+	}
+}
