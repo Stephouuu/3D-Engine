@@ -13,14 +13,17 @@ public:
 	const float ZoomFactor = 5.f;
 
 public:
-	enum class Direction : int {
-		East =  1,
-		West =  -1
+	enum class OrbitDirection : int {
+		Backward = -1,
+		None = 0,
+		Forward = 1
 	};
 
 public:
 	EasyCamera(void);
 	~EasyCamera(void);
+
+	void reset(void);
 
 	void update(float dt);
 	void setTarget(const ofVec3f & position);
@@ -28,29 +31,31 @@ public:
 	void begin(ofRectangle viewport = ofRectangle()) override;
 	void end(void) override;
 
-	void switchOrbit(void);
 	void zoom(float f);
 
-	void setDirection(Direction dir);
+	void setLongitudeDirection(OrbitDirection dir);
+	void setLatitudeDirection(OrbitDirection dir);
 
 private:
 	void targetTransition(float dt);
 	void zoomTransition(float dt);
 	void orbit(float dt);
 
-	void setDistance(float distance);
-	float getDistance(void) const;
+	void setElevation(float distance);
+	float getElevation(void) const;
+	float getDistanceFromTarget(void) const;
 
 private:
 	ofVec3f currentLookAt_;
 	ofVec3f target_;
 	float targetTransitionDt_;
-	float azimuth_;
-	float orbiting_;
+	float latitude_;
+	float longitude_;
 
-	float distance_;
-	float savedDistance_;
+	float elevation_;
+	float savedElevation_;
 	float zoomDt_;
 	float zoomAxes_;
-	Direction direction_;
+	OrbitDirection longitudeDirection_;
+	OrbitDirection latitudeDirection_;
 };

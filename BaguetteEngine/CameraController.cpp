@@ -8,6 +8,11 @@ CameraController::~CameraController(void)
 {
 }
 
+void CameraController::reset(void)
+{
+	cam_.reset();
+}
+
 void CameraController::update(float dt)
 {
 	cam_.update(dt);
@@ -28,22 +33,22 @@ void CameraController::end(void)
 	cam_.end();
 }
 
-void CameraController::switchOrbit(void)
-{
-	cam_.switchOrbit();
-}
-
 void CameraController::zoom(int factor)
 {
 	cam_.zoom(factor);
 }
 
+void CameraController::stop(void)
+{
+	cam_.setLongitudeDirection(EasyCamera::OrbitDirection::None);
+}
+
 void CameraController::right(void)
 {
-	cam_.setDirection(EasyCamera::Direction::East);
+	cam_.setLongitudeDirection(EasyCamera::OrbitDirection::Forward);
 }
 
 void CameraController::left(void)
 {
-	cam_.setDirection(EasyCamera::Direction::West);
+	cam_.setLongitudeDirection(EasyCamera::OrbitDirection::Backward);
 }

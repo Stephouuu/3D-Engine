@@ -8,16 +8,17 @@ public:
 	CameraController(void);
 	~CameraController(void);
 
+	void reset(void);
+
 	void update(float dt);
 	void setTarget(const ofVec3f & position);
 
 	void begin(ofRectangle viewport = ofRectangle());
 	void end(void);
 
-	void switchOrbit(void);
-
 	void zoom(int factor);
 
+	void stop(void);
 	void right(void);
 	void left(void);
 

@@ -33,6 +33,19 @@ void Application::draw(void)
 
 void Application::keyPressed(int key)
 {
+	CameraController * cc = scene_.getCameraController();
+
+	switch (key)
+	{
+	case 358:
+		if (cc) cc->right();
+		break;
+	case 356:
+		if (cc) cc->left();
+		break;
+	default:
+		break;
+	}
 }
 
 void Application::keyReleased(int key)
@@ -47,15 +60,17 @@ void Application::keyReleased(int key)
 	case 'y':
 		scene_.redo();
 		break;
-	case 'o':
-		if (cc) cc->switchOrbit();
-		break;
 	case 358:
-		if (cc) cc->right();
-		break;
 	case 356:
-		if (cc) cc->left();
+		if (cc) cc->stop();
 		break;
+	//case 357:
+	//	if (cc) cc->up();
+	//	break;
+	//case 359:
+	//	if (cc) cc->down();
+	//	break;
+
 	case 127:
 	case 8:
 		scene_.removeFocusedDrawable();
@@ -75,6 +90,12 @@ void Application::mouseDragged(int x, int y, int button)
 
 void Application::mousePressed(int x, int y, int button)
 {
+	CameraController * cc = scene_.getCameraController();
+
+	if (button == 1) {
+		if (cc) cc->reset();
+	}
+
 }
 
 void Application::mouseReleased(int x, int y, int button)
