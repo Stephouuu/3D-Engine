@@ -31,7 +31,7 @@ void MainMenu::setup()
 
 	cameraMode_.setup();
 	cameraMode_.setName("Camera Mode");
-	cameraMode_.add(swapCameraMode_.setup("Swap Orthographic/Perspective", false, 20, 20));
+	cameraMode_.add(swapCameraMode_.setup("Swap Ortho/Perspec", false, 20, 20));
 	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
 
 	cropImage_.add(&fromXY_);
@@ -76,6 +76,7 @@ void MainMenu::setup()
 	insertGroup_.minimize();
 	fileGroup_.minimize();
 	modeGroup_.minimize();
+	cameraMode_.minimize();
 	vectorShapeGroup_.maximize();
 }
 
@@ -115,11 +116,14 @@ void MainMenu::refresh2D(void)
 	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
 	modeGroup_.add(swapMode_.setup("Mode 3D"));
 	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
+
+	swapCameraMode_.removeListener(this, &MainMenu::toggleSwapMode);
 	
 	primitiveGroup_.clear();
 	model3DGroup_.clear();
 	insertGroup_.clear();
 	vectorShapeGroup_.clear();
+	cameraMode_.clear();
 
 	primitiveGroup_.setName("Primitives Vectorielles");
 	vectorShapeGroup_.setName("Formes Vectorielles");
@@ -176,6 +180,11 @@ void MainMenu::refresh3D(void)
 	model3DGroup_.setName("Modele 3D");
 	insertGroup_.clear();
 
+	cameraMode_.setup();
+	cameraMode_.setName("Camera Mode");
+	cameraMode_.add(swapCameraMode_.setup("Swap Ortho/Perspec", false, 20, 20));
+	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
+
 	insertSphere_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
@@ -205,6 +214,8 @@ void MainMenu::refresh3D(void)
 	fileGroup_.minimizeAll();
 	insertGroup_.minimize();
 	fileGroup_.minimize();
+
+	gui_.add(&cameraMode_);
 }
 
 void MainMenu::buttonPressedFile(const void * sender)
