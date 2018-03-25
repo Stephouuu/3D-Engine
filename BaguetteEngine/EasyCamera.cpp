@@ -90,7 +90,7 @@ void EasyCamera::targetTransition(float dt)
 
 void EasyCamera::zoomTransition(float dt)
 {
-	setDistance(savedDistance_ + (5.f * zoomFactor_) * MathUtils::easeInSine(dt));
+	setDistance(savedDistance_ + (savedDistance_ / 5.f) * zoomFactor_ * MathUtils::easeInSine(dt));
 }
 
 void EasyCamera::setDistance(float distance)

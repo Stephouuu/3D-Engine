@@ -10,6 +10,8 @@ out vec4 outputColor;
 
 void main()
 {
-	if (!texturePresent) outputColor = out_color;
-	else outputColor = texture(tex0, vec2(texCoordVarying.x, 1 - texCoordVarying.y));
+	if (!texturePresent)
+		outputColor = out_color;
+	else
+		outputColor = texture(tex0, vec2(texCoordVarying.x, 1 - texCoordVarying.y));
 }

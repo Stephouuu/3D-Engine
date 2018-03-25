@@ -22,11 +22,9 @@ void AMesh::draw(ARenderer & renderer)
 
 	if (texture()) texture()->getTexture().bind();
 	shader_.begin();
-	shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
-	shader_.setUniform1i("texturePresent", texture() != nullptr);
-
-	mesh_->draw();
-
+		shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
+		shader_.setUniform1i("texturePresent", texture() != nullptr);
+			mesh_->draw();
 	shader_.end();	
 	if (texture()) texture()->getTexture().unbind();
 }
