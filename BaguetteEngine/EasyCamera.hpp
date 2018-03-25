@@ -10,6 +10,9 @@ class EasyCamera : public ofCamera
 {
 public:
 	const ofVec3f BasePosition = { 0, 10, 5 };
+	const float ZoomFactor = 5.f;
+
+public:
 	enum class Direction : int {
 		East =  1,
 		West =  -1
@@ -48,6 +51,6 @@ private:
 	float distance_;
 	float savedDistance_;
 	float zoomDt_;
-	float zoomFactor_;
+	float zoomAxes_;
 	Direction direction_;
 };

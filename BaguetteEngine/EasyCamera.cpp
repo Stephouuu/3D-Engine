@@ -65,7 +65,7 @@ void EasyCamera::switchOrbit(void)
 void EasyCamera::zoom(float f)
 {
 	savedDistance_ = distance_;
-	zoomFactor_ = f;
+	zoomAxes_ = f;
 	zoomDt_ = 1.f;
 }
 
@@ -90,7 +90,7 @@ void EasyCamera::targetTransition(float dt)
 
 void EasyCamera::zoomTransition(float dt)
 {
-	setDistance(savedDistance_ + (savedDistance_ / 5.f) * zoomFactor_ * MathUtils::easeInSine(dt));
+	setDistance(savedDistance_ + (savedDistance_ / ZoomFactor) * zoomAxes_ * MathUtils::easeInSine(dt));
 }
 
 void EasyCamera::setDistance(float distance)
