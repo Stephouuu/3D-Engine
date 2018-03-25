@@ -1284,4 +1284,12 @@
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\shaders\fragment_shader.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\shaders\vertex_shader.vert">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
 </Project>

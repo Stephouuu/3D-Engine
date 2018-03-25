@@ -11,8 +11,8 @@ class EasyCamera : public ofCamera
 public:
 	const ofVec3f BasePosition = { 0, 10, 5 };
 	enum class Direction : int {
-		East =  1, // 0,
-		West =  -1  // 180
+		East =  1,
+		West =  -1
 	};
 
 public:

@@ -4,6 +4,7 @@
 Application::Application(void) : gui_(scene_)
 {
 	ofSetVerticalSync(true);
+	ofDisableArbTex();
 }
 
 Application::~Application(void)

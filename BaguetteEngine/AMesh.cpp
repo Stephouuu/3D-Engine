@@ -21,31 +21,19 @@ void AMesh::draw(ARenderer & renderer)
 	ofPopMatrix();
 
 	if (texture()) texture()->getTexture().bind();
+	shader_.begin();
+	shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
+	shader_.setUniform1i("texturePresent", texture() != nullptr);
 
-	// shader_.begin();
-	// shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
-	// renderer.draw(vbo_);
+	mesh_->draw();
 
-	ofPushMatrix();
-	ofTranslate(getGlobalPosition());
-	ofRotateX(getGlobalOrientation().getEuler().x);
-	ofRotateY(getGlobalOrientation().getEuler().y);
-	ofRotateZ(getGlobalOrientation().getEuler().z);
-	ofScale(getScale());
-	draw_();
-	ofPopMatrix();
-
-	// shader_.end();
+	shader_.end();	
 	if (texture()) texture()->getTexture().unbind();
 }
 
 void AMesh::init(void)
 {
-	// shader_.load("./vertex_shader.vert", "./fragment_shader.frag");
-
-	//texture_ = new Texture;
-	// texture_ = new Texture;
-	// texture_->loadImage(TextureGenerator::monochrome(1500, 1500, 255, 0, 0));
+	shader_.load("./shaders/vertex_shader.vert", "./shaders/fragment_shader.frag");
 }
 
 void AMesh::setVertex(ofIndexType index, const ofVec3f & v)

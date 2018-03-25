@@ -18,7 +18,7 @@ void SceneNode::update(float dt)
 
 void SceneNode::render(ARenderer & renderer)
 {
-	if (drawable_) drawable_->draw(renderer);
+	if (drawable_ && getID() != 0) drawable_->draw(renderer);
 	for (auto & it : childs_) it->render(renderer);
 }
 
