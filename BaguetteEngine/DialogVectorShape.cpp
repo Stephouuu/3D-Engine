@@ -71,10 +71,6 @@ int DialogVectorShape::getOutlineThickness(void) const
 	return 0;
 }
 
-void DialogVectorShape::setTexture(Texture * texture)
-{
-}
-
 void DialogVectorShape::invalidate(void)
 {
 	const ofVec3f & pos = getPosition();

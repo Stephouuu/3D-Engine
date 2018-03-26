@@ -253,6 +253,9 @@
     <ClCompile Include="TextureRenderer.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="ADrawable.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1248,9 +1251,6 @@
     <ClInclude Include="Scene2D.hpp">
       <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="IDrawable.hpp">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Vec2Slider.hpp">
       <Filter>src\UI</Filter>
     </ClInclude>
@@ -1301,6 +1301,9 @@
     </ClInclude>
     <ClInclude Include="PortailDstMesh.hpp">
       <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="ADrawable.hpp">
+      <Filter>src\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

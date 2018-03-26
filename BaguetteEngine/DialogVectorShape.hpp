@@ -22,8 +22,6 @@ public:
 	virtual void setOutlineThickness(int thickness);
 	virtual int getOutlineThickness(void) const;
 
-	virtual void setTexture(Texture * texture);
-
 	virtual void invalidate(void);
 
 private:

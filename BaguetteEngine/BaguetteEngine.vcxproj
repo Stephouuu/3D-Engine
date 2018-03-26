@@ -172,6 +172,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ADrawable.cpp" />
     <ClCompile Include="AMesh.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ARenderer.cpp" />
@@ -273,7 +274,7 @@
     <ClInclude Include="DialogVectorShape.hpp" />
     <ClInclude Include="EditMenu.hpp" />
     <ClInclude Include="EllipseVector.hpp" />
-    <ClInclude Include="IDrawable.hpp" />
+    <ClInclude Include="ADrawable.hpp" />
     <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="CacheManager.hpp" />

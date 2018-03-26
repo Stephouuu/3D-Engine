@@ -103,11 +103,6 @@ void AMesh::update(float dt)
 {
 }
 
-void AMesh::setTexture(Texture * texture)
-{
-	texture_ = texture;
-}
-
 void AMesh::invalidate(void)
 {
 }

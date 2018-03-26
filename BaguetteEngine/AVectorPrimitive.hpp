@@ -3,9 +3,9 @@
 #include "ofMain.h"
 #include "MathUtils.hpp"
 
-#include "IDrawable.hpp"
+#include "ADrawable.hpp"
 
-class AVectorPrimitive : public IDrawable
+class AVectorPrimitive : public ADrawable
 {
 public:
 	enum class Alignment : int {
@@ -29,8 +29,6 @@ public:
 
 	virtual void setOutlineThickness(int thickness);
 	virtual int getOutlineThickness(void) const;
-
-	virtual void setTexture(Texture * texture) {};
 
 	const ofPoint & getOrigin(void) const;
 	void setAlignment(Alignment alignment);

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "IDrawable.hpp"
+#include "ADrawable.hpp"
 
 class Light
 {

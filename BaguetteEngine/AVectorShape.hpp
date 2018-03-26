@@ -1,8 +1,8 @@
 #pragma once
 
-#include "IDrawable.hpp"
+#include "ADrawable.hpp"
 
-class AVectorShape : public IDrawable
+class AVectorShape : public ADrawable
 {
 public:
 	AVectorShape(void);
@@ -21,8 +21,6 @@ public:
 
 	virtual void setOutlineThickness(int thickness) = 0;
 	virtual int getOutlineThickness(void) const = 0;
-
-	virtual void setTexture(Texture * texture) = 0;
 
 	virtual void invalidate(void) = 0;
 };

@@ -59,13 +59,12 @@ void SceneNode::destroy(void)
 {
 	for (auto & it : childs_) it->destroy();
 	if (drawable_) {
-		// drawable_->destroy();
 		delete (drawable_);
 		drawable_ = nullptr;
 	}
 }
 
-void SceneNode::setDrawable(IDrawable * drawable)
+void SceneNode::setDrawable(ADrawable * drawable)
 {
 	drawable_ = drawable;
 }
@@ -80,7 +79,7 @@ void SceneNode::setParent(SceneNode *parent)
 	}
 }
 
-IDrawable * SceneNode::getDrawable(void) const
+ADrawable * SceneNode::getDrawable(void) const
 {
 	return (drawable_);
 }

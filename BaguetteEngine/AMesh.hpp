@@ -6,12 +6,12 @@
 #include "ofMain.h"
 #include "Identifiable.hpp"
 #include "TransformableHistory.hpp"
-#include "IDrawable.hpp"
+#include "ADrawable.hpp"
 #include "TextureGenerator.hpp"
 
 class ARenderer;
 
-class AMesh : public IDrawable
+class AMesh : public ADrawable
 {
 public:
 	enum InstantiableMesh
@@ -53,8 +53,6 @@ public:
 	virtual void draw(ARenderer & renderer);
 
 	virtual void invalidate(void);
-
-	virtual void setTexture(Texture * texture);
 
 private:
 	virtual void draw_(void) = 0;

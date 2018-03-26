@@ -449,7 +449,7 @@ void EditMenu::setIsImported(bool value)
 
 void EditMenu::updateValues(SceneNode *node)
 {
-	IDrawable *currentDrawable = node->getDrawable();
+	ADrawable *currentDrawable = node->getDrawable();
 
 	resetting_ = true;
 	if (currentDimension_ == 3)

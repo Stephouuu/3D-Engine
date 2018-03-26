@@ -65,10 +65,6 @@ int SmileVectorShape::getOutlineThickness(void) const
 	return 0;
 }
 
-void SmileVectorShape::setTexture(Texture * texture)
-{
-}
-
 void SmileVectorShape::invalidate(void)
 {
 	const ofVec3f & pos = getPosition();
