@@ -4,12 +4,12 @@
 class CubePrimitive : public AMesh
 {
 public:
-	CubePrimitive();
-	virtual ~CubePrimitive();
+	CubePrimitive(void);
+	virtual ~CubePrimitive(void);
 	void setSize(const float width, const float height, const float depth);
 
 private:
-	void draw_(void);
+	virtual void draw_(void);
 
 private:
 	ofBoxPrimitive box_;

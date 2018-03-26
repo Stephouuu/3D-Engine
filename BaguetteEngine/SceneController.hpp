@@ -29,6 +29,9 @@ public:
 	SceneController(void);
 	~SceneController(void);
 
+	void windowsResized(const ofPoint & newDimension);
+	void onClick(const ofPoint & position);
+
 	void swapMode(void);
 	void setOnSceneChanged(std::function<void(int)> callback);
 	void setOnGraphSceneChanged(std::function<void(void)> callback);

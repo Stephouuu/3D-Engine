@@ -8,6 +8,8 @@ public:
 	AVectorShape(void);
 	virtual ~AVectorShape(void);
 
+	virtual void destroy(void) {}
+
  	virtual void update(float dt) = 0;
 	virtual void draw(ARenderer & renderer) = 0;
 

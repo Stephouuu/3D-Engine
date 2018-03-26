@@ -28,7 +28,7 @@ void SceneGraph::render(ARenderer & renderer)
 const Identifiable & SceneGraph::attachTo(SceneNode::Ptr child, const Identifiable & parent)
 {
 	if (child->getID() == 0) {
-		throw std::runtime_error("ID 0 is reserved to the root object");
+		throw std::runtime_error("ID 0 is reserved to the scene root object");
 	}
 
 	try {

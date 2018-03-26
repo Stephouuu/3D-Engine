@@ -11,22 +11,25 @@ AMesh::AMesh(void)
 
 AMesh::~AMesh(void)
 {
+	std::cout << "destroy AMesh" << std::endl;
 }
 
 void AMesh::draw(ARenderer & renderer)
 {
+	bool texturePresent = texture() != nullptr;
+
 	ofPushMatrix();
 		ofTranslate(getGlobalPosition().x, getGlobalPosition().y, getGlobalPosition().z);
 		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
 	ofPopMatrix();
 
-	if (texture()) texture()->getTexture().bind();
+	if (texturePresent) texture()->getTexture().bind();
 	shader_.begin();
+		shader_.setUniform1i("texturePresent", texturePresent);
 		shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
-		shader_.setUniform1i("texturePresent", texture() != nullptr);
-			mesh_->draw();
-	shader_.end();	
-	if (texture()) texture()->getTexture().unbind();
+			draw_();
+	shader_.end();
+	if (texturePresent) texture()->getTexture().unbind();
 }
 
 void AMesh::init(void)

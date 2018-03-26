@@ -11,7 +11,6 @@ Model3DGenerator::Model3DGenerator(const std::string & path)
 	model_->load(path);
 }
 
-
 Model3DGenerator::~Model3DGenerator()
 {
 }

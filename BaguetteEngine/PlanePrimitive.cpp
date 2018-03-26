@@ -6,7 +6,6 @@ PlanePrimitive::PlanePrimitive()
 	meshType_ = AMesh::PLANE;
 }
 
-
 PlanePrimitive::~PlanePrimitive()
 {
 }

@@ -24,16 +24,16 @@ void MainMenu::setup()
 	fileGroup_.setName("Fichier");
 	fileGroup_.add(exportScene_.setup("Exporter la scene"));
 	fileGroup_.add(importImage_.setup("Importer une Image"));
+
 	cropImage_.setup();
 	cropImage_.setName("Importer une portion d'IMG");
 	fromXY_.setup("From x/y", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
 	cropWH_.setup("Width/Height", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
 
-	cameraMode_.setup();
-	cameraMode_.setName("Camera Mode");
-	cameraMode_.add(swapCameraMode_.setup("Swap Ortho/Perspec", false, 20, 20));
-	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
+	camera_.setup();
 
+	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
+	
 	cropImage_.add(&fromXY_);
 	cropImage_.add(&cropWH_);
 	cropImage_.add(importCroppedImage_.setup("Importer Portion"));
@@ -48,8 +48,6 @@ void MainMenu::setup()
 	fromXY_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::vec2SliderFromXYChange);
 	cropWH_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::vec2SliderFromWHChange);
 
-	modeGroup_.setup();
-
 	primitiveGroup_.setup();
 	model3DGroup_.setup();
 	vectorShapeGroup_.setup();
@@ -60,23 +58,23 @@ void MainMenu::setup()
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&model3DGroup_);
 	insertGroup_.add(&primitiveGroup_);
+	insertGroup_.add(portails_.setup("Ajouter portails"));
+
+	portails_.addListener(this, &MainMenu::addPortails);
 
 	gui_.setup();
 	gui_.setPosition(0, 10);
 	gui_.setName("Menu");
 	gui_.add(&fileGroup_);
-	gui_.add(&modeGroup_);
 	gui_.add(&insertGroup_);
-	gui_.add(&cameraMode_);
+	gui_.add(&camera_);
 
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
-	modeGroup_.minimizeAll();
 	vectorShapeGroup_.minimizeAll();
 	insertGroup_.minimize();
 	fileGroup_.minimize();
-	modeGroup_.minimize();
-	cameraMode_.minimize();
+	camera_.minimize();
 	vectorShapeGroup_.maximize();
 }
 
@@ -110,24 +108,19 @@ bool MainMenu::wantScreenshot(void)
 
 void MainMenu::refresh2D(void)
 {
-	modeGroup_.clear();
-	modeGroup_.setName("Mode");
-
-	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
-	modeGroup_.add(swapMode_.setup("Mode 3D"));
-	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
-
-	swapCameraMode_.removeListener(this, &MainMenu::toggleSwapMode);
-	
 	primitiveGroup_.clear();
 	model3DGroup_.clear();
 	insertGroup_.clear();
 	vectorShapeGroup_.clear();
-	cameraMode_.clear();
+	camera_.clear();
 
 	primitiveGroup_.setName("Primitives Vectorielles");
 	vectorShapeGroup_.setName("Formes Vectorielles");
 
+	addCamera_.removeListener(this, &MainMenu::addCamera);
+	removeCamera_.removeListener(this, &MainMenu::removeCamera);
+	swapCameraMode_.removeListener(this, &MainMenu::toggleSwapMode);
+	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
 	insertTriangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertEllipse_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertPoint_.removeListener(this, &MainMenu::buttonPressed2D);
@@ -138,6 +131,10 @@ void MainMenu::refresh2D(void)
 	insertDialogVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
 	insertSmileVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
 
+	camera_.setName("Camera");
+	camera_.add(swapMode_.setup("Mode 3D"));
+
+	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
 	primitiveGroup_.add(insertTriangle_.setup("Ajouter un triangle"));
 	primitiveGroup_.add(insertEllipse_.setup("Ajouter une ellipse"));
 	primitiveGroup_.add(insertPoint_.setup("Ajouter un point"));
@@ -158,6 +155,7 @@ void MainMenu::refresh2D(void)
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&primitiveGroup_);
 	insertGroup_.add(&vectorShapeGroup_);
+	insertGroup_.add(&portails_);
 	
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
@@ -167,24 +165,17 @@ void MainMenu::refresh2D(void)
 
 void MainMenu::refresh3D(void)
 {
-	modeGroup_.clear();
-	modeGroup_.setName("Mode");
-
-	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
-	modeGroup_.add(swapMode_.setup("Mode 2D"));
-	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
-
 	primitiveGroup_.clear();
 	primitiveGroup_.setName("Primitives Geometriques");
 	model3DGroup_.clear();
 	model3DGroup_.setName("Modele 3D");
 	insertGroup_.clear();
+	camera_.clear();
 
-	cameraMode_.setup();
-	cameraMode_.setName("Camera Mode");
-	cameraMode_.add(swapCameraMode_.setup("Swap Ortho/Perspec", false, 20, 20));
-	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
-
+	addCamera_.removeListener(this, &MainMenu::addCamera);
+	removeCamera_.removeListener(this, &MainMenu::removeCamera);
+	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
+	swapCameraMode_.removeListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
 	insertSphere_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
@@ -192,6 +183,13 @@ void MainMenu::refresh3D(void)
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 
+	camera_.setName("Camera");
+	camera_.add(swapMode_.setup("Mode 2D"));
+	camera_.add(swapCameraMode_.setup("Swap Ortho/Perspec", false, 20, 20));
+	camera_.add(addCamera_.setup("Ajouter camera"));
+	camera_.add(removeCamera_.setup("Supprimer camera"));
+
+	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
 	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
 	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
 	primitiveGroup_.add(insertBox_.setup("Ajouter un cube"));
@@ -199,6 +197,9 @@ void MainMenu::refresh3D(void)
 	model3DGroup_.add(model3DBoxSlider_.setup("Boite de delimitation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30)));
 	model3DGroup_.add(insert3DModel_.setup("Ajouter un modele 3D"));
 
+	addCamera_.addListener(this, &MainMenu::addCamera);
+	removeCamera_.addListener(this, &MainMenu::removeCamera);
+	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);
 	insertSphere_.addListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.addListener(this, &MainMenu::buttonPressed3D);
 	insertBox_.addListener(this, &MainMenu::buttonPressed3D);
@@ -209,13 +210,12 @@ void MainMenu::refresh3D(void)
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&model3DGroup_);
 	insertGroup_.add(&primitiveGroup_);
+	insertGroup_.add(&portails_);
 
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();
 	insertGroup_.minimize();
 	fileGroup_.minimize();
-
-	gui_.add(&cameraMode_);
 }
 
 void MainMenu::buttonPressedFile(const void * sender)
@@ -356,4 +356,19 @@ void MainMenu::toggleSwapMode(const void * sender, bool & value)
 {
 	std::cout << value << std::endl;
 	scene_.getCameraController()->swapPerspectiveOrtho(value);
+}
+
+void MainMenu::addPortails(const void * sender)
+{
+	scene_.instanciateDrawable("portails");
+}
+
+void MainMenu::addCamera(const void * sender)
+{
+	scene_.getCameraController()->addCamera();
+}
+
+void MainMenu::removeCamera(const void * sender)
+{
+	scene_.getCameraController()->removeCamera();
 }

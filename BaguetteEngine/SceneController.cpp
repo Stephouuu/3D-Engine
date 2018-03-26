@@ -13,6 +13,18 @@ SceneController::~SceneController(void)
 {
 }
 
+void SceneController::windowsResized(const ofPoint & newDimension)
+{
+	CameraController * cc = getCameraController();
+	if (cc) cc->windowsResized(newDimension);
+}
+
+void SceneController::onClick(const ofPoint & position)
+{
+	CameraController * cc = getCameraController();
+	if (cc) cc->onClick(position);
+}
+
 void SceneController::swapMode(void)
 {
 	currentScene_++;

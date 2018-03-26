@@ -12,6 +12,8 @@ public:
 	IDrawable(void) : rotation_(0), focused_(false), texture_(nullptr) {};
 	virtual ~IDrawable(void) {};
 
+	virtual void destroy(void) = 0;
+
 	virtual void update(float dt) = 0;
 	virtual void draw(ARenderer & renderer) = 0;
 

@@ -106,9 +106,6 @@
     <ClCompile Include="ARenderer.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="TextureRender.cpp">
-      <Filter>src\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>src\Graphics</Filter>
     </ClCompile>
@@ -229,7 +226,6 @@
     <ClCompile Include="SmileVectorShape.cpp">
       <Filter>src\Graphics\Vector\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="toggle.cpp" />
     <ClCompile Include="EasyCamera.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
@@ -241,6 +237,21 @@
     </ClCompile>
     <ClCompile Include="CameraController.cpp">
       <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PortailGenerator.cpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClCompile>
+    <ClCompile Include="toggle.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PortailSrcMesh.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="PortailDstMesh.cpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureRenderer.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1267,7 +1278,6 @@
     <ClInclude Include="SmileVectorShape.hpp">
       <Filter>src\Graphics\Vector\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="toggle.hpp" />
     <ClInclude Include="EasyCamera.hpp">
       <Filter>src\Scene</Filter>
     </ClInclude>
@@ -1279,6 +1289,18 @@
     </ClInclude>
     <ClInclude Include="CameraController.hpp">
       <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PortailGenerator.hpp">
+      <Filter>src\Graphics\Mesh\Generator</Filter>
+    </ClInclude>
+    <ClInclude Include="toggle.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PortailSrcMesh.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="PortailDstMesh.hpp">
+      <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

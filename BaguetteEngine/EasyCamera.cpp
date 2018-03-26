@@ -2,6 +2,9 @@
 
 EasyCamera::EasyCamera(void)
 {
+	setNearClip(0.01);
+	setFarClip(1000);
+
 	reset();
 }
 
@@ -11,14 +14,10 @@ EasyCamera::~EasyCamera(void)
 
 void EasyCamera::reset(void)
 {
-	setNearClip(0.01);
-	setFarClip(1000);
-
-	setPosition(BasePosition);
 	rotate(0, 0, 0, 0);
-	lookAt(ofVec3f(0, 0, 0));
+	setPosition(BasePosition);
 
-	setTarget(ofVec3f());
+	setTarget(target_);
 	setElevation(10);
 
 	targetTransitionDt_ = 0;

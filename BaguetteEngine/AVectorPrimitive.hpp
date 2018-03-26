@@ -16,6 +16,8 @@ public:
 	AVectorPrimitive(void);
 	virtual ~AVectorPrimitive(void);
 
+	virtual void destroy(void) {}
+
 	virtual void update(float dt);
 	virtual void draw(ARenderer & renderer);
 

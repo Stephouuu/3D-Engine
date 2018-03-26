@@ -21,12 +21,15 @@ public:
 		SPHERE,
 		PLANE,
 		CUBE,
-		CONE
+		CONE,
+		CAMERA
 	};
 
 public:
 	AMesh(void);
 	virtual ~AMesh(void);
+
+	virtual void destroy(void) {}
 
 	void init(void);
 	const std::vector<ofPoint> & getVertices() const;

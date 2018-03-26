@@ -200,6 +200,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model3D.cpp" />
     <ClCompile Include="PointVector.cpp" />
+    <ClCompile Include="PortailDstMesh.cpp" />
+    <ClCompile Include="PortailGenerator.cpp" />
+    <ClCompile Include="PortailSrcMesh.cpp" />
     <ClCompile Include="RectangleVector.cpp" />
     <ClCompile Include="Scene2D.cpp" />
     <ClCompile Include="Scene3D.cpp" />
@@ -243,7 +246,7 @@
     <ClCompile Include="SpherePrimitive.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureGenerator.cpp" />
-    <ClCompile Include="TextureRender.cpp" />
+    <ClCompile Include="TextureRenderer.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="toggle.cpp" />
     <ClCompile Include="TransformableHistory.cpp" />
@@ -287,6 +290,9 @@
     <ClInclude Include="Model3D.hpp" />
     <ClInclude Include="NonCopyable.hpp" />
     <ClInclude Include="PointVector.hpp" />
+    <ClInclude Include="PortailDstMesh.hpp" />
+    <ClInclude Include="PortailGenerator.hpp" />
+    <ClInclude Include="PortailSrcMesh.hpp" />
     <ClInclude Include="RectangleVector.hpp" />
     <ClInclude Include="Scene2D.hpp" />
     <ClInclude Include="Scene3D.hpp" />

@@ -12,30 +12,21 @@ static int cpt = 0;
 class SceneGraph
 {
 public:
-	template <typename T>
-	static SceneNode::Ptr CreateSceneNode(void)
+	template <typename T, typename... Args>
+	static SceneNode::Ptr CreateSceneNode(Args & ... args)
 	{
 		SceneNode::Ptr node(new SceneNode(++cpt));
-		node->setDrawable(new T);
+		node->setDrawable(new T(args...));
 		return std::move(node);
 	}
 
-	template <typename T, typename U>
-	static SceneNode::Ptr CreateSceneNode(void)
+	template <typename T, typename... Args>
+	static SceneNode::Ptr CreateSceneNodeFromGenerator(Args & ... args)
 	{
 		SceneNode::Ptr node(new SceneNode(++cpt));
-		node->setDrawable(U()());
+		node->setDrawable(T(args...)());
 		return std::move(node);
 	}
-
-	template <typename T, typename U>
-	static SceneNode::Ptr CreateSceneNode(const std::string &path)
-	{
-		SceneNode::Ptr node(new SceneNode(++cpt));
-		node->setDrawable(U(path)());
-		return std::move(node);
-	}
-
 
 public:
 	SceneGraph(void);

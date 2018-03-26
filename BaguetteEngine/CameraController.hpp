@@ -1,6 +1,11 @@
 #pragma once
 
+#include <vector>
+
 #include "EasyCamera.hpp"
+#include "ARenderer.hpp"
+
+#include "SceneGraph.hpp"
 
 class CameraController
 {
@@ -10,11 +15,16 @@ public:
 
 	void reset(void);
 
-	void update(float dt);
-	void setTarget(const ofVec3f & position);
+	void windowsResized(const ofPoint & newDimension);
+	void onClick(const ofPoint & position);
 
-	void begin(ofRectangle viewport = ofRectangle());
-	void end(void);
+	void addCamera(void);
+	void removeCamera(void);
+
+	void render(ARenderer & renderer, SceneGraph & scene);
+	void update(float dt);
+	
+	void setTarget(const ofVec3f & position);
 
 	void zoom(int factor);
 
@@ -25,6 +35,10 @@ public:
 	void swapPerspectiveOrtho(bool value);
 
 private:
-	EasyCamera cam_;
+	void updateCamerasLayout(void);
+
+private:
+	std::vector<std::pair<ofFbo, EasyCamera *> > cams_;
+	std::vector<std::pair<ofFbo, EasyCamera *> >::const_iterator focused_;
 };
 

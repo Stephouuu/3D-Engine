@@ -59,6 +59,7 @@ void SceneNode::destroy(void)
 {
 	for (auto & it : childs_) it->destroy();
 	if (drawable_) {
+		// drawable_->destroy();
 		delete (drawable_);
 		drawable_ = nullptr;
 	}

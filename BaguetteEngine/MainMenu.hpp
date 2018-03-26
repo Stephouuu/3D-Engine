@@ -40,6 +40,9 @@ private:
 	void buttonPressedShapeVector(const void * sender);
 	void toggleSwapMode(const void * sender, bool & value);
 	void vecSliderModel3DBoxChange(ofVec3f & vec);
+	void addPortails(const void * sender);
+	void addCamera(const void * sender);
+	void removeCamera(const void * sender);
 
 private:
 	ofxPanel			gui_;
@@ -47,10 +50,9 @@ private:
 	ofxGuiGroup			primitiveGroup_;
 	ofxGuiGroup			model3DGroup_;
 	ofxGuiGroup			fileGroup_;
-	ofxGuiGroup			modeGroup_;
 	ofxGuiGroup			vectorShapeGroup_;
 	ofxGuiGroup			cropImage_;
-	ofxGuiGroup			cameraMode_;
+	ofxGuiGroup			camera_;
 
 	ofxButton			insertSphere_;
 	ofxButton			insertPlan_;
@@ -68,6 +70,10 @@ private:
 	ofxButton			insertSmileVector_;
 
 	ofxButton			swapMode_;
+	ofxButton			portails_;
+
+	ofxButton			addCamera_;
+	ofxButton			removeCamera_;
 
 	ofxButton			exportScene_;
 	ofxButton			importImage_;

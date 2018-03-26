@@ -70,7 +70,6 @@ void Application::keyReleased(int key)
 	//case 359:
 	//	if (cc) cc->down();
 	//	break;
-
 	case 127:
 	case 8:
 		scene_.removeFocusedDrawable();
@@ -100,7 +99,7 @@ void Application::mousePressed(int x, int y, int button)
 
 void Application::mouseReleased(int x, int y, int button)
 {
-
+	if (button == 0) scene_.onClick(ofPoint(x, y));
 }
 
 void Application::mouseEntered(int x, int y)
@@ -120,6 +119,7 @@ void Application::mouseScrolled(int x, int y, float scrollX, float scrollY)
 void Application::windowResized(int w, int h)
 {
 	gui_.windowsResized(ofPoint(w, h));
+	scene_.windowsResized(ofPoint(w, h));
 }
 
 void Application::gotMessage(ofMessage msg)
