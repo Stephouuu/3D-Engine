@@ -5,7 +5,7 @@
 #include <memory>
 #include <functional>
 
-#include "Image.h" 
+#include "Image.hpp" 
 #include "CacheManager.hpp"
 
 #include "Identifiable.hpp"

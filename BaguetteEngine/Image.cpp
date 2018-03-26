@@ -1,7 +1,8 @@
-#include "Image.h"
+#include "Image.hpp"
 #include "ofMain.h"
 #include <commdlg.h>
 #include <ctime>
+
 Image::Image()
 {
 	isLoaded = false;

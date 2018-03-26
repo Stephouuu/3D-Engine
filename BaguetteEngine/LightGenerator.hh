@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Light.hh"
+#include "Light.hpp"
 
 class LightGenerator
 {

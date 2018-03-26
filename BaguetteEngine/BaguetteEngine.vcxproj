@@ -276,9 +276,9 @@
     <ClInclude Include="EllipseVector.hpp" />
     <ClInclude Include="ADrawable.hpp" />
     <ClInclude Include="IGuiView.hpp" />
-    <ClInclude Include="Image.h" />
+    <ClInclude Include="Image.hpp" />
     <ClInclude Include="CacheManager.hpp" />
-    <ClInclude Include="Light.hh" />
+    <ClInclude Include="Light.hpp" />
     <ClInclude Include="LightGenerator.hh" />
     <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="CubeGenerator.hpp" />

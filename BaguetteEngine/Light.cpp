@@ -1,11 +1,8 @@
-#include "Light.hh"
-
-
+#include "Light.hpp"
 
 Light::Light()
 {
 }
-
 
 Light::~Light()
 {

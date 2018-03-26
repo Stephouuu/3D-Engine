@@ -1184,9 +1184,6 @@
     <ClInclude Include="Timer.hpp">
       <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="CacheManager.hpp">
       <Filter>src\Utils</Filter>
     </ClInclude>
@@ -1281,9 +1278,6 @@
     <ClInclude Include="EasyCamera.hpp">
       <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Light.hh">
-      <Filter>src\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="LightGenerator.hh">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
@@ -1303,6 +1297,12 @@
       <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="ADrawable.hpp">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.hpp">
+      <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.hpp">
       <Filter>src\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

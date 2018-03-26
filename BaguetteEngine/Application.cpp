@@ -1,5 +1,5 @@
 #include "Application.hpp"
-#include "Image.h"
+#include "Image.hpp"
 
 Application::Application(void) : gui_(scene_)
 {
