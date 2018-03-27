@@ -238,9 +238,6 @@
     <ClCompile Include="CameraController.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="PortailGenerator.cpp">
-      <Filter>src\Graphics\Mesh\Generator</Filter>
-    </ClCompile>
     <ClCompile Include="toggle.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
@@ -1277,9 +1274,6 @@
     </ClInclude>
     <ClInclude Include="CameraController.hpp">
       <Filter>src\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="PortailGenerator.hpp">
-      <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
     <ClInclude Include="toggle.hpp">
       <Filter>src\UI</Filter>
