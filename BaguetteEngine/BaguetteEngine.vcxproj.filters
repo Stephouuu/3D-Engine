@@ -226,17 +226,11 @@
     <ClCompile Include="SmileVectorShape.cpp">
       <Filter>src\Graphics\Vector\Shape</Filter>
     </ClCompile>
-    <ClCompile Include="EasyCamera.cpp">
-      <Filter>src\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>src\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="LightGenerator.cpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraController.cpp">
-      <Filter>src\Scene</Filter>
     </ClCompile>
     <ClCompile Include="toggle.cpp">
       <Filter>src\UI</Filter>
@@ -246,6 +240,18 @@
     </ClCompile>
     <ClCompile Include="ADrawable.cpp">
       <Filter>src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>src\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="EasyCamera.cpp">
+      <Filter>src\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Portails.cpp">
+      <Filter>src\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Portail.cpp">
+      <Filter>src\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -437,6 +443,9 @@
     </Filter>
     <Filter Include="src\Graphics\Vector\Shape">
       <UniqueIdentifier>{7f3a7ac3-709d-4486-bd50-9ed46cc4f15e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Camera">
+      <UniqueIdentifier>{d5d51136-bbfb-4a5a-926d-49f018dafe40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1266,14 +1275,8 @@
     <ClInclude Include="SmileVectorShape.hpp">
       <Filter>src\Graphics\Vector\Shape</Filter>
     </ClInclude>
-    <ClInclude Include="EasyCamera.hpp">
-      <Filter>src\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="LightGenerator.hh">
       <Filter>src\Graphics\Mesh\Generator</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraController.hpp">
-      <Filter>src\Scene</Filter>
     </ClInclude>
     <ClInclude Include="toggle.hpp">
       <Filter>src\UI</Filter>
@@ -1286,6 +1289,18 @@
     </ClInclude>
     <ClInclude Include="Light.hpp">
       <Filter>src\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.hpp">
+      <Filter>src\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyCamera.hpp">
+      <Filter>src\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Portails.hpp">
+      <Filter>src\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Portail.hpp">
+      <Filter>src\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

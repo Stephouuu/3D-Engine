@@ -201,6 +201,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model3D.cpp" />
     <ClCompile Include="PointVector.cpp" />
+    <ClCompile Include="Portail.cpp" />
+    <ClCompile Include="Portails.cpp" />
     <ClCompile Include="RectangleVector.cpp" />
     <ClCompile Include="Scene2D.cpp" />
     <ClCompile Include="Scene3D.cpp" />
@@ -288,6 +290,8 @@
     <ClInclude Include="Model3D.hpp" />
     <ClInclude Include="NonCopyable.hpp" />
     <ClInclude Include="PointVector.hpp" />
+    <ClInclude Include="Portail.hpp" />
+    <ClInclude Include="Portails.hpp" />
     <ClInclude Include="RectangleVector.hpp" />
     <ClInclude Include="Scene2D.hpp" />
     <ClInclude Include="Scene3D.hpp" />

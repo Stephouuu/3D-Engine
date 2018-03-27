@@ -132,7 +132,7 @@ void MainMenu::refresh2D(void)
 	insertSmileVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
 
 	camera_.setName("Camera");
-	camera_.add(swapMode_.setup("Mode 3D"));
+	camera_.add(swapMode_.setup("Editeur 3D"));
 
 	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
 	primitiveGroup_.add(insertTriangle_.setup("Ajouter un triangle"));
@@ -184,8 +184,8 @@ void MainMenu::refresh3D(void)
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 
 	camera_.setName("Camera");
-	camera_.add(swapMode_.setup("Mode 2D"));
-	camera_.add(swapCameraMode_.setup("Swap Ortho/Perspec", false, 20, 20));
+	camera_.add(swapMode_.setup("Editeur vectoriel"));
+	camera_.add(swapCameraMode_.setup("Mode Ortho/Perspec", false, 20, 20));
 	camera_.add(addCamera_.setup("Ajouter camera"));
 	camera_.add(removeCamera_.setup("Supprimer camera"));
 
@@ -241,10 +241,7 @@ void MainMenu::buttonPressedFile(const void * sender)
 
 void MainMenu::buttonPressedMode(const void * sender)
 {
-	ofxButton * button = (ofxButton*)sender;
-
-	if (button->getName() == "Mode 2D" || button->getName() == "Mode 3D")
-		scene_.swapMode();
+	scene_.swapMode();
 }
 
 void MainMenu::buttonPressed2D(const void * sender)

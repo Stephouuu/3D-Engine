@@ -6,6 +6,7 @@
 #include "ARenderer.hpp"
 
 #include "SceneGraph.hpp"
+#include "Portails.hpp"
 
 class CameraController
 {
@@ -38,18 +39,10 @@ public:
 
 private:
 	void updateCamerasLayout(void);
-	void refreshPortail(ARenderer & renderer, SceneGraph & scene);
 
 private:
 	std::vector<std::pair<ofFbo, EasyCamera *> > cams_;
 	std::vector<std::pair<ofFbo, EasyCamera *> >::const_iterator focused_;
-
-	// portails <AMesh,
-	Identifiable p1_;
-	Identifiable p2_;
-	EasyCamera pcam1_;
-	EasyCamera pcam2_;
-	ofFbo fbo1_;
-	ofFbo fbo2_;
+	Portails portails_;
 };
 
