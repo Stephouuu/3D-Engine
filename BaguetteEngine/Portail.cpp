@@ -9,7 +9,6 @@ Portail::Portail(const Identifiable & p1, const Identifiable & p2)
 
 Portail::~Portail(void)
 {
-	std::clog << "delete portail between #" << p1_ << " and #" << p2_ << std::endl;
 	if (fbo1_.isAllocated()) fbo1_.clear();
 	if (fbo2_.isAllocated()) fbo2_.clear();
 }
@@ -25,13 +24,13 @@ bool Portail::refresh(ARenderer & renderer, SceneGraph & scene)
 	fbo1_.begin();
 		ofClear(ofGetBackgroundColor());
 		pcam2_.begin();
-			scene.render(renderer);
+			scene.render(renderer, pcam2_);
 		pcam2_.end();
 	fbo1_.end();
 	fbo2_.begin();
 		ofClear(ofGetBackgroundColor());
 		pcam1_.begin();
-			scene.render(renderer);
+			scene.render(renderer, pcam1_);
 		pcam1_.end();
 	fbo2_.end();
 	updatePortalTextures(p1Node, p2Node);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <iterator>
 
 #include "EasyCamera.hpp"
 #include "ARenderer.hpp"
@@ -34,8 +35,8 @@ public:
 	void left(void);
 
 	void swapPerspectiveOrtho(bool value);
-
 	void createPortail(const SceneNode::Ptr & n1, const SceneNode::Ptr & n2);
+	const EasyCamera & getCurrentCamera(void) const;
 
 private:
 	void updateCamerasLayout(void);

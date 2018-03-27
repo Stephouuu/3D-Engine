@@ -85,20 +85,21 @@ void CameraController::render(ARenderer & renderer, SceneGraph & scene)
 	portails_.refresh(renderer, scene);
 
 	ofClear(255, 255, 255, 255);
-	for (const auto & it : cams_) {
+	for (auto & it : cams_) {
 		it.first.begin();
-			ofClear(ofGetBackgroundColor());
-			it.second->begin();
-				ofDrawGrid(1, 8U, false, false, true, false);
-				scene.render(renderer);
-			it.second->end();
+		ofClear(ofGetBackgroundColor());
+		it.second->begin();
+		ofDrawGrid(1, 8U, false, false, true, false);
+		scene.render(renderer, *it.second);
+		it.second->end();
 		it.first.end();
 		it.first.draw(
-			(i%2)*(ofGetWidth()/2) + (!(i%2) ? 0 : (cams_.size() == 3 && i == 2) ? 0 : std::min<int>(i, 1)),
-			(i/2)*(ofGetHeight()/2) + ((cams_.size() == 3 && i == 2) ? 1 : (cams_.size() != 3) ? 2 : 0)
+			(i % 2)*(ofGetWidth() / 2) + (!(i % 2) ? 0 : (cams_.size() == 3 && i == 2) ? 0 : std::min<int>(i, 1)),
+			(i / 2)*(ofGetHeight() / 2) + ((cams_.size() == 3 && i == 2) ? 1 : (cams_.size() != 3) ? 2 : 0)
 		);
 		++i;
 	}
+
 }
 
 void CameraController::update(float dt)
@@ -154,6 +155,11 @@ void CameraController::swapPerspectiveOrtho(bool value)
 void CameraController::createPortail(const SceneNode::Ptr & n1, const SceneNode::Ptr & n2)
 {
 	portails_.addPortail(n1, n2);
+}
+
+const EasyCamera & CameraController::getCurrentCamera(void) const
+{
+	return *focused_->second;
 }
 
 void CameraController::updateCamerasLayout(void)

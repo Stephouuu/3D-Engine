@@ -24,7 +24,7 @@ public:
 	~SceneNode(void);
 
 	void update(float dt);
-	void render(ARenderer & renderer);
+	void render(ARenderer & renderer, const ofCamera & camera);
 
 	const Identifiable & attachTo(SceneNode::Ptr child, const Identifiable & parent);
 	SceneNode::Ptr detach(const Identifiable & node);

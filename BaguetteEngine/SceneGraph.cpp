@@ -20,9 +20,10 @@ void SceneGraph::update(float dt)
 	root_->update(dt);
 }
 
-void SceneGraph::render(ARenderer & renderer)
+void SceneGraph::render(ARenderer & renderer, const ofCamera & camera)
 {
-	root_->render(renderer);
+	// std::cout << "cam #" << camId << std::endl;
+	root_->render(renderer, camera);
 }
 
 const Identifiable & SceneGraph::attachTo(SceneNode::Ptr child, const Identifiable & parent)
