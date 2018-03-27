@@ -36,13 +36,14 @@ public:
 	void setLongitudeDirection(OrbitDirection dir);
 	void setLatitudeDirection(OrbitDirection dir);
 
+	void setElevation(float distance);
+	float getElevation(void) const;
+
 private:
 	void targetTransition(float dt);
 	void zoomTransition(float dt);
 	void orbit(float dt);
 
-	void setElevation(float distance);
-	float getElevation(void) const;
 	float getDistanceFromTarget(void) const;
 
 private:

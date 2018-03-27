@@ -15,6 +15,8 @@ void CameraController::reset(void)
 {
 	if (focused_ != std::cend(cams_)) {
 		focused_->second->reset();
+		focused_->second->setTarget(ofVec3f());
+		focused_->second->setElevation(10);
 	}
 }
 
@@ -60,6 +62,8 @@ void CameraController::addCamera(void)
 {
 	if (cams_.size() < 4) {
 		focused_ = cams_.emplace(std::cend(cams_), std::make_pair(ofFbo(), new EasyCamera));
+		focused_->second->setTarget(ofVec3f());
+		focused_->second->setElevation(10);
 		updateCamerasLayout();
 	}
 }
@@ -80,7 +84,6 @@ void CameraController::render(ARenderer & renderer, SceneGraph & scene)
 {
 	unsigned int i = 0;
 
-	/* Render portail ici ? */
 	refreshPortail(renderer, scene);
 
 	ofClear(255, 255, 255, 255);

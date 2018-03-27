@@ -17,8 +17,9 @@ void EasyCamera::reset(void)
 	rotate(0, 0, 0, 0);
 	setPosition(BasePosition);
 
-	setTarget(target_);
-	setElevation(10);
+	// setTarget(target_);
+	// setElevation(10);
+	lookAt({ BasePosition.x, BasePosition.y, BasePosition.z - 1});
 
 	targetTransitionDt_ = 0;
 	latitude_ = 0;
