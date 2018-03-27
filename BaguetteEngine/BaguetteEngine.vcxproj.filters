@@ -1316,5 +1316,14 @@
     <None Include="bin\data\shaders\vertex_shader.vert">
       <Filter>shaders</Filter>
     </None>
+    <None Include="bin\data\shaders\portal.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\shaders\portal_blue.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="bin\data\shaders\portal_orange.frag">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,42 +1,56 @@
-//
-// Created by joffrey on 18-03-07.
-//
-
 #include "Texture.hpp"
 
-Texture::Texture() {
-    selectedComposition_ = CompositionType::NONE;
-    selectedFilter_ = FilterType::NONE_FILTER;
-    image_ = nullptr;
-    composition_ = nullptr;
+Texture::Texture()
+{
+	init();
+}
 
-    kernels_[FilterType::BLUR] = {{1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f},
-                                  {1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f},
-                                  {1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f}};
+Texture::Texture(const ofFbo & fbo)
+{
+	init();
+	loadFromFbo(fbo);
+}
 
-    kernels_[FilterType::EDGE_DETECT] = {{-1.0f, -1.0f, -1.0f},
-                                         {-1.0f, 8.0f, -1.0f},
-                                         {-1.0f, -1.0f, -1.0f}};
+Texture::Texture(const std::string & path)
+{
+	init();
+	loadFromImage(path);
+}
 
-    kernels_[FilterType::EMBROSS] = {{-2.0f, -1.0f, 0.0f},
-                                     {-1.0f, 1.0f, 1.0f},
-                                     {0.0f, 1.0f, 2.0f}};
+void Texture::init(void)
+{
+	selectedComposition_ = CompositionType::NONE;
+	selectedFilter_ = FilterType::NONE_FILTER;
+	image_ = nullptr;
+	composition_ = nullptr;
 
-    kernels_[FilterType::SHARPEN] = {{0.0f, -1.0f, 0.0f},
-                                     {-1.0f, 5.0f, -1.0f},
-                                     {0.0f, -1.0f, 0.0f}};
+	kernels_[FilterType::BLUR] = { { 1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f },
+	{ 1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f },
+	{ 1.0f / 9.0f, 1.0f / 9.0f, 1.0f / 9.0f } };
 
-    kernels_[FilterType::EDGE_ENFORCED] = {{0.0f, 0.0f, 0.0f},
-                                           {-1.0f, 1.0f, 0.0f},
-                                           {0.0f, 0.0f, 0.0f}};
+	kernels_[FilterType::EDGE_DETECT] = { { -1.0f, -1.0f, -1.0f },
+	{ -1.0f, 8.0f, -1.0f },
+	{ -1.0f, -1.0f, -1.0f } };
 
-    kernels_[FilterType::UNSHARP_MASKING] = {{-1.0f / 256, -4.0f / 256, -6.0f / 256, -4.0f / 256, -1.0f / 256},
-                                             {-4.0f / 256, -16.0f / 256, -24.0f / 256, -16.0f / 256, -4.0f / 256},
-                                             {-6.0f / 256, -24.0f / 256, 476.0f / 256, -24.0f / 256, -6.0f / 256},
-                                             {-4.0f / 256, -16.0f / 256, -24.0f / 256, -16.0f / 256, -4.0f / 256},
-                                             {-1.0f / 256, -4.0f / 256, -6.0f / 256, -4.0f / 256, -1.0f / 256}};
+	kernels_[FilterType::EMBROSS] = { { -2.0f, -1.0f, 0.0f },
+	{ -1.0f, 1.0f, 1.0f },
+	{ 0.0f, 1.0f, 2.0f } };
 
-    labelKernel_["Flou gaussien"] = FilterType::BLUR;
+	kernels_[FilterType::SHARPEN] = { { 0.0f, -1.0f, 0.0f },
+	{ -1.0f, 5.0f, -1.0f },
+	{ 0.0f, -1.0f, 0.0f } };
+
+	kernels_[FilterType::EDGE_ENFORCED] = { { 0.0f, 0.0f, 0.0f },
+	{ -1.0f, 1.0f, 0.0f },
+	{ 0.0f, 0.0f, 0.0f } };
+
+	kernels_[FilterType::UNSHARP_MASKING] = { { -1.0f / 256, -4.0f / 256, -6.0f / 256, -4.0f / 256, -1.0f / 256 },
+	{ -4.0f / 256, -16.0f / 256, -24.0f / 256, -16.0f / 256, -4.0f / 256 },
+	{ -6.0f / 256, -24.0f / 256, 476.0f / 256, -24.0f / 256, -6.0f / 256 },
+	{ -4.0f / 256, -16.0f / 256, -24.0f / 256, -16.0f / 256, -4.0f / 256 },
+	{ -1.0f / 256, -4.0f / 256, -6.0f / 256, -4.0f / 256, -1.0f / 256 } };
+
+	labelKernel_["Flou gaussien"] = FilterType::BLUR;
 	labelKernel_["Detection de bordure"] = FilterType::EDGE_DETECT;
 	labelKernel_["Relief"] = FilterType::EMBROSS;
 	labelKernel_["Affiner"] = FilterType::SHARPEN;
@@ -44,12 +58,25 @@ Texture::Texture() {
 	labelKernel_["Masque de flou"] = FilterType::UNSHARP_MASKING;
 }
 
-void Texture::loadImage(const ofImage *image) {
+void Texture::loadImage(const ofImage *image)
+{
 	image_ = const_cast<ofImage *>(image);
 	applyModifier();
 }
 
-/* const */ ofTexture &Texture::getTexture() {
+void Texture::loadFromFbo(const ofFbo & fbo)
+{
+	texture_ = fbo.getTextureReference();
+}
+
+void Texture::loadFromImage(const std::string & path)
+{
+	ofImage img(path);
+	texture_ = img.getTextureReference();
+}
+
+ofTexture &Texture::getTexture()
+{
 	return texture_;
 }
 

@@ -113,10 +113,10 @@ void EditMenu::update(float dt)
 			const Identifiable * id = scene_.getFocusedDrawable();
 			if (id && (*id) != 0) {
 				SceneNode * node = scene_.ensureDrawableExistance(*id);
-				if (node->getDrawable()->texture() == nullptr) {
-					node->getDrawable()->setTexture(new Texture);
+				if (node->getDrawable()->getTexture(0) == nullptr) {
+					node->getDrawable()->setTexture(new Texture, 0);
 				}
-				node->getDrawable()->texture()->loadImage(TextureGenerator::perlinNoise(yoloArg_.x, yoloArg_.y, yoloArg_.z));
+				node->getDrawable()->getTexture(0)->loadImage(TextureGenerator::perlinNoise(yoloArg_.x, yoloArg_.y, yoloArg_.z));
 				for (const auto &e : primaryTextureList_) {
 					if (e->getName() == "Bruit de perlin") {
 					toggle * t = reinterpret_cast<toggle *>(e);
@@ -314,10 +314,10 @@ void EditMenu::toggleSelectedFilter(const void * sender, bool & value)
 		const Identifiable * id = scene_.getFocusedDrawable();
 		if (id && (*id) != 0) {
 			SceneNode * node = scene_.ensureDrawableExistance(*id);
-			if (node->getDrawable()->texture() == nullptr) {
-				node->getDrawable()->setTexture(new Texture);
+			if (node->getDrawable()->getTexture(0) == nullptr) {
+				node->getDrawable()->setTexture(new Texture, 0);
 			}
-			node->getDrawable()->texture()->setFilter(filterLabel_[p->getName()]);
+			node->getDrawable()->getTexture(0)->setFilter(filterLabel_[p->getName()]);
 		}
 		value = true;
 		resetting_ = false;
@@ -367,17 +367,17 @@ void EditMenu::toggleSelectedPrimary(const void * sender, bool & value)
 		const Identifiable * id = scene_.getFocusedDrawable();
 		if (id && (*id) != 0) {
 			SceneNode * node = scene_.ensureDrawableExistance(*id);
-			if (node->getDrawable()->texture() == nullptr) {
-				node->getDrawable()->setTexture(new Texture);
+			if (node->getDrawable()->getTexture(0) == nullptr) {
+				node->getDrawable()->setTexture(new Texture, 0);
 			}
 			if (p->getName() == "Aucune") {
-				delete node->getDrawable()->texture();
-				node->getDrawable()->setTexture(nullptr);
+				// delete node->getDrawable()->texture();
+				node->getDrawable()->setTexture(nullptr, 0);
 			} else {
 				if (p->getName() != "Bruit de perlin") {
-					node->getDrawable()->texture()->loadImage(&scene_.getCache().at(p->getName()));
+					node->getDrawable()->getTexture(0)->loadImage(&scene_.getCache().at(p->getName()));
 				} else {
-					node->getDrawable()->texture()->loadImage(TextureGenerator::perlinNoise(150, 150, 0.01f));
+					node->getDrawable()->getTexture(0)->loadImage(TextureGenerator::perlinNoise(150, 150, 0.01f));
 				}
 			}
 		}
@@ -402,10 +402,10 @@ void EditMenu::toggleSelectedSecondary(const void * sender, bool & value)
 		const Identifiable * id = scene_.getFocusedDrawable();
 		if (id && (*id) != 0) {
 			SceneNode * node = scene_.ensureDrawableExistance(*id);
-			if (node->getDrawable()->texture() == nullptr) {
-				node->getDrawable()->setTexture(new Texture);
+			if (node->getDrawable()->getTexture(0) == nullptr) {
+				node->getDrawable()->setTexture(new Texture, 0);
 			}
-			node->getDrawable()->texture()->addComposition(&scene_.getCache().at(p->getName()), compositionMode_);
+			node->getDrawable()->getTexture(0)->addComposition(&scene_.getCache().at(p->getName()), compositionMode_);
 		}
 
 		resetting_ = false;

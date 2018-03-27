@@ -21,8 +21,7 @@ public:
 		SPHERE,
 		PLANE,
 		CUBE,
-		CONE,
-		CAMERA
+		CONE
 	};
 
 public:
@@ -61,6 +60,5 @@ private:
 	ofMesh * mesh_;
 
 protected:
-	ofShader			shader_;
 	InstantiableMesh	meshType_;
 };

@@ -2,6 +2,8 @@
 
 CameraController::CameraController(void)
 {
+	p1_.setID(-1);
+	p2_.setID(-1);
 	addCamera();
 }
 
@@ -78,6 +80,9 @@ void CameraController::render(ARenderer & renderer, SceneGraph & scene)
 {
 	unsigned int i = 0;
 
+	/* Render portail ici ? */
+	refreshPortail(renderer, scene);
+
 	ofClear(255, 255, 255, 255);
 	for (const auto & it : cams_) {
 		it.first.begin();
@@ -145,6 +150,12 @@ void CameraController::swapPerspectiveOrtho(bool value)
 	}
 }
 
+void CameraController::createPortail(const Identifiable & p1, const Identifiable & p2)
+{
+	p1_ = p1;
+	p2_ = p2;
+}
+
 void CameraController::updateCamerasLayout(void)
 {
 	unsigned int i = 0;
@@ -159,7 +170,40 @@ void CameraController::updateCamerasLayout(void)
 		};
 		if (!(cams_.size() == 3 && i == 2) && cams_.size() != 3)
 			dim.y -= 1;
-		it.first.allocate(dim.x, dim.y);
+		it.first.allocate(dim.x, dim.y, GL_RGBA);
 		++i;
+	}
+}
+
+void CameraController::refreshPortail(ARenderer & renderer, SceneGraph & scene)
+{
+	SceneNode *p1Node = scene.findNode(p1_);
+	SceneNode *p2Node = scene.findNode(p2_);
+
+	if (p1Node && p2Node) {
+		if (fbo1_.isAllocated()) fbo1_.clear();
+		if (fbo2_.isAllocated()) fbo2_.clear();
+
+		pcam1_.setPosition(p1Node->getDrawable()->getPosition());
+		pcam2_.setPosition(p2Node->getDrawable()->getPosition());
+
+		fbo1_.allocate(512, 512, GL_RGBA);
+		fbo1_.begin();
+			ofClear(0, 0, 0, 0);
+			pcam2_.begin();
+				scene.render(renderer);
+			pcam2_.end();
+		fbo1_.end();
+
+		fbo2_.allocate(512, 512, GL_RGBA);
+		fbo2_.begin();
+			ofClear(0, 0, 0, 0);
+			pcam1_.begin();
+				scene.render(renderer);
+			pcam1_.end();
+		fbo2_.end();
+
+		p1Node->getDrawable()->setTexture(new Texture(fbo1_), 2);
+		p2Node->getDrawable()->setTexture(new Texture(fbo2_), 2);
 	}
 }

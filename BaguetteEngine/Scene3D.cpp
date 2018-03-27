@@ -16,11 +16,6 @@ void Scene3D::update(float dt)
 
 void Scene3D::render(ARenderer & renderer)
 {
-	/* cc_.begin();
-	ofDrawGrid(1, 8U, false, false, true, false);
-	// ofDrawAxis(2); // x = red ; y = green ; z = blue.
-	AScene::render(renderer);
-	cc_.end(); */
 	cc_.render(renderer, graph_);
 }
 
@@ -39,23 +34,25 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 	ensureDrawableExistance(parent);
 	SceneNode::Ptr node = nullptr;
 
-	if (type == "sphere" || type == "portails")
+	if (type == "sphere")
 		node = SceneGraph::CreateSceneNodeFromGenerator<SphereGenerator>();
-	//else if (type == "portails") {
-	//	std::cout << "lol" << std::endl;
-	//	node = SceneGraph::CreateSceneNode<PortailSrcMesh>(graph_);
-	//	SceneNode::Ptr nodeDst = SceneGraph::CreateSceneNode<PortailDstMesh>();
+	else if (type == "portails") {
+		node = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();
+		SceneNode::Ptr nodeDst = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();
 
-	//	PortailSrcMesh *src = dynamic_cast<PortailSrcMesh *>(node->getDrawable());
-	//	PortailDstMesh *dst = dynamic_cast<PortailDstMesh *>(nodeDst->getDrawable());
+		node->getDrawable()->setShader("shaders/portal.vert", "shaders/portal_orange.frag");
+		nodeDst->getDrawable()->setShader("shaders/portal.vert", "shaders/portal_blue.frag");
+		node->getDrawable()->setTexture(new Texture("portal.png"), 0);
+		nodeDst->getDrawable()->setTexture(new Texture("portal.png"), 0);
+		node->getDrawable()->setTexture(new Texture("mur.jpg"), 1);
+		nodeDst->getDrawable()->setTexture(new Texture("mur.jpg"), 1);
 
-	//	src->setDest(dst);
-	//	dst->setSource(src);
+		const Identifiable & srcId = graph_.attachTo(std::move(node), parent);
+		const Identifiable & dstId = graph_.attachTo(std::move(nodeDst), parent);
 
-	//	const Identifiable & id = graph_.attachTo(std::move(node), parent);
-	//	graph_.attachTo(std::move(nodeDst), parent);
-	//	return id;
-	//}
+		cc_.createPortail(srcId, dstId);
+		return srcId;
+	}
 	else if (type == "plane")
 		node = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();
 	else if (type == "cube")

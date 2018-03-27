@@ -7,11 +7,9 @@
 #include <iostream>
 #include "ofMain.h"
 
-class Texture {
+class Texture
+{
 public:
-
-    Texture();
-
     enum CompositionType {
         NONE, 
         ADD,
@@ -33,10 +31,19 @@ public:
         UNSHARP_MASKING,
     };
 
+public:
+	Texture();
+	Texture(const ofFbo & fbo);
+	Texture(const std::string & path);
+
+	void init(void);
+
     void            loadImage(const ofImage *image);
+	void			loadFromImage(const std::string & path);
+	void			loadFromFbo(const ofFbo & fbo);
     void            addComposition(const ofImage *image, CompositionType mode);
     void            setFilter(FilterType filter);
-    /* const */           ofTexture &getTexture();
+    ofTexture		&getTexture();
     void            compose();
     void            filter();
     void            applyModifier();

@@ -32,8 +32,10 @@ public:
 	virtual void onOrientationChanged(void) override;
 	virtual void onScaleChanged(void) override;
 
-	void setTexture(Texture * texture);
-	Texture * texture(void);
+	void setTexture(Texture * texture, int i);
+	Texture *getTexture(int i);
+
+	void setShader(const std::string & v, const std::string & f);
 
 	void setRotation(float degrees);
 	float getRotation(void) const;
@@ -41,7 +43,8 @@ public:
 	bool isFocused(void) const;
 
 protected:
-	Texture * texture_;
+	std::vector<Texture *> textures_;
+	ofShader shader_;
 
 private:
 	float rotation_;

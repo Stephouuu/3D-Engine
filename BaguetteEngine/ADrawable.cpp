@@ -1,7 +1,7 @@
 #include "ADrawable.hpp"
 
 ADrawable::ADrawable(void)
-	: rotation_(0), focused_(false), texture_(nullptr)
+	: rotation_(0), focused_(false)
 {
 }
 
@@ -9,14 +9,30 @@ ADrawable::~ADrawable(void)
 {
 }
 
-void ADrawable::setTexture(Texture * texture)
+void ADrawable::setTexture(Texture * texture, int i)
 {
-	texture_ = texture;
+	if (i >= textures_.size()) textures_.push_back(texture);
+	else {
+		delete textures_[i];
+		if (!texture) {
+			textures_.erase(std::cbegin(textures_) + i);
+		}
+		else {
+			textures_[i] = texture;
+		}
+	}
 }
 
-Texture * ADrawable::texture(void)
+Texture *ADrawable::getTexture(int i)
 {
-	return texture_;
+	if (i >= textures_.size())
+		return nullptr;
+	return textures_[i];
+}
+
+void ADrawable::setShader(const std::string & v, const std::string & f)
+{
+	shader_.load(v, f);
 }
 
 void ADrawable::setRotation(float degrees)

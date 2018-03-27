@@ -11,30 +11,29 @@ AMesh::AMesh(void)
 
 AMesh::~AMesh(void)
 {
-	std::cout << "destroy AMesh" << std::endl;
 }
 
 void AMesh::draw(ARenderer & renderer)
 {
-	bool texturePresent = texture() != nullptr;
+	bool texturePresent = !textures_.empty();
 
 	ofPushMatrix();
 		ofTranslate(getGlobalPosition().x, getGlobalPosition().y, getGlobalPosition().z);
 		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
 	ofPopMatrix();
 
-	if (texturePresent) texture()->getTexture().bind();
 	shader_.begin();
 		shader_.setUniform1i("texturePresent", texturePresent);
 		shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
-			draw_();
+		for (int i = 0; i < textures_.size(); ++i)
+			shader_.setUniformTexture("tex" + std::to_string(i), textures_[i]->getTexture(), i);
+		draw_();
 	shader_.end();
-	if (texturePresent) texture()->getTexture().unbind();
 }
 
 void AMesh::init(void)
 {
-	shader_.load("./shaders/vertex_shader.vert", "./shaders/fragment_shader.frag");
+	setShader("./shaders/vertex_shader.vert", "./shaders/fragment_shader.frag");
 }
 
 void AMesh::setVertex(ofIndexType index, const ofVec3f & v)
