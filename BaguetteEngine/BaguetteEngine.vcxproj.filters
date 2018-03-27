@@ -244,12 +244,6 @@
     <ClCompile Include="toggle.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
-    <ClCompile Include="PortailSrcMesh.cpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="PortailDstMesh.cpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="TextureRenderer.cpp">
       <Filter>src\Renderer</Filter>
     </ClCompile>
@@ -1289,12 +1283,6 @@
     </ClInclude>
     <ClInclude Include="toggle.hpp">
       <Filter>src\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PortailSrcMesh.hpp">
-      <Filter>src\Graphics\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="PortailDstMesh.hpp">
-      <Filter>src\Graphics\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="ADrawable.hpp">
       <Filter>src\Graphics</Filter>
