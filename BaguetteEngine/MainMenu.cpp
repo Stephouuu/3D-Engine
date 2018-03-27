@@ -31,8 +31,6 @@ void MainMenu::setup()
 	cropWH_.setup("Width/Height", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f((int)ofGetWidth(), (int)ofGetHeight()));
 
 	camera_.setup();
-
-	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
 	
 	cropImage_.add(&fromXY_);
 	cropImage_.add(&cropWH_);
@@ -40,7 +38,6 @@ void MainMenu::setup()
 	fileGroup_.add(&cropImage_);
 	fromXY_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::vec2SliderFromXYChange);
 	cropWH_.getParameter().cast<ofVec2f>().addListener(this, &MainMenu::vec2SliderFromWHChange);
-
 
 	exportScene_.addListener(this, &MainMenu::buttonPressedFile);
 	importImage_.addListener(this, &MainMenu::buttonPressedFile);
@@ -58,9 +55,6 @@ void MainMenu::setup()
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&model3DGroup_);
 	insertGroup_.add(&primitiveGroup_);
-	insertGroup_.add(portails_.setup("Ajouter portails"));
-
-	portails_.addListener(this, &MainMenu::addPortails);
 
 	gui_.setup();
 	gui_.setPosition(0, 10);
@@ -118,6 +112,7 @@ void MainMenu::refresh2D(void)
 	vectorShapeGroup_.setName("Formes Vectorielles");
 
 	addCamera_.removeListener(this, &MainMenu::addCamera);
+	portails_.removeListener(this, &MainMenu::addPortails);
 	removeCamera_.removeListener(this, &MainMenu::removeCamera);
 	swapCameraMode_.removeListener(this, &MainMenu::toggleSwapMode);
 	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
@@ -174,8 +169,9 @@ void MainMenu::refresh3D(void)
 
 	addCamera_.removeListener(this, &MainMenu::addCamera);
 	removeCamera_.removeListener(this, &MainMenu::removeCamera);
+	portails_.removeListener(this, &MainMenu::addPortails);
 	swapMode_.removeListener(this, &MainMenu::buttonPressedMode);
-	swapCameraMode_.removeListener(this, &MainMenu::toggleSwapMode);//Ne pas oublier de suppr le listener
+	swapCameraMode_.removeListener(this, &MainMenu::toggleSwapMode);
 	insertSphere_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
@@ -188,6 +184,7 @@ void MainMenu::refresh3D(void)
 	camera_.add(swapCameraMode_.setup("Mode Ortho/Perspec", false, 20, 20));
 	camera_.add(addCamera_.setup("Ajouter camera"));
 	camera_.add(removeCamera_.setup("Supprimer camera"));
+	camera_.add(portails_.setup("Ajouter portails"));
 
 	swapMode_.addListener(this, &MainMenu::buttonPressedMode);
 	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
@@ -197,6 +194,7 @@ void MainMenu::refresh3D(void)
 	model3DGroup_.add(model3DBoxSlider_.setup("Boite de delimitation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30)));
 	model3DGroup_.add(insert3DModel_.setup("Ajouter un modele 3D"));
 
+	portails_.addListener(this, &MainMenu::addPortails);
 	addCamera_.addListener(this, &MainMenu::addCamera);
 	removeCamera_.addListener(this, &MainMenu::removeCamera);
 	swapCameraMode_.addListener(this, &MainMenu::toggleSwapMode);
@@ -210,7 +208,6 @@ void MainMenu::refresh3D(void)
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&model3DGroup_);
 	insertGroup_.add(&primitiveGroup_);
-	insertGroup_.add(&portails_);
 
 	insertGroup_.minimizeAll();
 	fileGroup_.minimizeAll();

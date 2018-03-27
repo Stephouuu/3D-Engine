@@ -16,7 +16,7 @@ public:
 
 	void refresh(ARenderer & renderer, SceneGraph & scene);
 
-	void addPortail(const Identifiable & p1, const Identifiable & p2);
+	void addPortail(const SceneNode::Ptr & n1, const SceneNode::Ptr & n2);
 
 private:
 	std::vector<Portail *> portails_;

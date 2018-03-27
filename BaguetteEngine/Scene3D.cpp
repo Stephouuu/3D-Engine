@@ -39,19 +39,8 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 	else if (type == "portails") {
 		node = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();
 		SceneNode::Ptr nodeDst = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();
-
-		node->getDrawable()->setShader("shaders/portal.vert", "shaders/portal_orange.frag");
-		nodeDst->getDrawable()->setShader("shaders/portal.vert", "shaders/portal_blue.frag");
-		node->getDrawable()->setTexture(new Texture("portal.png"), 0);
-		nodeDst->getDrawable()->setTexture(new Texture("portal.png"), 0);
-		node->getDrawable()->setTexture(new Texture("mur.jpg"), 1);
-		nodeDst->getDrawable()->setTexture(new Texture("mur.jpg"), 1);
-
-		const Identifiable & srcId = graph_.attachTo(std::move(node), parent);
-		const Identifiable & dstId = graph_.attachTo(std::move(nodeDst), parent);
-
-		cc_.createPortail(srcId, dstId);
-		return srcId;
+		cc_.createPortail(node, nodeDst);
+		graph_.attachTo(std::move(nodeDst), parent);
 	}
 	else if (type == "plane")
 		node = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();

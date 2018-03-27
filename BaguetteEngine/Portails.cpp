@@ -26,7 +26,15 @@ void Portails::refresh(ARenderer & renderer, SceneGraph & scene)
 	}
 }
 
-void Portails::addPortail(const Identifiable & p1, const Identifiable & p2)
+void Portails::addPortail(const SceneNode::Ptr & n1, const SceneNode::Ptr & n2)
 {
-	portails_.push_back(new Portail(p1, p2));
+	n1->getDrawable()->setShader("shaders/portal.vert", "shaders/portal_orange.frag");
+	n1->getDrawable()->setTexture(new Texture("portal.png"), 0);
+	n1->getDrawable()->setTexture(new Texture("mur.jpg"), 1);
+
+	n2->getDrawable()->setShader("shaders/portal.vert", "shaders/portal_blue.frag");
+	n2->getDrawable()->setTexture(new Texture("portal.png"), 0);
+	n2->getDrawable()->setTexture(new Texture("mur.jpg"), 1);
+
+	portails_.push_back(new Portail(*n1, *n2));
 }

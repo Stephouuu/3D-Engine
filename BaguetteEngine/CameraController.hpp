@@ -35,7 +35,7 @@ public:
 
 	void swapPerspectiveOrtho(bool value);
 
-	void createPortail(const Identifiable & p1, const Identifiable & p2);
+	void createPortail(const SceneNode::Ptr & n1, const SceneNode::Ptr & n2);
 
 private:
 	void updateCamerasLayout(void);

@@ -19,29 +19,36 @@ bool Portail::refresh(ARenderer & renderer, SceneGraph & scene)
 	SceneNode *p1Node = scene.findNode(p1_);
 	SceneNode *p2Node = scene.findNode(p2_);
 
-	if (p1Node && p2Node) {
-		pcam1_.setPosition(p1Node->getDrawable()->getPosition());
-		pcam1_.setOrientation(p1Node->getDrawable()->getOrientationQuat());
-		pcam2_.setPosition(p2Node->getDrawable()->getPosition());
-		pcam2_.setOrientation(p2Node->getDrawable()->getOrientationQuat());
+	if (!p1Node || !p2Node)
+		return false;
+	updateCamerasTransformation(p1Node, p2Node);
+	fbo1_.begin();
+		ofClear(ofGetBackgroundColor());
+		pcam2_.begin();
+			scene.render(renderer);
+		pcam2_.end();
+	fbo1_.end();
+	fbo2_.begin();
+		ofClear(ofGetBackgroundColor());
+		pcam1_.begin();
+			scene.render(renderer);
+		pcam1_.end();
+	fbo2_.end();
+	updatePortalTextures(p1Node, p2Node);
+	return true;
+}
 
-		fbo1_.begin();
-			ofClear(ofGetBackgroundColor());
-			pcam2_.begin();
-				scene.render(renderer);
-			pcam2_.end();
-		fbo1_.end();
+void Portail::updateCamerasTransformation(SceneNode *n1, SceneNode *n2)
+{
+	pcam1_.setPosition(n1->getDrawable()->getPosition());
+	pcam1_.setOrientation(n1->getDrawable()->getOrientationQuat());
 
-		fbo2_.begin();
-			ofClear(ofGetBackgroundColor());
-			pcam1_.begin();
-				scene.render(renderer);
-			pcam1_.end();
-		fbo2_.end();
+	pcam2_.setPosition(n2->getDrawable()->getPosition());
+	pcam2_.setOrientation(n2->getDrawable()->getOrientationQuat());
+}
 
-		p1Node->getDrawable()->setTexture(new Texture(fbo1_), 2);
-		p2Node->getDrawable()->setTexture(new Texture(fbo2_), 2);
-		return true;
-	}
-	return false;
+void Portail::updatePortalTextures(SceneNode *n1, SceneNode *n2)
+{
+	n1->getDrawable()->setTexture(new Texture(fbo1_), 2);
+	n2->getDrawable()->setTexture(new Texture(fbo2_), 2);
 }

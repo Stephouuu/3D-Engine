@@ -151,9 +151,9 @@ void CameraController::swapPerspectiveOrtho(bool value)
 	}
 }
 
-void CameraController::createPortail(const Identifiable & p1, const Identifiable & p2)
+void CameraController::createPortail(const SceneNode::Ptr & n1, const SceneNode::Ptr & n2)
 {
-	portails_.addPortail(p1, p2);
+	portails_.addPortail(n1, n2);
 }
 
 void CameraController::updateCamerasLayout(void)

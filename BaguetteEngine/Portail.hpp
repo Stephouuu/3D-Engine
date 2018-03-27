@@ -15,6 +15,10 @@ public:
 	bool refresh(ARenderer & renderer, SceneGraph & scene);
 
 private:
+	void updateCamerasTransformation(SceneNode *n1, SceneNode *n2);
+	void updatePortalTextures(SceneNode *n1, SceneNode *n2);
+
+private:
 	Identifiable p1_;
 	Identifiable p2_;
 	EasyCamera pcam1_;
