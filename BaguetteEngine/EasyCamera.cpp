@@ -17,6 +17,7 @@ void EasyCamera::reset(void)
 	rotate(0, 0, 0, 0);
 	setPosition(BasePosition);
 
+	/* Par défault, la caméra regarde devant elle */
 	lookAt({ BasePosition.x, BasePosition.y, BasePosition.z - 1});
 
 	targetTransitionDt_ = 0;

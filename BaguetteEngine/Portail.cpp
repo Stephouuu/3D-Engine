@@ -17,18 +17,19 @@ bool Portail::refresh(ARenderer & renderer, SceneGraph & scene)
 {
 	SceneNode *p1Node = scene.findNode(p1_);
 	SceneNode *p2Node = scene.findNode(p2_);
+	ofColor c = ofGetBackgroundColor();
 
 	if (!p1Node || !p2Node)
 		return false;
 	updateCamerasTransformation(p1Node, p2Node);
 	fbo1_.begin();
-		ofClear(ofGetBackgroundColor());
+		ofClear({ (float)c.r, (float)c.g, (float)c.b, 255 });
 		pcam2_.begin();
 			scene.render(renderer, pcam2_);
 		pcam2_.end();
 	fbo1_.end();
 	fbo2_.begin();
-		ofClear(ofGetBackgroundColor());
+		ofClear({ (float)c.r, (float)c.g, (float)c.b, 0 });
 		pcam1_.begin();
 			scene.render(renderer, pcam1_);
 		pcam1_.end();
@@ -48,6 +49,6 @@ void Portail::updateCamerasTransformation(SceneNode *n1, SceneNode *n2)
 
 void Portail::updatePortalTextures(SceneNode *n1, SceneNode *n2)
 {
-	n1->getDrawable()->setTexture(new Texture(fbo1_), 2);
-	n2->getDrawable()->setTexture(new Texture(fbo2_), 2);
+	n1->getDrawable()->setTexture(new Texture(fbo1_), 1);
+	n2->getDrawable()->setTexture(new Texture(fbo2_), 1);
 }

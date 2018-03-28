@@ -3,10 +3,10 @@
 
 SceneController::SceneController(void)
 {
-	scenes_.emplace_back(new Scene3D);
 	scenes_.emplace_back(new Scene2D);
-	currentScene_ = std::begin(scenes_);
-	ofSetWindowTitle((*currentScene_)->getName());
+	scenes_.emplace_back(new Scene3D);
+	scenes_.emplace_back(new SceneRaytracer);
+	setSceneType(SceneType::Scene3D);
 }
 
 SceneController::~SceneController(void)
@@ -25,13 +25,24 @@ void SceneController::onClick(const ofPoint & position)
 	if (cc) cc->onClick(position);
 }
 
-void SceneController::swapMode(void)
+void SceneController::setSceneType(SceneType type)
 {
-	currentScene_++;
-	if (currentScene_ == std::end(scenes_)) currentScene_ = std::begin(scenes_);
+	switch (type)
+	{
+	case SceneType::Scene2D:
+		currentScene_ = std::begin(scenes_);
+		break;
+	case SceneType::Scene3D:
+		currentScene_ = std::begin(scenes_) + 1;
+		break;
+	case SceneType::SceneRaytracer:
+		currentScene_ = std::begin(scenes_) + 2;
+		break;
+	default:
+		break;
+	}
 	if (onSceneChanged_) onSceneChanged_((*currentScene_)->getNbDimensions());
 	if (onGraphSceneChanged_) onGraphSceneChanged_();
-
 	ofSetWindowTitle((*currentScene_)->getName());
 }
 

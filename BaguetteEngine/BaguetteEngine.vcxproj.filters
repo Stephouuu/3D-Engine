@@ -253,6 +253,9 @@
     <ClCompile Include="Portail.cpp">
       <Filter>src\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="SceneRaytracer.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1301,6 +1304,9 @@
     </ClInclude>
     <ClInclude Include="Portail.hpp">
       <Filter>src\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneRaytracer.hpp">
+      <Filter>src\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

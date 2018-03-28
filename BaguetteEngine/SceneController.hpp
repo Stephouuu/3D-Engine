@@ -14,15 +14,17 @@
 #include "AScene.hpp"
 #include "Scene2D.hpp"
 #include "Scene3D.hpp"
+#include "SceneRaytracer.hpp"
 
 class ARenderer;
 
 class SceneController
 {
 public:
-	enum class Mode : int {
-		Mode3D = 0,
-		Mode2D = 1
+	enum class SceneType : int {
+		Scene3D = 0,
+		Scene2D = 1,
+		SceneRaytracer = 2
 	};
 
 public:
@@ -32,7 +34,7 @@ public:
 	void windowsResized(const ofPoint & newDimension);
 	void onClick(const ofPoint & position);
 
-	void swapMode(void);
+	void setSceneType(SceneType type);
 	void setOnSceneChanged(std::function<void(int)> callback);
 	void setOnGraphSceneChanged(std::function<void(void)> callback);
 	void setOnFocusChanged(std::function<void(const Identifiable &)> callback);

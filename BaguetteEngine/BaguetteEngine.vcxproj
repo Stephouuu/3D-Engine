@@ -209,6 +209,7 @@
     <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SceneNode.cpp" />
+    <ClCompile Include="SceneRaytracer.cpp" />
     <ClCompile Include="SceneViewer.cpp" />
     <ClCompile Include="SmileVectorShape.cpp" />
     <ClCompile Include="SphereGenerator.cpp" />
@@ -298,6 +299,7 @@
     <ClInclude Include="SceneController.hpp" />
     <ClInclude Include="SceneGraph.hpp" />
     <ClInclude Include="SceneNode.hpp" />
+    <ClInclude Include="SceneRaytracer.hpp" />
     <ClInclude Include="SceneViewer.hpp" />
     <ClInclude Include="SmileVectorShape.hpp" />
     <ClInclude Include="SphereGenerator.hpp" />

@@ -31,6 +31,7 @@ public:
 private:
 	void refresh2D(void);
 	void refresh3D(void);
+	void refreshRaytracer(void);
 
 	void buttonPressedFile(const void * sender);
 	void buttonPressedMode(const void * sender);
@@ -43,6 +44,8 @@ private:
 	void addPortails(const void * sender);
 	void addCamera(const void * sender);
 	void removeCamera(const void * sender);
+
+	void setup_(void);
 
 private:
 	ofxPanel			gui_;
@@ -69,7 +72,11 @@ private:
 	ofxButton			insertDialogVector_;
 	ofxButton			insertSmileVector_;
 
-	ofxButton			swapMode_;
+	ofxGuiGroup			modeGroup_;
+	ofxButton			scene2D_;
+	ofxButton			scene3D_;
+	ofxButton			sceneRaytracer_;
+
 	ofxButton			portails_;
 
 	ofxButton			addCamera_;
