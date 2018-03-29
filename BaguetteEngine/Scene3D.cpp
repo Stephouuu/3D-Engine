@@ -42,6 +42,8 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 		cc_.createPortail(node, nodeDst);
 		graph_.attachTo(std::move(nodeDst), parent);
 	}
+	else if (type == "light")
+		node = SceneGraph::CreateSceneNode<Light>();
 	else if (type == "plane")
 		node = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();
 	else if (type == "cube")

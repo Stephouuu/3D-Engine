@@ -7,8 +7,8 @@ class LightGenerator
 public:
 	LightGenerator();
 	~LightGenerator();
-	//AMesh * operator()(void) const;
-	void * generate() const; //Need to change that
+	//ADrawable * operator()(void) const;
+	//virtual ADrawable * generate() const;
 	void setPosition(const ofVec3f pos);
 	void setLightModel(Light::LightModel model);
 

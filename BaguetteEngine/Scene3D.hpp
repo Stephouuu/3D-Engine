@@ -10,6 +10,7 @@
 #include "CubeGenerator.hpp"
 #include "ConeGenerator.hpp"
 #include "Model3DGenerator.hpp"
+#include "LightGenerator.hh"
 
 class Scene3D : public AScene
 {
