@@ -51,6 +51,8 @@ void MainMenu::setup_(void)
 	model3DGroup_.setup();
 	vectorShapeGroup_.setup();
 
+	lightGroup_.setup();
+
 	modeGroup_.setup();
 	modeGroup_.setName("Mode");
 
@@ -136,6 +138,10 @@ void MainMenu::refresh2D(void)
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 	insertDialogVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
+	insertAmbiantLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertPonctualLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertDirectionalLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertSpotLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	insertSmileVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
 
 	primitiveGroup_.setName("Primitives Vectorielles");
@@ -194,6 +200,10 @@ void MainMenu::refresh3D(void)
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.removeListener(this, &MainMenu::buttonPressed3D);
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertAmbiantLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertPonctualLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertDirectionalLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertSpotLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 
 	modeGroup_.setName("Mode");
@@ -208,6 +218,7 @@ void MainMenu::refresh3D(void)
 
 	primitiveGroup_.setName("Primitives Geometriques");
 	model3DGroup_.setName("Modele 3D");
+	lightGroup_.setName("Lumieres");
 
 	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
 	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
@@ -215,10 +226,15 @@ void MainMenu::refresh3D(void)
 	primitiveGroup_.add(insertCone_.setup("Ajouter un cone"));
 	model3DGroup_.add(model3DBoxSlider_.setup("Boite de delimitation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30)));
 	model3DGroup_.add(insert3DModel_.setup("Ajouter un modele 3D"));
+	lightGroup_.add(insertAmbiantLight_.setup("Lumiere ambiante"));
+	lightGroup_.add(insertDirectionalLight_.setup("Lumiere directionelle"));
+	lightGroup_.add(insertSpotLight_.setup("Lumiere projecteur"));
+	lightGroup_.add(insertPonctualLight_.setup("Lumiere ponctuelle"));
 
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&model3DGroup_);
 	insertGroup_.add(&primitiveGroup_);
+	insertGroup_.add(&lightGroup_);
 
 	gui_.add(&fileGroup_);
 	gui_.add(&modeGroup_);
@@ -245,6 +261,10 @@ void MainMenu::refresh3D(void)
 	insertBox_.addListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.addListener(this, &MainMenu::buttonPressed3D);
 	insert3DModel_.addListener(this, &MainMenu::buttonPressed3DModel);
+	insertAmbiantLight_.addListener(this, &MainMenu::buttonPressed3D);
+	insertPonctualLight_.addListener(this, &MainMenu::buttonPressed3D);
+	insertDirectionalLight_.addListener(this, &MainMenu::buttonPressed3D);
+	insertSpotLight_.addListener(this, &MainMenu::buttonPressed3D);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().addListener(this, &MainMenu::vecSliderModel3DBoxChange);
 }
 
@@ -262,6 +282,10 @@ void MainMenu::refreshRaytracer(void)
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.removeListener(this, &MainMenu::buttonPressed3D);
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertAmbiantLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertPonctualLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertDirectionalLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	insertSpotLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 
 	modeGroup_.setName("Mode");
@@ -338,6 +362,14 @@ void MainMenu::buttonPressed3D(const void * sender)
 		scene_.instanciateDrawable("cube");
 	else if (button->getName() == "Ajouter un cone")
 		scene_.instanciateDrawable("cone");
+	else if (button->getName() == "Lumiere ambiante")
+		scene_.instanciateDrawable("light");
+	else if (button->getName() == "Lumiere directionelle")
+		scene_.instanciateDrawable("light");
+	else if (button->getName() == "Lumiere projecteur")
+		scene_.instanciateDrawable("light");
+	else if (button->getName() == "Lumiere ponctuelle")
+		scene_.instanciateDrawable("light");
 }
 
 void MainMenu::buttonPressed3DModel(const void * sender)

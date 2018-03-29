@@ -11,11 +11,15 @@ LightGenerator::~LightGenerator()
 {
 }
 
-void * LightGenerator::generate() const
-{
-
-	return nullptr;
-}
+//ADrawable * LightGenerator::operator()(void) const
+//{
+//	return generate();
+//}
+//
+//ADrawable * LightGenerator::generate() const
+//{
+//	return light_;
+//}
 
 void LightGenerator::setPosition(const ofVec3f pos)
 {
@@ -36,9 +40,6 @@ void LightGenerator::setLightModel(Light::LightModel model)
 	shaderName = "shaders/";
 	switch (model)
 	{	
-	case Light::LightModel::color_fill:
-		shaderName += "color_fill";
-		break;
 	case Light::LightModel::lambert:
 		shaderName += "lambert";
 		break;
@@ -53,5 +54,5 @@ void LightGenerator::setLightModel(Light::LightModel model)
 		break;
 	}
 	shader.load(shaderName + "_" + shaderVersion + "_vs.glsl", shaderName + "_" + shaderVersion + "_fs.glsl");
-	light_.setLightShader(shader);
+//	light_.setLightShader(shader);
 }
