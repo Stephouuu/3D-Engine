@@ -17,7 +17,11 @@ public:
 	virtual CameraController & getCameraController(void);
 
 private:
+	void init(void);
+
+private:
 	CameraController cc_;
-	ofFbo fbo_;
+	bool init_;
+	ofImage img_;
 };
 

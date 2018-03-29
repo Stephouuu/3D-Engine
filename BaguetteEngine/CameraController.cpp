@@ -87,11 +87,11 @@ void CameraController::render(ARenderer & renderer, SceneGraph & scene)
 	ofClear(255, 255, 255, 255);
 	for (auto & it : cams_) {
 		it.first.begin();
-		ofClear(ofGetBackgroundColor());
-		it.second->begin();
-		ofDrawGrid(1, 8U, false, false, true, false);
-		scene.render(renderer, *it.second);
-		it.second->end();
+			ofClear(ofGetBackgroundColor());
+			it.second->begin();
+				ofDrawGrid(1, 8U, false, false, true, false);
+				scene.render(renderer, *it.second);
+			it.second->end();
 		it.first.end();
 		it.first.draw(
 			(i % 2)*(ofGetWidth() / 2) + (!(i % 2) ? 0 : (cams_.size() == 3 && i == 2) ? 0 : std::min<int>(i, 1)),

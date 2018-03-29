@@ -29,7 +29,7 @@ bool Portail::refresh(ARenderer & renderer, SceneGraph & scene)
 		pcam2_.end();
 	fbo1_.end();
 	fbo2_.begin();
-		ofClear({ (float)c.r, (float)c.g, (float)c.b, 0 });
+		ofClear({ (float)c.r, (float)c.g, (float)c.b, 255 });
 		pcam1_.begin();
 			scene.render(renderer, pcam1_);
 		pcam1_.end();

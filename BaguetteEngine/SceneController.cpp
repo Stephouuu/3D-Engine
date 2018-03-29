@@ -197,7 +197,6 @@ void SceneController::addImage(const Image & img)
 	catch (const std::invalid_argument& ia)
 	{
 		std::cerr << "Invalid argument: " << ia.what() << std::endl;
-		//throw std::invalid_argument("Cant insert an empty image.");
 	}
 }
 
