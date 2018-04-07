@@ -1,9 +1,13 @@
 #pragma once
 
-class HermiteCubicVector
+#include "ACubicCurveVector.hpp"
+
+class HermiteCubicVector : public ACubicCurveVector
 {
 public:
 	HermiteCubicVector(void);
-	~HermiteCubicVector(void);
+	virtual ~HermiteCubicVector(void);
+
+	virtual void setParam(const std::vector<ofVec2f> & v);
 };
 

@@ -1,22 +1,13 @@
 #pragma once
 
-#include <vector>
+#include "ACubicCurveVector.hpp"
 
-#include "AVectorPrimitive.hpp"
-
-// todo: superclass CubicCurves
-class BezierCubicVector : public AVectorPrimitive
+class BezierCubicVector : public ACubicCurveVector
 {
 public:
 	BezierCubicVector(void);
 	virtual ~BezierCubicVector(void);
 
-	virtual void invalidate(void);
-
-	void setParam(const std::vector<ofVec2f> & v);
-
-private:
-	ofPolyline line_;
-	float resolution_;
+	virtual void setParam(const std::vector<ofVec2f> & v);
 };
 

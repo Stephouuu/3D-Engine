@@ -265,6 +265,9 @@
     <ClCompile Include="Vec4Slider.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="ACubicCurveVector.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1334,6 +1337,9 @@
     </ClInclude>
     <ClInclude Include="Vec4Slider.hpp">
       <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ACubicCurveVector.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

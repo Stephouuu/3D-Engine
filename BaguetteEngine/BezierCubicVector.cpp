@@ -1,11 +1,7 @@
 #include "BezierCubicVector.hpp"
 
 BezierCubicVector::BezierCubicVector(void)
-	: resolution_(40)
 {
-	for (int i = 0; i <= resolution_; ++i)
-		line_.addVertex(ofPoint());
-
 	int framebuffer_width = ofGetWidth();
 	int framebuffer_height = ofGetHeight();
 
@@ -24,18 +20,6 @@ BezierCubicVector::BezierCubicVector(void)
 
 BezierCubicVector::~BezierCubicVector(void)
 {
-}
-
-void BezierCubicVector::invalidate(void)
-{
-	reallocate(ofGetWidth(), ofGetHeight());
-
-	setOrigin(line_[resolution_ / 2]);
-
-	drawFboBegin();
-		ofSetColor(getFillColor());
-		line_.draw();
-	drawFboEnd();
 }
 
 void BezierCubicVector::setParam(const std::vector<ofVec2f> & v)

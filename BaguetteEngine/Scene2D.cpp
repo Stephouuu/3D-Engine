@@ -30,6 +30,8 @@ const Identifiable & Scene2D::instanciateDrawable(const std::string & type, cons
 		node = SceneGraph::CreateSceneNode<SmileVectorShape>();
 	else if (type == "bezier")
 		node = SceneGraph::CreateSceneNode<BezierCubicVector>();
+	else if (type == "hermite")
+		node = SceneGraph::CreateSceneNode<HermiteCubicVector>();
 	else
 		std::cerr << type << " not found !" << std::endl;
 	try {

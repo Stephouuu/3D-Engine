@@ -1,5 +1,5 @@
 #include "EditMenu.hpp"
-#include "BezierCubicVector.hpp"
+#include "ACubicCurveVector.hpp"
 
 EditMenu::EditMenu(SceneController & scene)
 	: scene_(scene), currentDimension_(3), resetting_(false), isImported(false), yolo_(0)
@@ -268,7 +268,7 @@ void EditMenu::vec2SliderBezierChange(ofVec2f & p)
 	if (focused != nullptr && (*focused) != 0) {
 		SceneNode *node = scene_.ensureDrawableExistance(*focused);
 		if (node) {
-			BezierCubicVector *b = dynamic_cast<BezierCubicVector *>(node->getDrawable());
+			ACubicCurveVector *b = dynamic_cast<ACubicCurveVector *>(node->getDrawable());
 			if (b) {
 				b->setParam({
 					bezierParams1_.getValue(),
@@ -638,7 +638,7 @@ void EditMenu::setupGuiFromDrawableType(const ADrawable * drawable)
 		return;
 
 	refresh(currentDimension_);
-	if (dynamic_cast<const BezierCubicVector *>(drawable)) {
+	if (dynamic_cast<const ACubicCurveVector *>(drawable)) {
 		gui_.add(&bezierParams1_);
 		gui_.add(&bezierParams2_);
 		gui_.add(&bezierParams3_);

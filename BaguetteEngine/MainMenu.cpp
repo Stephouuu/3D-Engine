@@ -136,6 +136,7 @@ void MainMenu::refresh2D(void)
 	insertCircle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertBezier_.removeListener(this, &MainMenu::buttonPressed2D);
+	insertHermite_.removeListener(this, &MainMenu::buttonPressed2D);
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 	insertDialogVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
@@ -158,6 +159,7 @@ void MainMenu::refresh2D(void)
 	primitiveGroup_.add(insertCircle_.setup("Ajouter un cercle"));
 	primitiveGroup_.add(insertRectangle_.setup("Ajouter un rectangle"));
 	primitiveGroup_.add(insertBezier_.setup("Ajouter bezier cubic"));
+	primitiveGroup_.add(insertHermite_.setup("Ajouter hermite"));
 
 	vectorShapeGroup_.add(insertDialogVector_.setup("Ajouter dialog"));
 	vectorShapeGroup_.add(insertSmileVector_.setup("Ajouter smile"));
@@ -185,6 +187,7 @@ void MainMenu::refresh2D(void)
 	insertCircle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertRectangle_.addListener(this, &MainMenu::buttonPressed2D);
 	insertBezier_.addListener(this, &MainMenu::buttonPressed2D);
+	insertHermite_.addListener(this, &MainMenu::buttonPressed2D);
 	insertDialogVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
 	insertSmileVector_.addListener(this, &MainMenu::buttonPressedShapeVector);
 }
@@ -199,6 +202,7 @@ void MainMenu::refresh3D(void)
 	sceneRaytracer_.removeListener(this, &MainMenu::buttonPressedMode);
 	swapCameraMode_.removeListener(this, &MainMenu::toggleSwapMode);
 	insertBezier_.removeListener(this, &MainMenu::buttonPressed2D);
+	insertHermite_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertSphere_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
@@ -284,6 +288,7 @@ void MainMenu::refreshRaytracer(void)
 	insertSphere_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertPlan_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertBezier_.removeListener(this, &MainMenu::buttonPressed2D);
+	insertHermite_.removeListener(this, &MainMenu::buttonPressed2D);
 	insertBox_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertCone_.removeListener(this, &MainMenu::buttonPressed3D);
 	insert3DModel_.removeListener(this, &MainMenu::buttonPressed3DModel);
@@ -355,6 +360,8 @@ void MainMenu::buttonPressed2D(const void * sender)
 		scene_.instanciateDrawable("rectangle");
 	else if (button->getName() == "Ajouter bezier cubic")
 		scene_.instanciateDrawable("bezier");
+	else if (button->getName() == "Ajouter hermite")
+		scene_.instanciateDrawable("hermite");
 }
 
 void MainMenu::buttonPressed3D(const void * sender)
