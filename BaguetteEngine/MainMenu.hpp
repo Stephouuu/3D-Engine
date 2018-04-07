@@ -69,6 +69,7 @@ private:
 	ofxButton			insertPoint_;
 	ofxButton			insertCircle_;
 	ofxButton			insertRectangle_;
+	ofxButton			insertBezier_;
 
 	ofxButton			insertAmbiantLight_;
 	ofxButton			insertDirectionalLight_;

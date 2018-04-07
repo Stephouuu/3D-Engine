@@ -26,3 +26,8 @@ float MathUtils::easeInSine(float t)
 {
 	return std::sin(1.5707936f * t);
 }
+
+double  MathUtils::clamp(double x)
+{
+	return x < 0 ? 0 : x > 1 ? 1 : x;
+}

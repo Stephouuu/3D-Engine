@@ -8,7 +8,7 @@
 #include "SceneController.hpp"
 #include "Vec3Slider.hpp"
 #include "Vec2Slider.hpp"
-#include "Vec1Slider.hpp"
+#include "Vec4Slider.hpp"
 #include "ColorSlider.hpp"
 #include "toggle.hpp"
 #include "Texture.hpp"
@@ -36,6 +36,7 @@ public:
 	void vecSliderSizeChange(ofVec3f & vec);
 	void vecSliderColorChange(ofColor & color);
 	void vecSliderRotationChange(ofVec3f & color);
+	void vec2SliderBezierChange(ofVec2f & p);
 
 	void vec2SliderPositionChange(ofVec2f & vec);
 	void vec2SliderSizeChange(ofVec2f & vec);
@@ -62,6 +63,9 @@ private:
 	void initModeComposition(void);
 	void removeListeners(void);
 
+	void setupGuiFromDrawableType(const ADrawable * drawable);
+	void updateGuiFromDrawableType(const ADrawable * drawable);
+
 private:
 	ofxPanel					gui_;
 	ofxGuiGroup					selectPrimaryTextures_;
@@ -82,6 +86,10 @@ private:
 	Vec3Slider					rotation2d_;
 
 	Vec2Slider					thickness_;
+	Vec2Slider					bezierParams1_;
+	Vec2Slider					bezierParams2_;
+	Vec2Slider					bezierParams3_;
+	Vec2Slider					bezierParams4_;
 
 	ColorSlider					colorFill_;
 	ColorSlider					colorOut_;
@@ -95,10 +103,10 @@ private:
 	Vec3Slider					perlinNoiseSize_;
 	Vec3Slider					PerlinNoise_;
 
-	vector<ofxToggle *>							primaryTextureList_;
-	vector<ofxToggle *>							secondaryTextureList_;
-	vector<ofxToggle *>							filterList_;
-	vector<ofxToggle *>							modeCompositionList_;
+	vector<ofxToggle *>			primaryTextureList_;
+	vector<ofxToggle *>			secondaryTextureList_;
+	vector<ofxToggle *>			filterList_;
+	vector<ofxToggle *>			modeCompositionList_;
 
 	map <std::string, Texture::FilterType>		filterLabel_;
 	map <std::string, Texture::CompositionType>	compositionLabel_;

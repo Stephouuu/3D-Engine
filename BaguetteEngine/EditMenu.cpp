@@ -1,4 +1,5 @@
 #include "EditMenu.hpp"
+#include "BezierCubicVector.hpp"
 
 EditMenu::EditMenu(SceneController & scene)
 	: scene_(scene), currentDimension_(3), resetting_(false), isImported(false), yolo_(0)
@@ -53,6 +54,10 @@ void EditMenu::setup()
 	position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	rotation2d_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(0, 0, 360));
+	bezierParams1_.setup("Bezier param 1", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900, 1000));
+	bezierParams2_.setup("Bezier param 2", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900, 1000));
+	bezierParams3_.setup("Bezier param 3", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900, 1000));
+	bezierParams4_.setup("Bezier param 4", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900, 1000));
 
 	thickness_.setup("Epaisseur bordure", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(30, 0));
 	colorOut_.setup("Couleur bordure", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
@@ -188,6 +193,7 @@ void EditMenu::focus(const Identifiable & id)
 
 	if (node) {
 		updateValues(node);
+		setupGuiFromDrawableType(node->getDrawable());
 	}
 }
 
@@ -254,6 +260,25 @@ void EditMenu::vec2SliderRotationChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
 	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
+}
+
+void EditMenu::vec2SliderBezierChange(ofVec2f & p)
+{
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	if (focused != nullptr && (*focused) != 0) {
+		SceneNode *node = scene_.ensureDrawableExistance(*focused);
+		if (node) {
+			BezierCubicVector *b = dynamic_cast<BezierCubicVector *>(node->getDrawable());
+			if (b) {
+				b->setParam({
+					bezierParams1_.getValue(),
+					bezierParams2_.getValue(),
+					bezierParams3_.getValue(),
+					bezierParams4_.getValue(),
+				});
+			}
+		}
+	}
 }
 
 void EditMenu::buttonPressedAnimations(const void * sender)
@@ -371,7 +396,6 @@ void EditMenu::toggleSelectedPrimary(const void * sender, bool & value)
 				node->getDrawable()->setTexture(new Texture, 0);
 			}
 			if (p->getName() == "Aucune") {
-				// delete node->getDrawable()->texture();
 				node->getDrawable()->setTexture(nullptr, 0);
 			} else {
 				if (p->getName() != "Bruit de perlin") {
@@ -484,6 +508,8 @@ void EditMenu::updateValues(SceneNode *node)
 			colorOut_.setValue(outColor);
 			int thickness = currentDrawable->getOutlineThickness();
 			thickness_.setValue(ofVec2f(thickness, 0));
+
+			updateGuiFromDrawableType(currentDrawable);
 		}
 		else {
 			position2d_.setValue(ofVec2f(0, 0));
@@ -538,6 +564,10 @@ void EditMenu::initListeners(void)
 	position2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderPositionChange);
 	size2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderSizeChange);
 	rotation2d_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vec2SliderRotationChange);
+	bezierParams1_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	bezierParams2_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	bezierParams3_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	bezierParams4_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
 
 	thickness_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorOutChange);
@@ -582,25 +612,46 @@ void EditMenu::removeListeners(void)
 	position2d_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderPositionChange);
 	size2d_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderSizeChange);
 	rotation2d_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vec2SliderRotationChange);
+	bezierParams1_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	bezierParams2_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	bezierParams3_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	bezierParams4_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
 
 	thickness_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorOutChange);
 	colorScene_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorSceneChange);
 
-	for (const auto &e : primaryTextureList_) {
+	for (const auto &e : primaryTextureList_)
 		e->removeListener(this, &EditMenu::toggleSelectedPrimary);
-	}
-
-	for (const auto &e : secondaryTextureList_) {
+	for (const auto &e : secondaryTextureList_)
 		e->removeListener(this, &EditMenu::toggleSelectedSecondary);
-	}
-	
-	for (const auto &e : filterList_) {
+	for (const auto &e : filterList_)
 		e->removeListener(this, &EditMenu::toggleSelectedFilter);
-	}
-
-	for (const auto &e : modeCompositionList_) {
+	for (const auto &e : modeCompositionList_)
 		e->removeListener(this, &EditMenu::toggleSelectedMode);
-	}
 	animationButton_.removeListener(this, &EditMenu::buttonPressedAnimations);
+}
+
+void EditMenu::setupGuiFromDrawableType(const ADrawable * drawable)
+{
+	if (!drawable)
+		return;
+
+	refresh(currentDimension_);
+	if (dynamic_cast<const BezierCubicVector *>(drawable)) {
+		gui_.add(&bezierParams1_);
+		gui_.add(&bezierParams2_);
+		gui_.add(&bezierParams3_);
+		gui_.add(&bezierParams4_);
+	}
+}
+
+void EditMenu::updateGuiFromDrawableType(const ADrawable * drawable)
+{
+	if (!drawable)
+		return;
+
+	if (dynamic_cast<const BezierCubicVector *>(drawable)) {
+		// todo ...
+	}
 }

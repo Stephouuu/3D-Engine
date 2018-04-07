@@ -11,6 +11,8 @@
 #include "DialogVectorShape.hpp"
 #include "SmileVectorShape.hpp"
 
+#include "BezierCubicVector.hpp"
+
 class Scene2D : public AScene
 {
 public:

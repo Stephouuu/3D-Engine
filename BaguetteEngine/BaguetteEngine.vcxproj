@@ -179,6 +179,7 @@
     <ClCompile Include="AScene.cpp" />
     <ClCompile Include="AVectorPrimitive.cpp" />
     <ClCompile Include="BaseGui.cpp" />
+    <ClCompile Include="BezierCubicVector.cpp" />
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="EasyCamera.cpp" />
     <ClCompile Include="ColorSlider.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="DialogVectorShape.cpp" />
     <ClCompile Include="EditMenu.cpp" />
     <ClCompile Include="EllipseVector.cpp" />
+    <ClCompile Include="HermiteCubicVector.cpp" />
     <ClCompile Include="Identifiable.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -212,6 +214,7 @@
     <ClCompile Include="SceneRaytracer.cpp" />
     <ClCompile Include="SceneViewer.cpp" />
     <ClCompile Include="SmileVectorShape.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="SphereGenerator.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
     <ClCompile Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
@@ -252,10 +255,10 @@
     <ClCompile Include="toggle.cpp" />
     <ClCompile Include="TransformableHistory.cpp" />
     <ClCompile Include="TriangleVector.cpp" />
-    <ClCompile Include="Vec1Slider.cpp" />
     <ClCompile Include="Vec2Slider.cpp" />
     <ClCompile Include="Vec3Slider.cpp" />
     <ClCompile Include="AVectorShape.cpp" />
+    <ClCompile Include="Vec4Slider.cpp" />
     <ClCompile Include="WindowRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +268,8 @@
     <ClInclude Include="AScene.hpp" />
     <ClInclude Include="AVectorPrimitive.hpp" />
     <ClInclude Include="BaseGui.hpp" />
+    <ClInclude Include="BezierCubicVector.hpp" />
+    <ClInclude Include="Camera.hpp" />
     <ClInclude Include="CameraController.hpp" />
     <ClInclude Include="EasyCamera.hpp" />
     <ClInclude Include="ColorSlider.hpp" />
@@ -275,6 +280,7 @@
     <ClInclude Include="EditMenu.hpp" />
     <ClInclude Include="EllipseVector.hpp" />
     <ClInclude Include="ADrawable.hpp" />
+    <ClInclude Include="HermiteCubicVector.hpp" />
     <ClInclude Include="IGuiView.hpp" />
     <ClInclude Include="Image.hpp" />
     <ClInclude Include="CacheManager.hpp" />
@@ -293,6 +299,7 @@
     <ClInclude Include="PointVector.hpp" />
     <ClInclude Include="Portail.hpp" />
     <ClInclude Include="Portails.hpp" />
+    <ClInclude Include="Ray.hpp" />
     <ClInclude Include="RectangleVector.hpp" />
     <ClInclude Include="Scene2D.hpp" />
     <ClInclude Include="Scene3D.hpp" />
@@ -302,6 +309,7 @@
     <ClInclude Include="SceneRaytracer.hpp" />
     <ClInclude Include="SceneViewer.hpp" />
     <ClInclude Include="SmileVectorShape.hpp" />
+    <ClInclude Include="Sphere.hpp" />
     <ClInclude Include="SphereGenerator.hpp" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.h" />
     <ClInclude Include="..\..\OpenFramework\of_v0.9.8_vs_release\addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.h" />
@@ -539,10 +547,10 @@
     <ClInclude Include="toggle.hpp" />
     <ClInclude Include="TransformableHistory.hpp" />
     <ClInclude Include="TriangleVector.hpp" />
-    <ClInclude Include="Vec1Slider.hpp" />
     <ClInclude Include="Vec2Slider.hpp" />
     <ClInclude Include="Vec3Slider.hpp" />
     <ClInclude Include="AVectorShape.hpp" />
+    <ClInclude Include="Vec4Slider.hpp" />
     <ClInclude Include="WindowRenderer.hpp" />
   </ItemGroup>
   <ItemGroup>

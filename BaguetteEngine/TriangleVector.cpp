@@ -1,7 +1,6 @@
 #include "TriangleVector.hpp"
 
 TriangleVector::TriangleVector(void)
-	// : size_(1)
 {
 }
 

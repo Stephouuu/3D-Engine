@@ -3,10 +3,16 @@
 SceneRaytracer::SceneRaytracer(void)
 	: init_(false)
 {
+	init();
 }
 
 SceneRaytracer::~SceneRaytracer(void)
 {
+}
+
+void SceneRaytracer::update(float dt)
+{
+	AScene::update(dt);
 }
 
 void SceneRaytracer::render(ARenderer & renderer)
@@ -20,7 +26,7 @@ void SceneRaytracer::render(ARenderer & renderer)
 
 const Identifiable & SceneRaytracer::instanciateDrawable(const std::string & type, const Identifiable & parent)
 {
-	throw std::runtime_error("SceneRaytracer::instanciateDrawable: not yet implemented");
+	throw std::runtime_error("SceneRaytracer::instanciateDrawable: not yet implemented.");
 }
 
 std::string SceneRaytracer::getName(void) const
