@@ -54,10 +54,10 @@ void EditMenu::setup()
 	position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	rotation2d_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(0, 0, 360));
-	bezierParams1_.setup("Courbe P1", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900 * 2, 1000 * 2));
-	bezierParams2_.setup("Courbe P2", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900 * 2, 1000 * 2));
-	bezierParams3_.setup("Courbe P3", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900 * 2, 1000 * 2));
-	bezierParams4_.setup("Courbe P4", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900 * 2, 1000 * 2));
+	curveParam1_.setup("Courbe P1", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900 * 2, 1000 * 2));
+	curveParam2_.setup("Courbe P2", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900 * 2, 1000 * 2));
+	curveParam3_.setup("Courbe P3", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900 * 2, 1000 * 2));
+	curveParam4_.setup("Courbe P4", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900 * 2, 1000 * 2));
 
 	thickness_.setup("Epaisseur bordure", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(30, 0));
 	colorOut_.setup("Couleur bordure", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
@@ -271,10 +271,10 @@ void EditMenu::vec2SliderBezierChange(ofVec2f & p)
 			ACubicCurveVector *b = dynamic_cast<ACubicCurveVector *>(node->getDrawable());
 			if (b) {
 				b->setParam({
-					bezierParams1_.getValue(),
-					bezierParams2_.getValue(),
-					bezierParams3_.getValue(),
-					bezierParams4_.getValue(),
+					curveParam1_.getValue(),
+					curveParam2_.getValue(),
+					curveParam3_.getValue(),
+					curveParam4_.getValue(),
 				});
 			}
 		}
@@ -564,10 +564,10 @@ void EditMenu::initListeners(void)
 	position2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderPositionChange);
 	size2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderSizeChange);
 	rotation2d_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vec2SliderRotationChange);
-	bezierParams1_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
-	bezierParams2_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
-	bezierParams3_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
-	bezierParams4_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam1_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam2_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam3_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam4_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
 
 	thickness_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorOutChange);
@@ -612,10 +612,10 @@ void EditMenu::removeListeners(void)
 	position2d_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderPositionChange);
 	size2d_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderSizeChange);
 	rotation2d_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vec2SliderRotationChange);
-	bezierParams1_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
-	bezierParams2_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
-	bezierParams3_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
-	bezierParams4_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam1_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam2_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam3_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam4_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
 
 	thickness_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorOutChange);
@@ -639,10 +639,10 @@ void EditMenu::setupGuiFromDrawableType(const ADrawable * drawable)
 
 	refresh(currentDimension_);
 	if (dynamic_cast<const ACubicCurveVector *>(drawable)) {
-		gui_.add(&bezierParams1_);
-		gui_.add(&bezierParams2_);
-		gui_.add(&bezierParams3_);
-		gui_.add(&bezierParams4_);
+		gui_.add(&curveParam1_);
+		gui_.add(&curveParam2_);
+		gui_.add(&curveParam3_);
+		gui_.add(&curveParam4_);
 	}
 }
 
@@ -651,7 +651,12 @@ void EditMenu::updateGuiFromDrawableType(const ADrawable * drawable)
 	if (!drawable)
 		return;
 
-	if (dynamic_cast<const BezierCubicVector *>(drawable)) {
-		// todo ...
+	const ACubicCurveVector * curve = dynamic_cast<const ACubicCurveVector *>(drawable);
+	if (curve) {
+		std::vector<ofVec2f> v = curve->getParam();
+		curveParam1_.setValue(v[0]);
+		curveParam2_.setValue(v[1]);
+		curveParam3_.setValue(v[2]);
+		curveParam4_.setValue(v[3]);
 	}
 }

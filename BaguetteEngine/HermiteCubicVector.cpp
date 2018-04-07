@@ -24,6 +24,8 @@ HermiteCubicVector::~HermiteCubicVector(void)
 
 void HermiteCubicVector::setParam(const std::vector<ofVec2f> & v)
 {
+	ACubicCurveVector::setParam(v);
+
 	if (v.size() < 4)
 		return;
 

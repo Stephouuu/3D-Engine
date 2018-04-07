@@ -11,6 +11,16 @@ ACubicCurveVector::~ACubicCurveVector(void)
 {
 }
 
+void ACubicCurveVector::setParam(const std::vector<ofVec2f> & v)
+{
+	v_ = v;
+}
+
+const std::vector<ofVec2f> & ACubicCurveVector::getParam(void) const
+{
+	return v_;
+}
+
 void ACubicCurveVector::invalidate(void)
 {
 	reallocate(ofGetWidth(), ofGetHeight());

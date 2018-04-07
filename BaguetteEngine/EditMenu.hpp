@@ -86,10 +86,10 @@ private:
 	Vec3Slider					rotation2d_;
 
 	Vec2Slider					thickness_;
-	Vec2Slider					bezierParams1_;
-	Vec2Slider					bezierParams2_;
-	Vec2Slider					bezierParams3_;
-	Vec2Slider					bezierParams4_;
+	Vec2Slider					curveParam1_;
+	Vec2Slider					curveParam2_;
+	Vec2Slider					curveParam3_;
+	Vec2Slider					curveParam4_;
 
 	ColorSlider					colorFill_;
 	ColorSlider					colorOut_;

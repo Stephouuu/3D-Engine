@@ -24,6 +24,8 @@ BezierCubicVector::~BezierCubicVector(void)
 
 void BezierCubicVector::setParam(const std::vector<ofVec2f> & v)
 {
+	ACubicCurveVector::setParam(v);
+
 	if (v.size() < 4)
 		return;
 	
