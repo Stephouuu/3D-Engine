@@ -54,10 +54,10 @@ void EditMenu::setup()
 	position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	rotation2d_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(0, 0, 360));
-	bezierParams1_.setup("Bezier param 1", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900, 1000));
-	bezierParams2_.setup("Bezier param 2", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900, 1000));
-	bezierParams3_.setup("Bezier param 3", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900, 1000));
-	bezierParams4_.setup("Bezier param 4", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900, 1000));
+	bezierParams1_.setup("Courbe P1", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900 * 2, 1000 * 2));
+	bezierParams2_.setup("Courbe P2", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900 * 2, 1000 * 2));
+	bezierParams3_.setup("Courbe P3", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900 * 2, 1000 * 2));
+	bezierParams4_.setup("Courbe P4", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900 * 2, 1000 * 2));
 
 	thickness_.setup("Epaisseur bordure", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(30, 0));
 	colorOut_.setup("Couleur bordure", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));

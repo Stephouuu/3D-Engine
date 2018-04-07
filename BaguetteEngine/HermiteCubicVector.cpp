@@ -40,8 +40,8 @@ void HermiteCubicVector::setParam(const std::vector<ofVec2f> & v)
 		float ttt = tt * t;
 
 		ofVec2f p = {
-			(2 * ttt - 3 * tt + 1) * v[0].x + (ttt - 2 * tt + t) * v[1].x + (ttt - tt) * v[2].x + (-2 * ttt + 3 * tt) * v[3].x,
-			(2 * ttt - 3 * tt + 1) * v[0].y + (ttt - 2 * tt + t) * v[1].y + (ttt - tt) * v[2].y + (-2 * ttt + 3 * tt) * v[3].y
+			(2 * ttt - 3 * tt + 1) * v[0].x + (ttt - 2 * tt + t) * tan1.x + (ttt - tt) * tan2.x + (-2 * ttt + 3 * tt) * v[3].x,
+			(2 * ttt - 3 * tt + 1) * v[0].y + (ttt - 2 * tt + t) * tan1.y + (ttt - tt) * tan2.y + (-2 * ttt + 3 * tt) * v[3].y
 		};
 
 		line_[i] = p;
