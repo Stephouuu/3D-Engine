@@ -78,7 +78,7 @@ void CameraController::removeCamera(void)
 	}
 }
 
-void CameraController::render(ARenderer & renderer, SceneGraph & scene)
+void CameraController::render(ARenderer & renderer, SceneGraph & scene, LightShader & lightShader)
 {
 	unsigned int i = 0;
 
@@ -90,7 +90,7 @@ void CameraController::render(ARenderer & renderer, SceneGraph & scene)
 			ofClear(ofGetBackgroundColor());
 			it.second->begin();
 				ofDrawGrid(1, 8U, false, false, true, false);
-				scene.render(renderer, *it.second);
+				scene.render(renderer, *it.second, lightShader);
 			it.second->end();
 		it.first.end();
 		it.first.draw(

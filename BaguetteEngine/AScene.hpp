@@ -9,6 +9,8 @@
 
 #include "CameraController.hpp"
 
+#include "Light.hpp"
+
 class AScene
 {
 public:
@@ -40,7 +42,9 @@ public:
 	const Identifiable * getFocusedDrawable(void) const;
 
 	SceneNode * ensureDrawableExistance(const Identifiable & drawableId);
-	
+
+	void setLightModel(Light::LightModel model);
+
 	virtual const Identifiable & instanciateDrawable(const std::string & type, const Identifiable & parent = Identifiable()) = 0;
 	virtual std::string getName(void) const = 0;
 	virtual int getNbDimensions(void) const = 0;
@@ -53,5 +57,6 @@ protected:
 	float dtUpdate_;
 	const Identifiable * focusedDrawable_;
 	ofColor sceneColor_;
+	std::vector<Light::Ptr>	lights_;
 };
 

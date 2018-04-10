@@ -71,6 +71,8 @@ public:
 
 	CameraController * getCameraController(void) const;
 
+	void setLightModel(Light::LightModel model);
+
 private:
 	std::vector<std::unique_ptr<AScene> > scenes_;
 	std::vector<std::unique_ptr<AScene> >::const_iterator currentScene_;

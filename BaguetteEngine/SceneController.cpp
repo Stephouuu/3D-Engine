@@ -222,3 +222,7 @@ CameraController * SceneController::getCameraController(void) const
 	}
 }
 
+void SceneController::setLightModel(Light::LightModel model)
+{
+	(*currentScene_)->setLightModel(model);
+}

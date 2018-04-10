@@ -17,8 +17,13 @@ uniform vec3 colorSpecular;
 // facteur de brillance spéculaire du matériau
 uniform float brightness;
 
+//couleur de l'objet
+uniform vec3 color;
+
 // position d'une source de lumière
 uniform vec3 lightPosition;
+uniform vec3 spotDir;
+uniform float spotSize;
 
 void main()
 {
@@ -27,29 +32,40 @@ void main()
 
   // calculer la direction de la surface vers la lumière (L)
   vec3 L = normalize(lightPosition - viewSpacePosition);
+  
+  vec3 lightDir = normalize(spotDir);
+  vec3 sd = normalize(-spotDir);
 
-  // calculer le niveau de réflexion diffuse (N • L)
-  float reflectionDiffuse = max(dot(N, L), 0.0);
-
-  // réflexion spéculaire par défaut
-  float reflectionSpecular = 0.0;
-
-  // calculer la réflexion spéculaire seulement s'il y a réflexion diffuse
-  if (reflectionDiffuse > 0.0)
+	if (spotSize <= 0.0 || dot(sd, lightDir) > spotSize)
   {
-    // calculer la direction de la surface vers la caméra (V)
-    vec3 V = normalize(-viewSpacePosition);
+	// calculer le niveau de réflexion diffuse (N • L)
+	float reflectionDiffuse = max(dot(N, L), 0.0);
 
-    // calculer la direction de la réflection (R) du rayon incident (-L) en fonction de la normale (N)
-    vec3 R = reflect(-L, N);
+	// réflexion spéculaire par défaut
+	float reflectionSpecular = 0.0;
 
-    // calculer le niveau de réflexion spéculaire (R • V)
-    reflectionSpecular = pow(max(dot(V, R), 0.0), brightness);
+	// calculer la réflexion spéculaire seulement s'il y a réflexion diffuse
+	if (reflectionDiffuse > 0.0)
+	{
+		// calculer la direction de la surface vers la caméra (V)
+		vec3 V = normalize(-viewSpacePosition);
+
+		// calculer la direction de la réflection (R) du rayon incident (-L) en fonction de la normale (N)
+		vec3 R = reflect(-L, N);
+
+		// calculer le niveau de réflexion spéculaire (R • V)
+		reflectionSpecular = pow(max(dot(V, R), 0.0), brightness);
+	}
+	// calculer la couleur du fragment
+	fragmentColor = vec4(
+		colorAmbient +
+		colorDiffuse * reflectionDiffuse +
+		colorSpecular * reflectionSpecular, 1.0);
+  }
+  else
+  {
+	// calculer la couleur du fragment
+	fragmentColor = vec4(colorAmbient, 1.0);
   }
 
-  // calculer la couleur du fragment
-  fragmentColor = vec4(
-    colorAmbient +
-    colorDiffuse * reflectionDiffuse +
-    colorSpecular * reflectionSpecular, 1.0);
 }

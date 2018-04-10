@@ -1,7 +1,7 @@
 #include "ADrawable.hpp"
 
 ADrawable::ADrawable(void)
-	: rotation_(0), focused_(false)
+	: rotation_(0), focused_(false), shader_(nullptr), otherShader_(false)
 {
 }
 
@@ -32,7 +32,13 @@ Texture *ADrawable::getTexture(int i)
 
 void ADrawable::setShader(const std::string & v, const std::string & f)
 {
-	shader_.load(v, f);
+	otherShader_ = true;
+	basicShader_.load(v, f);
+}
+
+void ADrawable::setShader(IShader *shader)
+{
+	shader_ = shader;
 }
 
 void ADrawable::setRotation(float degrees)
@@ -56,6 +62,11 @@ bool ADrawable::isFocused(void) const
 	return focused_;
 }
 
+bool ADrawable::haveOtherShader() const
+{
+	return otherShader_;
+}
+
 void ADrawable::onPositionChanged(void)
 {
 	invalidate();
@@ -69,4 +80,24 @@ void ADrawable::onOrientationChanged(void)
 void ADrawable::onScaleChanged(void)
 {
 	invalidate();
+}
+
+void ADrawable::setSpecularColor(const ofColor & color)
+{
+	specularColor_ = color;
+}
+
+ofColor ADrawable::getSpecularColor() const
+{
+	return specularColor_;
+}
+
+void ADrawable::setDiffuseColor(const ofColor & color)
+{
+	diffuseColor_ = color;
+}
+
+ofColor ADrawable::getDiffuseColor() const
+{
+	return diffuseColor_;
 }

@@ -11,6 +11,7 @@
 #include "ConeGenerator.hpp"
 #include "Model3DGenerator.hpp"
 #include "LightGenerator.hh"
+#include "LightShader.hpp"
 
 class Scene3D : public AScene
 {
@@ -31,5 +32,6 @@ public:
 	virtual CameraController & getCameraController(void);
 
 private:
-	CameraController cc_;
+	CameraController		cc_;
+	LightShader				lightShader_;
 };

@@ -2,7 +2,15 @@
 
 Light::Light()
 {
-	setLightShader(LightModel::blinn_phong);
+	setPosition(ofVec3f(0, 0, 0));
+	setLightModel(LightModel::color_fill);
+	color_.r = 255;
+	color_.g = 0;
+	color_.b = 0;
+	brightness_ = 0.f;
+	ambient_ = 0.f;
+	diffuse_ = 0.f;
+	specular_ = 0.f;
 }
 
 Light::~Light()
@@ -11,78 +19,58 @@ Light::~Light()
 
 void Light::enable(void)
 {
-	light_.enable();
+	//light_.enable();
 }
 
 void Light::disable(void)
 {
-	light_.disable();
-}
-
-void Light::setLightShader(Light::LightModel model)
-{
-	std::string		shaderVersion;
-	std::string		shaderName;
-	ofShader		shader;
-
-	if (ofIsGLProgrammableRenderer())
-		shaderVersion = "330";
-	else
-		shaderVersion = "120";
-
-	shaderName = "shaders/";
-	switch (model)
-	{
-	case Light::LightModel::lambert:
-		shaderName += "lambert";
-		break;
-	case Light::LightModel::gouraud:
-		shaderName += "gouraud";
-		break;
-	case Light::LightModel::phong:
-		shaderName += "phong";
-		break;
-	case Light::LightModel::blinn_phong:
-		shaderName += "blinn_phong";
-		break;
-	}
-	shader.load(shaderName + "_" + shaderVersion + "_vs.glsl", shaderName + "_" + shaderVersion + "_fs.glsl");
+	//light_.disable();
 }
 
 void Light::setPosition(const ofVec3f pos)
 {
-	light_.setGlobalPosition(pos);
-	shader_.begin();
-	//shader_.setUniform3f("lightPosition", light_.getGlobalPosition() * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW));
-	shader_.end();
+	pos_ = pos;
+}
+
+void Light::onPositionChanged(void)
+{
+	setPosition(getGlobalPosition());
+	invalidate();
+}
+
+ofVec3f Light::getPosition(void) const
+{
+	return pos_;
 }
 
 void Light::setBrightness(const float brightness)
 {
-	shader_.begin();
-	shader_.setUniform1f("brightness", brightness);
-	shader_.end();
+	brightness_ = brightness;
 }
 
 void Light::setAmbientColor(const float ambient)
 {
-	shader_.begin();
-	shader_.setUniform1f("colorAmbient", ambient);
-	shader_.end();
+	ambient_ = ambient;
 }
 
 void Light::setDiffuseColor(const float diffuse)
 {
-	shader_.begin();
-	shader_.setUniform1f("colorDiffuse", diffuse);
-	shader_.end();
+	diffuse_ = diffuse;
 }
 
 void Light::setSpecularColor(const float specular)
 {
-	shader_.begin();
-	shader_.setUniform1f("colorSpecular", specular);
-	shader_.end();
+	specular_ = specular;
+}
+
+void Light::setLightModel(const LightModel lightModel)
+{
+	lightModel_ = lightModel;
+}
+
+Light::LightModel Light::getLightModel(void) const
+{
+	return lightModel_;
 }
 
 void Light::destroy(void)
@@ -95,23 +83,16 @@ void Light::update(float dt)
 
 void Light::draw(ARenderer & renderer)
 {
-	ofEnableLighting();
-	shader_.begin();
-	shader_.setUniform3f("lightPosition", light_.getGlobalPosition() * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW));
-	shader_.setUniform3f("colorAmbient", 0.1f, 0.1f, 0.1f);
-	shader_.setUniform3f("colorDiffuse", 0.0f, 0.6f, 0.6f);
-	shader_.setUniform3f("colorSpecular", 1.0f, 1.0f, 0.0f);
-	shader_.setUniform1f("brightness", 20);
-	shader_.end();
 }
 
 void Light::setFillColor(const ofColor & color)
 {
+	color_ = color;
 }
 
 const ofColor & Light::getFillColor(void) const
 {
-	return ofColor(255, 255, 255);
+	return color_;
 }
 
 void Light::setOutlineColor(const ofColor & color)
@@ -134,4 +115,14 @@ int Light::getOutlineThickness(void) const
 
 void Light::invalidate(void)
 {
+}
+
+void	Light::setDrawableId(int id)
+{
+	drawableId_ = id;
+}
+
+int		Light::getDrawableId(void) const
+{
+	return drawableId_;
 }

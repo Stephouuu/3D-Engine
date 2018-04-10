@@ -10,7 +10,7 @@ in vec3 viewSpaceNormal;
 out vec4 fragmentColor;
 
 // couleurs de réflexion du matériau
-uniform vec3 colorAmbient;
+uniform vec4 colorAmbient;
 uniform vec3 colorDiffuse;
 
 // position d'une source de lumière
@@ -28,5 +28,5 @@ void main()
   float reflection_diffuse = max(dot(n, l), 0.0);
 
   // déterminer la couleur du fragment
-  fragmentColor = vec4(colorAmbient + colorDiffuse * reflection_diffuse, 1.0);
+  fragmentColor = colorAmbient + colorDiffuse * reflection_diffuse;
 }

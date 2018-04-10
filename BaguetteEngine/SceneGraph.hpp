@@ -5,6 +5,8 @@
 #include "Identifiable.hpp"
 #include "SceneNode.hpp"
 
+#include "Light.hpp"
+
 class ARenderer;
 
 static int cpt = 0;
@@ -17,6 +19,16 @@ public:
 	{
 		SceneNode::Ptr node(new SceneNode(++cpt));
 		node->setDrawable(new T(args...));
+		return std::move(node);
+	}
+
+	template <typename... Args>
+	static SceneNode::Ptr CreateSceneLight(Light::Ptr &light, Args & ... args)
+	{
+		SceneNode::Ptr node(new SceneNode(++cpt));
+		light = new Light(args...);
+		node->setDrawable(light);
+		light->setDrawableId(node->getID());
 		return std::move(node);
 	}
 
@@ -33,7 +45,7 @@ public:
 	~SceneGraph(void);
 
 	void update(float dt);
-	void render(ARenderer & renderer, const ofCamera & camera = ofCamera());
+	void render(ARenderer & renderer, const ofCamera & camera = ofCamera(), LightShader & lightShader = LightShader());
 
 	const Identifiable & attachTo(SceneNode::Ptr child, const Identifiable & parent);
 	SceneNode::Ptr detach(const Identifiable & node);

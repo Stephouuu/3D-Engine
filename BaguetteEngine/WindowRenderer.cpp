@@ -17,6 +17,7 @@ void WindowRenderer::create(void)
 	ofEnableAntiAliasing();
 	ofEnableAlphaBlending();
 	ofDisableArbTex();
+	ofEnableLighting();
 
 	setFramerate(60);
 	ofSetBackgroundColor(63);

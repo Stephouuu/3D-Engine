@@ -36,6 +36,8 @@ public:
 	void vecSliderSizeChange(ofVec3f & vec);
 	void vecSliderColorChange(ofColor & color);
 	void vecSliderRotationChange(ofVec3f & color);
+	void vecSliderColorSpecularChange(ofColor & color);
+	void vecSliderColorDiffuseChange(ofColor & color);
 
 	void vec2SliderPositionChange(ofVec2f & vec);
 	void vec2SliderSizeChange(ofVec2f & vec);
@@ -94,6 +96,10 @@ private:
 
 	Vec3Slider					perlinNoiseSize_;
 	Vec3Slider					PerlinNoise_;
+
+	Vec2Slider					brightness_;
+	ColorSlider					colorDiffuse_;
+	ColorSlider					colorSpecular_;
 
 	vector<ofxToggle *>							primaryTextureList_;
 	vector<ofxToggle *>							secondaryTextureList_;

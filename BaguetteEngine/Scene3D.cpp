@@ -2,6 +2,9 @@
 
 Scene3D::Scene3D(void)
 {
+	SceneNode *node = ensureDrawableExistance(0);
+
+	lightShader_.load();
 }
 
 Scene3D::~Scene3D(void)
@@ -16,7 +19,8 @@ void Scene3D::update(float dt)
 
 void Scene3D::render(ARenderer & renderer)
 {
-	cc_.render(renderer, graph_);
+	lightShader_.setLights(&lights_);
+	cc_.render(renderer, graph_, lightShader_);
 }
 
 void Scene3D::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save)
@@ -43,7 +47,11 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 		graph_.attachTo(std::move(nodeDst), parent);
 	}
 	else if (type == "light")
-		node = SceneGraph::CreateSceneNode<Light>();
+	{
+		Light::Ptr light = nullptr;
+		node = SceneGraph::CreateSceneLight<>(light);
+		lights_.push_back(light);
+	}
 	else if (type == "plane")
 		node = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();
 	else if (type == "cube")

@@ -6,10 +6,11 @@
 
 #include "ofMain.h"
 
-// #include "AMesh.hpp"
 #include "ADrawable.hpp"
 #include "Identifiable.hpp"
 #include "SceneNode.hpp"
+
+#include "LightShader.hpp"
 
 class ARenderer;
 
@@ -24,7 +25,7 @@ public:
 	~SceneNode(void);
 
 	void update(float dt);
-	void render(ARenderer & renderer, const ofCamera & camera);
+	void render(ARenderer & renderer, const ofCamera & camera, LightShader & lightShader);
 
 	const Identifiable & attachTo(SceneNode::Ptr child, const Identifiable & parent);
 	SceneNode::Ptr detach(const Identifiable & node);

@@ -3,6 +3,8 @@
 #include "ofNode.h"
 #include "ofPoint.h"
 #include "Texture.hpp"
+#include "IShader.hpp"
+#include "BasicShader.hpp"
 
 class ARenderer;
 
@@ -26,6 +28,12 @@ public:
 	virtual void setOutlineThickness(int thickness) = 0;
 	virtual int getOutlineThickness(void) const = 0;
 
+	virtual void setSpecularColor(const ofColor & color);
+	virtual ofColor getSpecularColor() const;
+
+	virtual void setDiffuseColor(const ofColor & color);
+	virtual ofColor getDiffuseColor() const;
+
 	virtual void invalidate(void) = 0;
 
 	virtual void onPositionChanged(void) override;
@@ -36,15 +44,21 @@ public:
 	Texture *getTexture(int i);
 
 	void setShader(const std::string & v, const std::string & f);
+	void setShader(IShader *shader);
 
 	void setRotation(float degrees);
 	float getRotation(void) const;
 	void setFocused(bool v);
 	bool isFocused(void) const;
+	bool haveOtherShader() const;
 
 protected:
 	std::vector<Texture *> textures_;
-	ofShader shader_;
+	IShader				*shader_;
+	BasicShader			basicShader_;
+	ofColor				specularColor_;
+	ofColor				diffuseColor_;
+	bool				otherShader_;
 
 private:
 	float rotation_;

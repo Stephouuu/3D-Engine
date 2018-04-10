@@ -53,6 +53,7 @@ private:
 	ofxGuiGroup			primitiveGroup_;
 	ofxGuiGroup			model3DGroup_;
 	ofxGuiGroup			lightGroup_;
+	ofxGuiGroup			modelLightGroup_;
 	ofxGuiGroup			fileGroup_;
 	ofxGuiGroup			vectorShapeGroup_;
 	ofxGuiGroup			cropImage_;
@@ -74,6 +75,12 @@ private:
 	ofxButton			insertDirectionalLight_;
 	ofxButton			insertPonctualLight_;
 	ofxButton			insertSpotLight_;
+	ofxButton			lambertLight_;
+	ofxButton			gouraudLight_;
+	ofxButton			phongLight_;
+	ofxButton			blinnPhongLight_;
+	ofxButton			colorFillLight_;
+	ofxButton			noneLight_;
 
 	ofxButton			insertDialogVector_;
 	ofxButton			insertSmileVector_;

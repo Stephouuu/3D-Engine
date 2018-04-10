@@ -9,6 +9,8 @@
 #include "ADrawable.hpp"
 #include "TextureGenerator.hpp"
 
+#include "Light.hpp"
+
 class ARenderer;
 
 class AMesh : public ADrawable
@@ -61,4 +63,5 @@ private:
 
 protected:
 	InstantiableMesh	meshType_;
+	//Light				light_;
 };

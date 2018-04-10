@@ -33,9 +33,19 @@ void AScene::render(ARenderer & renderer)
 
 void AScene::removeDrawable(const Identifiable & drawableId)
 {
+	std::vector<Light::Ptr>::iterator it;
+
 	ensureDrawableExistance(drawableId);
 	historic_.deleteTransformations(drawableId);
 	graph_.detach(drawableId);
+	for (it = lights_.begin(); it != lights_.end(); ++it)
+	{
+		if ((*it)->getDrawableId() == drawableId)
+		{
+			lights_.erase(it);
+			break;
+		}
+	}
 }
 
 void AScene::setDrawablePosition(const Identifiable & drawableId, const ofVec3f & pos, bool save)
@@ -166,4 +176,12 @@ SceneNode * AScene::ensureDrawableExistance(const Identifiable & id)
 		return nullptr;
 	}
 	return node;
+}
+
+void AScene::setLightModel(Light::LightModel model)
+{
+	std::vector<Light::Ptr>::iterator	it;
+
+	for (it = lights_.begin(); it != lights_.end(); ++it)
+		(*it)->setLightModel(model);
 }

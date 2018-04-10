@@ -2,13 +2,24 @@
 
 #version 330
 
-// couleur de remplissage du matériau
-uniform vec3 color;
+uniform sampler2D tex0;
+uniform bool texturePresent;
+uniform int lightNb;
+uniform vec4 lightColors[10];
+
+in vec2 texCoordVarying;
 
 out vec4 fragmentColor;
 
 void main()
 {
-  // déterminer la couleur du fragment
-  fragmentColor = vec4(color, 1.0);
+	if (!texturePresent)
+	{
+		fragmentColor = vec4(0.1);
+
+		for (int i = 0; i < lightNb; ++i)
+			fragmentColor += lightColors[i];
+	}
+	else
+		fragmentColor = texture(tex0, vec2(texCoordVarying.x, 1 - texCoordVarying.y));
 }

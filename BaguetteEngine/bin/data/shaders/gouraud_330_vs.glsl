@@ -12,6 +12,7 @@ out vec3 interpolationColor;
 // attributs uniformes
 uniform mat4x4 modelViewMatrix;
 uniform mat4x4 projectionMatrix;
+uniform mat4x4 model;
 
 // couleurs de réflexion du matériau
 uniform vec3 colorAmbient;
@@ -67,5 +68,5 @@ void main()
     colorSpecular * reflectionSpecular);
 
   // transformation de la position du sommet par les matrices de modèle, vue et projection
-  gl_Position = projectionMatrix * modelViewMatrix * position;
+  gl_Position = projectionMatrix * modelViewMatrix * model * position;
 }

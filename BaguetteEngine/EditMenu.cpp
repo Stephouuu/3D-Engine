@@ -46,6 +46,9 @@ void EditMenu::setup()
 
 	colorFill_.setup("Couleur", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
 
+	colorDiffuse_.setup("Couleur diffuse", ofColor(153, 153, 153, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
+	colorSpecular_.setup("Couleur speculaire", ofColor(255, 255, 255, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
+
 	position_.setup("Positions", ofVec3f(0, 0, 0), ofVec3f(-30, -30, -30), ofVec3f(30, 30, 30));
 	size_.setup("Taille", ofVec3f(1, 1, 1), ofVec3f(0, 0, 0), ofVec3f(30, 30, 30));
 	rotation_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(360, 360, 360));
@@ -95,6 +98,8 @@ void EditMenu::refresh(int newEditorDimension)
 		gui_.add(&rotation_);
 	}
 	gui_.add(&colorFill_);
+	gui_.add(&colorDiffuse_);
+	gui_.add(&colorSpecular_);
 	if (newEditorDimension == 3) {
 		gui_.add(&selectPrimaryTextures_);
 		gui_.add(&composition_);
@@ -254,6 +259,24 @@ void EditMenu::vec2SliderRotationChange(ofVec3f & vec)
 {
 	const Identifiable * focused = scene_.getFocusedDrawable();
 	if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
+}
+
+void EditMenu::vecSliderColorSpecularChange(ofColor & color)
+{
+	//Need to change something
+
+
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	//if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
+}
+
+void EditMenu::vecSliderColorDiffuseChange(ofColor & color)
+{
+	//Need to change something
+
+
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	//if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
 }
 
 void EditMenu::buttonPressedAnimations(const void * sender)
@@ -434,6 +457,8 @@ void EditMenu::baseSetup()
 	gui_.add(&position_);
 	gui_.add(&size_);
 	gui_.add(&colorFill_);
+	gui_.add(&colorDiffuse_);
+	gui_.add(&colorSpecular_);
 	gui_.add(&rotation_);
 }
 
@@ -531,6 +556,9 @@ void EditMenu::initListeners(void)
 {
 	colorFill_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorChange);
 
+	colorSpecular_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorSpecularChange);
+	colorDiffuse_.getParameter().cast<ofColor>().addListener(this, &EditMenu::vecSliderColorDiffuseChange);
+
 	position_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderPositionChange);
 	size_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderSizeChange);
 	rotation_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vecSliderRotationChange);
@@ -574,6 +602,9 @@ void EditMenu::initModeComposition(void)
 void EditMenu::removeListeners(void)
 {
 	colorFill_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::vecSliderColorChange);
+
+	colorSpecular_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::vecSliderColorSpecularChange);
+	colorDiffuse_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::vecSliderColorDiffuseChange);
 
 	position_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vecSliderPositionChange);
 	size_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vecSliderSizeChange);

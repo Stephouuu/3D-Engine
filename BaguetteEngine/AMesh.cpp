@@ -22,18 +22,36 @@ void AMesh::draw(ARenderer & renderer)
 		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
 	ofPopMatrix();
 
-	shader_.begin();
-		shader_.setUniform1i("texturePresent", texturePresent);
-		shader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
-		for (int i = 0; i < textures_.size(); ++i)
-			shader_.setUniformTexture("tex" + std::to_string(i), textures_[i]->getTexture(), i);
+	if (shader_ == nullptr)
+	{
 		draw_();
-	shader_.end();
+		return;
+	}
+
+	if (otherShader_)
+	{
+		basicShader_.begin();
+		basicShader_.setUniform1i("texturePresent", texturePresent);
+		basicShader_.setUniformMatrix4f("model", getGlobalTransformMatrix());
+		for (int i = 0; i < textures_.size(); ++i)
+			basicShader_.setUniformTexture("tex" + std::to_string(i), textures_[i]->getTexture(), i);
+		draw_();
+		basicShader_.end();
+	}
+	else
+	{
+		shader_->begin();
+		shader_->setUniform1i("texturePresent", texturePresent);
+		shader_->setUniformMatrix4f("model", getGlobalTransformMatrix());
+		for (int i = 0; i < textures_.size(); ++i)
+			shader_->setUniformTexture("tex" + std::to_string(i), textures_[i]->getTexture(), i);
+		draw_();
+		shader_->end();
+	}
 }
 
 void AMesh::init(void)
 {
-	setShader("./shaders/vertex_shader.vert", "./shaders/fragment_shader.frag");
 }
 
 void AMesh::setVertex(ofIndexType index, const ofVec3f & v)

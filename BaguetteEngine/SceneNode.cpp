@@ -16,10 +16,20 @@ void SceneNode::update(float dt)
 	for (auto & it : childs_) it->update(dt);
 }
 
-void SceneNode::render(ARenderer & renderer, const ofCamera & camera)
+void SceneNode::render(ARenderer & renderer, const ofCamera & camera, LightShader & lightShader)
 {
-	if (drawable_ && getID() != 0) drawable_->draw(renderer);
-	for (auto & it : childs_) it->render(renderer, camera);
+	if (drawable_ && getID() != 0)
+	{
+		if (drawable_->haveOtherShader())
+			drawable_->setShader(&lightShader);
+		drawable_->draw(renderer);
+	}
+	for (auto & it : childs_)
+	{
+		if (drawable_->haveOtherShader())
+			drawable_->setShader(&lightShader);
+		it->render(renderer, camera, lightShader);
+	}
 }
 
 const Identifiable & SceneNode::attachTo(SceneNode::Ptr child, const Identifiable & parent)

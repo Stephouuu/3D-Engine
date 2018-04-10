@@ -9,6 +9,8 @@
 #include "SceneGraph.hpp"
 #include "Portails.hpp"
 
+#include "LightShader.hpp"
+
 class CameraController
 {
 public:
@@ -23,7 +25,7 @@ public:
 	void addCamera(void);
 	void removeCamera(void);
 
-	void render(ARenderer & renderer, SceneGraph & scene);
+	void render(ARenderer & renderer, SceneGraph & scene, LightShader & lightShader);
 	void update(float dt);
 	
 	void setTarget(const ofVec3f & position);

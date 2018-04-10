@@ -52,6 +52,7 @@ void MainMenu::setup_(void)
 	vectorShapeGroup_.setup();
 
 	lightGroup_.setup();
+	modelLightGroup_.setup();
 
 	modeGroup_.setup();
 	modeGroup_.setName("Mode");
@@ -142,6 +143,12 @@ void MainMenu::refresh2D(void)
 	insertPonctualLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	insertDirectionalLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	insertSpotLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	lambertLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	gouraudLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	phongLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	blinnPhongLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	colorFillLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	noneLight_.removeListener(this, &MainMenu::buttonPressed3D);
 	insertSmileVector_.removeListener(this, &MainMenu::buttonPressedShapeVector);
 
 	primitiveGroup_.setName("Primitives Vectorielles");
@@ -204,6 +211,12 @@ void MainMenu::refresh3D(void)
 	insertPonctualLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	insertDirectionalLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
 	insertSpotLight_.removeListener(this, &MainMenu::buttonPressed3DModel);
+	lambertLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	gouraudLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	phongLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	blinnPhongLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	colorFillLight_.removeListener(this, &MainMenu::buttonPressed3D);
+	noneLight_.removeListener(this, &MainMenu::buttonPressed3D);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().removeListener(this, &MainMenu::vecSliderModel3DBoxChange);
 
 	modeGroup_.setName("Mode");
@@ -219,6 +232,7 @@ void MainMenu::refresh3D(void)
 	primitiveGroup_.setName("Primitives Geometriques");
 	model3DGroup_.setName("Modele 3D");
 	lightGroup_.setName("Lumieres");
+	modelLightGroup_.setName("Model de lumiere");
 
 	primitiveGroup_.add(insertSphere_.setup("Ajouter une sphere"));
 	primitiveGroup_.add(insertPlan_.setup("Ajouter un plan"));
@@ -230,11 +244,19 @@ void MainMenu::refresh3D(void)
 	lightGroup_.add(insertDirectionalLight_.setup("Lumiere directionelle"));
 	lightGroup_.add(insertSpotLight_.setup("Lumiere projecteur"));
 	lightGroup_.add(insertPonctualLight_.setup("Lumiere ponctuelle"));
+	modelLightGroup_.add(lambertLight_.setup("Model lambert"));
+	modelLightGroup_.add(gouraudLight_.setup("Model gouraud"));
+	modelLightGroup_.add(phongLight_.setup("Model phong"));
+	modelLightGroup_.add(blinnPhongLight_.setup("Model blinn-phong"));
+	modelLightGroup_.add(colorFillLight_.setup("Couleur unie"));
+	modelLightGroup_.add(noneLight_.setup("Aucune lumiere"));
 
 	insertGroup_.setName("Inserer");
 	insertGroup_.add(&model3DGroup_);
 	insertGroup_.add(&primitiveGroup_);
 	insertGroup_.add(&lightGroup_);
+
+	lightGroup_.add(&modelLightGroup_);
 
 	gui_.add(&fileGroup_);
 	gui_.add(&modeGroup_);
@@ -265,6 +287,12 @@ void MainMenu::refresh3D(void)
 	insertPonctualLight_.addListener(this, &MainMenu::buttonPressed3D);
 	insertDirectionalLight_.addListener(this, &MainMenu::buttonPressed3D);
 	insertSpotLight_.addListener(this, &MainMenu::buttonPressed3D);
+	lambertLight_.addListener(this, &MainMenu::buttonPressed3D);
+	gouraudLight_.addListener(this, &MainMenu::buttonPressed3D);
+	phongLight_.addListener(this, &MainMenu::buttonPressed3D);
+	blinnPhongLight_.addListener(this, &MainMenu::buttonPressed3D);
+	colorFillLight_.addListener(this, &MainMenu::buttonPressed3D);
+	noneLight_.addListener(this, &MainMenu::buttonPressed3D);
 	model3DBoxSlider_.getParameter().cast<ofVec3f>().addListener(this, &MainMenu::vecSliderModel3DBoxChange);
 }
 
@@ -370,6 +398,18 @@ void MainMenu::buttonPressed3D(const void * sender)
 		scene_.instanciateDrawable("light");
 	else if (button->getName() == "Lumiere ponctuelle")
 		scene_.instanciateDrawable("light");
+	else if (button->getName() == "Model lambert")
+		scene_.setLightModel(Light::LightModel::lambert);
+	else if (button->getName() == "Model gouraud")
+		scene_.setLightModel(Light::LightModel::gouraud);
+	else if (button->getName() == "Model phong")
+		scene_.setLightModel(Light::LightModel::phong);
+	else if (button->getName() == "Model blinn-phong")
+		scene_.setLightModel(Light::LightModel::blinn_phong);
+	else if (button->getName() == "Couleur unie")
+		scene_.setLightModel(Light::LightModel::color_fill);
+	else if (button->getName() == "Aucune lumiere")
+		scene_.setLightModel(Light::LightModel::none);
 }
 
 void MainMenu::buttonPressed3DModel(const void * sender)
