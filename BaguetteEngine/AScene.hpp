@@ -27,6 +27,8 @@ public:
 	virtual void setDrawableRotation(const Identifiable & drawableId, float degrees, bool save = true);
 	virtual void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale, bool save = true);
 	virtual void setDrawableColor(const Identifiable & drawableId, const ofFloatColor & color);
+	void setDrawableDiffuseColor(const Identifiable & drawableId, const ofFloatColor & color);
+	void setDrawableSpecularColor(const Identifiable & drawableId, const ofFloatColor & color);
 	virtual void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
 	virtual void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
 

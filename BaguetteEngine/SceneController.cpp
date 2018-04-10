@@ -130,6 +130,16 @@ void SceneController::setDrawableColor(const Identifiable & drawableId, const of
 	if (drawableId != 0) (*currentScene_)->setDrawableColor(drawableId, color);
 }
 
+void SceneController::setDrawableDiffuseColor(const Identifiable & drawableId, const ofColor & color)
+{
+	if (drawableId != 0) (*currentScene_)->setDrawableDiffuseColor(drawableId, color);
+}
+
+void SceneController::setDrawableSpecularColor(const Identifiable & drawableId, const ofColor & color)
+{
+	if (drawableId != 0) (*currentScene_)->setDrawableSpecularColor(drawableId, color);
+}
+
 void SceneController::setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color)
 {
 	if (drawableId != 0) (*currentScene_)->setDrawableOutlineColor(drawableId, color);

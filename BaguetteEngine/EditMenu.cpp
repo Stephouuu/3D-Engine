@@ -269,20 +269,14 @@ void EditMenu::vec2SliderRotationChange(ofVec3f & vec)
 
 void EditMenu::vecSliderColorSpecularChange(ofColor & color)
 {
-	//Need to change something
-
-
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	//if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
+	if (focused != nullptr) scene_.setDrawableSpecularColor(*focused, color);
 }
 
 void EditMenu::vecSliderColorDiffuseChange(ofColor & color)
 {
-	//Need to change something
-
-
 	const Identifiable * focused = scene_.getFocusedDrawable();
-	//if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
+	if (focused != nullptr) scene_.setDrawableDiffuseColor(*focused, color);
 }
 
 void EditMenu::vec2SliderBezierChange(ofVec2f & p)

@@ -50,7 +50,10 @@ void LightShader::begin()
 			activeShader_ = &shaders_[(*it)->getLightModel()];
 			activeShader_->begin();
 		}
+
 		ofColor		color = (*it)->getFillColor();
+		ofColor		diffuseColor = (*it)->getDiffuseColor();
+		ofColor		specularColor = (*it)->getSpecularColor();
 		if ((*it)->getLightModel() == Light::LightModel::color_fill)
 		{
 			stringstream ss;
@@ -63,23 +66,22 @@ void LightShader::begin()
 		else if ((*it)->getLightModel() == Light::LightModel::lambert)
 		{
 			activeShader_->setUniform4f("colorAmbient", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
-			activeShader_->setUniform3f("colorDiffuse", 0.6f, 0.6f, 0.6f);
+			activeShader_->setUniform3f("colorDiffuse", diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::gouraud)
 		{
 			activeShader_->setUniform3f("color", 1.f, 0.f, 0.f);
 			activeShader_->setUniform4f("colorAmbient", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
-			activeShader_->setUniform3f("colorDiffuse", 0.6f, 0.6f, 0.0f);
-			activeShader_->setUniform3f("colorSpecular", 1.0f, 1.0f, 0.0f);
+			activeShader_->setUniform3f("colorDiffuse", diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
+			activeShader_->setUniform3f("colorSpecular", specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
+
 			activeShader_->setUniform1f("brightness", 20);
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::phong)
 		{
 			activeShader_->setUniform4f("colorAmbient", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
-
-			activeShader_->setUniform3f("colorDiffuse", 0.6f, 0.6f, 0.0f);
-			
-			activeShader_->setUniform3f("colorSpecular", 1.0f, 1.0f, 0.0f);
+			activeShader_->setUniform3f("colorDiffuse", diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
+			activeShader_->setUniform3f("colorSpecular", specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
 
 			activeShader_->setUniform3f("spotDir", 0.0f, 0.0f, 0.0f);
 			activeShader_->setUniform1f("spotSize", 0.0f);
@@ -90,8 +92,9 @@ void LightShader::begin()
 		{
 			activeShader_->setUniform3f("color", 1.f, 0.f, 0.f);
 			activeShader_->setUniform4f("colorAmbient", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
-			activeShader_->setUniform3f("colorDiffuse", 0.6f, 0.6f, 0.0f);
-			activeShader_->setUniform3f("colorSpecular", 1.0f, 1.0f, 0.0f);
+			activeShader_->setUniform3f("colorDiffuse", diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
+			activeShader_->setUniform3f("colorSpecular", specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
+
 			activeShader_->setUniform1f("brightness", 20);
 		}
 		activeShader_->setUniform3f("lightPosition", (*it)->getPosition() * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW));

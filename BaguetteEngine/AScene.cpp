@@ -86,6 +86,16 @@ void AScene::setDrawableColor(const Identifiable & drawableId, const ofFloatColo
 	ensureDrawableExistance(drawableId)->getDrawable()->setFillColor(color);
 }
 
+void AScene::setDrawableDiffuseColor(const Identifiable & drawableId, const ofFloatColor & color)
+{
+	ensureDrawableExistance(drawableId)->getDrawable()->setDiffuseColor(color);
+}
+
+void AScene::setDrawableSpecularColor(const Identifiable & drawableId, const ofFloatColor & color)
+{
+	ensureDrawableExistance(drawableId)->getDrawable()->setSpecularColor(color);
+}
+
 void AScene::setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color)
 {
 	SceneNode *node = ensureDrawableExistance(drawableId);

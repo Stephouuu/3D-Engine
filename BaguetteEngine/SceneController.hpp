@@ -51,6 +51,8 @@ public:
 	void setDrawableRotation(const Identifiable & drawableId, float degrees, bool save = true);
 	void setDrawableScale(const Identifiable & drawableId, const ofVec3f & scale, bool save = true);
 	void setDrawableColor(const Identifiable & drawableId, const ofColor & color);
+	void setDrawableDiffuseColor(const Identifiable & drawableId, const ofColor & color);
+	void setDrawableSpecularColor(const Identifiable & drawableId, const ofColor & color);
 	void setDrawableOutlineColor(const Identifiable & drawableId, const ofColor & color);
 	void setDrawableOutlineThickness(const Identifiable & drawableId, int thickness);
 
