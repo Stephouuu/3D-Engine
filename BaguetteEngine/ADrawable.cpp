@@ -38,6 +38,7 @@ void ADrawable::setShader(const std::string & v, const std::string & f)
 
 void ADrawable::setShader(IShader *shader)
 {
+	otherShader_ = false;
 	shader_ = shader;
 }
 

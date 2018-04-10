@@ -13,7 +13,7 @@ Portail::~Portail(void)
 	if (fbo2_.isAllocated()) fbo2_.clear();
 }
 
-bool Portail::refresh(ARenderer & renderer, SceneGraph & scene)
+bool Portail::refresh(ARenderer & renderer, SceneGraph & scene, LightShader & lightShader)
 {
 	SceneNode *p1Node = scene.findNode(p1_);
 	SceneNode *p2Node = scene.findNode(p2_);
@@ -25,13 +25,13 @@ bool Portail::refresh(ARenderer & renderer, SceneGraph & scene)
 	fbo1_.begin();
 		ofClear({ (float)c.r, (float)c.g, (float)c.b, 255 });
 		pcam2_.begin();
-			scene.render(renderer, pcam2_);
+			scene.render(renderer, pcam2_, lightShader);
 		pcam2_.end();
 	fbo1_.end();
 	fbo2_.begin();
 		ofClear({ (float)c.r, (float)c.g, (float)c.b, 255 });
 		pcam1_.begin();
-			scene.render(renderer, pcam1_);
+			scene.render(renderer, pcam1_, lightShader);
 		pcam1_.end();
 	fbo2_.end();
 	updatePortalTextures(p1Node, p2Node);

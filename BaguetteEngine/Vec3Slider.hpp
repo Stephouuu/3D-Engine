@@ -10,5 +10,6 @@ public:
 	virtual ~Vec3Slider();
 
 	void setValue(ofVec3f & vec);
+	const ofVec3f & getValue(void) const;
 };
 

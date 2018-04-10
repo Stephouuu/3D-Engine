@@ -14,7 +14,7 @@ public:
 	Portails(void);
 	~Portails(void);
 
-	void refresh(ARenderer & renderer, SceneGraph & scene);
+	void refresh(ARenderer & renderer, SceneGraph & scene, LightShader & lightShader);
 
 	void addPortail(const SceneNode::Ptr & n1, const SceneNode::Ptr & n2);
 

@@ -19,7 +19,10 @@ void Scene3D::update(float dt)
 
 void Scene3D::render(ARenderer & renderer)
 {
-	lightShader_.setLights(&lights_);
+	if (lights_.size() > 0)
+		lightShader_.setLights(&lights_);
+	else
+		lightShader_.setLights(nullptr);
 	cc_.render(renderer, graph_, lightShader_);
 }
 

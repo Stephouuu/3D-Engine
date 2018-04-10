@@ -1,4 +1,5 @@
 #include "EditMenu.hpp"
+#include "ACubicCurveVector.hpp"
 
 EditMenu::EditMenu(SceneController & scene)
 	: scene_(scene), currentDimension_(3), resetting_(false), isImported(false), yolo_(0)
@@ -56,6 +57,10 @@ void EditMenu::setup()
 	position2d_.setup("Positions", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	size2d_.setup("Taille", ofVec2f(100, 100), ofVec2f(0, 0), ofVec2f(1900, 1000));
 	rotation2d_.setup("Rotation", ofVec3f(0, 0, 0), ofVec3f(0, 0, 0), ofVec3f(0, 0, 360));
+	curveParam1_.setup("Courbe P1", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900 * 2, 1000 * 2));
+	curveParam2_.setup("Courbe P2", ofVec3f(128, 614.4), ofVec3f(128, 614.4), ofVec3f(1900 * 2, 1000 * 2));
+	curveParam3_.setup("Courbe P3", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900 * 2, 1000 * 2));
+	curveParam4_.setup("Courbe P4", ofVec3f(768, 153.6), ofVec3f(768, 153.6), ofVec3f(1900 * 2, 1000 * 2));
 
 	thickness_.setup("Epaisseur bordure", ofVec2f(0, 0), ofVec2f(0, 0), ofVec2f(30, 0));
 	colorOut_.setup("Couleur bordure", ofColor(0, 0, 0, 255), ofColor(0, 0, 0, 0), ofColor(255, 255, 255, 255));
@@ -193,6 +198,7 @@ void EditMenu::focus(const Identifiable & id)
 
 	if (node) {
 		updateValues(node);
+		setupGuiFromDrawableType(node->getDrawable());
 	}
 }
 
@@ -277,6 +283,25 @@ void EditMenu::vecSliderColorDiffuseChange(ofColor & color)
 
 	const Identifiable * focused = scene_.getFocusedDrawable();
 	//if (focused != nullptr) scene_.setDrawableRotation(*focused, vec.z, !resetting_);
+}
+
+void EditMenu::vec2SliderBezierChange(ofVec2f & p)
+{
+	const Identifiable * focused = scene_.getFocusedDrawable();
+	if (focused != nullptr && (*focused) != 0) {
+		SceneNode *node = scene_.ensureDrawableExistance(*focused);
+		if (node) {
+			ACubicCurveVector *b = dynamic_cast<ACubicCurveVector *>(node->getDrawable());
+			if (b) {
+				b->setParam({
+					curveParam1_.getValue(),
+					curveParam2_.getValue(),
+					curveParam3_.getValue(),
+					curveParam4_.getValue(),
+				});
+			}
+		}
+	}
 }
 
 void EditMenu::buttonPressedAnimations(const void * sender)
@@ -394,7 +419,6 @@ void EditMenu::toggleSelectedPrimary(const void * sender, bool & value)
 				node->getDrawable()->setTexture(new Texture, 0);
 			}
 			if (p->getName() == "Aucune") {
-				// delete node->getDrawable()->texture();
 				node->getDrawable()->setTexture(nullptr, 0);
 			} else {
 				if (p->getName() != "Bruit de perlin") {
@@ -509,6 +533,8 @@ void EditMenu::updateValues(SceneNode *node)
 			colorOut_.setValue(outColor);
 			int thickness = currentDrawable->getOutlineThickness();
 			thickness_.setValue(ofVec2f(thickness, 0));
+
+			updateGuiFromDrawableType(currentDrawable);
 		}
 		else {
 			position2d_.setValue(ofVec2f(0, 0));
@@ -566,6 +592,10 @@ void EditMenu::initListeners(void)
 	position2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderPositionChange);
 	size2d_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderSizeChange);
 	rotation2d_.getParameter().cast<ofVec3f>().addListener(this, &EditMenu::vec2SliderRotationChange);
+	curveParam1_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam2_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam3_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam4_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::vec2SliderBezierChange);
 
 	thickness_.getParameter().cast<ofVec2f>().addListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().addListener(this, &EditMenu::onColorOutChange);
@@ -613,25 +643,51 @@ void EditMenu::removeListeners(void)
 	position2d_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderPositionChange);
 	size2d_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderSizeChange);
 	rotation2d_.getParameter().cast<ofVec3f>().removeListener(this, &EditMenu::vec2SliderRotationChange);
+	curveParam1_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam2_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam3_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
+	curveParam4_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::vec2SliderBezierChange);
 
 	thickness_.getParameter().cast<ofVec2f>().removeListener(this, &EditMenu::onThicknessChange);
 	colorOut_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorOutChange);
 	colorScene_.getParameter().cast<ofColor>().removeListener(this, &EditMenu::onColorSceneChange);
 
-	for (const auto &e : primaryTextureList_) {
+	for (const auto &e : primaryTextureList_)
 		e->removeListener(this, &EditMenu::toggleSelectedPrimary);
-	}
-
-	for (const auto &e : secondaryTextureList_) {
+	for (const auto &e : secondaryTextureList_)
 		e->removeListener(this, &EditMenu::toggleSelectedSecondary);
-	}
-	
-	for (const auto &e : filterList_) {
+	for (const auto &e : filterList_)
 		e->removeListener(this, &EditMenu::toggleSelectedFilter);
-	}
-
-	for (const auto &e : modeCompositionList_) {
+	for (const auto &e : modeCompositionList_)
 		e->removeListener(this, &EditMenu::toggleSelectedMode);
-	}
 	animationButton_.removeListener(this, &EditMenu::buttonPressedAnimations);
+}
+
+void EditMenu::setupGuiFromDrawableType(const ADrawable * drawable)
+{
+	if (!drawable)
+		return;
+
+	refresh(currentDimension_);
+	if (dynamic_cast<const ACubicCurveVector *>(drawable)) {
+		gui_.add(&curveParam1_);
+		gui_.add(&curveParam2_);
+		gui_.add(&curveParam3_);
+		gui_.add(&curveParam4_);
+	}
+}
+
+void EditMenu::updateGuiFromDrawableType(const ADrawable * drawable)
+{
+	if (!drawable)
+		return;
+
+	const ACubicCurveVector * curve = dynamic_cast<const ACubicCurveVector *>(drawable);
+	if (curve) {
+		std::vector<ofVec2f> v = curve->getParam();
+		curveParam1_.setValue(v[0]);
+		curveParam2_.setValue(v[1]);
+		curveParam3_.setValue(v[2]);
+		curveParam4_.setValue(v[3]);
+	}
 }

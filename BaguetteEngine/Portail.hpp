@@ -12,7 +12,7 @@ public:
 	Portail(const Identifiable & p1, const Identifiable & p2);
 	~Portail(void);
 
-	bool refresh(ARenderer & renderer, SceneGraph & scene);
+	bool refresh(ARenderer & renderer, SceneGraph & scene, LightShader & lightShader);
 
 private:
 	void updateCamerasTransformation(SceneNode *n1, SceneNode *n2);

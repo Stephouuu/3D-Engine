@@ -82,7 +82,7 @@ void CameraController::render(ARenderer & renderer, SceneGraph & scene, LightSha
 {
 	unsigned int i = 0;
 
-	portails_.refresh(renderer, scene);
+	portails_.refresh(renderer, scene, lightShader);
 
 	ofClear(255, 255, 255, 255);
 	for (auto & it : cams_) {

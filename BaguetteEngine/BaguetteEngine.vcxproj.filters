@@ -202,9 +202,6 @@
     <ClCompile Include="Vec2Slider.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Vec1Slider.cpp">
-      <Filter>src\UI</Filter>
-    </ClCompile>
     <ClCompile Include="ColorSlider.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
@@ -256,6 +253,23 @@
     <ClCompile Include="SceneRaytracer.cpp">
       <Filter>src\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>src\Raytracing</Filter>
+    </ClCompile>
+    <ClCompile Include="BezierCubicVector.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="HermiteCubicVector.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec4Slider.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ACubicCurveVector.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicShader.cpp" />
+    <ClCompile Include="LightShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -449,6 +463,9 @@
     </Filter>
     <Filter Include="src\Camera">
       <UniqueIdentifier>{d5d51136-bbfb-4a5a-926d-49f018dafe40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Raytracing">
+      <UniqueIdentifier>{533a4718-f846-4406-8ea7-b095f883ab74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1260,9 +1277,6 @@
     <ClInclude Include="Model3DGenerator.hpp">
       <Filter>src\Graphics\Mesh\Generator</Filter>
     </ClInclude>
-    <ClInclude Include="Vec1Slider.hpp">
-      <Filter>src\UI</Filter>
-    </ClInclude>
     <ClInclude Include="TextureGenerator.hpp">
       <Filter>src\Graphics</Filter>
     </ClInclude>
@@ -1308,6 +1322,30 @@
     <ClInclude Include="SceneRaytracer.hpp">
       <Filter>src\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Ray.hpp">
+      <Filter>src\Raytracing</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.hpp">
+      <Filter>src\Raytracing</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.hpp">
+      <Filter>src\Raytracing</Filter>
+    </ClInclude>
+    <ClInclude Include="BezierCubicVector.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="HermiteCubicVector.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec4Slider.hpp">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ACubicCurveVector.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicShader.hpp" />
+    <ClInclude Include="IShader.hpp" />
+    <ClInclude Include="LightShader.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

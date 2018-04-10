@@ -71,6 +71,9 @@ private:
 	ofxButton			insertCircle_;
 	ofxButton			insertRectangle_;
 
+	ofxButton			insertBezier_;
+	ofxButton			insertHermite_;
+
 	ofxButton			insertAmbiantLight_;
 	ofxButton			insertDirectionalLight_;
 	ofxButton			insertPonctualLight_;

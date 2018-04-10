@@ -1,6 +1,14 @@
 #pragma once
 
+#include <vector>
+#include <cmath>
+#include <random>
+
 #include "AScene.hpp"
+
+#include "Sphere.hpp"
+#include "Ray.hpp"
+#include "Camera.hpp"
 
 class SceneRaytracer : public AScene
 {
@@ -8,6 +16,7 @@ public:
 	SceneRaytracer(void);
 	virtual ~SceneRaytracer(void);
 
+	virtual void update(float dt);
 	virtual void render(ARenderer & renderer);
 
 	virtual const Identifiable & instanciateDrawable(const std::string & type, const Identifiable & parent = Identifiable());
@@ -21,7 +30,9 @@ private:
 
 private:
 	CameraController cc_;
-	bool init_;
 	ofImage img_;
+	bool init_;
+	int w_;
+	int h_;
 };
 

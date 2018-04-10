@@ -11,12 +11,12 @@ Portails::~Portails(void)
 	}
 }
 
-void Portails::refresh(ARenderer & renderer, SceneGraph & scene)
+void Portails::refresh(ARenderer & renderer, SceneGraph & scene, LightShader & lightShader)
 {
 	std::vector<Portail *>::iterator it = std::begin(portails_);
 	
 	while (it != std::end(portails_)) {
-		if (!(*it)->refresh(renderer, scene)) {
+		if (!(*it)->refresh(renderer, scene, lightShader)) {
 			delete (*it);
 			it = portails_.erase(it);
 		}

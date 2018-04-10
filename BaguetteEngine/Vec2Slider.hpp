@@ -9,5 +9,6 @@ public:
 	virtual ~Vec2Slider(void);
 
 	void setValue(ofVec2f & vec);
+	const ofVec2f & getValue(void) const;
 };
 

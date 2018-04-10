@@ -20,14 +20,12 @@ void SceneNode::render(ARenderer & renderer, const ofCamera & camera, LightShade
 {
 	if (drawable_ && getID() != 0)
 	{
-		if (drawable_->haveOtherShader())
+		if (drawable_->haveOtherShader() == false)
 			drawable_->setShader(&lightShader);
 		drawable_->draw(renderer);
 	}
 	for (auto & it : childs_)
 	{
-		if (drawable_->haveOtherShader())
-			drawable_->setShader(&lightShader);
 		it->render(renderer, camera, lightShader);
 	}
 }

@@ -21,13 +21,7 @@ void AMesh::draw(ARenderer & renderer)
 		ofTranslate(getGlobalPosition().x, getGlobalPosition().y, getGlobalPosition().z);
 		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
 	ofPopMatrix();
-
-	if (shader_ == nullptr)
-	{
-		draw_();
-		return;
-	}
-
+	                                                           
 	if (otherShader_)
 	{
 		basicShader_.begin();
@@ -40,6 +34,11 @@ void AMesh::draw(ARenderer & renderer)
 	}
 	else
 	{
+		if (shader_ == nullptr)
+		{
+			draw_();
+			return;
+		}
 		shader_->begin();
 		shader_->setUniform1i("texturePresent", texturePresent);
 		shader_->setUniformMatrix4f("model", getGlobalTransformMatrix());

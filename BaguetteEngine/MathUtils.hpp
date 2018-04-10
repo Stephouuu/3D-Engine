@@ -10,5 +10,7 @@ public:
 	static float RadiansToDegrees(float radians);
 
 	static float easeInSine(float t);
+	
+	static double clamp(double x);
 };
 
