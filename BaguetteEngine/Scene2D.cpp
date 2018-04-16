@@ -32,6 +32,8 @@ const Identifiable & Scene2D::instanciateDrawable(const std::string & type, cons
 		node = SceneGraph::CreateSceneNode<BezierCubicVector>();
 	else if (type == "hermite")
 		node = SceneGraph::CreateSceneNode<HermiteCubicVector>();
+	else if (type == "bezier spline")
+		node = SceneGraph::CreateSceneNode<BezierSpline>();
 	else
 		std::cerr << type << " not found !" << std::endl;
 	try {

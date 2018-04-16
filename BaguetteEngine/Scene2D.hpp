@@ -13,6 +13,7 @@
 
 #include "BezierCubicVector.hpp"
 #include "HermiteCubicVector.hpp"
+#include "BezierSpline.hpp"
 
 class Scene2D : public AScene
 {
