@@ -270,6 +270,9 @@
     </ClCompile>
     <ClCompile Include="BasicShader.cpp" />
     <ClCompile Include="LightShader.cpp" />
+    <ClCompile Include="BezierSpline.cpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1346,6 +1349,9 @@
     <ClInclude Include="BasicShader.hpp" />
     <ClInclude Include="IShader.hpp" />
     <ClInclude Include="LightShader.hpp" />
+    <ClInclude Include="BezierSpline.hpp">
+      <Filter>src\Graphics\Vector\Primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

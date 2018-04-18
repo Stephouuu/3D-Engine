@@ -168,7 +168,7 @@ void MainMenu::refresh2D(void)
 	primitiveGroup_.add(insertRectangle_.setup("Ajouter un rectangle"));
 	primitiveGroup_.add(insertBezier_.setup("Ajouter bezier cubic"));
 	primitiveGroup_.add(insertHermite_.setup("Ajouter hermite"));
-	primitiveGroup_.add(insertBezier_.setup("Ajouter bezier spline"));
+	primitiveGroup_.add(insertBezierSpline_.setup("Ajouter bezier spline"));
 
 	vectorShapeGroup_.add(insertDialogVector_.setup("Ajouter dialog"));
 	vectorShapeGroup_.add(insertSmileVector_.setup("Ajouter smile"));

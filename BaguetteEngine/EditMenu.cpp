@@ -106,9 +106,9 @@ void EditMenu::refresh(int newEditorDimension)
 		gui_.add(&rotation_);
 	}
 	gui_.add(&colorFill_);
-	gui_.add(&colorDiffuse_);
-	gui_.add(&colorSpecular_);
 	if (newEditorDimension == 3) {
+		gui_.add(&colorDiffuse_);
+		gui_.add(&colorSpecular_);
 		gui_.add(&selectPrimaryTextures_);
 		gui_.add(&composition_);
 		composition_.minimizeAll();
@@ -309,7 +309,7 @@ void EditMenu::vec2SliderBezierSplineChange(ofVec2f & p)
 		if (node) {
 			BezierSpline *b = dynamic_cast<BezierSpline *>(node->getDrawable());
 			if (b) {
-				b->setParam(
+				b->setParam({
 					ofPoint(curveParam1_.getValue()),
 					ofPoint(curveParam2_.getValue()),
 					ofPoint(curveParam3_.getValue()),
@@ -317,7 +317,7 @@ void EditMenu::vec2SliderBezierSplineChange(ofVec2f & p)
 					ofPoint(curveParam5_.getValue()),
 					ofPoint(curveParam6_.getValue()),
 					ofPoint(curveParam7_.getValue())
-					);
+				});
 			}
 		}
 	}

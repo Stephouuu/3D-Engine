@@ -69,9 +69,6 @@ private:
 	void setupGuiFromDrawableType(const ADrawable * drawable);
 	void updateGuiFromDrawableType(const ADrawable * drawable);
 
-//	void setupGuiFromDrawableTypeSpline(const ADrawable * drawable);
-	//void updateGuiFromDrawableTypeSpline(const ADrawable * drawable);
-
 private:
 	ofxPanel					gui_;
 	ofxGuiGroup					selectPrimaryTextures_;
