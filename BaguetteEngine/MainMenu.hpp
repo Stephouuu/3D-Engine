@@ -72,6 +72,7 @@ private:
 	ofxButton			insertRectangle_;
 
 	ofxButton			insertBezier_;
+	ofxButton			insertBezierSpline_;
 	ofxButton			insertHermite_;
 
 	ofxButton			insertAmbiantLight_;

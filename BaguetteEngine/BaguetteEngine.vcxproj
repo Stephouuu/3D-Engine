@@ -181,6 +181,7 @@
     <ClCompile Include="BaseGui.cpp" />
     <ClCompile Include="BasicShader.cpp" />
     <ClCompile Include="BezierCubicVector.cpp" />
+    <ClCompile Include="BezierSpline.cpp" />
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="ACubicCurveVector.cpp" />
     <ClCompile Include="EasyCamera.cpp" />
@@ -273,6 +274,7 @@
     <ClInclude Include="BaseGui.hpp" />
     <ClInclude Include="BasicShader.hpp" />
     <ClInclude Include="BezierCubicVector.hpp" />
+    <ClInclude Include="BezierSpline.hpp" />
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="CameraController.hpp" />
     <ClInclude Include="ACubicCurveVector.hpp" />

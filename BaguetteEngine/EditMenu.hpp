@@ -39,6 +39,7 @@ public:
 	void vecSliderColorSpecularChange(ofColor & color);
 	void vecSliderColorDiffuseChange(ofColor & color);
 	void vec2SliderBezierChange(ofVec2f & p);
+	void vec2SliderBezierSplineChange(ofVec2f & p);
 
 	void vec2SliderPositionChange(ofVec2f & vec);
 	void vec2SliderSizeChange(ofVec2f & vec);
@@ -92,6 +93,9 @@ private:
 	Vec2Slider					curveParam2_;
 	Vec2Slider					curveParam3_;
 	Vec2Slider					curveParam4_;
+	Vec2Slider					curveParam5_;
+	Vec2Slider					curveParam6_;
+	Vec2Slider					curveParam7_;
 
 	ColorSlider					colorFill_;
 	ColorSlider					colorOut_;
