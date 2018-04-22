@@ -19,10 +19,14 @@ public:
 	virtual void setLights(std::vector<Light *> * lights);
 	virtual void setUniformMatrix4f(const string &name, const ofMatrix4x4 &m, int count = 1);
 	size_t countLights() const;
+	void setSpecularMaterial(const ofColor &color);
+	void setDiffuseMaterial(const ofColor &color);
 
 private:
 	std::map<Light::LightModel, ofShader> shaders_;
 	ofShader						*activeShader_;
 	std::vector<Light *>			*lights_;
 	ofMaterial						material;
+	ofColor							specularMaterial_;
+	ofColor							diffuseMaterial_;
 };

@@ -47,7 +47,7 @@ void LightShader::begin()
 		return;
 	}
 
-	for (it = lights_->cbegin(); it != lights_->cend(); it++)
+	for (it = lights_->cbegin(); it != lights_->cend() && i < 4; it++)
 	{
 		if (i == 0)
 		{
@@ -55,11 +55,14 @@ void LightShader::begin()
 			activeShader_->begin();
 		}
 		ofColor		color = (*it)->getFillColor();
+		//ofColor		diffuseColor = (*it)->getDiffuseColor() + diffuseMaterial_;
+		//ofColor		specularColor = (*it)->getSpecularColor() + specularMaterial_;
 		ofColor		diffuseColor = (*it)->getDiffuseColor();
 		ofColor		specularColor = (*it)->getSpecularColor();
 		if ((*it)->getLightModel() == Light::LightModel::color_fill)
 		{
-			activeShader_->setUniform4f("lightColors[" + std::to_string(i) + "]", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
+			std::cout << "i == " << "colorAmbient" + std::to_string(i) << std::endl;
+			activeShader_->setUniform4f("colorAmbient" + std::to_string(i), color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::lambert)
 		{
@@ -104,13 +107,11 @@ void LightShader::begin()
 				activeShader_->setUniform1f("coneAngle", -1.f);
 			activeShader_->setUniform1f("materialShininess", (*it)->getBrightness());
 		}
-		std::cout << (*it)->getGlobalPosition()  * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW) << std::endl;
 		activeShader_->setUniform3f("lightPosition", (*it)->getGlobalPosition() * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW));
 		i++;
 	}
 	if (activeShader_ != nullptr)
 	{
-		std::cout << "i ===== " << i << std::endl;
 		activeShader_->setUniform1i("lightNb", i);
 	}
 	if (i == 0)
@@ -153,4 +154,15 @@ size_t LightShader::countLights() const
 	if (lights_ == nullptr)
 		return (0);
 	return lights_->size();
+}
+
+void LightShader::setSpecularMaterial(const ofColor &color)
+{
+	specularMaterial_ = color;
+}
+
+
+void LightShader::setDiffuseMaterial(const ofColor &color)
+{
+	diffuseMaterial_ = color;
 }

@@ -5,7 +5,10 @@
 uniform sampler2D tex0;
 uniform bool texturePresent;
 uniform int lightNb;
-uniform vec4 lightColors[10];
+uniform vec4 colorAmbient0;
+uniform vec4 colorAmbient1;
+uniform vec4 colorAmbient2;
+uniform vec4 colorAmbient3;
 
 in vec2 texCoordVarying;
 
@@ -15,11 +18,22 @@ void main()
 {
 	if (!texturePresent)
 	{
-		fragmentColor = vec4(0.0, 0.0, 0.0, 1.0);
+		fragmentColor = colorAmbient0;
 
-		for (int i = 0; i < lightNb; ++i)
+		if (lightNb == 2)
 		{
-			fragmentColor += (lightColors[i]);
+			fragmentColor += (colorAmbient1);
+		}
+		else if (lightNb == 3)
+		{
+			fragmentColor += (colorAmbient1);
+			fragmentColor += (colorAmbient2);
+		}
+		else if (lightNb == 4)
+		{
+			fragmentColor += (colorAmbient1);
+			fragmentColor += (colorAmbient2);
+			fragmentColor += (colorAmbient3);
 		}
 	}
 	else
