@@ -15,10 +15,12 @@ void main()
 {
 	if (!texturePresent)
 	{
-		fragmentColor = vec4(0.1);
+		fragmentColor = vec4(0.0, 0.0, 0.0, 1.0);
 
 		for (int i = 0; i < lightNb; ++i)
-			fragmentColor += lightColors[i];
+		{
+			fragmentColor += (lightColors[i]);
+		}
 	}
 	else
 		fragmentColor = texture(tex0, vec2(texCoordVarying.x, 1 - texCoordVarying.y));

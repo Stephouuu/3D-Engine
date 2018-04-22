@@ -26,6 +26,6 @@ void main()
   // transformation de la position du sommet dans l'espace de vue
   viewSpacePosition = vec3(modelViewMatrix * position);
 
-  // transformation de la position du sommet par les matrices de modÃ¨le, vue et projection
+  // transformation de la position du sommet par les matrices de modèle, vue et projection
   gl_Position = projectionMatrix * modelViewMatrix * model * position;
 }

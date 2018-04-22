@@ -407,11 +407,11 @@ void MainMenu::buttonPressed3D(const void * sender)
 	else if (button->getName() == "Lumiere ambiante")
 		scene_.instanciateDrawable("light");
 	else if (button->getName() == "Lumiere directionelle")
-		scene_.instanciateDrawable("light");
+		scene_.instanciateDrawable("directionalLight");
 	else if (button->getName() == "Lumiere projecteur")
-		scene_.instanciateDrawable("light");
+		scene_.instanciateDrawable("spotLight");
 	else if (button->getName() == "Lumiere ponctuelle")
-		scene_.instanciateDrawable("light");
+		scene_.instanciateDrawable("ponctualLight");
 	else if (button->getName() == "Model lambert")
 		scene_.setLightModel(Light::LightModel::lambert);
 	else if (button->getName() == "Model gouraud")

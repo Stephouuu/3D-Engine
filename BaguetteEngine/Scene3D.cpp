@@ -55,6 +55,28 @@ const Identifiable & Scene3D::instanciateDrawable(const std::string & type, cons
 		node = SceneGraph::CreateSceneLight<>(light);
 		lights_.push_back(light);
 	}
+	else if (type == "directionalLight")
+	{
+		Light::Ptr light = nullptr;
+		node = SceneGraph::CreateSceneLight<>(light);
+		light->setLightType(Light::LightType::directional);
+		//light->setLightModel(Light::LightMode);
+		lights_.push_back(light);
+	}
+	else if (type == "spotLight")
+	{
+		Light::Ptr light = nullptr;
+		node = SceneGraph::CreateSceneLight<>(light);
+		light->setLightType(Light::LightType::spotlight);
+		lights_.push_back(light);
+	}
+	else if (type == "ponctualLight")
+	{
+		Light::Ptr light = nullptr;
+		node = SceneGraph::CreateSceneLight<>(light);
+		light->setLightType(Light::LightType::ponctual);
+		lights_.push_back(light);
+	}
 	else if (type == "plane")
 		node = SceneGraph::CreateSceneNodeFromGenerator<PlaneGenerator>();
 	else if (type == "cube")

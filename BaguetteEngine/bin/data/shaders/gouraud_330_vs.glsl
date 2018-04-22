@@ -18,6 +18,7 @@ uniform mat4x4 model;
 uniform vec3 colorAmbient;
 uniform vec3 colorDiffuse;
 uniform vec3 colorSpecular;
+uniform float coneAngle;
 
 // facteur de brillance spéculaire du matériau
 uniform float brightness;
@@ -42,6 +43,21 @@ void main()
   // calculer la direction de la surface vers la lumière (L)
   vec3 L = normalize(lightPosition - viewSpacePosition);
 
+  float attenuation = 1.0;
+
+  if (coneAngle > -1)
+  {
+	vec3 coneDirection = vec3(0, 0, -1);
+	float distanceToLight = length(lightPosition - viewSpacePosition);
+	attenuation = 1.0 / (1.0 + 1.5 * pow(distanceToLight, 2)); //The 1.5 value should be dynamic
+	//cone restrictions (affects attenuation)
+	float lightToSurfaceAngle = degrees(acos(dot(-L, normalize(coneDirection))));
+	if (lightToSurfaceAngle > coneAngle)
+	{
+		attenuation = 0.0;
+	}
+  }
+
   // calculer le niveau de réflexion diffuse (N • L)
   float reflectionDiffuse = max(dot(N, L), 0.0);
 
@@ -64,8 +80,9 @@ void main()
   // calculer la couleur du fragment
   interpolationColor = vec3(
     colorAmbient +
-    colorDiffuse * reflectionDiffuse +
-    colorSpecular * reflectionSpecular);
+	attenuation *
+    (colorDiffuse * reflectionDiffuse +
+    colorSpecular * reflectionSpecular));
 
   // transformation de la position du sommet par les matrices de modèle, vue et projection
   gl_Position = projectionMatrix * modelViewMatrix * model * position;

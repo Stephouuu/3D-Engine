@@ -24,4 +24,5 @@ private:
 	std::map<Light::LightModel, ofShader> shaders_;
 	ofShader						*activeShader_;
 	std::vector<Light *>			*lights_;
+	ofMaterial						material;
 };

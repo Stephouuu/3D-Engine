@@ -21,7 +21,7 @@ void AMesh::draw(ARenderer & renderer)
 		ofTranslate(getGlobalPosition().x, getGlobalPosition().y, getGlobalPosition().z);
 		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
 	ofPopMatrix();
-	                                                           
+
 	if (otherShader_)
 	{
 		basicShader_.begin();

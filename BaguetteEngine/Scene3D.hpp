@@ -34,4 +34,5 @@ public:
 private:
 	CameraController		cc_;
 	LightShader				lightShader_;
+	ofLight					light_;
 };

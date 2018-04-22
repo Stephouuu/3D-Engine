@@ -4,13 +4,13 @@ Light::Light()
 {
 	setPosition(ofVec3f(0, 0, 0));
 	setLightModel(LightModel::color_fill);
+	setLightType(LightType::ambiant);
 	color_.r = 255;
 	color_.g = 0;
 	color_.b = 0;
-	brightness_ = 0.f;
-	ambient_ = 0.f;
-	diffuse_ = 0.f;
-	specular_ = 0.f;
+	brightness_ = 20.f;
+	light_.setDiffuseColor(ofColor(255.f, 140.f, 0.f));
+	light_.setSpecularColor(ofColor(255.f, 255.f, 255.f));
 }
 
 Light::~Light()
@@ -19,16 +19,17 @@ Light::~Light()
 
 void Light::enable(void)
 {
-	//light_.enable();
+	light_.enable();
 }
 
 void Light::disable(void)
 {
-	//light_.disable();
+	light_.disable();
 }
 
 void Light::setPosition(const ofVec3f pos)
 {
+	light_.setGlobalPosition(pos);
 	pos_ = pos;
 }
 
@@ -48,19 +49,9 @@ void Light::setBrightness(const float brightness)
 	brightness_ = brightness;
 }
 
-void Light::setAmbientColor(const float ambient)
+float Light::getBrightness(void) const
 {
-	ambient_ = ambient;
-}
-
-void Light::setDiffuseColor(const float diffuse)
-{
-	diffuse_ = diffuse;
-}
-
-void Light::setSpecularColor(const float specular)
-{
-	specular_ = specular;
+	return brightness_;
 }
 
 void Light::setLightModel(const LightModel lightModel)
@@ -125,4 +116,23 @@ void	Light::setDrawableId(int id)
 int		Light::getDrawableId(void) const
 {
 	return drawableId_;
+}
+
+Light::LightType	Light::getLightType(void) const
+{
+	return lightType_;
+}
+
+void	Light::setLightType(const LightType lightType)
+{
+	if (lightType == Light::LightType::directional)
+	{
+		light_.setDirectional();
+		light_.setOrientation(ofVec3f(0, 90, 0));
+	}
+	else if (lightType == Light::LightType::ponctual)
+		light_.setPointLight();
+	else if (lightType == Light::LightType::spotlight)
+		light_.setSpotlight();
+	lightType_ = lightType;
 }

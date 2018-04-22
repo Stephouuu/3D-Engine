@@ -24,7 +24,7 @@ void main()
   viewSpaceNormal = vec3(normalMatrix * normal);
 
   // transformation de la position du sommet dans l'espace de vue
-  viewSpacePosition = vec3(modelViewMatrix * position);
+  viewSpacePosition = vec3(modelViewMatrix * model * position);
 
   // transformation de la position du sommet par les matrices de modèle, vue et projection
   gl_Position = projectionMatrix * modelViewMatrix * model * position;

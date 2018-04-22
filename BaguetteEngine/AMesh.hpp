@@ -63,5 +63,5 @@ private:
 
 protected:
 	InstantiableMesh	meshType_;
-	//Light				light_;
+	Light				light_;
 };

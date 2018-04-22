@@ -7,6 +7,7 @@ class Light : public ADrawable
 {
 public:
 	enum class LightModel { color_fill, lambert, gouraud, phong, blinn_phong, none };
+	enum class LightType { ambiant, spotlight, directional, ponctual };
 	typedef Light* Ptr;
 
 public:
@@ -17,11 +18,11 @@ public:
 	void	setPosition(const ofVec3f pos);
 	ofVec3f	getPosition(void) const;
 	void	setBrightness(const float brightness);
-	void	setAmbientColor(const float ambiant);
-	void	setDiffuseColor(const float diffuse);
-	void	setSpecularColor(const float specular);
 	void	setLightModel(const LightModel lightModel);
+	void	setLightType(const LightType lightType);
 	Light::LightModel	getLightModel(void) const;
+	Light::LightType	getLightType(void) const;
+	float	getBrightness(void) const;
 	void	setDrawableId(int id);
 	int		getDrawableId(void) const;
 
@@ -38,14 +39,12 @@ public:
 	virtual void onPositionChanged(void);
 
 private:
-	ofLight		light_;
 	ofVec3f		pos_;
 	ofColor		color_;
 	LightModel	lightModel_;
+	LightType	lightType_;
 	float		brightness_;
-	float		ambient_;
-	float		diffuse_;
-	float		specular_;
 	unsigned int drawableId_;
+	ofLight		light_;
 };
 
