@@ -35,45 +35,45 @@ void main()
   if (lightNb > 0)
   {
     // calculer la direction de la surface vers la lumière (L)
-	vec3 l = normalize(lightPosition - viewSpacePosition);
+	vec3 l = normalize(lightPosition0 - viewSpacePosition);
 
 	// calculer le niveau de réflexion diffuse (N • L)
 	float reflection_diffuse = max(dot(n, l), 0.0);
 
 	// déterminer la couleur du fragment
-	gl_FragColor = vec4(colorAmbient + colorDiffuse * reflection_diffuse, 1.0);
+	gl_FragColor = vec4(colorAmbient0 + colorDiffuse0 * reflection_diffuse, 1.0);
   }
   if (lightNb > 1)
   {
       // calculer la direction de la surface vers la lumière (L)
-	vec3 l = normalize(lightPosition - viewSpacePosition);
+	vec3 l = normalize(lightPosition1 - viewSpacePosition);
 
 	// calculer le niveau de réflexion diffuse (N • L)
 	float reflection_diffuse = max(dot(n, l), 0.0);
 
 	// déterminer la couleur du fragment
-	gl_FragColor = vec4(colorAmbient + colorDiffuse * reflection_diffuse, 1.0);
+	gl_FragColor += vec4(colorAmbient1 + colorDiffuse1 * reflection_diffuse, 1.0);
   }
   if (lightNb > 2)
   {
       // calculer la direction de la surface vers la lumière (L)
-	vec3 l = normalize(lightPosition - viewSpacePosition);
+	vec3 l = normalize(lightPosition2 - viewSpacePosition);
 
 	// calculer le niveau de réflexion diffuse (N • L)
 	float reflection_diffuse = max(dot(n, l), 0.0);
 
 	// déterminer la couleur du fragment
-	gl_FragColor = vec4(colorAmbient + colorDiffuse * reflection_diffuse, 1.0);
+	gl_FragColor += vec4(colorAmbient2 + colorDiffuse2 * reflection_diffuse, 1.0);
   }
   if (lightNb > 3)
   {
         // calculer la direction de la surface vers la lumière (L)
-	vec3 l = normalize(lightPosition - viewSpacePosition);
+	vec3 l = normalize(lightPosition3 - viewSpacePosition);
 
 	// calculer le niveau de réflexion diffuse (N • L)
 	float reflection_diffuse = max(dot(n, l), 0.0);
 
 	// déterminer la couleur du fragment
-	gl_FragColor = vec4(colorAmbient + colorDiffuse * reflection_diffuse, 1.0);	
+	gl_FragColor += vec4(colorAmbient3 + colorDiffuse3 * reflection_diffuse, 1.0);	
   }
 }
