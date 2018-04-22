@@ -35,7 +35,7 @@ void main()
   vec3 viewSpaceNormal = vec3(normalMatrix * normal);
 
   // transformation de la position du sommet dans l'espace de vue
-  vec3 viewSpacePosition = vec3(modelViewMatrix * position);
+  vec3 viewSpacePosition = vec3(modelViewMatrix * model * position);
 
   // re-normaliser la normale
   vec3 N = normalize(viewSpaceNormal);
