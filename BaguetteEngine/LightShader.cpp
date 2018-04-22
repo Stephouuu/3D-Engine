@@ -55,19 +55,16 @@ void LightShader::begin()
 			activeShader_->begin();
 		}
 		ofColor		color = (*it)->getFillColor();
-		//ofColor		diffuseColor = (*it)->getDiffuseColor() + diffuseMaterial_;
-		//ofColor		specularColor = (*it)->getSpecularColor() + specularMaterial_;
-		ofColor		diffuseColor = (*it)->getDiffuseColor();
-		ofColor		specularColor = (*it)->getSpecularColor();
+		ofColor		diffuseColor = (*it)->getDiffuseColor() + diffuseMaterial_;
+		ofColor		specularColor = (*it)->getSpecularColor() + specularMaterial_;
 		if ((*it)->getLightModel() == Light::LightModel::color_fill)
 		{
-			std::cout << "i == " << "colorAmbient" + std::to_string(i) << std::endl;
 			activeShader_->setUniform4f("colorAmbient" + std::to_string(i), color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::lambert)
 		{
-			activeShader_->setUniform4f("colorAmbient", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
-			activeShader_->setUniform3f("colorDiffuse", diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
+			activeShader_->setUniform4f("colorAmbient" + std::to_string(i), color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
+			activeShader_->setUniform3f("colorDiffuse" + std::to_string(i), diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
 			if ((*it)->getLightType() == Light::LightType::spotlight)
 				activeShader_->setUniform1f("coneAngle", 15.f);
 			else
@@ -76,9 +73,9 @@ void LightShader::begin()
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::gouraud)
 		{
-			activeShader_->setUniform4f("colorAmbient", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
-			activeShader_->setUniform3f("colorDiffuse", diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
-			activeShader_->setUniform3f("colorSpecular", specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
+			activeShader_->setUniform4f("colorAmbient" + std::to_string(i), color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
+			activeShader_->setUniform3f("colorDiffuse" + std::to_string(i), diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
+			activeShader_->setUniform3f("colorSpecular" + std::to_string(i), specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
 			if ((*it)->getLightType() == Light::LightType::spotlight)
 				activeShader_->setUniform1f("coneAngle", 15.f);
 			else
@@ -87,9 +84,10 @@ void LightShader::begin()
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::phong)
 		{
-			activeShader_->setUniform4f("colorAmbient", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
-			activeShader_->setUniform3f("colorDiffuse", diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
-			activeShader_->setUniform3f("colorSpecular", specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
+			activeShader_->setUniform4f("colorAmbient" + std::to_string(i), color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
+			activeShader_->setUniform3f("colorDiffuse" + std::to_string(i), diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
+			activeShader_->setUniform3f("colorSpecular" + std::to_string(i), specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
+
 			if ((*it)->getLightType() == Light::LightType::spotlight)
 				activeShader_->setUniform1f("coneAngle", 15.f);
 			else
@@ -98,16 +96,16 @@ void LightShader::begin()
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::blinn_phong)
 		{
-			activeShader_->setUniform4f("colorAmbient", color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
-			activeShader_->setUniform3f("colorDiffuse", diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
-			activeShader_->setUniform3f("materialSpecularColor", specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
+			activeShader_->setUniform4f("colorAmbient" + std::to_string(i), color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
+			activeShader_->setUniform3f("colorDiffuse" + std::to_string(i), diffuseColor.r / 255.f, diffuseColor.g / 255.f, diffuseColor.b / 255.f);
+			activeShader_->setUniform3f("colorSpecular" + std::to_string(i), specularColor.r / 255.f, specularColor.g / 255.f, specularColor.b / 255.f);
 			if ((*it)->getLightType() == Light::LightType::spotlight)
 				activeShader_->setUniform1f("coneAngle", 15.f);
 			else
 				activeShader_->setUniform1f("coneAngle", -1.f);
-			activeShader_->setUniform1f("materialShininess", (*it)->getBrightness());
+			activeShader_->setUniform1f("brightness", (*it)->getBrightness());
 		}
-		activeShader_->setUniform3f("lightPosition", (*it)->getGlobalPosition() * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW));
+		activeShader_->setUniform3f("lightPosition" + std::to_string(i), (*it)->getGlobalPosition() * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW));
 		i++;
 	}
 	if (activeShader_ != nullptr)

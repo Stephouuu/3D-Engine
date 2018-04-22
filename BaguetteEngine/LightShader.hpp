@@ -16,11 +16,11 @@ public:
 	virtual bool load(std::string vertName, std::string fragName);
 	virtual void setUniform1i(const std::string & name, int v1);
 	virtual void setUniformTexture(const string &name, const ofTexture &img, int textureLocation);
-	virtual void setLights(std::vector<Light *> * lights);
+	void setLights(std::vector<Light *> * lights);
 	virtual void setUniformMatrix4f(const string &name, const ofMatrix4x4 &m, int count = 1);
-	size_t countLights() const;
 	void setSpecularMaterial(const ofColor &color);
 	void setDiffuseMaterial(const ofColor &color);
+	size_t countLights() const;
 
 private:
 	std::map<Light::LightModel, ofShader> shaders_;

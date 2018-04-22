@@ -22,7 +22,7 @@ void AMesh::draw(ARenderer & renderer)
 		if (isFocused()) ofDrawAxis(std::max({ getScale().x, getScale().y, getScale().z }) + 1);
 	ofPopMatrix();
 
-	if (otherShader_)
+	if (otherShader_ || texturePresent)
 	{
 		basicShader_.begin();
 		basicShader_.setUniform1i("texturePresent", texturePresent);
@@ -41,6 +41,12 @@ void AMesh::draw(ARenderer & renderer)
 		}
 		shader_->begin();
 		shader_->setUniform1i("texturePresent", texturePresent);
+
+		LightShader *lightShader;
+		lightShader = dynamic_cast<LightShader*>(shader_);
+		lightShader->setSpecularMaterial(specularColor_);
+		lightShader->setDiffuseMaterial(diffuseColor_);
+
 		shader_->setUniformMatrix4f("model", getGlobalTransformMatrix());
 		for (int i = 0; i < textures_.size(); ++i)
 			shader_->setUniformTexture("tex" + std::to_string(i), textures_[i]->getTexture(), i);

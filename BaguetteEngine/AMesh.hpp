@@ -9,7 +9,7 @@
 #include "ADrawable.hpp"
 #include "TextureGenerator.hpp"
 
-#include "Light.hpp"
+#include "LightShader.hpp"
 
 class ARenderer;
 
