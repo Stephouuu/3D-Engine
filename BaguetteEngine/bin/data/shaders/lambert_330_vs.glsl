@@ -14,6 +14,7 @@ out vec3 viewSpaceNormal;
 uniform mat4x4 modelViewMatrix;
 uniform mat4x4 projectionMatrix;
 uniform mat4x4 model;
+uniform bool isDirectional;
 
 void main()
 {
@@ -24,7 +25,14 @@ void main()
   viewSpaceNormal = vec3(normalMatrix * normal);
 
   // transformation de la position du sommet dans l'espace de vue
-  viewSpacePosition = vec3(modelViewMatrix * model * position);
+  if (!isDirectional)
+  {
+	viewSpacePosition = vec3(modelViewMatrix * model * position);
+  }
+  else
+  {
+	viewSpacePosition = vec3(modelViewMatrix * position);
+  }
 
   // transformation de la position du sommet par les matrices de modèle, vue et projection
   gl_Position = projectionMatrix * modelViewMatrix * model * position;

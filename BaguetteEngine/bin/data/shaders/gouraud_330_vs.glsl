@@ -13,6 +13,7 @@ out vec3 interpolationColor;
 uniform mat4x4 modelViewMatrix;
 uniform mat4x4 projectionMatrix;
 uniform mat4x4 model;
+uniform bool isDirectional;
 
 // couleurs de réflexion du matériau
 uniform int lightNb;
@@ -52,8 +53,18 @@ void main()
   // transformation de la normale du sommet dans l'espace de vue
   vec3 viewSpaceNormal = vec3(normalMatrix * normal);
 
-  // transformation de la position du sommet dans l'espace de vue
-  vec3 viewSpacePosition = vec3(modelViewMatrix * model * position);
+  vec3 viewSpacePosition = vec3(0.0, 0.0 ,0.0);
+
+  if (!isDirectional)
+  {
+	  // transformation de la position du sommet dans l'espace de vue
+	viewSpacePosition = vec3(modelViewMatrix * model * position);
+  }
+  else
+  {
+	  // transformation de la position du sommet dans l'espace de vue
+	viewSpacePosition = vec3(modelViewMatrix * position);
+  }
 
   // re-normaliser la normale
   vec3 N = normalize(viewSpaceNormal);
@@ -243,7 +254,6 @@ void main()
     (colorDiffuse3 * reflectionDiffuse +
     colorSpecular3 * reflectionSpecular));
   }
-
-  // transformation de la position du sommet par les matrices de modèle, vue et projection
-  gl_Position = projectionMatrix * modelViewMatrix * model * position;
+    // transformation de la position du sommet par les matrices de modèle, vue et projection
+	 gl_Position = projectionMatrix * modelViewMatrix * model * position;
 }

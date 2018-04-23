@@ -54,9 +54,11 @@ void LightShader::begin()
 			activeShader_ = &shaders_[(*it)->getLightModel()];
 			activeShader_->begin();
 		}
+		
 		ofColor		color = (*it)->getFillColor();
 		ofColor		diffuseColor = (*it)->getDiffuseColor() + diffuseMaterial_;
 		ofColor		specularColor = (*it)->getSpecularColor() + specularMaterial_;
+
 		if ((*it)->getLightModel() == Light::LightModel::color_fill)
 		{
 			activeShader_->setUniform4f("colorAmbient" + std::to_string(i), color.r / 255.f, color.g / 255.f, color.b / 255.f, color.a / 255.f);
@@ -69,6 +71,8 @@ void LightShader::begin()
 				activeShader_->setUniform1f("coneAngle", 15.f);
 			else
 				activeShader_->setUniform1f("coneAngle", -1.f);
+			if ((*it)->getLightType() == Light::LightType::directional)
+				activeShader_->setUniform1i("isDirectional", 1);
 			activeShader_->setUniform1f("brightness", (*it)->getBrightness());
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::gouraud)
@@ -80,6 +84,8 @@ void LightShader::begin()
 				activeShader_->setUniform1f("coneAngle", 15.f);
 			else
 				activeShader_->setUniform1f("coneAngle", -1.f);
+			if ((*it)->getLightType() == Light::LightType::directional)
+				activeShader_->setUniform1i("isDirectional", 1);
 			activeShader_->setUniform1f("brightness", (*it)->getBrightness());
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::phong)
@@ -92,6 +98,8 @@ void LightShader::begin()
 				activeShader_->setUniform1f("coneAngle", 15.f);
 			else
 				activeShader_->setUniform1f("coneAngle", -1.f);
+			if ((*it)->getLightType() == Light::LightType::directional)
+				activeShader_->setUniform1i("isDirectional", 1);
 			activeShader_->setUniform1f("brightness", (*it)->getBrightness());
 		}
 		else if ((*it)->getLightModel() == Light::LightModel::blinn_phong)
@@ -103,6 +111,8 @@ void LightShader::begin()
 				activeShader_->setUniform1f("coneAngle", 15.f);
 			else
 				activeShader_->setUniform1f("coneAngle", -1.f);
+			if ((*it)->getLightType() == Light::LightType::directional)
+				activeShader_->setUniform1i("isDirectional", 1);
 			activeShader_->setUniform1f("brightness", (*it)->getBrightness());
 		}
 		activeShader_->setUniform3f("lightPosition" + std::to_string(i), (*it)->getGlobalPosition() * ofGetCurrentMatrix(OF_MATRIX_MODELVIEW));
