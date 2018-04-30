@@ -3,7 +3,7 @@
 Light::Light()
 {
 	setPosition(ofVec3f(0, 0, 0));
-	setLightModel(LightModel::color_fill);
+	setLightModel(LightModel::blinn_phong);
 	setLightType(LightType::ambiant);
 	color_.r = 255;
 	color_.g = 0;
