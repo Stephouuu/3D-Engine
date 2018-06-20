@@ -2,7 +2,6 @@
 
 ## Contributors
 Anthony Vogelweid
-
 Joffrey Escobar
 
 Stéphane Galibert
