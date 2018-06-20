@@ -1,7 +1,6 @@
 # infographie-IFT-3100
 
 ## Contributors
-Anthony Vogelweid__
-Joffrey Escobar
-
+Anthony Vogelweid  
+Joffrey Escobar  
 Stéphane Galibert
